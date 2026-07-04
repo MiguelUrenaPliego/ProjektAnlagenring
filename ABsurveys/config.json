@@ -1,0 +1,11 @@
+{
+    "scenario":"Anlagenring",
+    "user_data_path":"user_data",
+    "scenarios_path":"scenarios.csv",
+    "images_path":"images/Anlagenring/images.csv",
+    "languages_path":"questions/languages.csv",
+    "questions_path":"questions/questions.csv",
+    "batch_size": 20,
+    "uncertainty_threshold": 0.4,
+    "active_learning": 0.8
+}

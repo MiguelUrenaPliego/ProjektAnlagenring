@@ -1,7 +1,8 @@
 # ==========================================================
-# ABsurveys is tracked as a proper git submodule instead
-# (see .gitmodules) — it keeps committing to its own remote,
-# reused as a standalone module by other projects too.
+# ABsurveys/ is a normal tracked folder in this repo (no
+# separate remote/submodule) — its own .gitignore (models/,
+# .venv/, frontend/node_modules/, etc.) still applies on top
+# of the generic rules below.
 # ==========================================================
 
 # ==========================================================

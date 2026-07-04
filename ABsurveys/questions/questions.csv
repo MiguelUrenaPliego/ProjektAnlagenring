@@ -1,0 +1,17 @@
+question_id,autocontinue,question_type
+gender,False,choice
+age,False,choice
+car,False,choice
+mode,False,choice
+children,False,choice
+studies,False,choice
+home,False,int
+start,True,AB
+general-preference,True,AB
+physical-reason,True,choice
+walk-init,True,choice
+walk-preference,True,AB
+bike-init,True,choice
+bike-preference,True,AB
+stay-init,True,choice
+stay-preference,True,AB

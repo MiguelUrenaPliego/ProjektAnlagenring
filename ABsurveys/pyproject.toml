@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "absurveys"
+version = "0.1.0"
+description = "ABsurveys project for geospatial and survey analysis"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{name = "Miguel"}]
+dependencies = [
+    # Core scientific stack
+    "numpy>=2.4",
+    "pandas>=2.2,<4",
+    
+    # GIS stack
+    "geopandas>=1.1",
+    "shapely>=2.1",
+    "pyproj>=3.7",
+    "pyogrio>=0.12",
+    "mapclassify>=2.10",
+    
+    # Visualization
+    "matplotlib>=3.10",
+    "folium>=0.20",
+    "branca>=0.8",
+    
+    # Web / backend
+    "fastapi>=0.110",
+    "uvicorn>=0.27",
+    "motor>=3.3",
+    
+    # Utilities
+    "pillow>=12",
+    "tqdm>=4.67",
+    "requests>=2.31",
+    "pyyaml>=6",
+]
+
+[project.optional-dependencies]
+streetscore = [
+    "torch>=2.12",
+    "torchvision>=0.27",
+    "huggingface-hub>=1.16",
+]
+
+[tool.setuptools]
+packages = []

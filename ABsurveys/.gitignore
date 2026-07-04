@@ -1,0 +1,136 @@
+# ==========================================================
+# Python
+# ==========================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Python caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# ==========================================================
+# uv
+# ==========================================================
+
+# Keep the lockfile for reproducibility
+# uv.lock
+
+# Ignore local cache
+.uv/
+.cache/
+
+# ==========================================================
+# Jupyter
+# ==========================================================
+
+.ipynb_checkpoints/
+
+# ==========================================================
+# Documentation
+# ==========================================================
+
+docs/_build/
+docs/build/
+_build/
+
+# ==========================================================
+# React / Node
+# ==========================================================
+
+node_modules/
+dist/
+coverage/
+
+# Vite
+vite.svg
+
+# npm / pnpm / yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ==========================================================
+# Models & ML artifacts
+# ==========================================================
+
+models/
+**/models/
+
+checkpoints/
+**/checkpoints/
+
+runs/
+logs/
+wandb/
+lightning_logs/
+tensorboard/
+
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+
+# ==========================================================
+# Project-specific
+# ==========================================================
+
+api_keys.py
+.env
+.env.*
+!.env.example
+
+# PPTX conversion
+pptx_to_marp/
+
+# ==========================================================
+# LaTeX
+# ==========================================================
+
+latex/memoria_tesis_doctoral/
+latex/scope_and_contents/
+latex/tecnicas_geomaticas/
+
+# ==========================================================
+# Frontend build output
+# ==========================================================
+
+frontend/dist/
+frontend/node_modules/
+*/frontend/dist/
+*/frontend/node_modules/
+
+# ==========================================================
+# Editors / OS
+# ==========================================================
+
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db
+
+tokens.py
+
+update_results.txt
+last_convo.txt
