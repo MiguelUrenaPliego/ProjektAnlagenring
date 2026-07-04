@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_dfd72930e3a0378e9f5a3cfdc94b59c4 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+        <div style="position:fixed;bottom:40px;left:40px;
+        background:white;padding:10px;z-index:9999;">
+        <b>POI Legend</b><br>
+        <div>Springbrunnen: ⛲</div><div>Spielplatz mit Fußballfeld: ⚽</div><div>Sportbereich: 🏋️</div><div>Spielplatz mit Fußball und Basketballfeld: ⚽🏀</div><div>Spielplatz: 🛝</div><div>Spielplatz mit Basketballfeld: 🏀</div></div>
+    
+    <div id="mapTitle" data-i18n="title" style="
+        position:fixed;top:16px;left:16px;z-index:9999;
+        background:rgba(8,25,55,0.75);color:#fff;padding:8px 14px;
+        border-radius:8px;font:600 15px 'Segoe UI',system-ui,sans-serif;
+        border:1px solid rgba(255,255,255,0.35);"></div>
+    
+    
+    <style>
+      #langSwitcher {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        background: rgba(8, 25, 55, 0.75);
+        backdrop-filter: blur(4px);
+        color: #fff;
+        padding: 7px 12px;
+        border-radius: 18px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        z-index: 10000;
+        border: 1px solid rgba(255,255,255,0.35);
+        user-select: none;
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      }
+      #langSwitcher:hover { background: rgba(8, 25, 55, 0.92); }
+    </style>
+    <div id="langSwitcher" onclick="__mapToggleLanguage()" title="Sprache wechseln / Switch language">
+      🌐 <span id="currentLangLabel"></span>
+    </div>
+    <script>
+    (function() {
+      var TRANSLATIONS = {"de": {"title": "Aufenthaltsqualität – Bestandsanalyse", "legend_title": "POI-Legende"}, "en": {"title": "Points of Interest – Baseline Analysis", "legend_title": "POI Legend"}};
+      var DEFAULT_LANG = "de";
+
+      function resolveInitialLang() {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var fromUrl = params.get("lang");
+          if (fromUrl && TRANSLATIONS[fromUrl]) return fromUrl;
+        } catch (e) {}
+        try {
+          var fromStorage = window.localStorage.getItem("site_lang");
+          if (fromStorage && TRANSLATIONS[fromStorage]) return fromStorage;
+        } catch (e) {}
+        return DEFAULT_LANG;
+      }
+
+      window.__mapApplyLanguage = function(lang) {
+        var dict = TRANSLATIONS[lang] || TRANSLATIONS[DEFAULT_LANG];
+        document.querySelectorAll("[data-i18n]").forEach(function(el) {
+          var key = el.getAttribute("data-i18n");
+          if (dict[key] !== undefined) el.innerHTML = dict[key];
+        });
+        var label = document.getElementById("currentLangLabel");
+        if (label) label.textContent = lang.toUpperCase();
+        document.documentElement.lang = lang;
+        window.__mapCurrentLang = lang;
+        try { window.localStorage.setItem("site_lang", lang); } catch (e) {}
+      };
+
+      window.__mapToggleLanguage = function() {
+        var next = window.__mapCurrentLang === "de" ? "en" : "de";
+        window.__mapApplyLanguage(next);
+      };
+
+      window.__mapApplyLanguage(resolveInitialLang());
+    })();
+    </script>
+    
+    
+            <div class="folium-map" id="map_dfd72930e3a0378e9f5a3cfdc94b59c4" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_dfd72930e3a0378e9f5a3cfdc94b59c4 = L.map(
+                "map_dfd72930e3a0378e9f5a3cfdc94b59c4",
+                {
+                    center: [50.114901, 8.685614],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 15,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+
+            
+
+        
+    
+            var tile_layer_9025408515abd20205d4b0dc93d92cf4 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Google",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 0.5,
+}
+
+            );
+        
+    
+            tile_layer_9025408515abd20205d4b0dc93d92cf4.addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var marker_d1f29c55d682e2a9df6eacf94c27cfe2 = L.marker(
+                [50.1112, 8.69386],
+                {
+}
+            ).addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var div_icon_874ed374efdddf513c7ff715a1e9f7fe = L.divIcon({
+  "html": "\n            \u003cdiv style=\"position:relative;width:34px;height:34px;\"\u003e\n                \u003cdiv style=\"\n                    position:absolute;\n                    width:34px;height:34px;\n                    background:white;\n                    border:2px solid black;\n                    border-radius:50% 50% 50% 0;\n                    transform:rotate(-45deg);\n                \"\u003e\u003c/div\u003e\n\n                \u003cdiv style=\"\n                    position:absolute;\n                    top:50%;left:50%;\n                    transform:translate(-50%,-50%);\n                    font-size:18px;\n                \"\u003e\n                    \u26f2\n                \u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [34, 34],
+  "iconAnchor": [17, 34],
+  "className": "empty",
+});
+        
+    
+        var popup_e963081f6f92bebc2474494cabb020de = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_39d7beeb482cda0817bef6fe6560fb2a = $(`<div id="html_39d7beeb482cda0817bef6fe6560fb2a" style="width: 100.0%; height: 100.0%;"><table style='width:260px'>                 <tr>                     <th style='text-align:left;padding-right:8px'>Kategorie</th>                     <td>Bestandsanalyse</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>Typ</th>                     <td>Springbrunnen</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lat</th>                     <td>50.1112</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lon</th>                     <td>8.69386</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>emoji</th>                     <td>⛲</td>                 </tr>                 </table></div>`)[0];
+                popup_e963081f6f92bebc2474494cabb020de.setContent(html_39d7beeb482cda0817bef6fe6560fb2a);
+            
+        
+
+        marker_d1f29c55d682e2a9df6eacf94c27cfe2.bindPopup(popup_e963081f6f92bebc2474494cabb020de)
+        ;
+
+        
+    
+    
+            marker_d1f29c55d682e2a9df6eacf94c27cfe2.bindTooltip(
+                `<div>
+                     <table style='width:260px'>
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Kategorie</th>
+                    <td>Bestandsanalyse</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Typ</th>
+                    <td>Springbrunnen</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lat</th>
+                    <td>50.1112</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lon</th>
+                    <td>8.69386</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>emoji</th>
+                    <td>⛲</td>
+                </tr>
+                </table>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d1f29c55d682e2a9df6eacf94c27cfe2.setIcon(div_icon_874ed374efdddf513c7ff715a1e9f7fe);
+            
+    
+            var marker_443a2130b1a30b3bf15201a9adec12b4 = L.marker(
+                [50.11746, 8.69123],
+                {
+}
+            ).addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var div_icon_4b025de3c0fd27c0181c2ac3276e4c5f = L.divIcon({
+  "html": "\n            \u003cdiv style=\"position:relative;width:34px;height:34px;\"\u003e\n                \u003cdiv style=\"\n                    position:absolute;\n                    width:34px;height:34px;\n                    background:white;\n                    border:2px solid black;\n                    border-radius:50% 50% 50% 0;\n                    transform:rotate(-45deg);\n                \"\u003e\u003c/div\u003e\n\n                \u003cdiv style=\"\n                    position:absolute;\n                    top:50%;left:50%;\n                    transform:translate(-50%,-50%);\n                    font-size:18px;\n                \"\u003e\n                    \u26f2\n                \u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [34, 34],
+  "iconAnchor": [17, 34],
+  "className": "empty",
+});
+        
+    
+        var popup_9f1aa5cddf5442950b903622c5aac585 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a25f8bb33e7d23828745009ff1eb64ee = $(`<div id="html_a25f8bb33e7d23828745009ff1eb64ee" style="width: 100.0%; height: 100.0%;"><table style='width:260px'>                 <tr>                     <th style='text-align:left;padding-right:8px'>Kategorie</th>                     <td>Bestandsanalyse</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>Typ</th>                     <td>Springbrunnen</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lat</th>                     <td>50.11746</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lon</th>                     <td>8.69123</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>emoji</th>                     <td>⛲</td>                 </tr>                 </table></div>`)[0];
+                popup_9f1aa5cddf5442950b903622c5aac585.setContent(html_a25f8bb33e7d23828745009ff1eb64ee);
+            
+        
+
+        marker_443a2130b1a30b3bf15201a9adec12b4.bindPopup(popup_9f1aa5cddf5442950b903622c5aac585)
+        ;
+
+        
+    
+    
+            marker_443a2130b1a30b3bf15201a9adec12b4.bindTooltip(
+                `<div>
+                     <table style='width:260px'>
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Kategorie</th>
+                    <td>Bestandsanalyse</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Typ</th>
+                    <td>Springbrunnen</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lat</th>
+                    <td>50.11746</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lon</th>
+                    <td>8.69123</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>emoji</th>
+                    <td>⛲</td>
+                </tr>
+                </table>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_443a2130b1a30b3bf15201a9adec12b4.setIcon(div_icon_4b025de3c0fd27c0181c2ac3276e4c5f);
+            
+    
+            var marker_a708da92d3f8d2070bb5de00548363a9 = L.marker(
+                [50.11525, 8.67227],
+                {
+}
+            ).addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var div_icon_bfb7da0cf61724da0581c6ef4354c89f = L.divIcon({
+  "html": "\n            \u003cdiv style=\"position:relative;width:34px;height:34px;\"\u003e\n                \u003cdiv style=\"\n                    position:absolute;\n                    width:34px;height:34px;\n                    background:white;\n                    border:2px solid black;\n                    border-radius:50% 50% 50% 0;\n                    transform:rotate(-45deg);\n                \"\u003e\u003c/div\u003e\n\n                \u003cdiv style=\"\n                    position:absolute;\n                    top:50%;left:50%;\n                    transform:translate(-50%,-50%);\n                    font-size:18px;\n                \"\u003e\n                    \u26f2\n                \u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [34, 34],
+  "iconAnchor": [17, 34],
+  "className": "empty",
+});
+        
+    
+        var popup_4addbb547fa933c0e074d4552f2e0af5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5b289620b819eda9b4bb044e379009f2 = $(`<div id="html_5b289620b819eda9b4bb044e379009f2" style="width: 100.0%; height: 100.0%;"><table style='width:260px'>                 <tr>                     <th style='text-align:left;padding-right:8px'>Kategorie</th>                     <td>Bestandsanalyse</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>Typ</th>                     <td>Springbrunnen</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lat</th>                     <td>50.11525</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lon</th>                     <td>8.67227</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>emoji</th>                     <td>⛲</td>                 </tr>                 </table></div>`)[0];
+                popup_4addbb547fa933c0e074d4552f2e0af5.setContent(html_5b289620b819eda9b4bb044e379009f2);
+            
+        
+
+        marker_a708da92d3f8d2070bb5de00548363a9.bindPopup(popup_4addbb547fa933c0e074d4552f2e0af5)
+        ;
+
+        
+    
+    
+            marker_a708da92d3f8d2070bb5de00548363a9.bindTooltip(
+                `<div>
+                     <table style='width:260px'>
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Kategorie</th>
+                    <td>Bestandsanalyse</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Typ</th>
+                    <td>Springbrunnen</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lat</th>
+                    <td>50.11525</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lon</th>
+                    <td>8.67227</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>emoji</th>
+                    <td>⛲</td>
+                </tr>
+                </table>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a708da92d3f8d2070bb5de00548363a9.setIcon(div_icon_bfb7da0cf61724da0581c6ef4354c89f);
+            
+    
+            var marker_6aee3e20a88523b19aa8c95d37fdc3fd = L.marker(
+                [50.11492, 8.67192],
+                {
+}
+            ).addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var div_icon_603f30f8872577ba14b0c7cecefb1e77 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"position:relative;width:34px;height:34px;\"\u003e\n                \u003cdiv style=\"\n                    position:absolute;\n                    width:34px;height:34px;\n                    background:white;\n                    border:2px solid black;\n                    border-radius:50% 50% 50% 0;\n                    transform:rotate(-45deg);\n                \"\u003e\u003c/div\u003e\n\n                \u003cdiv style=\"\n                    position:absolute;\n                    top:50%;left:50%;\n                    transform:translate(-50%,-50%);\n                    font-size:18px;\n                \"\u003e\n                    \u26f2\n                \u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [34, 34],
+  "iconAnchor": [17, 34],
+  "className": "empty",
+});
+        
+    
+        var popup_7ed602830393b5fe6707a292b939d8ad = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6f0ff018871f57cfd5a2c63cb6b86342 = $(`<div id="html_6f0ff018871f57cfd5a2c63cb6b86342" style="width: 100.0%; height: 100.0%;"><table style='width:260px'>                 <tr>                     <th style='text-align:left;padding-right:8px'>Kategorie</th>                     <td>Bestandsanalyse</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>Typ</th>                     <td>Springbrunnen</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lat</th>                     <td>50.11492</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lon</th>                     <td>8.67192</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>emoji</th>                     <td>⛲</td>                 </tr>                 </table></div>`)[0];
+                popup_7ed602830393b5fe6707a292b939d8ad.setContent(html_6f0ff018871f57cfd5a2c63cb6b86342);
+            
+        
+
+        marker_6aee3e20a88523b19aa8c95d37fdc3fd.bindPopup(popup_7ed602830393b5fe6707a292b939d8ad)
+        ;
+
+        
+    
+    
+            marker_6aee3e20a88523b19aa8c95d37fdc3fd.bindTooltip(
+                `<div>
+                     <table style='width:260px'>
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Kategorie</th>
+                    <td>Bestandsanalyse</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Typ</th>
+                    <td>Springbrunnen</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lat</th>
+                    <td>50.11492</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lon</th>
+                    <td>8.67192</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>emoji</th>
+                    <td>⛲</td>
+                </tr>
+                </table>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6aee3e20a88523b19aa8c95d37fdc3fd.setIcon(div_icon_603f30f8872577ba14b0c7cecefb1e77);
+            
+    
+            var marker_ec7fd6a35e56012dac81c0687cf38476 = L.marker(
+                [50.10851, 8.67305],
+                {
+}
+            ).addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var div_icon_a5e75653f18363399b33a6cc17d6c2f7 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"position:relative;width:34px;height:34px;\"\u003e\n                \u003cdiv style=\"\n                    position:absolute;\n                    width:34px;height:34px;\n                    background:white;\n                    border:2px solid black;\n                    border-radius:50% 50% 50% 0;\n                    transform:rotate(-45deg);\n                \"\u003e\u003c/div\u003e\n\n                \u003cdiv style=\"\n                    position:absolute;\n                    top:50%;left:50%;\n                    transform:translate(-50%,-50%);\n                    font-size:18px;\n                \"\u003e\n                    \u26f2\n                \u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [34, 34],
+  "iconAnchor": [17, 34],
+  "className": "empty",
+});
+        
+    
+        var popup_37b54e2c67a07f7dc5e31be2ddc02897 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dfa539577d5c144703c3ddfafa1b5694 = $(`<div id="html_dfa539577d5c144703c3ddfafa1b5694" style="width: 100.0%; height: 100.0%;"><table style='width:260px'>                 <tr>                     <th style='text-align:left;padding-right:8px'>Kategorie</th>                     <td>Bestandsanalyse</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>Typ</th>                     <td>Springbrunnen</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lat</th>                     <td>50.10851</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lon</th>                     <td>8.67305</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>emoji</th>                     <td>⛲</td>                 </tr>                 </table></div>`)[0];
+                popup_37b54e2c67a07f7dc5e31be2ddc02897.setContent(html_dfa539577d5c144703c3ddfafa1b5694);
+            
+        
+
+        marker_ec7fd6a35e56012dac81c0687cf38476.bindPopup(popup_37b54e2c67a07f7dc5e31be2ddc02897)
+        ;
+
+        
+    
+    
+            marker_ec7fd6a35e56012dac81c0687cf38476.bindTooltip(
+                `<div>
+                     <table style='width:260px'>
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Kategorie</th>
+                    <td>Bestandsanalyse</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Typ</th>
+                    <td>Springbrunnen</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lat</th>
+                    <td>50.10851</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lon</th>
+                    <td>8.67305</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>emoji</th>
+                    <td>⛲</td>
+                </tr>
+                </table>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ec7fd6a35e56012dac81c0687cf38476.setIcon(div_icon_a5e75653f18363399b33a6cc17d6c2f7);
+            
+    
+            var marker_96ad4aa73c3863484647462304ea1086 = L.marker(
+                [50.11243, 8.69543],
+                {
+}
+            ).addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var div_icon_03484e58752ec7c28bb8ca76353fe6da = L.divIcon({
+  "html": "\n            \u003cdiv style=\"position:relative;width:34px;height:34px;\"\u003e\n                \u003cdiv style=\"\n                    position:absolute;\n                    width:34px;height:34px;\n                    background:white;\n                    border:2px solid black;\n                    border-radius:50% 50% 50% 0;\n                    transform:rotate(-45deg);\n                \"\u003e\u003c/div\u003e\n\n                \u003cdiv style=\"\n                    position:absolute;\n                    top:50%;left:50%;\n                    transform:translate(-50%,-50%);\n                    font-size:18px;\n                \"\u003e\n                    \u26bd\n                \u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [34, 34],
+  "iconAnchor": [17, 34],
+  "className": "empty",
+});
+        
+    
+        var popup_4b45f486d178da1aeaec7b6f845c3082 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_007dfe0c30bade9aa75818e56e8dfda3 = $(`<div id="html_007dfe0c30bade9aa75818e56e8dfda3" style="width: 100.0%; height: 100.0%;"><table style='width:260px'>                 <tr>                     <th style='text-align:left;padding-right:8px'>Kategorie</th>                     <td>Bestandsanalyse</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>Typ</th>                     <td>Spielplatz mit Fußballfeld</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lat</th>                     <td>50.11243</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lon</th>                     <td>8.69543</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>emoji</th>                     <td>⚽</td>                 </tr>                 </table></div>`)[0];
+                popup_4b45f486d178da1aeaec7b6f845c3082.setContent(html_007dfe0c30bade9aa75818e56e8dfda3);
+            
+        
+
+        marker_96ad4aa73c3863484647462304ea1086.bindPopup(popup_4b45f486d178da1aeaec7b6f845c3082)
+        ;
+
+        
+    
+    
+            marker_96ad4aa73c3863484647462304ea1086.bindTooltip(
+                `<div>
+                     <table style='width:260px'>
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Kategorie</th>
+                    <td>Bestandsanalyse</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Typ</th>
+                    <td>Spielplatz mit Fußballfeld</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lat</th>
+                    <td>50.11243</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lon</th>
+                    <td>8.69543</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>emoji</th>
+                    <td>⚽</td>
+                </tr>
+                </table>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_96ad4aa73c3863484647462304ea1086.setIcon(div_icon_03484e58752ec7c28bb8ca76353fe6da);
+            
+    
+            var marker_0890215e37011417599ea236ab14d227 = L.marker(
+                [50.11462, 8.69452],
+                {
+}
+            ).addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var div_icon_fcd039e8f7f00eeb5a6a09e208d2d44a = L.divIcon({
+  "html": "\n            \u003cdiv style=\"position:relative;width:34px;height:34px;\"\u003e\n                \u003cdiv style=\"\n                    position:absolute;\n                    width:34px;height:34px;\n                    background:white;\n                    border:2px solid black;\n                    border-radius:50% 50% 50% 0;\n                    transform:rotate(-45deg);\n                \"\u003e\u003c/div\u003e\n\n                \u003cdiv style=\"\n                    position:absolute;\n                    top:50%;left:50%;\n                    transform:translate(-50%,-50%);\n                    font-size:18px;\n                \"\u003e\n                    \ud83c\udfcb\ufe0f\n                \u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [34, 34],
+  "iconAnchor": [17, 34],
+  "className": "empty",
+});
+        
+    
+        var popup_14073a4d48ec2a1f7e388666beac4f36 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_93ee86c869d5af5a45d0df43f5e5c585 = $(`<div id="html_93ee86c869d5af5a45d0df43f5e5c585" style="width: 100.0%; height: 100.0%;"><table style='width:260px'>                 <tr>                     <th style='text-align:left;padding-right:8px'>Kategorie</th>                     <td>Bestandsanalyse</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>Typ</th>                     <td>Sportbereich</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lat</th>                     <td>50.11462</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lon</th>                     <td>8.69452</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>emoji</th>                     <td>🏋️</td>                 </tr>                 </table></div>`)[0];
+                popup_14073a4d48ec2a1f7e388666beac4f36.setContent(html_93ee86c869d5af5a45d0df43f5e5c585);
+            
+        
+
+        marker_0890215e37011417599ea236ab14d227.bindPopup(popup_14073a4d48ec2a1f7e388666beac4f36)
+        ;
+
+        
+    
+    
+            marker_0890215e37011417599ea236ab14d227.bindTooltip(
+                `<div>
+                     <table style='width:260px'>
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Kategorie</th>
+                    <td>Bestandsanalyse</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Typ</th>
+                    <td>Sportbereich</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lat</th>
+                    <td>50.11462</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lon</th>
+                    <td>8.69452</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>emoji</th>
+                    <td>🏋️</td>
+                </tr>
+                </table>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0890215e37011417599ea236ab14d227.setIcon(div_icon_fcd039e8f7f00eeb5a6a09e208d2d44a);
+            
+    
+            var marker_6a87ee8356112bf4872a02f5ca3f5455 = L.marker(
+                [50.11631, 8.6928],
+                {
+}
+            ).addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var div_icon_644e16d15b916ea55d9bc963b5eb2551 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"position:relative;width:34px;height:34px;\"\u003e\n                \u003cdiv style=\"\n                    position:absolute;\n                    width:34px;height:34px;\n                    background:white;\n                    border:2px solid black;\n                    border-radius:50% 50% 50% 0;\n                    transform:rotate(-45deg);\n                \"\u003e\u003c/div\u003e\n\n                \u003cdiv style=\"\n                    position:absolute;\n                    top:50%;left:50%;\n                    transform:translate(-50%,-50%);\n                    font-size:18px;\n                \"\u003e\n                    \u26bd\ud83c\udfc0\n                \u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [34, 34],
+  "iconAnchor": [17, 34],
+  "className": "empty",
+});
+        
+    
+        var popup_bd93c306ad035b60697d617b9c441960 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_13990c2e5ad37ca31c4f50900cd52ffe = $(`<div id="html_13990c2e5ad37ca31c4f50900cd52ffe" style="width: 100.0%; height: 100.0%;"><table style='width:260px'>                 <tr>                     <th style='text-align:left;padding-right:8px'>Kategorie</th>                     <td>Bestandsanalyse</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>Typ</th>                     <td>Spielplatz mit Fußball und Basketballfeld</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lat</th>                     <td>50.11631</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lon</th>                     <td>8.6928</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>emoji</th>                     <td>⚽🏀</td>                 </tr>                 </table></div>`)[0];
+                popup_bd93c306ad035b60697d617b9c441960.setContent(html_13990c2e5ad37ca31c4f50900cd52ffe);
+            
+        
+
+        marker_6a87ee8356112bf4872a02f5ca3f5455.bindPopup(popup_bd93c306ad035b60697d617b9c441960)
+        ;
+
+        
+    
+    
+            marker_6a87ee8356112bf4872a02f5ca3f5455.bindTooltip(
+                `<div>
+                     <table style='width:260px'>
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Kategorie</th>
+                    <td>Bestandsanalyse</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Typ</th>
+                    <td>Spielplatz mit Fußball und Basketballfeld</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lat</th>
+                    <td>50.11631</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lon</th>
+                    <td>8.6928</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>emoji</th>
+                    <td>⚽🏀</td>
+                </tr>
+                </table>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6a87ee8356112bf4872a02f5ca3f5455.setIcon(div_icon_644e16d15b916ea55d9bc963b5eb2551);
+            
+    
+            var marker_80e3fdb15c9307c96b4e52d420bdfd79 = L.marker(
+                [50.11948, 8.68714],
+                {
+}
+            ).addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var div_icon_e4eca15f23491f99e40c2d2450a3ed36 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"position:relative;width:34px;height:34px;\"\u003e\n                \u003cdiv style=\"\n                    position:absolute;\n                    width:34px;height:34px;\n                    background:white;\n                    border:2px solid black;\n                    border-radius:50% 50% 50% 0;\n                    transform:rotate(-45deg);\n                \"\u003e\u003c/div\u003e\n\n                \u003cdiv style=\"\n                    position:absolute;\n                    top:50%;left:50%;\n                    transform:translate(-50%,-50%);\n                    font-size:18px;\n                \"\u003e\n                    \ud83d\udedd\n                \u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [34, 34],
+  "iconAnchor": [17, 34],
+  "className": "empty",
+});
+        
+    
+        var popup_9881d171ad282e8ba4bd49daf9e38072 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_39c1f3197b95609301e4ea2b56a4c7f0 = $(`<div id="html_39c1f3197b95609301e4ea2b56a4c7f0" style="width: 100.0%; height: 100.0%;"><table style='width:260px'>                 <tr>                     <th style='text-align:left;padding-right:8px'>Kategorie</th>                     <td>Bestandsanalyse</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>Typ</th>                     <td>Spielplatz</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lat</th>                     <td>50.11948</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lon</th>                     <td>8.68714</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>emoji</th>                     <td>🛝</td>                 </tr>                 </table></div>`)[0];
+                popup_9881d171ad282e8ba4bd49daf9e38072.setContent(html_39c1f3197b95609301e4ea2b56a4c7f0);
+            
+        
+
+        marker_80e3fdb15c9307c96b4e52d420bdfd79.bindPopup(popup_9881d171ad282e8ba4bd49daf9e38072)
+        ;
+
+        
+    
+    
+            marker_80e3fdb15c9307c96b4e52d420bdfd79.bindTooltip(
+                `<div>
+                     <table style='width:260px'>
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Kategorie</th>
+                    <td>Bestandsanalyse</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Typ</th>
+                    <td>Spielplatz</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lat</th>
+                    <td>50.11948</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lon</th>
+                    <td>8.68714</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>emoji</th>
+                    <td>🛝</td>
+                </tr>
+                </table>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_80e3fdb15c9307c96b4e52d420bdfd79.setIcon(div_icon_e4eca15f23491f99e40c2d2450a3ed36);
+            
+    
+            var marker_3c73515453af326dbd0be6fd7354214f = L.marker(
+                [50.11883, 8.68392],
+                {
+}
+            ).addTo(map_dfd72930e3a0378e9f5a3cfdc94b59c4);
+        
+    
+            var div_icon_ffea9b0300c697df5a8b908e270b2361 = L.divIcon({
+  "html": "\n            \u003cdiv style=\"position:relative;width:34px;height:34px;\"\u003e\n                \u003cdiv style=\"\n                    position:absolute;\n                    width:34px;height:34px;\n                    background:white;\n                    border:2px solid black;\n                    border-radius:50% 50% 50% 0;\n                    transform:rotate(-45deg);\n                \"\u003e\u003c/div\u003e\n\n                \u003cdiv style=\"\n                    position:absolute;\n                    top:50%;left:50%;\n                    transform:translate(-50%,-50%);\n                    font-size:18px;\n                \"\u003e\n                    \ud83c\udfc0\n                \u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [34, 34],
+  "iconAnchor": [17, 34],
+  "className": "empty",
+});
+        
+    
+        var popup_adb301f7ae383d2ec18941f0eb0c96e3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0f7afeddc5b61b31f68635b29acf349d = $(`<div id="html_0f7afeddc5b61b31f68635b29acf349d" style="width: 100.0%; height: 100.0%;"><table style='width:260px'>                 <tr>                     <th style='text-align:left;padding-right:8px'>Kategorie</th>                     <td>Bestandsanalyse</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>Typ</th>                     <td>Spielplatz mit Basketballfeld</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lat</th>                     <td>50.11883</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>lon</th>                     <td>8.68392</td>                 </tr>                                  <tr>                     <th style='text-align:left;padding-right:8px'>emoji</th>                     <td>🏀</td>                 </tr>                 </table></div>`)[0];
+                popup_adb301f7ae383d2ec18941f0eb0c96e3.setContent(html_0f7afeddc5b61b31f68635b29acf349d);
+            
+        
+
+        marker_3c73515453af326dbd0be6fd7354214f.bindPopup(popup_adb301f7ae383d2ec18941f0eb0c96e3)
+        ;
+
+        
+    
+    
+            marker_3c73515453af326dbd0be6fd7354214f.bindTooltip(
+                `<div>
+                     <table style='width:260px'>
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Kategorie</th>
+                    <td>Bestandsanalyse</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>Typ</th>
+                    <td>Spielplatz mit Basketballfeld</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lat</th>
+                    <td>50.11883</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>lon</th>
+                    <td>8.68392</td>
+                </tr>
+                
+                <tr>
+                    <th style='text-align:left;padding-right:8px'>emoji</th>
+                    <td>🏀</td>
+                </tr>
+                </table>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3c73515453af326dbd0be6fd7354214f.setIcon(div_icon_ffea9b0300c697df5a8b908e270b2361);
+            
+    
+            var measure_control_cb0b173d8c1eb14bec28985f9dca7bf9 = new L.Control.Measure(
+                {
+  "position": "topright",
+  "primaryLengthUnit": "meters",
+  "secondaryLengthUnit": "miles",
+  "primaryAreaUnit": "sqmeters",
+  "secondaryAreaUnit": "acres",
+});
+            map_dfd72930e3a0378e9f5a3cfdc94b59c4.addControl(measure_control_cb0b173d8c1eb14bec28985f9dca7bf9);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+</script>
+</html>

@@ -1,0 +1,64 @@
+{
+  "poi": {
+    "de": {
+      "title": "Aufenthaltsqualität – Bestandsanalyse",
+      "legend_title": "POI-Legende"
+    },
+    "en": {
+      "title": "Points of Interest – Baseline Analysis",
+      "legend_title": "POI Legend"
+    }
+  },
+  "intersections": {
+    "de": {
+      "title": "Kreuzungsabstände",
+      "legend_title": "Abstand (m)"
+    },
+    "en": {
+      "title": "Intersection Distances",
+      "legend_title": "Distance (m)"
+    }
+  },
+  "region": {
+    "de": {
+      "title": "Metropolregion",
+      "legend_title": "Legende"
+    },
+    "en": {
+      "title": "Metropolitan Area",
+      "legend_title": "Legend"
+    }
+  },
+  "carfree": {
+    "de": {
+      "title": "Umweltzonen & Verkehrswirkung",
+      "legend_title": "Verkehrszunahme (%)",
+      "background_layers": "Hintergrundebenen",
+      "scenario": "Szenario"
+    },
+    "en": {
+      "title": "Car-free Zones & Traffic Effects",
+      "legend_title": "Traffic increase (%)",
+      "background_layers": "Background layers",
+      "scenario": "Scenario"
+    }
+  },
+  "hub": {
+    "de": {
+      "hub_title": "Karten",
+      "intersections_title": "Kreuzungsabstände",
+      "poi_title": "Aufenthaltsqualität",
+      "survey_title": "Wahrnehmungsumfrage",
+      "region_title": "Metropolregion",
+      "carfree_title": "Umweltzonen & Verkehrswirkung"
+    },
+    "en": {
+      "hub_title": "Maps",
+      "intersections_title": "Intersection distances",
+      "poi_title": "Points of interest",
+      "survey_title": "Perception survey",
+      "region_title": "Metropolitan area",
+      "carfree_title": "Car-free zones & traffic effects"
+    }
+  }
+}
