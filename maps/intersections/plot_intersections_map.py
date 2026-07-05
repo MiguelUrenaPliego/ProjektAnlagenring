@@ -28,6 +28,8 @@ from map_i18n import toggle_html  # noqa: E402
 
 I18N = json.loads((MAPS_ROOT / "shared" / "i18n_content.json").read_text(encoding="utf-8"))["intersections"]
 
+DEFAULT_LANG = "de"  # server-baked language for the colormap caption/tooltips below
+
 GPKG_PATH = HERE / "crosswalks.gpkg"
 OUTPUT_PATH = HERE / "intersections_map.html"
 DENSIFY_STEP_M = 1.0  # distance in meters between interpolated points along each road
@@ -76,7 +78,7 @@ colormap = cm.LinearColormap(
     colors=["#2c7bb6", "#ffffbf", "#d7191c"],
     vmin=0,
     vmax=100,
-    caption="Distance from road to matching crosswalk (m, clipped to 100)",
+    caption=I18N[DEFAULT_LANG]["colormap_caption"],
 )
 
 center = [gdf.geometry.union_all().centroid.y, gdf.geometry.union_all().centroid.x]
@@ -90,7 +92,7 @@ for name, (coords, distances) in road_segments.items():
             color=colormap(min(seg_dist, 100)),
             weight=5,
             opacity=0.9,
-            tooltip=f"{name}: {seg_dist:.1f} m to crosswalk",
+            tooltip=I18N[DEFAULT_LANG]["tooltip_crosswalk_dist"].format(name=name, dist=f"{seg_dist:.1f}"),
         ).add_to(fmap)
 
 for _, crosswalk in crosswalks.iterrows():
@@ -103,11 +105,29 @@ for _, crosswalk in crosswalks.iterrows():
             fill=True,
             fill_color="orange",
             fill_opacity=1.0,
-            tooltip=f"Intersection point ({name})",
+            tooltip=I18N[DEFAULT_LANG]["tooltip_intersection_point"].format(name=name),
         ).add_to(fmap)
 
 colormap.add_to(fmap)
 folium.LayerControl().add_to(fmap)
+
+# branca hardcodes the colormap legend to the top-right leaflet corner with no
+# position option, so relocate it to the bottom-right after it renders.
+legend_position_js = """
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var legend = document.querySelector(".legend.leaflet-control");
+    if (legend) {
+        legend.style.position = "fixed";
+        legend.style.top = "auto";
+        legend.style.bottom = "40px";
+        legend.style.right = "40px";
+        legend.style.left = "auto";
+    }
+});
+</script>
+"""
+fmap.get_root().html.add_child(folium.Element(legend_position_js))
 
 title_html = """
 <div id="mapTitle" data-i18n="title" style="
@@ -117,7 +137,7 @@ title_html = """
     border:1px solid rgba(255,255,255,0.35);"></div>
 """
 fmap.get_root().html.add_child(folium.Element(title_html))
-fmap.get_root().html.add_child(folium.Element(toggle_html(I18N)))
+fmap.get_root().html.add_child(folium.Element(toggle_html(I18N, default=DEFAULT_LANG)))
 
 fmap.save(str(OUTPUT_PATH))
 print(f"Saved map to {OUTPUT_PATH}")

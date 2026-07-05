@@ -68,6 +68,16 @@ def toggle_html(translations: dict, default: str = "de") -> str:
         return DEFAULT_LANG;
       }}
 
+      // Exposed so a map's own script can look up strings itself for
+      // content it re-renders dynamically (tables, legends, dropdown
+      // option text) — not just the static data-i18n elements handled
+      // here automatically.
+      window.__mapTranslations = TRANSLATIONS;
+      window.t = function(key) {{
+        var dict = TRANSLATIONS[window.__mapCurrentLang] || TRANSLATIONS[DEFAULT_LANG];
+        return (dict && dict[key] !== undefined) ? dict[key] : key;
+      }};
+
       window.__mapApplyLanguage = function(lang) {{
         var dict = TRANSLATIONS[lang] || TRANSLATIONS[DEFAULT_LANG];
         document.querySelectorAll("[data-i18n]").forEach(function(el) {{
@@ -79,6 +89,9 @@ def toggle_html(translations: dict, default: str = "de") -> str:
         document.documentElement.lang = lang;
         window.__mapCurrentLang = lang;
         try {{ window.localStorage.setItem("site_lang", lang); }} catch (e) {{}}
+        // Lets a map's own script re-render anything it built dynamically
+        // (legends, tables, dropdown labels) in the new language.
+        window.dispatchEvent(new CustomEvent("maplangchange", {{ detail: {{ lang: lang }} }}));
       }};
 
       window.__mapToggleLanguage = function() {{

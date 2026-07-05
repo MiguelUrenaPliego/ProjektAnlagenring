@@ -36,9 +36,9 @@ const translations = {
         high_unc: "hohe Unsich.",
         diff_min: "ts < ss",
         diff_max: "ts > ss",
-        streetscore: "streetscore",
-        trueskill: "trueskill",
-        difference: "differenz",
+        streetscore: "Streetscore",
+        trueskill: "Trueskill",
+        difference: "Differenz",
         filter_splits: "Splits filtern",
         other: "Sonstige"
     }

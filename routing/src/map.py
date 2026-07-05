@@ -48,6 +48,28 @@ from map_i18n import toggle_html  # noqa: E402
 
 _I18N_CONTENT = json.loads((_MAPS_ROOT / "shared" / "i18n_content.json").read_text())
 
+# Default language every generated map opens in (also the language its
+# server-side-baked initial text — dropdown options, etc. — is written
+# in; a client that resolves to a different language via ?lang=/
+# localStorage swaps everything on load, see shared/map_i18n.py).
+DEFAULT_LANG = "de"
+
+_FRANKFURT_CENTER_GPKG = (
+    Path(__file__).resolve().parent.parent
+    / "data" / "region_boundaries" / "frankfurt_center.gpkg"
+)
+_frankfurt_center_cache: Optional[list] = None
+
+
+def _frankfurt_center_latlon() -> list:
+    """[lat, lon] centroid of frankfurt_center.gpkg — the shared initial
+    map center for both build_map() and build_region_map()."""
+    global _frankfurt_center_cache
+    if _frankfurt_center_cache is None:
+        centroid = gpd.read_file(_FRANKFURT_CENTER_GPKG).to_crs(4326).geometry.union_all().centroid
+        _frankfurt_center_cache = [centroid.y, centroid.x]
+    return _frankfurt_center_cache
+
 METRICS = ["time_min", "distance_km", "avg_speed_kmh", "co2_kg"]
 # Base per-route units — every mean/diff layer's label is built from these,
 # so it's explicit that the AOI-row value is a mean *across that row's
@@ -428,9 +450,8 @@ def build_map(
     overall_stats: Optional[Dict[str, dict]] = None,
     affected_time_threshold_min: float = 5.0,
     traffic_raster_path: Optional[str] = None,
-    route_simplify_tol: float = 5.0,  # meters — coarsened to keep routeLookup's inline JSON small
-    route_coord_precision: int = 5,  # ~1m at these latitudes, still well under simplify_tol
-    route_top_k_per_origin: int = 15,  # only the K highest-weight destinations per origin ship
+    route_simplify_tol: float = 15.0,  # meters — low resolution, keeps every route's file small
+    route_coord_precision: int = 4,  # ~11m at these latitudes, still under simplify_tol
     pop_lookup: Optional[dict] = None,
     workplace_lookup: Optional[dict] = None,
     closure_boundaries: Optional[Dict[str, object]] = None,
@@ -578,8 +599,16 @@ def build_map(
     # ------------------------------------------------------------
     # Route lookup: simplified geometry + metrics per (origin,dest) pair,
     # per scenario. Built from the projected (input CRS) OD matrices.
+    # Every pair is kept (no top-K cut) — low route_simplify_tol/
+    # route_coord_precision keeps each entry small instead. Each scenario
+    # is written to its own external JSON file (routes/routes_<s>.json,
+    # fetched lazily by the browser — see loadRoutesForScenario() below)
+    # rather than inlined in the HTML, which is what previously made this
+    # file balloon to hundreds of MB once every pair was included.
     # ------------------------------------------------------------
-    route_lookup: Dict[str, Dict[str, dict]] = {}
+    routes_dir = os.path.join(os.path.dirname(os.path.abspath(output_path)), "routes")
+    os.makedirs(routes_dir, exist_ok=True)
+    route_file_names: Dict[str, str] = {}
 
     for s in scenario_names:
         od = od_matrices.get(s)
@@ -602,22 +631,14 @@ def build_map(
         od_wgs["origin_population"] = od_wgs["origin_id"].map(pop_lookup).fillna(0.0)
         od_wgs["destination_workplaces"] = od_wgs["destination_id"].map(workplace_lookup).fillna(0.0)
 
-        # Keep only each origin's highest-weight destinations — most pairs
-        # have near-zero weight and just bloat routeLookup's inline JSON
-        # without being useful in the route explorer.
-        od_wgs = (
-            od_wgs.sort_values("weight_score", ascending=False)
-            .groupby("origin_id", group_keys=False)
-            .head(route_top_k_per_origin)
-        )
-
+        scenario_routes: Dict[str, dict] = {}
         for row in od_wgs.itertuples(index=False):
             key = f"{row.origin_id}_{row.destination_id}"
             coords = [
                 [round(y, route_coord_precision), round(x, route_coord_precision)]
                 for x, y in row.geometry.coords
             ]
-            entry = {
+            scenario_routes[key] = {
                 "coords": coords,
                 "time_min": row.time_min,
                 "distance_km": row.distance_km,
@@ -627,13 +648,16 @@ def build_map(
                 "origin_population": round(float(row.origin_population)),
                 "destination_workplaces": round(float(row.destination_workplaces)),
             }
-            route_lookup.setdefault(key, {})[s] = entry
+
+        route_file_name = f"routes_{s}.json"
+        with open(os.path.join(routes_dir, route_file_name), "w", encoding="utf-8") as f:
+            json.dump(scenario_routes, f, separators=(",", ":"))
+        route_file_names[s] = route_file_name
 
     # ------------------------------------------------------------
     # Base map
     # ------------------------------------------------------------
-    bounds = geo_gdf.total_bounds  # minx, miny, maxx, maxy
-    center = [(bounds[1] + bounds[3]) / 2, (bounds[0] + bounds[2]) / 2]
+    center = _frankfurt_center_latlon()
 
     m = folium.Map(location=center, zoom_start=12, tiles=None)
     bg_current_var, bg_hybrid_var = _add_background_layers(m)
@@ -689,12 +713,18 @@ def build_map(
     # City / suburban outline: a static (not scenario-dependent), no-fill
     # black outline around all Stadtteil rows ("city") / all Gemeinde rows
     # ("suburban"), thicker than the AOI layer's own 1px border so it reads
-    # as a grouping outline rather than another row border.
+    # as a grouping outline rather than another row border. Suburban gets
+    # the same dashed style as region_map's suburban ring (thickness *and*
+    # dash pattern differ from city, not color) so the two maps match.
+    area_styles = {
+        "city": {"weight": 5},
+        "suburban": {"weight": 4, "dashArray": "14,8"},
+    }
     for area_key, geom in area_boundaries.items():
         if geom is None or geom.is_empty:
             continue
         area_data = json.loads(gpd.GeoSeries([geom], crs=4326).to_json())
-        style = {"color": "#000000", "weight": 5}
+        style = area_styles.get(area_key, {"weight": 5})
         folium.GeoJson(
             area_data,
             name=f"{area_key.title()} outline",
@@ -708,8 +738,9 @@ def build_map(
             # map.
             style_function=lambda _f, style=style: {
                 "fillOpacity": 0,
-                "color": style["color"],
+                "color": "#000000",
                 "weight": style["weight"],
+                **({"dashArray": style["dashArray"]} if "dashArray" in style else {}),
                 "interactive": False,
             },
             interactive=False,
@@ -779,21 +810,26 @@ def build_map(
     # ------------------------------------------------------------
     # Controls + JS
     # ------------------------------------------------------------
+    i18n = _I18N_CONTENT["carfree"]
+
+    def L(key: str) -> str:  # noqa: E743 — server-baked DEFAULT_LANG text
+        return i18n[DEFAULT_LANG][key]
+
     scenario_options_html = "".join(
-        f'<option value="{s}">{SCENARIO_LABELS.get(s, s)}</option>' for s in scenario_names
+        f'<option value="{s}" data-i18n="scenario_{s}">{L(f"scenario_{s}")}</option>' for s in scenario_names
     )
     layer_options_html = "".join(
-        f'<option value="{k}"{" selected" if k == NO_LAYER_KEY else ""}>{LAYER_LABELS[k]}</option>'
+        f'<option value="{k}" data-i18n="layer_{k}"{" selected" if k == NO_LAYER_KEY else ""}>{L(f"layer_{k}")}</option>'
         for k in LAYER_KEYS
     )
 
     traffic_checkbox_html = ""
     if traffic_overlay_vars:
-        traffic_checkbox_html = """
+        traffic_checkbox_html = f"""
       <hr style="margin:8px 0;">
-      <label><input type="checkbox" id="traffic-raster-toggle"> Show traffic increase (roads)</label>
+      <label><input type="checkbox" id="traffic-raster-toggle"> <span data-i18n="traffic_checkbox">{L("traffic_checkbox")}</span></label>
       <div id="traffic-legend" style="display:none; margin-top:4px;">
-        <div style="font-size:11px; color:#333;"><span data-i18n="legend_title">Traffic %Δ vs. current (selected scenario)</span></div>
+        <div style="font-size:11px; color:#333;"><span data-i18n="legend_title">{L("legend_title")}</span></div>
         <div id="traffic-legend-gradient" style="width:100%; height:12px; border:1px solid #999;"></div>
         <div style="display:flex; justify-content:space-between; font-size:11px; color:#333;">
           <span id="traffic-legend-min"></span>
@@ -803,16 +839,47 @@ def build_map(
         """
 
     controls_html = f"""
-    <div id="scenario-controls" style="
+    <div id="help-overlay" style="
+        display:flex; position:fixed; inset:0; z-index:20000;
+        background:rgba(0,0,0,0.45); align-items:center; justify-content:center;">
+      <div style="background:#fff; color:#111; max-width:480px; width:90%;
+          border-radius:10px; padding:20px 24px; box-shadow:0 10px 40px rgba(0,0,0,0.4);
+          font-size:13px; line-height:1.5; max-height:85vh; overflow-y:auto;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <b style="font-size:15px;" data-i18n="help_title">{L("help_title")}</b>
+          <button class="help-close-btn" title="Close" style="
+              border:none; background:none; font-size:20px; line-height:1; cursor:pointer;">&times;</button>
+        </div>
+        <p><b data-i18n="help_scenarios_title">{L("help_scenarios_title")}</b> —
+          <span data-i18n="help_scenarios_body">{L("help_scenarios_body")}</span></p>
+        <p><b data-i18n="help_traffic_title">{L("help_traffic_title")}</b> —
+          <span data-i18n="help_traffic_body">{L("help_traffic_body")}</span></p>
+        <p><b data-i18n="help_area_title">{L("help_area_title")}</b> —
+          <span data-i18n="help_area_body">{L("help_area_body")}</span></p>
+        <p><b data-i18n="help_route_title">{L("help_route_title")}</b> —
+          <span data-i18n="help_route_body">{L("help_route_body")}</span></p>
+        <p><b data-i18n="help_icons_title">{L("help_icons_title")}</b> —
+          <span data-i18n="help_icons_body">{L("help_icons_body")}</span></p>
+        <button class="help-close-btn" data-i18n="help_got_it" style="width:100%; margin-top:6px; padding:8px;
+            border:1px solid #999; border-radius:6px; background:#f4f4f4; cursor:pointer;">{L("help_got_it")}</button>
+      </div>
+    </div>
+
+    <div id="scenario-controls" class="map-fixed-panel" style="
         position: fixed; top: 10px; right: 10px; z-index: 9999;
         background: white; padding: 10px 12px; border: 2px solid #666;
         border-radius: 6px; font-size: 13px; width: 230px;">
-      <b>Layer</b><br>
-      <label><span data-i18n="scenario">Scenario</span></label>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <b data-i18n="layer_panel_title">{L("layer_panel_title")}</b>
+        <button id="help-reopen-btn" title="How this map works" style="
+            font-size:12px; padding:0 6px; cursor:pointer; border:1px solid #999;
+            border-radius:3px; background:#fff;">?</button>
+      </div>
+      <label><span data-i18n="scenario">{L("scenario")}</span></label>
       <select id="scenario-select" style="width:100%; margin-bottom:6px;">
         {scenario_options_html}
       </select>
-      <label>Layer</label>
+      <label data-i18n="layer_label">{L("layer_label")}</label>
       <select id="layer-select" style="width:100%; margin-bottom:6px;">
         {layer_options_html}
       </select>
@@ -826,43 +893,52 @@ def build_map(
       {_background_controls_html()}
     </div>
 
-    <button id="route-explorer-activate-btn" style="
+    <button id="route-explorer-activate-btn" class="map-fixed-panel" data-i18n="select_route_btn" style="
         position: fixed; bottom: 10px; left: 10px; z-index: 9999;
         padding: 8px 12px; border: 2px solid #666; border-radius: 6px;
         background: white; font-size: 13px; cursor: pointer;">
-      Select route
+      {L("select_route_btn")}
     </button>
 
-    <div id="route-controls" style="
+    <div id="route-controls" class="map-fixed-panel" style="
         display:none; position: fixed; bottom: 10px; left: 10px; z-index: 9999;
         background: white; padding: 10px 12px; border: 2px solid #666;
         border-radius: 6px; font-size: 13px; width: 280px;">
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <b>Route explorer</b>
+        <b data-i18n="route_explorer_title">{L("route_explorer_title")}</b>
         <button id="route-explorer-close-btn" title="Close" style="
             border:none; background:none; font-size:16px; line-height:1;
             cursor:pointer; padding:0 2px;">&times;</button>
       </div>
-      <div style="margin-bottom:4px;">Click origin, then destination.</div>
-      <div>Origin: <b id="origin-label" style="color:#1e88e5;">none</b></div>
-      <div>Destination: <b id="destination-label" style="color:#e53935;">none</b></div>
-      <button id="clear-route-btn" style="width:100%; margin:6px 0;">Clear</button>
+      <div style="margin-bottom:4px;" data-i18n="route_explorer_hint">{L("route_explorer_hint")}</div>
+      <div><span data-i18n="origin_label">{L("origin_label")}</span> <b id="origin-label" style="color:#1e88e5;">{L("none_selected")}</b></div>
+      <div><span data-i18n="destination_label">{L("destination_label")}</span> <b id="destination-label" style="color:#e53935;">{L("none_selected")}</b></div>
+      <button id="clear-route-btn" data-i18n="clear_btn" style="width:100%; margin:6px 0;">{L("clear_btn")}</button>
       <div id="route-info"></div>
     </div>
 
-    <div id="worst-route-legend" style="
+    <div id="worst-route-legend" class="map-fixed-panel" style="
         display:none; position: fixed; top: 90px; left: 10px; z-index: 9999;
         background: white; padding: 8px 12px; border: 2px solid #666;
         border-radius: 6px; font-size: 12px; max-width: 260px;">
     </div>
 
-    <div id="overall-results" style="
+    <div id="overall-results" class="map-fixed-panel" style="
         position: fixed; bottom: 10px; right: 10px; z-index: 9999;
         background: white; padding: 8px 12px; border: 2px solid #666;
         border-radius: 6px; font-size: 12px; max-width: 480px;">
-      <b>Summary — <span id="overall-scenario-label"></span></b>
+      <div style="display:flex; justify-content:flex-end; align-items:center;">
+        <button onclick="closeSummaryBox(event)" title="Close" style="
+            font-size:14px; padding:0 5px; cursor:pointer; border:1px solid #999;
+            border-radius:3px; background:#fff; line-height:1.3;">&times;</button>
+      </div>
+      <span id="overall-scenario-label" style="display:none;"></span>
       <div id="overall-body"></div>
     </div>
+    <button id="summary-reopen-btn" class="map-fixed-panel" title="Show summary" style="
+        display:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;
+        width:34px; height:34px; border-radius:50%; border:2px solid #666;
+        background:white; font-size:16px; cursor:pointer;">📊</button>
     """ + TOPLEFT_CONTROLS_ROW_CSS
 
     m.get_root().html.add_child(folium.Element(controls_html))
@@ -877,11 +953,51 @@ def build_map(
     // yet if this code ran immediately (that would throw a ReferenceError
     // and silently abort the whole block before any listener is attached).
     window.addEventListener('load', function () {{
-        var routeLookup = {json.dumps(route_lookup)};
+        // Route geometry lives in external routes/routes_<scenario>.json
+        // files (fetched on demand, not inlined here) so this HTML file
+        // stays small even with every OD pair included — see build_map()
+        // in map.py for how those files are written.
+        var routeFileNames = {json.dumps(route_file_names)};
+        var routeLookup = {{}}; // routeLookup[scenario][originId_destId] once loaded
+        var routeLookupPromises = {{}};
+        // fetch() of a same-directory file fails outright under a
+        // file:// origin ("Failed to fetch", no HTTP status to catch) —
+        // this only works when the map is served over http(s), e.g. via
+        // GitHub Pages or `python3 -m http.server`. Surfacing that here
+        // instead of leaving a caller's "Loading…" state stuck forever.
+        function loadRoutesForScenario(s) {{
+            if (routeLookupPromises[s]) return routeLookupPromises[s];
+            var fileName = routeFileNames[s];
+            routeLookupPromises[s] = fileName
+                ? fetch('routes/' + fileName)
+                    .then(function (r) {{
+                        if (!r.ok) throw new Error('HTTP ' + r.status);
+                        return r.json();
+                    }})
+                    .then(function (data) {{
+                        routeLookup[s] = data;
+                    }})
+                    .catch(function (err) {{
+                        routeLookupPromises[s] = null; // allow retrying later (e.g. after starting a local server)
+                        var reason = (window.location.protocol === 'file:')
+                            ? 'routes/' + fileName + ' could not be loaded — this map must be served over ' +
+                              'http(s) (e.g. GitHub Pages, or `python3 -m http.server`) for route data to load, ' +
+                              'opening the file directly (file://) cannot fetch it.'
+                            : 'routes/' + fileName + ' could not be loaded (' + err.message + ').';
+                        console.error(reason);
+                        throw new Error(reason);
+                    }})
+                : Promise.resolve();
+            return routeLookupPromises[s];
+        }}
         var worstDestLookup = {json.dumps(worst_dest_lookup)};
         var scenarioRanges = {json.dumps(ranges)};
-        var scenarioLabels = {json.dumps(SCENARIO_LABELS)};
-        var layerLabels = {json.dumps(LAYER_LABELS)};
+        // Bilingual labels resolve through window.t() (see map_i18n.py) —
+        // keys are "scenario_<name>" / "layer_<key>", already baked into
+        // this map's translations dict (toggle_html(_I18N_CONTENT["carfree"])
+        // near the end of build_map()).
+        function scenarioLabel(s) {{ return window.t('scenario_' + s); }}
+        function layerLabel(k) {{ return window.t('layer_' + k); }}
         var scenarioColors = {json.dumps(SCENARIO_ROUTE_COLORS)};
         var scenarioOrder = {json.dumps(scenario_names)};
         var seqGradientCss = {json.dumps(SEQ_GRADIENT_CSS)};
@@ -1021,8 +1137,8 @@ def build_map(
             // shapes (circle vs. square pin), not different colors, to
             // clarify which is which independently of the AOI border color.
             [
-                {{ id: selected.origin, label: 'Origin (start)', shape: 'circle' }},
-                {{ id: selected.destination, label: 'Destination (end)', shape: 'square' }},
+                {{ id: selected.origin, label: t('origin_marker_label'), shape: 'circle' }},
+                {{ id: selected.destination, label: t('destination_marker_label'), shape: 'square' }},
             ].forEach(function (entry) {{
                 if (!entry.id) return;
                 var layer = featureById(entry.id);
@@ -1057,7 +1173,7 @@ def build_map(
             var scenario = currentScenario();
             var layer = currentLayer();
 
-            document.getElementById('legend-title').innerText = layerLabels[layer] || layer;
+            document.getElementById('legend-title').innerText = layerLabel(layer);
 
             if (layer === 'none') {{
                 document.getElementById('legend-gradient').style.background = 'none';
@@ -1081,37 +1197,37 @@ def build_map(
         function updateOverallBox() {{
             var scenario = currentScenario();
             var stats = overallStats[scenario];
-            document.getElementById('overall-scenario-label').innerText = scenarioLabels[scenario] || scenario;
+            document.getElementById('overall-scenario-label').innerText = scenarioLabel(scenario);
             var box = document.getElementById('overall-body');
             if (!stats) {{
-                box.innerHTML = '<i>No data.</i>';
+                box.innerHTML = '<i>' + t('summary_no_data') + '</i>';
                 return;
             }}
             var rows =
-                '<tr><td>Time/route</td><td>' + stats.time_min.toFixed(1) + ' min' +
+                '<tr><td>' + t('summary_time_per_route') + '</td><td>' + stats.time_min.toFixed(1) + ' min' +
                     (stats.diff_time_min ? ' (Δ ' + (stats.diff_time_min >= 0 ? '+' : '') + stats.diff_time_min.toFixed(2) + ')' : '') + '</td></tr>' +
-                '<tr><td>Distance/route</td><td>' + stats.distance_km.toFixed(2) + ' km' +
+                '<tr><td>' + t('summary_distance_per_route') + '</td><td>' + stats.distance_km.toFixed(2) + ' km' +
                     (stats.diff_distance_km ? ' (Δ ' + (stats.diff_distance_km >= 0 ? '+' : '') + stats.diff_distance_km.toFixed(3) + ')' : '') + '</td></tr>' +
-                '<tr><td>Speed/route</td><td>' + stats.avg_speed_kmh.toFixed(1) + ' km/h' +
+                '<tr><td>' + t('summary_speed_per_route') + '</td><td>' + stats.avg_speed_kmh.toFixed(1) + ' km/h' +
                     (stats.diff_avg_speed_kmh ? ' (Δ ' + (stats.diff_avg_speed_kmh >= 0 ? '+' : '') + stats.diff_avg_speed_kmh.toFixed(2) + ')' : '') + '</td></tr>' +
-                '<tr><td>CO2/route</td><td>' + stats.co2_kg.toFixed(3) + ' kg' +
+                '<tr><td>' + t('summary_co2_per_route') + '</td><td>' + stats.co2_kg.toFixed(3) + ' kg' +
                     (stats.diff_co2_kg ? ' (Δ ' + (stats.diff_co2_kg >= 0 ? '+' : '') + stats.diff_co2_kg.toFixed(4) + ')' : '') + '</td></tr>' +
-                '<tr><td>Routes</td><td>' + stats.n_od_pairs.toLocaleString() + '</td></tr>' +
-                '<tr><td>Routes >' + affectedThreshold + 'min slower</td><td>' + stats.n_routes_affected +
+                '<tr><td>' + t('summary_routes') + '</td><td>' + stats.n_od_pairs.toLocaleString() + '</td></tr>' +
+                '<tr><td>' + t('summary_routes_slower').replace('{{n}}', affectedThreshold) + '</td><td>' + stats.n_routes_affected +
                     ' (' + stats.pct_routes_affected.toFixed(1) + '%)</td></tr>' +
-                '<tr><td>Pop. affected (>' + affectedThreshold + 'min)</td><td>' +
+                '<tr><td>' + t('summary_pop_affected').replace('{{n}}', affectedThreshold) + '</td><td>' +
                     stats.pct_people_affected.toFixed(1) + '%</td></tr>' +
-                '<tr><td>Max traffic Δ (P99)</td><td>' +
+                '<tr><td>' + t('summary_max_traffic_delta') + '</td><td>' +
                     (stats.max_traffic_increase_pct >= 0 ? '+' : '') + stats.max_traffic_increase_pct.toFixed(1) + '%</td></tr>' +
-                '<tr><td>Max time increase (P99)</td><td>' +
+                '<tr><td>' + t('summary_max_time_increase') + '</td><td>' +
                     (stats.max_time_increase_min >= 0 ? '+' : '') + stats.max_time_increase_min.toFixed(1) + ' min</td></tr>' +
-                '<tr><td>Max distance increase (P99)</td><td>' +
+                '<tr><td>' + t('summary_max_distance_increase') + '</td><td>' +
                     (stats.max_distance_increase_km >= 0 ? '+' : '') + stats.max_distance_increase_km.toFixed(2) + ' km</td></tr>' +
-                '<tr><td>Max speed decrease (P99)</td><td>' +
+                '<tr><td>' + t('summary_max_speed_decrease') + '</td><td>' +
                     (stats.max_speed_decrease_kmh >= 0 ? '+' : '') + stats.max_speed_decrease_kmh.toFixed(1) + ' km/h</td></tr>' +
-                '<tr><td>Avg. traffic Δ — city</td><td>' +
+                '<tr><td>' + t('summary_avg_traffic_city') + '</td><td>' +
                     (stats.avg_traffic_increase_pct_city >= 0 ? '+' : '') + stats.avg_traffic_increase_pct_city.toFixed(1) + '%</td></tr>' +
-                '<tr><td>Avg. traffic Δ — suburban</td><td>' +
+                '<tr><td>' + t('summary_avg_traffic_suburban') + '</td><td>' +
                     (stats.avg_traffic_increase_pct_suburban >= 0 ? '+' : '') + stats.avg_traffic_increase_pct_suburban.toFixed(1) + '%</td></tr>';
             box.innerHTML = '<table style="border-collapse:collapse;">' + rows + '</table>';
         }}
@@ -1128,6 +1244,18 @@ def build_map(
         if (trafficToggle) {{
             trafficToggle.addEventListener('change', applyStyles);
         }}
+
+        // Instructions overlay: shown automatically every time the map
+        // loads (see the "How this map works" markup in controls_html),
+        // dismissible via either close button and reopenable any time via
+        // the "?" button next to the Layer panel title.
+        var helpOverlay = document.getElementById('help-overlay');
+        document.querySelectorAll('.help-close-btn').forEach(function (btn) {{
+            btn.addEventListener('click', function () {{ helpOverlay.style.display = 'none'; }});
+        }});
+        document.getElementById('help-reopen-btn').addEventListener('click', function () {{
+            helpOverlay.style.display = 'flex';
+        }});
 
         // Clicking the map while the traffic-increase raster is shown finds
         // the nearest *real* raster pixel (every non-NaN pixel's exact
@@ -1152,100 +1280,179 @@ def build_map(
             var value = (bestValue !== null && Math.sqrt(bestDist2) <= MAX_CLICK_SNAP_DEG) ? bestValue : null;
 
             var content = value === null
-                ? '<div style="font-size:12px;">No traffic-increase data at this point.</div>'
-                : '<div style="font-size:12px;">Traffic %Δ: <b>' +
+                ? '<div style="font-size:12px;">' + t('traffic_popup_none') + '</div>'
+                : '<div style="font-size:12px;">' + t('traffic_popup_value') + ' <b>' +
                     (value >= 0 ? '+' : '') + value.toFixed(1) + '%</b></div>';
             L.popup({{ maxWidth: 260 }}).setLatLng(e.latlng).setContent(content).openOn(leafletMap);
         }});
 
         updateChoropleth();
 
+        // labelKey resolved via t() at render time (not baked here) so
+        // these stay correct after a language change.
         var POPUP_ROAD_ROWS = [
-            {{ key: 'time_min', label: 'Time (min)', digits: 1 }},
-            {{ key: 'distance_km', label: 'Distance (km)', digits: 2 }},
-            {{ key: 'avg_speed_kmh', label: 'Speed (km/h)', digits: 1 }},
-            {{ key: 'co2_kg', label: 'CO2 (kg)', digits: 3 }},
-            {{ key: 'worst_time_increase', label: 'Worst Δ time (min)', digits: 1, signed: true }},
-            {{ key: 'worst_distance_increase', label: 'Worst Δ distance (km)', digits: 2, signed: true }},
-            {{ key: 'worst_speed_decrease', label: 'Worst Δ speed (km/h)', digits: 1, signed: true }},
-            {{ key: 'pct_people_affected_5min', label: 'Pop. affected >' + affectedThreshold + 'min (%)', digits: 1, suffix: '%' }},
-            {{ key: 'busiest_road_pct_change', label: 'Busiest road Δ (%)', digits: 1, suffix: '%', signed: true }},
+            {{ key: 'time_min', labelKey: 'popup_row_time', digits: 1 }},
+            {{ key: 'distance_km', labelKey: 'popup_row_distance', digits: 2 }},
+            {{ key: 'avg_speed_kmh', labelKey: 'popup_row_speed', digits: 1 }},
+            {{ key: 'co2_kg', labelKey: 'popup_row_co2', digits: 3 }},
+            {{ key: 'worst_time_increase', labelKey: 'popup_row_worst_time', digits: 1, signed: true }},
+            {{ key: 'worst_distance_increase', labelKey: 'popup_row_worst_distance', digits: 2, signed: true }},
+            {{ key: 'worst_speed_decrease', labelKey: 'popup_row_worst_speed', digits: 1, signed: true }},
+            {{ key: 'pct_people_affected_5min', labelKey: 'popup_row_pop_affected', digits: 1, suffix: '%' }},
+            {{ key: 'busiest_road_pct_change', labelKey: 'popup_row_busiest_road', digits: 1, suffix: '%', signed: true }},
         ];
 
-        function popupHtml(props) {{
+        // The scenario-comparison table is not baked into the popup's
+        // initial HTML and toggled via a hidden div's display — an
+        // earlier version worked that way and had two back-to-back real
+        // bugs (Leaflet's Popup.update(), called to force a resize after
+        // the toggle, either silently reverted the toggle by re-applying
+        // the ORIGINAL content string, or in the worst case tore the
+        // whole popup down). Instead, the 📊 button rebuilds the popup's
+        // content from scratch via the officially-supported setContent()
+        // API, with the table included or omitted depending on
+        // currentPopupExpanded — no manual DOM mutation, no .update().
+        var currentPopupProps = null;
+        var currentPopupExpanded = false;
+
+        function popupHtml(props, expanded) {{
             var html = '<div style="font-size:11px;">';
             html += '<b>' + (props.Name || ('AOI ' + props.id)) + '</b>' +
-                '<button onclick="togglePopupTable(this)" title="Show/hide scenario comparison" style="' +
+                '<button onclick="togglePopupTable(event)" title="Show/hide scenario comparison" style="' +
                 'font-size:12px; padding:0 4px; margin-left:6px; cursor:pointer; border:1px solid #999; ' +
                 'border-radius:3px; background:#fff;">📊</button><br>';
-            if (props.type) html += 'Type: ' + props.type + (props.source ? ' (' + props.source + ')' : '') + '<br>';
-            html += 'AOI id: ' + props.id + '<br>';
+            if (props.type) html += t('popup_type') + ' ' + props.type + (props.source ? ' (' + props.source + ')' : '') + '<br>';
+            html += t('popup_aoi_id') + ' ' + props.id + '<br>';
             if (props.population !== undefined && props.population !== null) {{
-                html += 'Population: ' + Math.round(props.population).toLocaleString() + '<br>';
+                html += t('popup_population') + ' ' + Math.round(props.population).toLocaleString() + '<br>';
             }}
             if (props.workplaces !== undefined && props.workplaces !== null) {{
-                html += 'Workplaces: ' + Math.round(props.workplaces).toLocaleString() + '<br>';
+                html += t('popup_workplaces') + ' ' + Math.round(props.workplaces).toLocaleString() + '<br>';
             }}
 
-            // Scenario-comparison table is collapsed by default — toggled
-            // by the emoji button above without closing the popup (or the
-            // worst-route lines it opened with, which live in a separate
-            // Leaflet layer group untouched by this).
-            html += '<div class="popup-table-wrap" style="display:none;">';
-
-            // One column per scenario (current + closures), one row per
-            // road metric — lets the popup be compared at a glance instead
-            // of having to flip the scenario dropdown back and forth.
-            html += '<table style="font-size:11px; width:100%; border-collapse:collapse;">';
-            html += '<tr><th style="text-align:left;"></th>';
-            scenarioOrder.forEach(function (s) {{
-                html += '<th style="text-align:right; color:' + (scenarioColors[s] || '#000') + ';">' +
-                    (scenarioLabels[s] || s) + '</th>';
-            }});
-            html += '</tr>';
-
-            POPUP_ROAD_ROWS.forEach(function (rowDef) {{
-                var anyValue = scenarioOrder.some(function (s) {{
-                    var v = props[s + '_' + rowDef.key];
-                    return v !== undefined && v !== null;
-                }});
-                if (!anyValue) return;
-
-                html += '<tr><td>' + rowDef.label + '</td>';
+            if (expanded) {{
+                // One column per scenario (current + closures), one row per
+                // road metric — lets the popup be compared at a glance
+                // instead of having to flip the scenario dropdown back and
+                // forth. Every cell gets a border (row *and* column
+                // separators) plus extra horizontal padding so the columns
+                // read as distinct.
+                var CELL = 'padding:3px 10px; border:1px solid #ccc;';
+                html += '<table style="font-size:11px; width:100%; border-collapse:collapse; margin-top:4px;">';
+                html += '<tr><th style="' + CELL + ' text-align:left;"></th>';
                 scenarioOrder.forEach(function (s) {{
-                    var v = props[s + '_' + rowDef.key];
-                    if (v === undefined || v === null) {{
-                        html += '<td style="text-align:right;">–</td>';
-                        return;
-                    }}
-                    var text = (rowDef.signed && v >= 0 ? '+' : '') + v.toFixed(rowDef.digits) + (rowDef.suffix || '');
-                    html += '<td style="text-align:right;">' + text + '</td>';
+                    html += '<th style="' + CELL + ' text-align:right; color:' + (scenarioColors[s] || '#000') + ';">' +
+                        scenarioLabel(s) + '</th>';
                 }});
                 html += '</tr>';
-            }});
-            html += '</table>';
-            html += '</div>'; // end scenario-comparison collapsible
+
+                POPUP_ROAD_ROWS.forEach(function (rowDef) {{
+                    var anyValue = scenarioOrder.some(function (s) {{
+                        var v = props[s + '_' + rowDef.key];
+                        return v !== undefined && v !== null;
+                    }});
+                    if (!anyValue) return;
+
+                    var rowLabel = t(rowDef.labelKey).replace('{{n}}', affectedThreshold);
+                    html += '<tr><td style="' + CELL + '">' + rowLabel + '</td>';
+                    scenarioOrder.forEach(function (s) {{
+                        var v = props[s + '_' + rowDef.key];
+                        if (v === undefined || v === null) {{
+                            html += '<td style="' + CELL + ' text-align:right;">–</td>';
+                            return;
+                        }}
+                        var text = (rowDef.signed && v >= 0 ? '+' : '') + v.toFixed(rowDef.digits) + (rowDef.suffix || '');
+                        html += '<td style="' + CELL + ' text-align:right;">' + text + '</td>';
+                    }});
+                    html += '</tr>';
+                }});
+                html += '</table>';
+            }}
 
             html += '</div>';
             return html;
         }}
 
-        // Inline onclick= handlers run in global scope, not this closure —
-        // exposed on window so the popup's button (plain HTML, not a
-        // Leaflet-bound listener) can find it.
-        window.togglePopupTable = function (btn) {{
-            var wrap = btn.parentElement.querySelector('.popup-table-wrap');
-            if (!wrap) return;
-            wrap.style.display = (wrap.style.display === 'none') ? 'block' : 'none';
+        // Tracks the single currently-open AOI popup (if any) so
+        // refreshPanelInteractivity() knows which popup's screen rect to
+        // check fixed panels against.
+        var currentAoiPopup = null;
+
+        // A Leaflet popup lives inside .leaflet-popup-pane, which is
+        // nested deep inside the map's own container — raising that
+        // pane's z-index only wins against OTHER content inside the same
+        // map container, it can never out-rank a sibling fixed panel
+        // (scenario controls, route explorer, summary box — all
+        // position:fixed, z-index:9999, and DOM siblings of the map
+        // container, not descendants of it). A popup opening near one of
+        // those corners would render fine visually but silently receive
+        // no clicks, since the panel — not the popup — is the topmost
+        // element there.
+        //
+        // Fix: disable pointer-events only on the specific panel(s) whose
+        // screen rect actually overlaps the currently-open popup's rect
+        // (recomputed on every map move, since panning shifts both) —
+        // NOT every panel unconditionally, which would make the whole UI
+        // unusable while any popup happens to be open anywhere.
+        function refreshPanelInteractivity() {{
+            var popupEl = currentAoiPopup && currentAoiPopup.getElement();
+            document.querySelectorAll('.map-fixed-panel').forEach(function (panel) {{
+                if (!popupEl) {{
+                    panel.style.pointerEvents = '';
+                    return;
+                }}
+                var p = popupEl.getBoundingClientRect();
+                var r = panel.getBoundingClientRect();
+                var overlaps = !(p.right < r.left || p.left > r.right || p.bottom < r.top || p.top > r.bottom);
+                panel.style.pointerEvents = overlaps ? 'none' : '';
+            }});
+        }}
+        leafletMap.on('moveend', refreshPanelInteractivity);
+
+        // Exposed on window so the popup's button (plain HTML, not a
+        // Leaflet-bound listener) can find it. Rebuilds the popup's
+        // content via setContent() (the supported way to change a
+        // popup's content, unlike the private-ish Popup.update(), which
+        // proved actively unsafe here — see the long comment above
+        // popupHtml()). Deferred one tick so this DOM replacement happens
+        // strictly after the click event that triggered it has finished
+        // dispatching/bubbling, rather than mid-event — doing it
+        // synchronously from within a handler attached to the very
+        // button being replaced is what occasionally let Leaflet tear
+        // the whole popup down instead of just refreshing its content.
+        window.togglePopupTable = function (evt) {{
+            if (evt) {{ evt.stopPropagation(); evt.preventDefault(); }}
+            if (!currentAoiPopup || !currentPopupProps) return;
+            currentPopupExpanded = !currentPopupExpanded;
+            var popup = currentAoiPopup;
+            var props = currentPopupProps;
+            var expanded = currentPopupExpanded;
+            setTimeout(function () {{
+                if (popup._map) popup.setContent(popupHtml(props, expanded));
+            }}, 0);
         }};
+
+        // Summary box (bottom-right): only one icon shows at a time — ×
+        // while open (closes the whole box), 📊 while closed (the small
+        // floating button in its place, reopens it).
+        window.closeSummaryBox = function (evt) {{
+            if (evt) evt.stopPropagation();
+            document.getElementById('overall-results').style.display = 'none';
+            document.getElementById('summary-reopen-btn').style.display = 'block';
+        }};
+
+        document.getElementById('summary-reopen-btn').addEventListener('click', function () {{
+            document.getElementById('overall-results').style.display = 'block';
+            document.getElementById('summary-reopen-btn').style.display = 'none';
+        }});
 
         function updateSelectionLabels() {{
             var originLayer = selected.origin && featureById(selected.origin);
             var destLayer = selected.destination && featureById(selected.destination);
             document.getElementById('origin-label').innerText =
-                originLayer ? (originLayer.feature.properties.Name || selected.origin) : 'none';
+                originLayer ? (originLayer.feature.properties.Name || selected.origin) : t('none_selected');
             document.getElementById('destination-label').innerText =
-                destLayer ? (destLayer.feature.properties.Name || selected.destination) : 'none';
+                destLayer ? (destLayer.feature.properties.Name || selected.destination) : t('none_selected');
         }}
 
         function featureById(id) {{
@@ -1263,10 +1470,30 @@ def build_map(
             if (!selected.origin || !selected.destination) return;
 
             var key = selected.origin + '_' + selected.destination;
-            var entry = routeLookup[key];
+            document.getElementById('route-info').innerHTML = '<i>' + t('loading_routes') + '</i>';
 
-            if (!entry) {{
-                document.getElementById('route-info').innerHTML = '<i>No route data for this pair.</i>';
+            Promise.all(scenarioOrder.map(loadRoutesForScenario)).then(function () {{
+                // The user may have changed the selection while the fetch
+                // was in flight — bail out quietly if so, the newer call
+                // to showRoute() already owns route-info/routeGroup.
+                if (selected.origin + '_' + selected.destination !== key) return;
+
+                var entry = {{}};
+                scenarioOrder.forEach(function (s) {{
+                    var r = (routeLookup[s] || {{}})[key];
+                    if (r) entry[s] = r;
+                }});
+                renderRoute(entry);
+            }}).catch(function (err) {{
+                if (selected.origin + '_' + selected.destination !== key) return;
+                document.getElementById('route-info').innerHTML =
+                    '<i style="color:#c62828;">' + err.message + '</i>';
+            }});
+        }}
+
+        function renderRoute(entry) {{
+            if (Object.keys(entry).length === 0) {{
+                document.getElementById('route-info').innerHTML = '<i>' + t('no_route_data') + '</i>';
                 return;
             }}
 
@@ -1286,7 +1513,7 @@ def build_map(
                 bounds = bounds.concat(r.coords);
 
                 rows += '<tr>' +
-                    '<td style="color:' + color + '; font-weight:bold;">' + scenarioLabels[scenario] + '</td>' +
+                    '<td style="color:' + color + '; font-weight:bold;">' + scenarioLabel(scenario) + '</td>' +
                     '<td>' + r.time_min.toFixed(1) + '</td>' +
                     '<td>' + r.distance_km.toFixed(2) + '</td>' +
                     '<td>' + r.avg_speed_kmh.toFixed(1) + '</td>' +
@@ -1296,14 +1523,15 @@ def build_map(
 
             var anyRow = scenarioOrder.map(function (s) {{ return entry[s]; }}).find(Boolean);
             var originPopHtml = anyRow ?
-                '<div>Origin population: <b>' + Math.round(anyRow.origin_population).toLocaleString() + '</b> · ' +
-                'Destination workplaces: <b>' + Math.round(anyRow.destination_workplaces).toLocaleString() + '</b></div>'
+                '<div>' + t('origin_population') + ' <b>' + Math.round(anyRow.origin_population).toLocaleString() + '</b> · ' +
+                t('destination_workplaces') + ' <b>' + Math.round(anyRow.destination_workplaces).toLocaleString() + '</b></div>'
                 : '';
 
             document.getElementById('route-info').innerHTML =
                 originPopHtml +
                 '<table style="font-size:11px; width:100%; border-collapse:collapse;">' +
-                '<tr><th></th><th>min</th><th>km</th><th>km/h</th><th>kg CO2</th></tr>' +
+                '<tr><th></th><th>' + t('route_table_min') + '</th><th>' + t('route_table_km') +
+                '</th><th>' + t('route_table_kmh') + '</th><th>' + t('route_table_co2') + '</th></tr>' +
                 rows + '</table>';
 
             if (bounds.length > 0) {{
@@ -1327,8 +1555,6 @@ def build_map(
         function showWorstRoutes(originId) {{
             worstRoutesGroup.clearLayers();
             var legendBox = document.getElementById('worst-route-legend');
-            var boundsAcc = [];
-            var legendRows = '';
 
             var scenario = currentScenario();
             var destId = (worstDestLookup[scenario] || {{}})[originId];
@@ -1336,11 +1562,24 @@ def build_map(
                 legendBox.style.display = 'none';
                 return;
             }}
-            var entry = routeLookup[originId + '_' + destId];
-
+            var key = originId + '_' + destId;
             var scenariosToShow = scenario === 'current' ? ['current'] : ['current', scenario];
+
+            Promise.all(scenariosToShow.map(loadRoutesForScenario)).then(function () {{
+                renderWorstRoutes(scenario, scenariosToShow, key);
+            }}).catch(function (err) {{
+                legendBox.innerHTML = '<i style="color:#c62828;">' + err.message + '</i>';
+                legendBox.style.display = 'block';
+            }});
+        }}
+
+        function renderWorstRoutes(scenario, scenariosToShow, key) {{
+            var legendBox = document.getElementById('worst-route-legend');
+            var boundsAcc = [];
+            var legendRows = '';
+
             scenariosToShow.forEach(function (s) {{
-                var r = entry && entry[s];
+                var r = (routeLookup[s] || {{}})[key];
                 if (!r) return;
                 var color = scenarioColors[s] || '#000000';
                 L.polyline(r.coords, {{ color: '#000000', weight: 6, opacity: 0.7 }}).addTo(worstRoutesGroup);
@@ -1348,11 +1587,11 @@ def build_map(
                 boundsAcc = boundsAcc.concat(r.coords);
                 legendRows += '<div><span style="display:inline-block; width:10px; height:10px; ' +
                     'background:' + color + '; margin-right:4px;"></span>' +
-                    (scenarioLabels[s] || s) + '</div>';
+                    scenarioLabel(s) + '</div>';
             }});
 
             if (legendRows) {{
-                legendBox.innerHTML = '<b>Worst route (Δ time, ' + (scenarioLabels[scenario] || scenario) + ')</b>' + legendRows;
+                legendBox.innerHTML = '<b>' + t('worst_route_title').replace('{{scenario}}', scenarioLabel(scenario)) + '</b>' + legendRows;
                 legendBox.style.display = 'block';
             }} else {{
                 legendBox.style.display = 'none';
@@ -1377,14 +1616,30 @@ def build_map(
                 // layer, which would keep opening this popup on every
                 // future click even after route-explorer mode is turned
                 // on — a standalone popup has no such persistent listener.
-                var popup = L.popup({{ maxWidth: 220, minWidth: 140 }})
+                currentPopupProps = e.layer.feature.properties;
+                currentPopupExpanded = false;
+                var popup = L.popup({{ maxWidth: 420, minWidth: 140, autoPanPadding: [20, 20] }})
                     .setLatLng(e.latlng)
-                    .setContent(popupHtml(e.layer.feature.properties))
+                    .setContent(popupHtml(currentPopupProps, currentPopupExpanded))
                     .openOn(leafletMap);
                 // Closing the popup (the × button, pressing Escape, or
                 // clicking elsewhere on the map, which auto-closes it)
                 // also clears the worst-route lines/legend it opened with.
-                popup.on('remove', clearWorstRoutes);
+                popup.on('remove', function () {{
+                    currentAoiPopup = null;
+                    currentPopupProps = null;
+                    refreshPanelInteractivity();
+                    clearWorstRoutes();
+                }});
+                currentAoiPopup = popup;
+                refreshPanelInteractivity();
+                // autoPan (if the popup didn't already fully fit on screen)
+                // repositions the map asynchronously — 'moveend' catches
+                // that, but a popup that needed no panning at all won't
+                // fire it, and Leaflet doesn't fully settle the popup's
+                // own layout until just after this call returns either, so
+                // re-check once more on the next frame for that case too.
+                requestAnimationFrame(refreshPanelInteractivity);
                 showWorstRoutes(String(e.layer.feature.properties.id));
                 return;
             }}
@@ -1435,13 +1690,23 @@ def build_map(
             document.getElementById('route-controls').style.display = 'none';
             document.getElementById('route-explorer-activate-btn').style.display = 'block';
         }});
+
+        // Re-render everything built dynamically (not covered by the
+        // generic data-i18n sweep in map_i18n.py) when the language
+        // toggles — legend/summary labels, dropdown-derived selection
+        // labels, and an in-progress route comparison, if any.
+        window.addEventListener('maplangchange', function () {{
+            updateChoropleth();
+            updateSelectionLabels();
+            if (selected.origin && selected.destination) showRoute();
+        }});
     }});
     </script>
     """
 
     m.get_root().html.add_child(folium.Element(js_code))
 
-    m.get_root().html.add_child(folium.Element(toggle_html(_I18N_CONTENT["carfree"])))
+    m.get_root().html.add_child(folium.Element(toggle_html(_I18N_CONTENT["carfree"], default=DEFAULT_LANG)))
 
     m.save(output_path)
 
@@ -1500,8 +1765,7 @@ def build_region_map(
     geo_gdf["workplace_density"] = geo_gdf["workplace_density"].round(1)
     geojson_data = json.loads(geo_gdf.to_json())
 
-    bounds = geo_gdf.total_bounds
-    center = [(bounds[1] + bounds[3]) / 2, (bounds[0] + bounds[2]) / 2]
+    center = _frankfurt_center_latlon()
 
     m = folium.Map(location=center, zoom_start=12, tiles=None)
     bg_current_var, bg_hybrid_var = _add_background_layers(m)
@@ -1539,8 +1803,13 @@ def build_region_map(
 
     map_var = m.get_name()
 
+    i18n = _I18N_CONTENT["region"]
+
+    def L(key: str) -> str:  # noqa: E743 — server-baked DEFAULT_LANG text
+        return i18n[DEFAULT_LANG][key]
+
     fill_options_html = "".join(
-        f'<option value="{k}"{" selected" if k == "none" else ""}>{REGION_MAP_FILL_LABELS[k]}</option>'
+        f'<option value="{k}" data-i18n="layer_{k}"{" selected" if k == "none" else ""}>{L(f"layer_{k}")}</option>'
         for k in REGION_MAP_FILL_KEYS
     )
 
@@ -1549,7 +1818,7 @@ def build_region_map(
         position: fixed; top: 10px; right: 10px; z-index: 9999;
         background: white; padding: 10px 12px; border: 2px solid #666;
         border-radius: 6px; font-size: 13px; width: 230px;">
-      <b>Layer</b><br>
+      <b data-i18n="layer_label">{L("layer_label")}</b><br>
       <select id="fill-select" style="width:100%; margin-bottom:6px;">
         {fill_options_html}
       </select>
@@ -1560,10 +1829,10 @@ def build_region_map(
         <span id="legend-max"></span>
       </div>
       <hr style="margin:8px 0;">
-      <b>Borders</b>
+      <b data-i18n="borders_title">{L("borders_title")}</b>
       <div style="font-size:11px; color:#333; margin-top:4px;">
-        <div><span style="display:inline-block; width:22px; border-top:4px solid #000; vertical-align:middle;"></span> City</div>
-        <div><span style="display:inline-block; width:22px; border-top:3px dashed #000; vertical-align:middle;"></span> Suburban</div>
+        <div><span style="display:inline-block; width:22px; border-top:4px solid #000; vertical-align:middle;"></span> <span data-i18n="city_legend">{L("city_legend")}</span></div>
+        <div><span style="display:inline-block; width:22px; border-top:3px dashed #000; vertical-align:middle;"></span> <span data-i18n="suburban_legend">{L("suburban_legend")}</span></div>
       </div>
       {_background_controls_html()}
     </div>
@@ -1577,7 +1846,7 @@ def build_region_map(
     <script>
     window.addEventListener('load', function () {{
         var scenarioRanges = {json.dumps(ranges)};
-        var fillLabels = {json.dumps(REGION_MAP_FILL_LABELS)};
+        function fillLabel(k) {{ return window.t('layer_' + k); }}
         var seqGradientCss = {json.dumps(SEQ_GRADIENT_CSS)};
         var geojsonLayer = {geojson_var};
         var leafletMap = {map_var};
@@ -1604,7 +1873,7 @@ def build_region_map(
 
         function updateLegend() {{
             var fill = currentFill();
-            document.getElementById('legend-title').innerText = fillLabels[fill] || fill;
+            document.getElementById('legend-title').innerText = fillLabel(fill);
             if (fill === 'none') {{
                 document.getElementById('legend-gradient').style.background = 'none';
                 document.getElementById('legend-min').innerText = '';
@@ -1628,18 +1897,18 @@ def build_region_map(
         function popupHtml(props) {{
             var html = '<div style="font-size:13px;">';
             html += '<b>' + (props.Name || ('AOI ' + props.id)) + '</b><br>';
-            if (props.type) html += 'Type: ' + props.type + (props.source ? ' (' + props.source + ')' : '') + '<br>';
+            if (props.type) html += t('popup_type') + ' ' + props.type + (props.source ? ' (' + props.source + ')' : '') + '<br>';
             if (props.population !== undefined && props.population !== null) {{
-                html += 'Population: ' + Math.round(props.population).toLocaleString() + '<br>';
+                html += t('popup_population') + ' ' + Math.round(props.population).toLocaleString() + '<br>';
             }}
             if (props.workplaces !== undefined && props.workplaces !== null) {{
-                html += 'Workplaces: ' + Math.round(props.workplaces).toLocaleString() + '<br>';
+                html += t('popup_workplaces') + ' ' + Math.round(props.workplaces).toLocaleString() + '<br>';
             }}
             if (props.population_density !== undefined && props.population_density !== null) {{
-                html += 'Population density: ' + props.population_density.toLocaleString() + '/km²<br>';
+                html += t('popup_population_density') + ' ' + props.population_density.toLocaleString() + '/km²<br>';
             }}
             if (props.workplace_density !== undefined && props.workplace_density !== null) {{
-                html += 'Workplace density: ' + props.workplace_density.toLocaleString() + '/km²<br>';
+                html += t('popup_workplace_density') + ' ' + props.workplace_density.toLocaleString() + '/km²<br>';
             }}
             html += '</div>';
             return html;
@@ -1651,13 +1920,15 @@ def build_region_map(
                 .setContent(popupHtml(e.layer.feature.properties))
                 .openOn(leafletMap);
         }});
+
+        window.addEventListener('maplangchange', update);
     }});
     </script>
     """
 
     m.get_root().html.add_child(folium.Element(js_code))
 
-    m.get_root().html.add_child(folium.Element(toggle_html(_I18N_CONTENT["region"])))
+    m.get_root().html.add_child(folium.Element(toggle_html(_I18N_CONTENT["region"], default=DEFAULT_LANG)))
 
     m.save(str(output_path))
     print(f"Region map saved -> {output_path}")

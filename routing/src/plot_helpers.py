@@ -39,6 +39,7 @@ def general_map(
     size_column: Optional[str] = None,
     zoom_start: int = 11,
     scalebar=False,
+    legend_title: str = "POI Legend",
 ) -> folium.Map:
 
     # ==========================================================
@@ -465,10 +466,10 @@ def general_map(
     # ==========================================================
     if legend_map:
 
-        legend_html = """
-        <div style="position:fixed;bottom:40px;left:40px;
+        legend_html = f"""
+        <div style="position:fixed;bottom:40px;right:40px;
         background:white;padding:10px;z-index:9999;">
-        <b>POI Legend</b><br>
+        <b>{legend_title}</b><br>
         """
 
         for label, icon in legend_map.items():

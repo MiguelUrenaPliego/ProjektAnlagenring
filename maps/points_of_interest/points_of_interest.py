@@ -19,6 +19,8 @@ from map_i18n import toggle_html  # noqa: E402
 
 I18N = json.loads((MAPS_ROOT / "shared" / "i18n_content.json").read_text(encoding="utf-8"))["poi"]
 
+DEFAULT_LANG = "de"  # server-baked language for content plot_helpers builds (e.g. the POI legend)
+
 
 def main():
     pois = pd.read_csv(HERE / "Bestandsanalyse.csv")
@@ -32,7 +34,7 @@ def main():
 
     m = folium.Map(
         location=[pois.lat.mean(), pois.lon.mean()],
-        zoom_start=15,
+        zoom_start=14,
         tiles=None,
         control_scale=True,
     )
@@ -51,19 +53,20 @@ def main():
         pois=pois,
         poi_column="Typ",
         poi_icon_column="emoji",
+        legend_title=I18N[DEFAULT_LANG]["legend_title"],
     )
 
     m.add_child(MeasureControl())
 
     title_html = """
     <div id="mapTitle" data-i18n="title" style="
-        position:fixed;top:16px;left:16px;z-index:9999;
+        position:fixed;top:16px;left:25px;z-index:9999;
         background:rgba(8,25,55,0.75);color:#fff;padding:8px 14px;
         border-radius:8px;font:600 15px 'Segoe UI',system-ui,sans-serif;
         border:1px solid rgba(255,255,255,0.35);"></div>
     """
     m.get_root().html.add_child(folium.Element(title_html))
-    m.get_root().html.add_child(folium.Element(toggle_html(I18N)))
+    m.get_root().html.add_child(folium.Element(toggle_html(I18N, default=DEFAULT_LANG)))
 
     m.save(str(HERE / "points_of_interest.html"))
 
