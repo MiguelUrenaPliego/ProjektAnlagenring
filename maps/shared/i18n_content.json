@@ -245,6 +245,20 @@
       "help_got_it": "Got it"
     }
   },
+  "cycle": {
+    "de": {
+      "title": "Radtour – Geschwindigkeit",
+      "legend_title": "Geschwindigkeit (km/h)",
+      "slow_tooltip": "Stillstand: {time}",
+      "slow_popup": "Stillstandsdauer: {time}"
+    },
+    "en": {
+      "title": "Bike Tour – Speed",
+      "legend_title": "Speed (km/h)",
+      "slow_tooltip": "Stopped: {time}",
+      "slow_popup": "Stopped duration: {time}"
+    }
+  },
   "hub": {
     "de": {
       "hub_title": "Karten",
