@@ -222,7 +222,7 @@ Configuration
 
 ---
 
-<!-- _class: pdf-page footer-dark -->
+<!-- _class: pdf-page -->
 <!-- _footer: "26 | 10.07.2026 | Frankfurt University of Applied Sciences | Projekt Verkehr" -->
 <img class="pdf-embed" src="pdf_pages/page-25.jpg" data-pdf-page="25" alt="">
 
