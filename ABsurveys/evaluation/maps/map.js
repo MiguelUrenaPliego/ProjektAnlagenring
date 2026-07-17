@@ -324,6 +324,13 @@ function generateTooltipHtml(point, targetMetric) {
         </div>
     ` : '';
 
+    const tagBadgeHtml = point.tag ? `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 9px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 4px; font-family: sans-serif;">
+            <span style="color: #94a3b8; font-weight: 600;">tag</span>
+            <span style="background: rgba(251, 191, 36, 0.1); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.2); padding: 1px 4px; border-radius: 3px; font-weight: 700; font-size: 8px; text-transform: uppercase;">${point.tag}</span>
+        </div>
+    ` : '';
+
     return `
         <div class="custom-tooltip-wrapper">
             <div class="tooltip-header">
@@ -332,6 +339,7 @@ function generateTooltipHtml(point, targetMetric) {
             </div>
 
             ${splitBadgeHtml}
+            ${tagBadgeHtml}
 
             ${(hasTrueskill && hasStreetscore && diffVal !== null) ? `
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 9px; font-weight: 700; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 4px;">

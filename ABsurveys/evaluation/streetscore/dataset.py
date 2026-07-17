@@ -524,9 +524,11 @@ def compute_win_rates(single_img_df: pd.DataFrame) -> pd.DataFrame:
 def get_split_label(img_id: str, split_dfs: dict[str, pd.DataFrame]) -> str | None:
     """Return the split name ("train", "val", or "test") for a given img_id.
 
-    When test_pct=100 an image may technically appear in multiple splits.
-    Priority order: test > val > train (i.e. if an image is in test, label it
-    "test" even if it is also in train — the caller knows what "test" means).
+    When test_pct=100, "test" means "score every image at inference time" and
+    is not a genuine held-out set — every train/val image is also in test.
+    Priority order is therefore train > val > test: an image only gets labelled
+    "test" when it is not part of the actual train/val split (e.g. an orphan
+    image with no training signal, or a real percentage-based test carve-out).
 
     Args:
         img_id: The image identifier to look up.
@@ -536,7 +538,7 @@ def get_split_label(img_id: str, split_dfs: dict[str, pd.DataFrame]) -> str | No
         Split label string, or ``None`` if the img_id is not found in any split.
     """
     img_id = str(img_id)
-    for split_name in ("test", "val", "train"):
+    for split_name in ("train", "val", "test"):
         df = split_dfs.get(split_name)
         if df is not None and not df.empty:
             if img_id in df["img_id"].astype(str).values:
@@ -552,9 +554,13 @@ def assign_split_column(
 
     For each row, the value is "train", "val", "test", or None.
 
-    When ``test_pct=100``, images that appear in both train and test will be
-    labelled "test" so the consumer of scores.csv knows these are the
-    inference-only rows.  The README documents this behaviour.
+    When ``test_pct=100``, "test" means "score every image at inference time"
+    and is not a genuine held-out set — every train/val image is also in test.
+    Stamping it naively would make every row read "test" and hide the actual
+    train/val assignment used for training, so train/val always takes priority:
+    an image is only labelled "test" when it isn't part of the real train/val
+    split (orphans with no training signal, or an actual percentage-based test
+    carve-out when ``test_pct`` isn't the "score everything" special case).
 
     Args:
         scores_df: DataFrame that includes an ``img_id`` column.
@@ -567,10 +573,11 @@ def assign_split_column(
     result = scores_df.copy()
     result["img_id"] = result["img_id"].astype(str)
 
-    # Build fast lookup: img_id → split_name
+    # Build fast lookup: img_id → split_name.
+    # Iterate in reverse priority order — later writes win, so "train" (highest
+    # priority) is written last and overrides "val", which overrides "test".
     label_map: dict[str, str] = {}
-    # Iterate in priority order — last write wins for lower-priority splits
-    for split_name in ("train", "val", "test"):
+    for split_name in ("test", "val", "train"):
         df = split_dfs.get(split_name)
         if df is not None and not df.empty:
             for iid in df["img_id"].astype(str):

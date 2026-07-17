@@ -7,9 +7,60 @@ Helper functions for the street perception mapping and data normalization pipeli
 
 from __future__ import annotations
 import os
+import re
+import zipfile
+import xml.etree.ElementTree as ET
 import numpy as np
 import pandas as pd
 from typing import Union
+
+_XLSX_NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+
+def load_bild_label_coordinates(xlsx_path: str) -> dict[str, tuple[float, float] | None]:
+    """
+    Parses a simple two/three-column "Bild N | lat, lon | note" xlsx sheet
+    (as exported for manually geo-located images that have no SWM2 database
+    entry) without requiring openpyxl, using only the stdlib zipfile/ElementTree.
+
+    Returns a dict mapping "Bild N" -> (lat, lon), or None if the cell holds
+    a non-coordinate placeholder (e.g. "X" for unknown location).
+    """
+    if not os.path.exists(xlsx_path):
+        return {}
+
+    with zipfile.ZipFile(xlsx_path) as zf:
+        shared_strings = []
+        if "xl/sharedStrings.xml" in zf.namelist():
+            root = ET.fromstring(zf.read("xl/sharedStrings.xml"))
+            for si in root.findall(f"{_XLSX_NS}si"):
+                text = "".join(t.text or "" for t in si.iter(f"{_XLSX_NS}t"))
+                shared_strings.append(text)
+
+        sheet_name = next(n for n in zf.namelist() if re.match(r"xl/worksheets/sheet\d+\.xml", n))
+        sheet_root = ET.fromstring(zf.read(sheet_name))
+
+        rows_cells: dict[str, dict[str, str]] = {}
+        for row in sheet_root.iter(f"{_XLSX_NS}row"):
+            for cell in row.findall(f"{_XLSX_NS}c"):
+                ref = cell.get("r")
+                col = re.match(r"[A-Z]+", ref).group()
+                row_num = re.match(r"[A-Z]+(\d+)", ref).group(1)
+                v = cell.find(f"{_XLSX_NS}v")
+                if v is None:
+                    continue
+                value = shared_strings[int(v.text)] if cell.get("t") == "s" else v.text
+                rows_cells.setdefault(row_num, {})[col] = value
+
+    result: dict[str, tuple[float, float] | None] = {}
+    for cells in rows_cells.values():
+        label = cells.get("A")
+        coord_str = cells.get("B")
+        if not label or coord_str is None:
+            continue
+        match = re.match(r"\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$", coord_str)
+        result[label] = (float(match.group(1)), float(match.group(2))) if match else None
+
+    return result
 
 def _all_files_exist(paths: Union[str, list[str], None]) -> bool:
     """

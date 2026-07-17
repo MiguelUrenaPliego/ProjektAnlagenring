@@ -9,6 +9,7 @@ inputs and robust fallback simulation for testing without data files.
 
 from __future__ import annotations
 import os
+import re
 import sqlite3
 import pandas as pd
 import numpy as np
@@ -20,7 +21,8 @@ from map import generate_custom_html_map
 from utils import (
     _all_files_exist,
     normalize_and_align_distributions,
-    generate_simulation_data
+    generate_simulation_data,
+    load_bild_label_coordinates
 )
 
 # ============================================================================
@@ -46,6 +48,19 @@ STREETSCORE_DF_PATHS: Union[str, list[str], None] = "evaluation/streetscore/mode
 
 # Optional path to SWM2 database containing photo coordinates and bearing metadata
 SWM2_DATABASE_PATH: Union[str, list[str], None] = "images/Anlagenring/database.swm2"
+
+# --- Manually geo-located image groups (images absent from the SWM2 database) ---
+# Each entry maps images whose path starts with "path_prefix" to coordinates read
+# from a small xlsx sheet (label "Bild N" -> "lat, lon") and tags them for display.
+GRUPPE_LABEL_OVERRIDES = [
+    {
+        "path_prefix": "images/Anlagenring/GruppeSafety/",
+        "filename_pattern": r"Bild_Sicherheit_(\d+)\.",
+        "label_template": "Bild {n}",
+        "coords_xlsx": "images/Anlagenring/GruppeSafety/Koordinaten.xlsx",
+        "tag": "Gruppe2",
+    }
+]
 
 # --- Metrics mapping settings ------------------------------------------------
 # Define the active metrics you want to load and compare
@@ -236,6 +251,31 @@ def load_and_compile_perceptions() -> tuple[list[dict], int, int, bool, bool]:
     if not streetscore_df.empty:
         streetscore_df["img_id"] = streetscore_df["img_id"].apply(clean_img_id)
 
+    # --- Apply manually geo-located overrides & tags for image groups missing from SWM2 ---
+    img_id_tags: dict[str, str] = {}
+    for override in GRUPPE_LABEL_OVERRIDES:
+        prefix = override["path_prefix"]
+        matches = img_df["path"].astype(str).str.replace("\\", "/", regex=False).str.startswith(prefix)
+        if not matches.any():
+            continue
+
+        coords_path = get_abs_path(override["coords_xlsx"])
+        label_coords = load_bild_label_coordinates(coords_path)
+        pattern = re.compile(override["filename_pattern"])
+
+        for idx in img_df[matches].index:
+            filename = os.path.basename(str(img_df.at[idx, "path"]))
+            m = pattern.search(filename)
+            if not m:
+                continue
+            label = override["label_template"].format(n=m.group(1))
+            coord = label_coords.get(label)
+            if coord is not None:
+                lat, lon = coord
+                img_df.at[idx, "x"] = lon
+                img_df.at[idx, "y"] = lat
+            img_id_tags[str(img_df.at[idx, "img_id"])] = override["tag"]
+
     # Normalize source-of-truth metadata columns to lowercase & stripped for case-insensitive joins/filters
     if "img_type" in img_df.columns:
         img_df["img_type"] = img_df["img_type"].astype(str).str.strip().str.lower()
@@ -277,6 +317,12 @@ def load_and_compile_perceptions() -> tuple[list[dict], int, int, bool, bool]:
         split_map.update(trueskill_df.set_index("img_id")["split"].dropna().to_dict())
     split_map = {clean_img_id(k): str(v).strip() for k, v in split_map.items()}
 
+    # StreetScore's "test" split is scored against 100% of images (IMG_TEST_PATHS=100
+    # in evaluation/streetscore/main.py), so it does not denote a genuine held-out
+    # set and is meaningless as a filter category. Only the real train/val split
+    # (carved out before that whole-dataset test pass) is informative.
+    split_map = {k: v for k, v in split_map.items() if v.lower() != "test"}
+
     # Calculate survey stats
     unique_users = int(human_df["user_id"].nunique()) if "user_id" in human_df.columns else 0
     if "type" in human_df.columns:
@@ -299,7 +345,8 @@ def load_and_compile_perceptions() -> tuple[list[dict], int, int, bool, bool]:
             "y": float(img_row["y"]) if pd.notna(img_row["y"]) else None,
             "bearing": float(img_row["bearing"]) if pd.notna(img_row["bearing"]) else None,
             "img_path": rel_path,
-            "split": split_map.get(img_id, None),
+            "split": img_id_tags.get(img_id, split_map.get(img_id, None)),
+            "tag": img_id_tags.get(img_id, None),
             "metrics": {}
         }
 
@@ -461,7 +508,7 @@ if __name__ == "__main__":
     default_metric = "walk" if "walk" in metrics_list else metrics_list[0]
     
     # 3. Output path
-    output_html_file = os.path.join(ROOT_PATH, "map.html")
+    output_html_file = os.path.join(ROOT_PATH, "index.html")
     
     # 4. Trigger Folium builder
     generate_custom_html_map(
