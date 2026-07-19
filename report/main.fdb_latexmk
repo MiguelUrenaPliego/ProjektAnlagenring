@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1784475086.73091 "main.bcf" "main.bbl" "main" 1784475089.95708 0
-  "main.bcf" 1784475089.8521 108986 4a8003cf2f25218176ab67fdfb4d7adc "pdflatex"
+["biber main"] 1784476584.24538 "main.bcf" "main.bbl" "main" 1784476769.42969 0
+  "main.bcf" 1784476769.31549 109117 b8ae5404bb279459d0fa87b82ade0ff0 "pdflatex"
   "references.bib" 1784474886.51051 4170 fba546fcfc1dc5ee2c5cfb882c8d89a1 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1784475088.66638 "main.tex" "main.pdf" "main" 1784475089.95737 0
+["pdflatex"] 1784476767.99776 "main.tex" "main.pdf" "main" 1784476769.42999 0
   "/etc/texmf/web2c/texmf.cnf" 1743875734.39256 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -284,16 +284,28 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1743875758.29327 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743875785 8212717 4cbb8100da1d3bb5c9568fb3e61f5b56 ""
+  "figures/bad_bike.jpg" 1784476505.18543 664762 a77395b2a6ff64c8fd3d3692856286c8 ""
+  "figures/bad_park.jpg" 1784476505.30843 658846 e04741c3dc1b53177bf3b4f983bdcd87 ""
+  "figures/bad_road.jpg" 1784476505.42742 674557 329ec9ba8b0df9227a94eab0f8852305 ""
+  "figures/bad_road_2.jpg" 1784476505.54642 670938 70ab278d4291b93e44b7c45796a65497 ""
+  "figures/bad_stay.jpg" 1784476505.63842 666028 c5a9b57c2a79e0983f6cc06341a6308d ""
   "figures/front_page.jpg" 1784475070.12733 21154 7ba9548fae86704e9ada7ac6ec3464fa ""
+  "figures/good_bike.jpg" 1784476505.72842 650754 f1df4f902d8482c666197d08d144e83c ""
+  "figures/good_park.jpg" 1784476505.81942 673248 2ac406cc9df5c37b8a3eb40b147bc8e8 ""
+  "figures/good_park_2.jpg" 1784476505.90842 684504 2c9fc21a4e84fe913f15a92a773b0b10 ""
+  "figures/good_stay.jpg" 1784476505.99942 679920 7f0b79439b99e0662f7f13b9d1dcd97d ""
+  "figures/good_street.jpg" 1784476506.09042 666650 6c3a44cb58a2da0b67c65d4ce74236de ""
+  "figures/streetscore_map.jpg" 1784476506.26942 1373459 6ccf64d99041044e413d281edd5777c6 ""
+  "figures/survey_web.jpg" 1784475942.85963 334821 8cac8cf92b346f4ee2f2d3dd1651fe86 ""
   "front_page/front_page.tex" 1784475076.06126 1818 dc83f9e28034c09186755f562ed7a769 ""
   "logos/FUAS_logo.png" 1784474555.66255 31104 5298e25f6d5fff92e7e7841355931b43 ""
   "logos/THM_logo.png" 1784474555.66255 50551 2edcae216a1fae241d1e550af2c33fce ""
-  "main.aux" 1784475089.8491 3642 862d935ed8682ed3b58a7e4806c85944 "pdflatex"
-  "main.bbl" 1784475087.33213 15311 4683c412cd7cfeb9f846f444b8446a95 "biber main"
-  "main.out" 1784475089.8511 1698 60986aa8e6437a567b060c3cfb3224f5 "pdflatex"
-  "main.run.xml" 1784475089.8531 2375 9cdbcb29db4bb6c1c6314a8ad872ddbc "pdflatex"
-  "main.tex" 1784474965.66456 16111 46ac5c014d7cd16693d44e331595e8ed ""
-  "main.toc" 1784475089.8531 639 7e77249c6bdc9a1c72a3c020e9d2d122 "pdflatex"
+  "main.aux" 1784476769.31249 6713 e975156788573905ba02003707e4c46d "pdflatex"
+  "main.bbl" 1784476584.89254 15311 4683c412cd7cfeb9f846f444b8446a95 "biber main"
+  "main.out" 1784476769.31449 2113 8219f53144452709e1f74b9e73b8256e "pdflatex"
+  "main.run.xml" 1784476769.31649 2375 9cdbcb29db4bb6c1c6314a8ad872ddbc "pdflatex"
+  "main.tex" 1784476758.40761 21707 405e9f80da8d0a991861fd58dd9b9b0f ""
+  "main.toc" 1784476769.31649 866 5cfffd8b680790da5fffa416ccde6008 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
