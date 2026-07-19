@@ -1,0 +1,399 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{dosovitskiy2021}{inproceedings}{}
+      \name{author}{12}{}{%
+        {{hash=72308762399d6ab62bbd9391c64c7bfd}{%
+           family={Dosovitskiy},
+           familyi={D\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=836254958eac09b30d45dd67a75ce4fa}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod}}}%
+        {{hash=6807e3c00242c6bf6a3179905040471b}{%
+           family={Kolesnikov},
+           familyi={K\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b398fca6879fde89a032b8e7de2f26b5}{%
+           family={Weissenborn},
+           familyi={W\bibinitperiod},
+           given={Dirk},
+           giveni={D\bibinitperiod}}}%
+        {{hash=00b950307c7d096765bb6df00c7c5c3a}{%
+           family={Zhai},
+           familyi={Z\bibinitperiod},
+           given={Xiaohua},
+           giveni={X\bibinitperiod}}}%
+        {{hash=1a47640139e63b9b5969c969dfe95def}{%
+           family={Unterthiner},
+           familyi={U\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=965baf6fa5686a42b1564330c5e11f2f}{%
+           family={Dehghani},
+           familyi={D\bibinitperiod},
+           given={Mostafa},
+           giveni={M\bibinitperiod}}}%
+        {{hash=06829adce8713f0ace444279dcd7328f}{%
+           family={Minderer},
+           familyi={M\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c95269b4a2e23e1e526be521c7ec6ad4}{%
+           family={Heigold},
+           familyi={H\bibinitperiod},
+           given={Georg},
+           giveni={G\bibinitperiod}}}%
+        {{hash=450963f966620925cb8fecd32f7a6ee1}{%
+           family={Gelly},
+           familyi={G\bibinitperiod},
+           given={Sylvain},
+           giveni={S\bibinitperiod}}}%
+        {{hash=831027ee0ebf22375e2a86afc1881909}{%
+           family={Uszkoreit},
+           familyi={U\bibinitperiod},
+           given={Jakob},
+           giveni={J\bibinitperiod}}}%
+        {{hash=493a532418540859dca92cf3b579de2a}{%
+           family={Houlsby},
+           familyi={H\bibinitperiod},
+           given={Neil},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{fullhash}{b8c06eaeb698f61fc96ff3e5570552ec}
+      \strng{bibnamehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{authorbibnamehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{authornamehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{authorfullhash}{b8c06eaeb698f61fc96ff3e5570552ec}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Conference on Learning Representations ({ICLR} 2021)}
+      \field{title}{An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale}
+      \field{year}{2021}
+      \field{dateera}{ce}
+    \endentry
+    \entry{herbrich2007}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=9b0a3696222e14841b39c605ee99e24b}{%
+           family={Herbrich},
+           familyi={H\bibinitperiod},
+           given={Ralf},
+           giveni={R\bibinitperiod}}}%
+        {{hash=c5379ecbff2d94a06aefaa8b024e15cb}{%
+           family={Minka},
+           familyi={M\bibinitperiod},
+           given={Thore},
+           giveni={T\bibinitperiod}}}%
+        {{hash=368b9b2de627b852658c433b062d4e1e}{%
+           family={Graepel},
+           familyi={G\bibinitperiod},
+           given={Thore},
+           giveni={T\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=ca31cc11ec9370460148c3a9c48fce45}{%
+           family={Schölkopf},
+           familyi={S\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod}}}%
+        {{hash=74ebe0fc06c0292871d5f756cfe5414d}{%
+           family={Platt},
+           familyi={P\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c088dd23b5ffb5ed3bef0b39beb3df96}{%
+           family={Hoffman},
+           familyi={H\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{dbd5de74ee9c1148ff492c1e4b5781dc}
+      \strng{fullhash}{dbd5de74ee9c1148ff492c1e4b5781dc}
+      \strng{bibnamehash}{dbd5de74ee9c1148ff492c1e4b5781dc}
+      \strng{authorbibnamehash}{dbd5de74ee9c1148ff492c1e4b5781dc}
+      \strng{authornamehash}{dbd5de74ee9c1148ff492c1e4b5781dc}
+      \strng{authorfullhash}{dbd5de74ee9c1148ff492c1e4b5781dc}
+      \strng{editorbibnamehash}{20600cce993579224e2d18ab54084ccc}
+      \strng{editornamehash}{20600cce993579224e2d18ab54084ccc}
+      \strng{editorfullhash}{20600cce993579224e2d18ab54084ccc}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems 19}
+      \field{title}{{TrueSkill}™: A {Bayesian} Skill Rating System}
+      \field{year}{2007}
+      \field{dateera}{ce}
+      \field{pages}{569\bibrangedash 576}
+      \range{pages}{8}
+    \endentry
+    \entry{hou2024}{article}{}
+      \name{author}{9}{}{%
+        {{hash=733db7f0370ff8e56483fb428264be96}{%
+           family={Hou},
+           familyi={H\bibinitperiod},
+           given={Yujun},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=b2b02f3c394a9bce5d85a786b6ada326}{%
+           family={Quintana},
+           familyi={Q\bibinitperiod},
+           given={Matias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=82f168a02ef7c264a7c422c7b730e8f3}{%
+           family={Khomiakov},
+           familyi={K\bibinitperiod},
+           given={Maxim},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f8e732852678a9222266f0ae16740bef}{%
+           family={Yap},
+           familyi={Y\bibinitperiod},
+           given={Winston},
+           giveni={W\bibinitperiod}}}%
+        {{hash=55b820203fa789d56f8fdaa7978b04e0}{%
+           family={Ouyang},
+           familyi={O\bibinitperiod},
+           given={Jiani},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0bc5fc539e229d89f345030c9c662086}{%
+           family={Ito},
+           familyi={I\bibinitperiod},
+           given={Koichi},
+           giveni={K\bibinitperiod}}}%
+        {{hash=938158f222c630ab1bcd349d4abdb680}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zeyu},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=732397469e9deffdadc7750ba439f7de}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Tianhong},
+           giveni={T\bibinitperiod}}}%
+        {{hash=1fd5624cf140576d8190e859c4f4a325}{%
+           family={Biljecki},
+           familyi={B\bibinitperiod},
+           given={Filip},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{bd05d708811b248bcaf20eaf27f315da}
+      \strng{fullhash}{240d42911e0503e1ebd7a43585a5d667}
+      \strng{bibnamehash}{bd05d708811b248bcaf20eaf27f315da}
+      \strng{authorbibnamehash}{bd05d708811b248bcaf20eaf27f315da}
+      \strng{authornamehash}{bd05d708811b248bcaf20eaf27f315da}
+      \strng{authorfullhash}{240d42911e0503e1ebd7a43585a5d667}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ISPRS Journal of Photogrammetry and Remote Sensing}
+      \field{title}{Global Streetscapes --- A Comprehensive Dataset of 10 Million Street-Level Images Across 688 Cities for Urban Science and Analytics}
+      \field{volume}{215}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{pages}{216\bibrangedash 238}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1016/j.isprsjprs.2024.06.023
+      \endverb
+    \endentry
+    \entry{naik2014}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=19ed5a04b675f741338b9cf26c7e32aa}{%
+           family={Naik},
+           familyi={N\bibinitperiod},
+           given={Nikhil},
+           giveni={N\bibinitperiod}}}%
+        {{hash=45798b5d67e2d68ef8d9a7d8419caeec}{%
+           family={Philipoom},
+           familyi={P\bibinitperiod},
+           given={Jade},
+           giveni={J\bibinitperiod}}}%
+        {{hash=8843732e3271ea6b1e5a66e24f6c6a43}{%
+           family={Raskar},
+           familyi={R\bibinitperiod},
+           given={Ramesh},
+           giveni={R\bibinitperiod}}}%
+        {{hash=766f75fa2f6e90fc264b64843a1f0604}{%
+           family={Hidalgo},
+           familyi={H\bibinitperiod},
+           given={César\bibnamedelima A.},
+           giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{0936e1df5acdbd52dafd8981161a20ad}
+      \strng{fullhash}{8edf630bce4ab0254ae60ff17bbd484d}
+      \strng{bibnamehash}{0936e1df5acdbd52dafd8981161a20ad}
+      \strng{authorbibnamehash}{0936e1df5acdbd52dafd8981161a20ad}
+      \strng{authornamehash}{0936e1df5acdbd52dafd8981161a20ad}
+      \strng{authorfullhash}{8edf630bce4ab0254ae60ff17bbd484d}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition Workshops}
+      \field{title}{Streetscore --- Predicting the Perceived Safety of One Million Streetscapes}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{pages}{793\bibrangedash 799}
+      \range{pages}{7}
+    \endentry
+    \entry{salesses2013}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ec9fd2ad2a5f5f64bb0b12b71e86ddbc}{%
+           family={Salesses},
+           familyi={S\bibinitperiod},
+           given={Philip},
+           giveni={P\bibinitperiod}}}%
+        {{hash=20b5ec4e29c6d4a0133407c216cb06d9}{%
+           family={Schechtner},
+           familyi={S\bibinitperiod},
+           given={Katja},
+           giveni={K\bibinitperiod}}}%
+        {{hash=766f75fa2f6e90fc264b64843a1f0604}{%
+           family={Hidalgo},
+           familyi={H\bibinitperiod},
+           given={César\bibnamedelima A.},
+           giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{9da3c1e2376f698ef6460b9e639417f1}
+      \strng{fullhash}{9da3c1e2376f698ef6460b9e639417f1}
+      \strng{bibnamehash}{9da3c1e2376f698ef6460b9e639417f1}
+      \strng{authorbibnamehash}{9da3c1e2376f698ef6460b9e639417f1}
+      \strng{authornamehash}{9da3c1e2376f698ef6460b9e639417f1}
+      \strng{authorfullhash}{9da3c1e2376f698ef6460b9e639417f1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{PLoS ONE}
+      \field{number}{7}
+      \field{title}{The Collaborative Image of the City: Mapping the Inequality of Urban Perception}
+      \field{volume}{8}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{pages}{e68400}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1371/journal.pone.0068400
+      \endverb
+    \endentry
+    \entry{settles2009}{report}{}
+      \name{author}{1}{}{%
+        {{hash=9941c4d5402b5e6ceeb53599273e07a3}{%
+           family={Settles},
+           familyi={S\bibinitperiod},
+           given={Burr},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Wisconsin--Madison}%
+      }
+      \strng{namehash}{9941c4d5402b5e6ceeb53599273e07a3}
+      \strng{fullhash}{9941c4d5402b5e6ceeb53599273e07a3}
+      \strng{bibnamehash}{9941c4d5402b5e6ceeb53599273e07a3}
+      \strng{authorbibnamehash}{9941c4d5402b5e6ceeb53599273e07a3}
+      \strng{authornamehash}{9941c4d5402b5e6ceeb53599273e07a3}
+      \strng{authorfullhash}{9941c4d5402b5e6ceeb53599273e07a3}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{1648}
+      \field{title}{Active Learning Literature Survey}
+      \field{type}{Computer Sciences Technical Report}
+      \field{year}{2009}
+      \field{dateera}{ce}
+    \endentry
+    \entry{zhang2018}{article}{}
+      \name{author}{7}{}{%
+        {{hash=ae021641a8f85fd2607152ab99ed115b}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Fan},
+           giveni={F\bibinitperiod}}}%
+        {{hash=c7cb7aa044ac5597397cceabad3765a3}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Bolei},
+           giveni={B\bibinitperiod}}}%
+        {{hash=80991f20b05dcbc1a0bd37827454e9b8}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Liu},
+           giveni={L\bibinitperiod}}}%
+        {{hash=93c82128aca25c57cfb17e90d02136d5}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Yu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=dd326fd7f5a03bb50ce078253d187f6c}{%
+           family={Fung},
+           familyi={F\bibinitperiod},
+           given={Helene\bibnamedelima H.},
+           giveni={H\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=7c8b2289031d27d57fc9c7e7239ec517}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod}}}%
+        {{hash=aeb05a80989b576d5948e4cbf97421cc}{%
+           family={Ratti},
+           familyi={R\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b34ec7ee85af98aed1e55ed4599fbd0e}
+      \strng{fullhash}{7286534a7bbf4c0e78ddf0cb3d0e289f}
+      \strng{bibnamehash}{b34ec7ee85af98aed1e55ed4599fbd0e}
+      \strng{authorbibnamehash}{b34ec7ee85af98aed1e55ed4599fbd0e}
+      \strng{authornamehash}{b34ec7ee85af98aed1e55ed4599fbd0e}
+      \strng{authorfullhash}{7286534a7bbf4c0e78ddf0cb3d0e289f}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Landscape and Urban Planning}
+      \field{title}{Measuring Human Perceptions of a Large-Scale Urban Region Using Machine Learning}
+      \field{volume}{180}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{pages}{148\bibrangedash 160}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1016/j.landurbplan.2018.08.020
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
