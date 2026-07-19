@@ -75,3 +75,6 @@ Thumbs.db
 *.log
 *.tmp
 .cache/
+
+# Scratch report notes at repo root (not the report/ LaTeX project)
+/report.md
