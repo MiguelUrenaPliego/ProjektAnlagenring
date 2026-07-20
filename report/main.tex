@@ -252,7 +252,7 @@ Der oben beschriebene dreiteilige Mechanismus wurde für eine konkrete Fallstudi
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{figures/streetscore_map.jpg}
+	\includegraphics[width=0.85\textwidth]{figures/streetscore_map.jpg}
 	\caption[Wahrnehmungskarte des Anlagenrings]{Karte aller im Rahmen der Feldstudie erhobenen Standorte am Anlagenring mit den zugehörigen Fotografien und den daraus resultierenden Umfrage-Wahrnehmungswerten (TrueSkill $\mu$). Die interaktive Version der Karte ist unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/ABsurveys/index.html?lang=de} verfügbar (Quelle: eigene Darstellung).}
 	\label{fig:streetscore-map}
 \end{figure}
@@ -263,62 +263,47 @@ Für die in diesem Bericht vorgestellten Auswertungen verwenden wir ausschließl
 
 Die folgenden Mosaike stellen für jede der drei Aktivitäten die jeweils am besten und am schlechtesten bewerteten Bilder aus dem Umfrage-Pool gegenüber.
 
-\begin{figure}[tbp]
-	\centering
-	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{figures/good_street.jpg}
-
-		\vspace{0.5em}
-		\includegraphics[width=\textwidth]{figures/good_park.jpg}
-
-		\vspace{0.5em}
-		\includegraphics[width=\textwidth]{figures/good_park_2.jpg}
-		\caption{Gut bewertet}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{figures/bad_road.jpg}
-
-		\vspace{0.5em}
-		\includegraphics[width=\textwidth]{figures/bad_road_2.jpg}
-
-		\vspace{0.5em}
-		\includegraphics[width=\textwidth]{figures/bad_park.jpg}
-		\caption{Schlecht bewertet}
-	\end{subfigure}
-	\caption[Gut/schlecht bewertete Bilder -- Zufußgehen]{Gegenüberstellung der am besten und am schlechtesten bewerteten Straßenraumbilder für die Aktivität Zufußgehen (Quelle: eigene Darstellung).}
-	\label{fig:mosaic-walk}
-\end{figure}
-
-\begin{figure}[tbp]
-	\centering
-	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{figures/good_bike.jpg}
-		\caption{Gut bewertet}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{figures/bad_bike.jpg}
-		\caption{Schlecht bewertet}
-	\end{subfigure}
-	\caption[Gut/schlecht bewertete Bilder -- Radfahren]{Gegenüberstellung der am besten und am schlechtesten bewerteten Straßenraumbilder für die Aktivität Radfahren (Quelle: eigene Darstellung).}
-	\label{fig:mosaic-bike}
-\end{figure}
-
-\begin{figure}[tbp]
-	\centering
-	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{figures/good_stay.jpg}
-		\caption{Gut bewertet}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{figures/bad_stay.jpg}
-		\caption{Schlecht bewertet}
-	\end{subfigure}
-	\caption[Gut/schlecht bewertete Bilder -- Aufenthalten]{Gegenüberstellung der am besten und am schlechtesten bewerteten Straßenraumbilder für die Aktivität Aufenthalten (Quelle: eigene Darstellung).}
-	\label{fig:mosaic-stay}
-\end{figure}
+\begin{longtable}{>{\centering\arraybackslash}p{0.46\textwidth} >{\centering\arraybackslash}p{0.46\textwidth}}
+	\caption[Gut/schlecht bewertete Bilder je Aktivität]{Gegenüberstellung der am besten und am schlechtesten bewerteten Straßenraumbilder für die Aktivitäten Zufußgehen, Radfahren und Aufenthalten (Quelle: eigene Darstellung).}
+	\label{tab:mosaic-all}\\
+	\toprule
+	\textbf{Gut bewertet} & \textbf{Schlecht bewertet}\\
+	\midrule
+	\endfirsthead
+	\multicolumn{2}{c}{\tablename\ \thetable{} -- Fortsetzung von vorheriger Seite}\\
+	\toprule
+	\textbf{Gut bewertet} & \textbf{Schlecht bewertet}\\
+	\midrule
+	\endhead
+	\midrule
+	\multicolumn{2}{r}{\small Fortsetzung auf nächster Seite}\\
+	\endfoot
+	\bottomrule
+	\endlastfoot
+	\multicolumn{2}{c}{\textbf{Zufußgehen}}\\
+	\midrule
+	\includegraphics[width=0.9\linewidth]{figures/good_street.jpg} &
+	\includegraphics[width=0.9\linewidth]{figures/bad_road.jpg}\\
+	\small Zufußgehen -- Bild 1 & \small Zufußgehen -- Bild 1\\[0.8em]
+	\includegraphics[width=0.9\linewidth]{figures/good_park.jpg} &
+	\includegraphics[width=0.9\linewidth]{figures/bad_road_2.jpg}\\
+	\small Zufußgehen -- Bild 2 & \small Zufußgehen -- Bild 2\\[0.8em]
+	\includegraphics[width=0.9\linewidth]{figures/good_park_2.jpg} &
+	\includegraphics[width=0.9\linewidth]{figures/bad_park.jpg}\\
+	\small Zufußgehen -- Bild 3 & \small Zufußgehen -- Bild 3\\[0.8em]
+	\midrule
+	\multicolumn{2}{c}{\textbf{Radfahren}}\\
+	\midrule
+	\includegraphics[width=0.9\linewidth]{figures/good_bike.jpg} &
+	\includegraphics[width=0.9\linewidth]{figures/bad_bike.jpg}\\
+	\small Radfahren -- Bild 1 & \small Radfahren -- Bild 1\\[0.8em]
+	\midrule
+	\multicolumn{2}{c}{\textbf{Aufenthalten}}\\
+	\midrule
+	\includegraphics[width=0.9\linewidth]{figures/good_stay.jpg} &
+	\includegraphics[width=0.9\linewidth]{figures/bad_stay.jpg}\\
+	\small Aufenthalten -- Bild 1 & \small Aufenthalten -- Bild 1\\
+\end{longtable}
 
 Räumlich zeigt sich in Abbildung~\ref{fig:streetscore-map} ein deutliches Muster: Besonders gut bewertete Orte konzentrieren sich auf den Bethmannpark sowie auf die Cafés und Straßen südlich des Eschenheimer Tors. Demgegenüber wurden einige der großen, verkehrsreichen Kreuzungen am Friedberger Tor, am Eschenheimer Tor sowie rund um die Alte Oper deutlich schlechter bewertet; auch der Fußweg entlang des U5-Tunnels schnitt schlecht ab. Diese räumliche Verteilung legt nahe, dass sehr hochwertig wahrgenommene Teilbereiche des Anlagenrings derzeit von Abschnitten mit schlechter Wahrnehmung umgeben sind. Der Ring wird dadurch nicht als durchgehend zusammenhängender Grün- und Aufenthaltsraum erlebt, sondern in einzelne, voneinander getrennte \enquote{Inseln} guter Aufenthaltsqualität zerlegt, zwischen denen insbesondere die großen Kreuzungen als wahrgenommene Barrieren wirken.
 
