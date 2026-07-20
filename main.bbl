@@ -18,7 +18,7 @@
 
 
 \refsection{0}
-  \datalist[entry]{nty/global//global/global}
+  \datalist[entry]{nyt/global//global/global}
     \entry{dosovitskiy2021}{inproceedings}{}
       \name{author}{12}{}{%
         {{hash=72308762399d6ab62bbd9391c64c7bfd}{%
@@ -90,6 +90,8 @@
       \strng{authorfullhash}{b8c06eaeb698f61fc96ff3e5570552ec}
       \field{sortinit}{D}
       \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{International Conference on Learning Representations ({ICLR} 2021)}
@@ -135,17 +137,19 @@
       \list{publisher}{1}{%
         {MIT Press}%
       }
-      \strng{namehash}{dbd5de74ee9c1148ff492c1e4b5781dc}
+      \strng{namehash}{06e6e4c17c8adf8a074c26a72bbe7bf6}
       \strng{fullhash}{dbd5de74ee9c1148ff492c1e4b5781dc}
       \strng{bibnamehash}{dbd5de74ee9c1148ff492c1e4b5781dc}
       \strng{authorbibnamehash}{dbd5de74ee9c1148ff492c1e4b5781dc}
-      \strng{authornamehash}{dbd5de74ee9c1148ff492c1e4b5781dc}
+      \strng{authornamehash}{06e6e4c17c8adf8a074c26a72bbe7bf6}
       \strng{authorfullhash}{dbd5de74ee9c1148ff492c1e4b5781dc}
       \strng{editorbibnamehash}{20600cce993579224e2d18ab54084ccc}
-      \strng{editornamehash}{20600cce993579224e2d18ab54084ccc}
+      \strng{editornamehash}{a70215356a8de56cfef0850e9b43f897}
       \strng{editorfullhash}{20600cce993579224e2d18ab54084ccc}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Advances in Neural Information Processing Systems 19}
@@ -211,6 +215,8 @@
       \strng{authorfullhash}{240d42911e0503e1ebd7a43585a5d667}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{ISPRS Journal of Photogrammetry and Remote Sensing}
@@ -258,6 +264,8 @@
       \strng{authorfullhash}{8edf630bce4ab0254ae60ff17bbd484d}
       \field{sortinit}{N}
       \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition Workshops}
@@ -285,14 +293,16 @@
            given={César\bibnamedelima A.},
            giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
       }
-      \strng{namehash}{9da3c1e2376f698ef6460b9e639417f1}
+      \strng{namehash}{9c4c87bba8349dbe533464f5ce235282}
       \strng{fullhash}{9da3c1e2376f698ef6460b9e639417f1}
       \strng{bibnamehash}{9da3c1e2376f698ef6460b9e639417f1}
       \strng{authorbibnamehash}{9da3c1e2376f698ef6460b9e639417f1}
-      \strng{authornamehash}{9da3c1e2376f698ef6460b9e639417f1}
+      \strng{authornamehash}{9c4c87bba8349dbe533464f5ce235282}
       \strng{authorfullhash}{9da3c1e2376f698ef6460b9e639417f1}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{PLoS ONE}
@@ -326,6 +336,8 @@
       \strng{authorfullhash}{9941c4d5402b5e6ceeb53599273e07a3}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{number}{1648}
@@ -380,6 +392,8 @@
       \strng{authorfullhash}{7286534a7bbf4c0e78ddf0cb3d0e289f}
       \field{sortinit}{Z}
       \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Landscape and Urban Planning}
