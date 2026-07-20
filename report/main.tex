@@ -230,12 +230,12 @@ Zu erfassen, wie Menschen die Straßen wahrnehmen, auf denen sie gehen, Rad fahr
 
 Unser Projekt überträgt dasselbe Paradigma auf eine konkrete planerische Fragestellung: Wie nehmen Anwohnende und Besuchende unterschiedliche Straßenraum-Gestaltungsvarianten am Anlagenring in Frankfurt am Main und dessen Umgebung wahr, insbesondere im Hinblick auf Zufußgehen, Radfahren und Aufenthalten im Straßenraum? Wir haben dazu eine webbasierte AB-Testing-Umfrageplattform (\enquote{ABsurveys}) entwickelt, die Teilnehmenden wiederholt zwei Fotografien oder Visualisierungen von Straßenabschnitten zeigt und sie bittet, diejenige auszuwählen, die sie für eine bestimmte Aktivität als angenehmer empfinden. Im Hintergrund der Oberfläche wirken drei Komponenten zusammen, um die Umfrage effizient und ihre Ergebnisse statistisch belastbar zu machen. Erstens eine auf TrueSkill basierende Bewertungs-Engine, die jede binäre Entscheidung in einen aktualisierten, unsicherheitsbehafteten Wahrnehmungswert für jedes Bild umrechnet. Zweitens ein Active-Sampling-Algorithmus zur Paarauswahl, der entscheidet, welche zwei Bilder als Nächstes gezeigt werden, damit die Aufmerksamkeit der Teilnehmenden dort eingesetzt wird, wo sie den größten Informationsgewinn liefert. Drittens ein StreetScore-artiges Deep-Learning-Modell, das die menschlichen Vergleiche auf die deutlich größere Menge an Bildern verallgemeinert, die nie direkt bewertet wurden. Dieser Bericht erläutert, wie diese drei Komponenten funktionieren, und fasst ihren Einsatz an unserem Reallabor-Tag am Anlagenring zusammen.
 
-Konzeptionelles Vorbild für unsere Plattform ist \enquote{Place Pulse} des MIT Media Lab, das denselben paarweisen Vergleichsansatz erstmals in großem Maßstab für die Wahrnehmung von Straßenräumen eingesetzt hat \autocite{salesses2013,naik2014}. Abbildung~\ref{fig:survey-web} zeigt die Weboberfläche unserer eigenen, daran angelehnten Umfrageplattform \enquote{ABsurveys}, wie sie sowohl am Vor-Ort-Computer als auch über den ausgehängten QR-Code auf dem eigenen Smartphone genutzt werden konnte; sie ist weiterhin unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/ABsurveys/web.html} einsehbar.
+Konzeptionelles Vorbild für unsere Plattform ist \enquote{Place Pulse} des MIT Media Lab, das denselben paarweisen Vergleichsansatz erstmals in großem Maßstab für die Wahrnehmung von Straßenräumen eingesetzt hat \autocite{salesses2013,naik2014}. Abbildung~\ref{fig:survey-web} zeigt die Weboberfläche unserer eigenen, daran angelehnten Umfrageplattform \enquote{ABsurveys}, wie sie sowohl am Vor-Ort-Computer als auch über den ausgehängten QR-Code auf dem eigenen Smartphone genutzt werden konnte.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{figures/survey_web.jpg}
-	\caption[Weboberfläche der ABsurveys-Umfrageplattform]{Screenshot der Weboberfläche der ABsurveys-Umfrageplattform (Quelle: eigene Darstellung).}
+	\caption[Weboberfläche der ABsurveys-Umfrageplattform]{Screenshot der Weboberfläche der ABsurveys-Umfrageplattform, über die die Umfrage durchgeführt wurde (Quelle: eigene Darstellung). Die Umfrage ist weiterhin online unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/ABsurveys/web.html} einsehbar.}
 	\label{fig:survey-web}
 \end{figure}
 
@@ -301,7 +301,7 @@ Dieses pretrainierte Modell lieferte auf unseren Bildern jedoch keine verlässli
 	\item Auswertung mittels Pair-Accuracy sowie einer dualen Uncertainty (Entropie- und Monte-Carlo-Dropout-basiert), um Vorhersagen für unserer Trainingsdomäne ähnliche Straßenabschnitte von denen in visuell unbekannten Gebieten zu unterscheiden.
 \end{enumerate}
 
-Dieser Fine-Tuning-Schritt ist damit nicht nur eine Übertragung des Streetscore-Prinzips auf modernere Architekturen (vgl. \textcite{hou2024} zur wachsenden Verfügbarkeit standardisierter Straßenraum-Bilddaten für solche Transferaufgaben), sondern vor allem die notwendige Anpassung an eine Bilddomäne (autofreie Park- und Fußwegräume), die von den ursprünglichen, weltweit auf Straßenverkehr fokussierten Trainingsdaten kaum abgedeckt wird.
+Dieser Fine-Tuning-Schritt ist damit nicht nur eine Übertragung des Streetscore-Prinzips auf modernere Architekturen (vgl. die wachsende Verfügbarkeit standardisierter Straßenraum-Bilddaten für solche Transferaufgaben \autocite{hou2024}), sondern vor allem die notwendige Anpassung an eine Bilddomäne (autofreie Park- und Fußwegräume), die von den ursprünglichen, weltweit auf Straßenverkehr fokussierten Trainingsdaten kaum abgedeckt wird.
 
 \subsection{Anwendung im Feld: Der Reallabor-Tag am Anlagenring}
 
