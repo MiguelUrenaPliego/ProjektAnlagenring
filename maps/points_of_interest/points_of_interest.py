@@ -19,7 +19,6 @@ import osm  # noqa: E402
 import plot_helpers  # noqa: E402
 from hexgrid import (  # noqa: E402
     DEFAULT_RESOLUTION,
-    add_aoi_background,
     filter_hex_grid_by_intersection,
     literal_hex_grid,
 )
@@ -177,22 +176,48 @@ def build_diversity_hexgrid(
     """
     hex_gdf = literal_hex_grid(aoi, resolution=resolution)
 
-    poi_cells = pois.assign(
+    points = pois[pois.geometry.type.isin(["Point", "MultiPoint"])]
+    polys = pois[pois.geometry.type.isin(["Polygon", "MultiPolygon"])]
+
+    # Point POIs are assigned to the single hex cell their coordinate falls in.
+    point_cells = points.assign(
         h3_cell=[
-            h3.latlng_to_cell(lat, lon, resolution) for lat, lon in zip(pois.lat, pois.lon)
+            h3.latlng_to_cell(lat, lon, resolution) for lat, lon in zip(points.lat, points.lon)
         ],
         user_group=[
-            classify_user_group(k, t) for k, t in zip(pois.Kategorie, pois.Typ)
+            classify_user_group(k, t) for k, t in zip(points.Kategorie, points.Typ)
         ],
     )
+    groups_per_cell = point_cells.groupby("h3_cell")["user_group"].agg(set)
+    counts_per_cell = point_cells.groupby("h3_cell").size()
 
-    groups_per_cell = poi_cells.groupby("h3_cell")["user_group"].agg(lambda s: sorted(set(s)))
-    counts_per_cell = poi_cells.groupby("h3_cell").size()
+    # Polygon POIs (e.g. Wiese/park areas) can span several hexagons, so
+    # they're counted in every cell they intersect, not only the cell
+    # containing their centroid.
+    if not polys.empty:
+        polys = polys.assign(
+            user_group=[classify_user_group(k, t) for k, t in zip(polys.Kategorie, polys.Typ)]
+        )
+        joined = gpd.sjoin(
+            hex_gdf[["h3_cell", "geometry"]],
+            polys[["user_group", "geometry"]],
+            predicate="intersects",
+        )
+        poly_groups_per_cell = joined.groupby("h3_cell")["user_group"].agg(set)
+        poly_counts_per_cell = joined.groupby("h3_cell").size()
+    else:
+        poly_groups_per_cell = pd.Series(dtype="object")
+        poly_counts_per_cell = pd.Series(dtype="int64")
 
-    hex_gdf["groups"] = hex_gdf["h3_cell"].map(groups_per_cell)
-    hex_gdf["groups"] = hex_gdf["groups"].apply(lambda g: g if isinstance(g, list) else [])
+    def combined_groups(cell):
+        groups = set(groups_per_cell.get(cell, set())) | set(poly_groups_per_cell.get(cell, set()))
+        return sorted(groups)
+
+    hex_gdf["groups"] = hex_gdf["h3_cell"].apply(combined_groups)
     hex_gdf["diversity"] = hex_gdf["groups"].apply(len)
-    hex_gdf["poi_count"] = hex_gdf["h3_cell"].map(counts_per_cell).fillna(0).astype(int)
+    hex_gdf["poi_count"] = hex_gdf["h3_cell"].apply(
+        lambda c: int(counts_per_cell.get(c, 0)) + int(poly_counts_per_cell.get(c, 0))
+    )
     hex_gdf["groups_label"] = hex_gdf["groups"].apply(lambda g: ", ".join(g) if g else "keine")
 
     return hex_gdf
@@ -202,7 +227,7 @@ def add_diversity_hexgrid(m: folium.Map, hex_gdf: gpd.GeoDataFrame) -> folium.Ma
     """Draw the diversity hex grid and its legend on the map."""
     folium.GeoJson(
         hex_gdf[["h3_cell", "diversity", "poi_count", "groups_label", "geometry"]],
-        name="Aktivitäten-Diversität",
+        name="Anzahl Nutzungsarten",
         show=True,
         style_function=lambda f: {
             "fillColor": DIVERSITY_COLORS.get(f["properties"]["diversity"], DIVERSITY_COLORS[0]),
@@ -212,7 +237,7 @@ def add_diversity_hexgrid(m: folium.Map, hex_gdf: gpd.GeoDataFrame) -> folium.Ma
         },
         tooltip=folium.GeoJsonTooltip(
             fields=["diversity", "poi_count", "groups_label"],
-            aliases=["Nutzergruppen-Diversität (0–4):", "Anzahl POIs:", "Vertretene Gruppen:"],
+            aliases=["Anzahl Nutzungsarten (0–4):", "Anzahl POIs:", "Vertretene Gruppen:"],
             localize=True,
         ),
     ).add_to(m)
@@ -222,7 +247,7 @@ def add_diversity_hexgrid(m: folium.Map, hex_gdf: gpd.GeoDataFrame) -> folium.Ma
     background:white;padding:10px 12px;border-radius:6px;
     box-shadow:2px 2px 6px rgba(0,0,0,0.3);
     font:13px 'Segoe UI',system-ui,sans-serif;">
-    <b>Diversitäts-Score</b>
+    <b>Anzahl Nutzungsarten</b>
     """
     for i in range(5):
         legend_html += (
@@ -302,7 +327,13 @@ def download_osm_pois(bounds: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     # Use point location for nodes, centroid for way/relation polygons.
     # Centroid is computed in a projected CRS for accuracy, then reprojected back.
     utm_crs = gdf.estimate_utm_crs()
-    points = gdf.to_crs(utm_crs).geometry.centroid.to_crs(gdf.crs)
+    centroids = gdf.to_crs(utm_crs).geometry.centroid.to_crs(gdf.crs)
+
+    # Wiese (leisure=park) keeps its full polygon geometry instead of being
+    # collapsed to a point, so it can span and be counted in every hexagon
+    # it overlaps, not just the one hexagon its centroid falls in.
+    is_wiese = typ == "Wiese"
+    geometry = gdf.geometry.where(is_wiese, centroids)
 
     osm_pois = gpd.GeoDataFrame(
         {
@@ -310,10 +341,10 @@ def download_osm_pois(bounds: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
             "Typ": typ,
             "emoji": emoji,
             "name": gdf["name"] if "name" in gdf.columns else None,
-            "lat": points.y,
-            "lon": points.x,
+            "lat": centroids.y,
+            "lon": centroids.x,
         },
-        geometry=points,
+        geometry=geometry,
         crs=gdf.crs,
     )
     return osm_pois.to_crs(4326)
@@ -330,6 +361,15 @@ def main():
     )
 
     aoi = gpd.read_file(HERE / "aoi.gpkg")
+
+    # Shrink the AOI by 100m so both the displayed boundary and the hex grid
+    # exclude the park's edge, which mostly covers surrounding streets.
+    utm_crs = aoi.estimate_utm_crs()
+    aoi_shrunk = gpd.GeoDataFrame(
+        geometry=aoi.to_crs(utm_crs).geometry.buffer(-100).to_crs(4326),
+        crs=4326,
+    )
+
     osm_pois = download_osm_pois(aoi)
 
     pois = pd.concat([pois, osm_pois], ignore_index=True)
@@ -351,29 +391,21 @@ def main():
         opacity=0.5,
     ).add_to(m)
 
-    # Light green park background first, then the hex grid, so the POI
-    # markers added by general_map render on top of both.
-    m = add_aoi_background(m, aoi, name="Park (AOI)")
-
     hex_gdf = build_diversity_hexgrid(pois, aoi)
-
-    # Only show hexagons that lie within the AOI shrunk by 100m, so cells
-    # at the park's edge (which mostly cover surrounding streets) are hidden.
-    utm_crs = aoi.estimate_utm_crs()
-    aoi_shrunk = aoi.to_crs(utm_crs).geometry.buffer(-100).to_crs(4326)
     hex_gdf = filter_hex_grid_by_intersection(hex_gdf, aoi_shrunk)
 
     m = add_diversity_hexgrid(m, hex_gdf)
 
     m = plot_helpers.general_map(
         m=m,
-        aoi=aoi,
+        aoi=aoi_shrunk,
         pois=pois,
         poi_column="Typ",
         poi_icon_column="emoji",
         legend_title=I18N[DEFAULT_LANG]["legend_title"],
         show_poi_legend=False,
         poi_group_name="POIs",
+        show_aoi_outline=False,
     )
     m = add_poi_legend_by_group(m, pois, I18N[DEFAULT_LANG]["legend_title"])
 

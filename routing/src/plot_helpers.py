@@ -42,6 +42,7 @@ def general_map(
     legend_title: str = "POI Legend",
     show_poi_legend: bool = True,
     poi_group_name: Optional[str] = None,
+    show_aoi_outline: bool = True,
 ) -> folium.Map:
 
     # ==========================================================
@@ -370,14 +371,26 @@ def general_map(
 
             fill = poi_color or "black"
 
-            gpd.GeoDataFrame([row], geometry=[geom], crs=4326).explore(
-                m=m,
-                color="black",
-                style_kwds={
+            if label_value == "Wiese":
+                polygon_style_kwds = {
+                    "fillColor": "none",
+                    "fillOpacity": 0.0,
+                    "weight": 2,
+                    "dashArray": "2,6",
+                }
+                polygon_color = "#1b5e20"
+            else:
+                polygon_style_kwds = {
                     "fillColor": fill,
                     "fillOpacity": 1.0,
                     "weight": 2,
-                },
+                }
+                polygon_color = "black"
+
+            gpd.GeoDataFrame([row], geometry=[geom], crs=4326).explore(
+                m=poi_target,
+                color=polygon_color,
+                style_kwds=polygon_style_kwds,
             )
 
             bg = "white" if icon_value else fill
@@ -462,7 +475,7 @@ def general_map(
                 icon=folium.DivIcon(html=html, icon_size=(34, 34), icon_anchor=(17, 34)),
                 tooltip=tooltip_html(row),
                 popup=folium.Popup(tooltip_html(row), max_width=300),
-            ).add_to(m)
+            ).add_to(poi_target)
 
             if icon_value:
                 legend_map[str(label_value)] = icon_value
@@ -489,9 +502,9 @@ def general_map(
         m.get_root().html.add_child(folium.Element(legend_html))
 
     # ==========================================================
-    # AOI (FIXED - ALWAYS DRAWN)
+    # AOI OUTLINE
     # ==========================================================
-    if aoi is not None:
+    if aoi is not None and show_aoi_outline:
         folium.GeoJson(
             aoi,
             name="AOI",

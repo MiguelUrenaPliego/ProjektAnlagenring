@@ -25,13 +25,14 @@ import branca.colormap as cm
 import folium
 import geopandas as gpd
 import h3
+import pandas as pd
 from pyproj import Transformer
 from shapely.geometry import MultiPoint, Point
 
 HERE = Path(__file__).resolve().parent
 MAPS_ROOT = HERE.parent
 sys.path.insert(0, str(MAPS_ROOT / "shared"))
-from hexgrid import add_aoi_background, filter_hex_grid_by_intersection, literal_hex_grid  # noqa: E402
+from hexgrid import literal_hex_grid  # noqa: E402
 from map_i18n import toggle_html  # noqa: E402
 
 I18N = json.loads((MAPS_ROOT / "shared" / "i18n_content.json").read_text(encoding="utf-8"))["intersections"]
@@ -112,10 +113,10 @@ colormap = cm.LinearColormap(
 # Isolation hex grid: weighted-mean distance-to-crosswalk per H3 cell.
 # ------------------------------------------------------------------
 aoi = gpd.read_file(AOI_PATH)
-hex_gdf = literal_hex_grid(aoi)
-# Only keep hexagons that actually cover part of the road network — an
-# AOI-wide grid would otherwise include empty hexagons far from any street.
-hex_gdf = filter_hex_grid_by_intersection(hex_gdf, roads.to_crs(4326))
+# Shrink the AOI by 100 m so the hex grid doesn't reach the very edge of the
+# park, then build the grid over that buffered area.
+aoi_buffered = aoi.to_crs(25832).assign(geometry=lambda d: d.geometry.buffer(-100.0)).to_crs(4326)
+hex_gdf = literal_hex_grid(aoi_buffered)
 resolution = h3.get_resolution(hex_gdf["h3_cell"].iloc[0])
 obs_cells = [h3.latlng_to_cell(lat, lon, resolution) for lat, lon, _, _ in weighted_observations]
 
@@ -126,16 +127,38 @@ for cell, (_, _, value, weight) in zip(obs_cells, weighted_observations):
     weight_sum[cell] = weight_sum.get(cell, 0.0) + weight
 
 hex_gdf["weight_m"] = hex_gdf["h3_cell"].map(weight_sum).fillna(0.0)
-hex_gdf["isolation"] = hex_gdf["h3_cell"].map(
+hex_gdf["isolation_observed"] = hex_gdf["h3_cell"].map(
     lambda c: weighted_sum[c] / weight_sum[c] if c in weight_sum and weight_sum[c] > 0 else None
 )
 
+# Every hexagon in the buffered AOI must show a value, even ones with no
+# road/crosswalk observations falling inside them. Fill those in by
+# inverse-distance-weighted interpolation from the hexagons that do have an
+# observed value, using centroid distance in a metric CRS.
+centroids_m = hex_gdf.to_crs(25832).geometry.centroid
+observed_mask = hex_gdf["isolation_observed"].notna()
+known_xy = list(zip(centroids_m[observed_mask].x, centroids_m[observed_mask].y))
+known_vals = hex_gdf.loc[observed_mask, "isolation_observed"].tolist()
+
+
+def _idw(x, y, power=2.0):
+    num = 0.0
+    den = 0.0
+    for (kx, ky), val in zip(known_xy, known_vals):
+        d2 = (x - kx) ** 2 + (y - ky) ** 2
+        w = 1.0 / d2 if d2 > 1e-6 else 1e6
+        num += w * val
+        den += w
+    return num / den if den > 0 else None
+
+
+hex_gdf["isolation"] = [
+    val if pd.notna(val) else _idw(x, y)
+    for val, x, y in zip(hex_gdf["isolation_observed"], centroids_m.x, centroids_m.y)
+]
+
 center = [gdf.geometry.union_all().centroid.y, gdf.geometry.union_all().centroid.x]
 fmap = folium.Map(location=center, zoom_start=17, tiles="cartodbpositron")
-
-# AOI background + isolation hex grid first, so the road lines and
-# crosswalk markers added below render on top of them.
-fmap = add_aoi_background(fmap, aoi, name="AOI")
 
 NO_DATA_COLOR = "#cccccc"
 
@@ -143,24 +166,20 @@ NO_DATA_COLOR = "#cccccc"
 def _hex_style(feature):
     value = feature["properties"]["isolation"]
     color = colormap(min(value, 100)) if value is not None else NO_DATA_COLOR
-    return {"fillColor": color, "color": "#333333", "weight": 1, "fillOpacity": 0.45}
+    return {"fillColor": color, "color": color, "weight": 0, "fillOpacity": 0.45}
 
 
 hex_gdf["isolation_label"] = hex_gdf["isolation"].apply(
-    lambda v: f"{v:.1f}" if v is not None else "–"
+    lambda v: f"{v:.0f} m" if pd.notna(v) else "–"
 )
-hex_gdf["weight_label"] = hex_gdf["weight_m"].apply(lambda v: f"{v:.0f}")
 
 folium.GeoJson(
-    hex_gdf[["h3_cell", "isolation", "isolation_label", "weight_label", "geometry"]],
+    hex_gdf[["h3_cell", "isolation", "isolation_label", "geometry"]],
     name="Isoliertheit (Hexagon)",
     style_function=_hex_style,
     tooltip=folium.GeoJsonTooltip(
-        fields=["isolation_label", "weight_label"],
-        aliases=[
-            I18N[DEFAULT_LANG]["hex_tooltip_isolation_label"] + ":",
-            I18N[DEFAULT_LANG]["hex_tooltip_weight_label"] + ":",
-        ],
+        fields=["isolation_label"],
+        aliases=[I18N[DEFAULT_LANG]["hex_tooltip_isolation_label"] + ":"],
         localize=True,
     ),
 ).add_to(fmap)
@@ -204,20 +223,15 @@ document.addEventListener("DOMContentLoaded", function () {
         legend.style.bottom = "40px";
         legend.style.right = "40px";
         legend.style.left = "auto";
+        legend.style.background = "rgba(255,255,255,0.92)";
+        legend.style.padding = "4px 8px";
+        legend.style.borderRadius = "6px";
+        legend.style.boxShadow = "2px 2px 6px rgba(0,0,0,0.25)";
     }
 });
 </script>
 """
 fmap.get_root().html.add_child(folium.Element(legend_position_js))
-
-hex_caption_html = f"""
-<div id="hexLegendCaption" data-i18n="hex_legend_caption" style="
-    position:fixed;bottom:110px;right:40px;z-index:9999;max-width:230px;
-    background:rgba(255,255,255,0.92);color:#222;padding:6px 10px;
-    border-radius:6px;font:12px 'Segoe UI',system-ui,sans-serif;
-    box-shadow:2px 2px 6px rgba(0,0,0,0.25);">{I18N[DEFAULT_LANG]["hex_legend_caption"]}</div>
-"""
-fmap.get_root().html.add_child(folium.Element(hex_caption_html))
 
 title_html = """
 <div id="mapTitle" data-i18n="title" style="

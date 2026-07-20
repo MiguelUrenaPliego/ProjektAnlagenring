@@ -13,22 +13,20 @@
         "de": {
             "title": "Kreuzungsabstände",
             "legend_title": "Abstand (m)",
-            "colormap_caption": "Abstand von Straße zum zugehörigen Zebrastreifen (m, auf 100 begrenzt)",
+            "colormap_caption": "Abstand zum Zebrastreifen (m)",
             "tooltip_crosswalk_dist": "{name}: {dist} m bis Zebrastreifen",
             "tooltip_intersection_point": "Kreuzungspunkt ({name})",
-            "hex_legend_caption": "Isoliertheit je Hexagon: mittlerer Abstand zum Zebrastreifen (m), gewichtet nach Straßenlänge",
-            "hex_tooltip_isolation_label": "Mittlerer Abstand zum Zebrastreifen (gewichtet, m)",
-            "hex_tooltip_weight_label": "Erfasste Länge/Punkte (m)"
+            "hex_legend_caption": "Isoliertheit je Hexagon (m)",
+            "hex_tooltip_isolation_label": "Abstand zur Kreuzung"
         },
         "en": {
             "title": "Intersection Distances",
             "legend_title": "Distance (m)",
-            "colormap_caption": "Distance from road to matching crosswalk (m, clipped to 100)",
+            "colormap_caption": "Distance to crosswalk (m)",
             "tooltip_crosswalk_dist": "{name}: {dist} m to crosswalk",
             "tooltip_intersection_point": "Intersection point ({name})",
-            "hex_legend_caption": "Isolation per hexagon: mean distance to crosswalk (m), weighted by road length",
-            "hex_tooltip_isolation_label": "Weighted mean distance to crosswalk (m)",
-            "hex_tooltip_weight_label": "Length/points observed (m)"
+            "hex_legend_caption": "Isolation per hexagon (m)",
+            "hex_tooltip_isolation_label": "Distance to intersection"
         }
     },
     "region": {
@@ -265,11 +263,34 @@
             "slow_popup": "Stopped duration: {time}"
         }
     },
+    "transversal": {
+        "de": {
+            "title": "Querende Straßen",
+            "legend_title": "Unterbrechung",
+            "major_group": "Große Unterbrechungen",
+            "minor_group": "Kleinere, verkehrsreiche Unterbrechungen",
+            "severity_labels": {
+                "major": "Große Unterbrechung",
+                "minor": "Kleinere Unterbrechung"
+            }
+        },
+        "en": {
+            "title": "Crossing Streets",
+            "legend_title": "Interruption",
+            "major_group": "Major interruptions",
+            "minor_group": "Smaller, high-traffic interruptions",
+            "severity_labels": {
+                "major": "Major interruption",
+                "minor": "Smaller interruption"
+            }
+        }
+    },
     "hub": {
         "de": {
             "hub_title": "Karten",
             "intersections_title": "Kreuzungsabstände",
             "poi_title": "Aufenthaltsqualität",
+            "transversal_title": "Querende Straßen",
             "survey_title": "Wahrnehmungsumfrage",
             "region_title": "Metropolregion",
             "carfree_title": "Umweltzonen & Verkehrswirkung"
@@ -278,6 +299,7 @@
             "hub_title": "Maps",
             "intersections_title": "Intersection distances",
             "poi_title": "Points of interest",
+            "transversal_title": "Crossing streets",
             "survey_title": "Perception survey",
             "region_title": "Metropolitan area",
             "carfree_title": "Car-free zones & traffic effects"

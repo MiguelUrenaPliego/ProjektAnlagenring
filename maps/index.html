@@ -65,9 +65,17 @@
 
 <main>
   <div class="cards">
+    <a class="card" data-target="../routing/region_map.html">
+      <img class="cover" src="../assets/region_cover.jpg" alt="Region preview" />
+      <div class="body"><h2 data-i18n="region_title"></h2></div>
+    </a>
     <a class="card" data-target="intersections/intersections_map.html">
       <img class="cover" src="../assets/intersections_cover.jpg" alt="Intersections preview" />
       <div class="body"><h2 data-i18n="intersections_title"></h2></div>
+    </a>
+    <a class="card" data-target="transversal_roads/transversal_roads.html">
+      <img class="cover" src="../assets/transversal_cover.jpg" alt="Transversal roads preview" />
+      <div class="body"><h2 data-i18n="transversal_title"></h2></div>
     </a>
     <a class="card" data-target="points_of_interest/points_of_interest.html">
       <img class="cover" src="../assets/poi_cover.jpg" alt="Points of interest preview" />
@@ -76,10 +84,6 @@
     <a class="card" data-target="../ABsurveys/map.html">
       <img class="cover" src="../assets/survey_cover.jpg" alt="Survey preview" />
       <div class="body"><h2 data-i18n="survey_title"></h2></div>
-    </a>
-    <a class="card" data-target="../routing/region_map.html">
-      <img class="cover" src="../assets/region_cover.jpg" alt="Region preview" />
-      <div class="body"><h2 data-i18n="region_title"></h2></div>
     </a>
     <a class="card" data-target="../routing/carfree_zones_instructions.html">
       <img class="cover" src="../assets/carfree_cover.jpg" alt="Car-free zones preview" />
@@ -99,6 +103,7 @@ const TRANSLATIONS = {
     "hub_title": "Karten",
     "intersections_title": "Kreuzungsabstände",
     "poi_title": "Aufenthaltsqualität",
+    "transversal_title": "Querende Straßen",
     "survey_title": "Wahrnehmungsumfrage",
     "region_title": "Metropolregion",
     "carfree_title": "Umweltzonen &amp; Verkehrswirkung",
@@ -109,6 +114,7 @@ const TRANSLATIONS = {
     "hub_title": "Maps",
     "intersections_title": "Intersection distances",
     "poi_title": "Points of interest",
+    "transversal_title": "Crossing streets",
     "survey_title": "Perception survey",
     "region_title": "Metropolitan area",
     "carfree_title": "Car-free zones &amp; traffic effects",
