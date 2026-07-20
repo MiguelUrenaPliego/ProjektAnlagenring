@@ -508,7 +508,7 @@ if __name__ == "__main__":
     default_metric = "walk" if "walk" in metrics_list else metrics_list[0]
     
     # 3. Output path
-    output_html_file = os.path.join(ROOT_PATH, "index.html")
+    output_html_file = os.path.join(ROOT_PATH, "map.html")
     
     # 4. Trigger Folium builder
     generate_custom_html_map(

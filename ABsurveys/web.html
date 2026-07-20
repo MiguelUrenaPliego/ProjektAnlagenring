@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Survey Mockup</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-card: #f3f4f6;
+  --border-subtle: #e5e7eb;
+  --border-accent: #c7d2fe;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --accent-primary: #4f46e5;
+  --accent-success: #10b981;
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(79, 70, 229, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(99, 102, 241, 0.04) 0%, transparent 50%);
+}
+h1, h2, h3 { margin: 0; }
+button { font-family: inherit; cursor: pointer; }
+
+.demo-banner {
+  background: #fffbeb;
+  border-bottom: 1px solid #fde68a;
+  color: #92400e;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.5;
+}
+.demo-banner a { color: #92400e; font-weight: 700; }
+.demo-banner strong { font-weight: 700; }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.brand-name { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; }
+.brand-name span:nth-child(2) { color: var(--accent-primary); font-weight: 700; }
+.header-right { display: flex; align-items: center; gap: 1rem; }
+.home-link {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+.home-link:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+
+.lang-switcher { position: relative; }
+.lang-btn {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 1rem; background: var(--bg-card);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+  font-size: 0.875rem; font-weight: 600; color: var(--text-primary);
+}
+.lang-dropdown {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  background: white; border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md); box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  min-width: 100px; overflow: hidden; z-index: 200; display: none;
+}
+.lang-dropdown.open { display: block; }
+.lang-item {
+  display: block; width: 100%; padding: 0.75rem 1.25rem; background: none;
+  border: none; text-align: center; font-size: 0.9rem; font-weight: 500;
+  color: var(--text-primary);
+}
+.lang-item:hover { background: var(--bg-secondary); }
+.lang-item.active { color: var(--accent-primary); font-weight: 700; }
+
+.app-main {
+  min-height: calc(100vh - 110px);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 2rem;
+}
+
+.survey-card {
+  width: 100%; max-width: 1100px; background: white;
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft); padding: 2.5rem;
+  animation: fadeUp 0.4s ease-out;
+}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+.question-block { display: flex; flex-direction: column; gap: 1.5rem; }
+.question-title { font-size: 1.75rem; font-weight: 700; text-align: center; line-height: 1.3; }
+.question-input {
+  display: block; width: 100%; max-width: 600px; margin: 0 auto;
+  padding: 1rem 1.25rem; border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md); font-size: 1.1rem; font-family: inherit;
+  outline: none;
+}
+.question-input:focus { border-color: var(--accent-primary); box-shadow: 0 0 0 4px rgba(79,70,229,0.1); }
+.question-options { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 900px; margin: 0 auto; }
+.option-btn {
+  padding: 0.75rem 1.5rem; border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md); background: white; color: var(--text-primary);
+  font-size: 1rem; font-weight: 600; font-family: inherit; user-select: none;
+  transition: all var(--transition-fast);
+}
+.option-btn:hover { border-color: var(--accent-primary); background: rgba(79,70,229,0.04); transform: translateY(-2px); }
+.option-btn.selected { border-color: var(--accent-success); background: rgba(16,185,129,0.07); color: #065f46; transform: scale(1.03); }
+.continue-btn {
+  padding: 0.9rem 3rem; background: var(--text-primary); color: white;
+  border: none; border-radius: var(--radius-md); font-size: 1rem;
+  font-weight: 700; letter-spacing: 0.02em; transition: all var(--transition-smooth);
+}
+.continue-btn:hover:not(:disabled) { background: #1f2937; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+.continue-btn:disabled { background: var(--bg-card); color: var(--text-muted); cursor: not-allowed; }
+.simple-questions { display: flex; flex-direction: column; gap: 2.5rem; }
+.simple-footer { display: flex; justify-content: center; padding-top: 0.5rem; }
+
+.ab-group { display: flex; flex-direction: column; gap: 2rem; }
+.ab-title { font-size: 2rem; font-weight: 700; text-align: center; line-height: 1.25; }
+.ab-grid { display: grid; grid-template-columns: 1fr 80px 1fr; gap: 12px; align-items: center; }
+.ab-image-card {
+  position: relative; width: 100%; background: none; border: 3px solid transparent;
+  border-radius: var(--radius-lg); overflow: hidden; padding: 0; display: block;
+  transition: all var(--transition-smooth);
+}
+.ab-image-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border-radius: calc(var(--radius-lg) - 3px); }
+.ab-image-card:hover:not(:disabled) { border-color: var(--border-accent); transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.ab-image-card.selected { border-color: var(--accent-success); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); transform: scale(1.02); }
+.ab-image-card.dimmed { opacity: 0.45; transform: scale(0.98); }
+.ab-selected-badge {
+  position: absolute; top: 12px; right: 12px; width: 36px; height: 36px;
+  background: var(--accent-success); border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; color: white; font-weight: 900;
+}
+.ab-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+.ab-arrow-btn { background: none; border: none; color: var(--accent-primary); font-size: 2.75rem; font-weight: 900; line-height: 1; padding: 4px; }
+.ab-arrow-btn:hover:not(:disabled) { transform: scale(1.3); color: #4338ca; }
+.ab-arrow-btn.chosen { color: var(--accent-success); transform: scale(1.15); }
+.ab-equal-btn {
+  background: none; border: 2px solid var(--border-subtle); border-radius: 50%;
+  width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; font-weight: 900; color: var(--text-secondary);
+}
+.ab-equal-btn:hover:not(:disabled) { border-color: #f59e0b; color: #f59e0b; transform: scale(1.1); }
+.ab-equal-btn.chosen { border-color: var(--accent-success); color: var(--accent-success); }
+
+.done-card { text-align: center; padding: 3rem 4rem; }
+.done-icon {
+  display: inline-flex; align-items: center; justify-content: center; width: 72px; height: 72px;
+  background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; margin-bottom: 1.5rem;
+  color: white; font-size: 2rem; font-weight: 900;
+}
+.done-card h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.75rem; }
+.done-card p { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; margin: 0.35rem 0; }
+.done-card .real-link {
+  display: inline-block; margin-top: 1.5rem; padding: 0.9rem 2rem;
+  background: var(--accent-primary); color: white; text-decoration: none;
+  border-radius: var(--radius-md); font-weight: 700;
+}
+.done-card .real-link:hover { background: #4338ca; }
+.progress { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; }
+
+@media (max-width: 800px) {
+  .ab-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .ab-center { flex-direction: row; justify-content: center; gap: 2rem; order: 2; }
+  .ab-title { font-size: 1.5rem; }
+}
+@media (max-width: 700px) {
+  .survey-card { padding: 1.5rem 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  <strong data-i18n-shell="demo_label">SURVEY MOCKUP.</strong>
+  <span data-i18n-shell="demo_text">This is a frontend mockup. No answers are saved.</span>
+  <span data-i18n-shell="demo_cta">The real survey is hosted at</span>
+  <a href="https://cs-futurecities.media.mit.edu/" target="_blank" rel="noopener">https://cs-futurecities.media.mit.edu/</a>
+</div>
+
+<header class="header">
+  <div class="brand-name"><span>Survey</span><span>AB</span> <span style="color:#9ca3af;font-weight:600;font-size:0.85rem;">(mockup)</span></div>
+  <div class="header-right">
+    <a class="home-link" href="index.html" data-i18n-shell="back_home">&larr; Home</a>
+    <div class="lang-switcher">
+      <button class="lang-btn" id="langBtn">EN</button>
+      <div class="lang-dropdown" id="langDropdown"></div>
+    </div>
+  </div>
+</header>
+
+<main class="app-main" id="appMain"></main>
+
+<script id="survey-data" type="application/json">{"languages": [{"language": "english", "symbol": "🇬🇧 EN"}, {"language": "german", "symbol": "🇩🇪 DE"}], "defaultLanguage": "english", "translations": {"english": {"gender": {"question": "What is your gender?", "options": ["Man", "Woman", "Other", "Prefer not to say"], "user_options": ["Man 👨", "Woman 👩", "Other", "Prefer not to say"]}, "age": {"question": "What is your age group?", "options": ["<18", "18-30", "30-45", "45-65", ">65"], "user_options": ["<18", "18–30", "30–45", "45–65", ">65"]}, "car": {"question": "Do you have access to a car for personal use?", "options": ["Yes", "No"], "user_options": ["Yes 👍", "No 👎"]}, "mode": {"question": "How do you usually commute to work study or other regular activities?", "options": ["Car", "Public Transport", "Bike", "Walk", "Other"], "user_options": ["Car 🚗", "Public Transport 🚆", "Bike 🚲", "Walk 🚶", "Other ❓"]}, "children": {"question": "Do you have children?", "options": ["Yes", "No"], "user_options": ["Yes 👍", "No 👎"]}, "studies": {"question": "What is the highest level of education you have completed?", "options": ["Primary", "Secondary", "Vocational training", "University", "Other"], "user_options": ["Primary 📚", "Secondary 🏫", "Vocational training 🛠️", "University 🎓", "Other ❓"]}, "home": {"question": "What is your postal code?", "options": ["5-digit"], "user_options": ["5-digit"]}, "start": {"question": "To start click the image you prefer or click “=” if you like both equally.", "options": [], "user_options": []}, "general-preference": {"question": "Which street do you prefer?", "options": [], "user_options": []}, "physical-reason": {"question": "Why did you choose {AB_selection}? Select one reason:", "options": ["trees", "fewer cars", "sun/light", "people", "buildings"], "user_options": ["Trees 🌳", "Fewer cars 🚗", "Sun/light ☀️", "People 👥", "Buildings 🏢"]}, "walk-init": {"question": "Where would you prefer to walk?", "options": ["Continue"], "user_options": ["Continue"]}, "walk-preference": {"question": "Where would you prefer to walk?", "options": [], "user_options": []}, "bike-init": {"question": "Where would you prefer to bike?", "options": ["Continue"], "user_options": ["Continue"]}, "bike-preference": {"question": "Where would you prefer to bike?", "options": [], "user_options": []}, "stay-init": {"question": "Where would you prefer to stay?", "options": ["Continue"], "user_options": ["Continue"]}, "stay-preference": {"question": "Where would you prefer to stay?", "options": [], "user_options": []}}, "german": {"gender": {"question": "Welches Geschlecht haben Sie?", "options": ["Man", "Woman", "Other", "Prefer not to say"], "user_options": ["Mann 👨", "Frau 👩", "Divers", "Keine Angabe"]}, "age": {"question": "Zu welcher Altersgruppe gehören Sie?", "options": ["<18", "18-30", "30-45", "45-65", ">65"], "user_options": ["<18", "18–30", "30–45", "45–65", ">65"]}, "car": {"question": "Haben Sie Zugang zu einem Auto für die private Nutzung?", "options": ["Yes", "No"], "user_options": ["Ja 👍", "Nein 👎"]}, "mode": {"question": "Wie legen Sie normalerweise Ihren Arbeits- Studien- oder sonstigen regelmäßigen Weg zurück?", "options": ["Car", "Public Transport", "Bike", "Walk", "Other"], "user_options": ["Auto 🚗", "Öffentliche Verkehrsmittel 🚆", "Fahrrad 🚲", "Zu Fuß 🚶", "Sonstiges ❓"]}, "children": {"question": "Haben Sie Kinder?", "options": ["Yes", "No"], "user_options": ["Ja 👍", "Nein 👎"]}, "studies": {"question": "Welchen höchsten Bildungsabschluss haben Sie erreicht?", "options": ["Grundschule", "Sekundarschule", "Berufsausbildung", "Universität", "Sonstiges"], "user_options": ["Grundschule 📚", "Sekundarschule 🏫", "Berufsausbildung 🛠️", "Universität 🎓", "Sonstiges ❓"]}, "home": {"question": "Wie lautet Ihre Postleitzahl?", "options": ["5-digit"], "user_options": ["5-stellig"]}, "start": {"question": "Klicken Sie zum Start auf das Bild, das Sie bevorzugen, oder auf „=“, wenn Ihnen beide gleich gut gefallen.", "options": [], "user_options": []}, "general-preference": {"question": "Welche Straße bevorzugen Sie?", "options": [], "user_options": []}, "physical-reason": {"question": "Warum haben Sie {AB_selection} gewählt? Wählen Sie einen Grund aus:", "options": ["trees", "fewer cars", "sun/light", "people", "buildings"], "user_options": ["Bäume 🌳", "Weniger Autos 🚗", "Sonne/Licht ☀️", "Menschen 👥", "Gebäude 🏢"]}, "walk-init": {"question": "Wo würden Sie lieber zu Fuß gehen?", "options": ["Continue"], "user_options": ["Weiter"]}, "walk-preference": {"question": "Wo würden Sie lieber zu Fuß gehen?", "options": [], "user_options": []}, "bike-init": {"question": "Wo würden Sie lieber Fahrrad fahren?", "options": ["Continue"], "user_options": ["Weiter"]}, "bike-preference": {"question": "Wo würden Sie lieber Fahrrad fahren?", "options": [], "user_options": []}, "stay-init": {"question": "Wo würden Sie sich lieber aufhalten?", "options": ["Continue"], "user_options": ["Weiter"]}, "stay-preference": {"question": "Wo würden Sie sich lieber aufhalten?", "options": [], "user_options": []}}}, "imagesByType": {"start": [{"img_id": "t1", "path": "images/Anlagenring/1.jpg", "incompatible_ids": []}, {"img_id": "t2", "path": "images/Anlagenring/2.jpg", "incompatible_ids": []}], "walk": [{"img_id": "w1", "path": "images/Anlagenring/Walk/Anlagenring_20260610_181433710.jpg", "incompatible_ids": []}, {"img_id": "w2", "path": "images/Anlagenring/Walk/Anlagenring_20260610_181727007.jpg", "incompatible_ids": []}, {"img_id": "w3", "path": "images/Anlagenring/Walk/Anlagenring_20260610_181908946.jpg", "incompatible_ids": []}, {"img_id": "w4", "path": "images/Anlagenring/Walk/Anlagenring_20260610_181938325.jpg", "incompatible_ids": []}, {"img_id": "w5", "path": "images/Anlagenring/Walk/Anlagenring_20260610_182558647.jpg", "incompatible_ids": ["w6"]}, {"img_id": "w6", "path": "images/Anlagenring/Walk/Anlagenring_20260610_182742074.jpg", "incompatible_ids": ["w5"]}, {"img_id": "w7", "path": "images/Anlagenring/Walk/Anlagenring_20260610_182838468.jpg", "incompatible_ids": []}, {"img_id": "w8", "path": "images/Anlagenring/Walk/Anlagenring_20260610_182940336.jpg", "incompatible_ids": []}, {"img_id": "w9", "path": "images/Anlagenring/Walk/Anlagenring_20260610_183057209.jpg", "incompatible_ids": []}, {"img_id": "w10", "path": "images/Anlagenring/Walk/Anlagenring_20260610_183120063.jpg", "incompatible_ids": []}, {"img_id": "w11", "path": "images/Anlagenring/Walk/Anlagenring_20260610_183409296.jpg", "incompatible_ids": []}, {"img_id": "w12", "path": "images/Anlagenring/Walk/Anlagenring_20260610_183444268.jpg", "incompatible_ids": []}, {"img_id": "w13", "path": "images/Anlagenring/Walk/Anlagenring_20260610_183805109.jpg", "incompatible_ids": []}, {"img_id": "w14", "path": "images/Anlagenring/Walk/Anlagenring_20260610_183946741.jpg", "incompatible_ids": ["w15"]}, {"img_id": "w15", "path": "images/Anlagenring/Walk/Anlagenring_20260610_184053438.jpg", "incompatible_ids": ["w14"]}, {"img_id": "w16", "path": "images/Anlagenring/Walk/Anlagenring_20260610_184334497.jpg", "incompatible_ids": ["w17"]}, {"img_id": "w17", "path": "images/Anlagenring/Walk/Anlagenring_20260610_184424079.jpg", "incompatible_ids": ["w16"]}, {"img_id": "w18", "path": "images/Anlagenring/Walk/Anlagenring_20260610_184508714.jpg", "incompatible_ids": []}, {"img_id": "w19", "path": "images/Anlagenring/Walk/Anlagenring_20260610_184636935.jpg", "incompatible_ids": []}, {"img_id": "w20", "path": "images/Anlagenring/Walk/Anlagenring_20260610_184803495.jpg", "incompatible_ids": ["w21"]}, {"img_id": "w21", "path": "images/Anlagenring/Walk/Anlagenring_20260610_184900185.jpg", "incompatible_ids": ["w20"]}, {"img_id": "w22", "path": "images/Anlagenring/Walk/Anlagenring_20260610_185005695.jpg", "incompatible_ids": []}, {"img_id": "w23", "path": "images/Anlagenring/Walk/Anlagenring_20260610_185112353.jpg", "incompatible_ids": []}, {"img_id": "w24", "path": "images/Anlagenring/Walk/Anlagenring_20260610_185212092.jpg", "incompatible_ids": []}, {"img_id": "w25", "path": "images/Anlagenring/Walk/Anlagenring_20260610_185611028.jpg", "incompatible_ids": []}, {"img_id": "w26", "path": "images/Anlagenring/Walk/Anlagenring_20260610_185718181.jpg", "incompatible_ids": []}, {"img_id": "w27", "path": "images/Anlagenring/Walk/Anlagenring_20260610_185916511.jpg", "incompatible_ids": []}, {"img_id": "w28", "path": "images/Anlagenring/Walk/Anlagenring_20260610_190020172.jpg", "incompatible_ids": ["w29"]}, {"img_id": "w29", "path": "images/Anlagenring/Walk/Anlagenring_20260610_190107324.jpg", "incompatible_ids": ["w28"]}, {"img_id": "w30", "path": "images/Anlagenring/Walk/Anlagenring_20260610_190131458.jpg", "incompatible_ids": []}, {"img_id": "w31", "path": "images/Anlagenring/Walk/Anlagenring_20260610_190313835.jpg", "incompatible_ids": []}, {"img_id": "w32", "path": "images/Anlagenring/Walk/Anlagenring_20260610_190400330.jpg", "incompatible_ids": []}, {"img_id": "w33", "path": "images/Anlagenring/Walk/Anlagenring_20260610_190701348.jpg", "incompatible_ids": []}, {"img_id": "w34", "path": "images/Anlagenring/Walk/Anlagenring_20260610_190726317.jpg", "incompatible_ids": []}, {"img_id": "w35", "path": "images/Anlagenring/Walk/Anlagenring_20260610_190819053.jpg", "incompatible_ids": ["w36"]}, {"img_id": "w36", "path": "images/Anlagenring/Walk/Anlagenring_20260610_190900914.jpg", "incompatible_ids": ["w35"]}, {"img_id": "w37", "path": "images/Anlagenring/Walk/Anlagenring_20260610_191009709.jpg", "incompatible_ids": []}, {"img_id": "w38", "path": "images/Anlagenring/Walk/Anlagenring_20260610_191200939.jpg", "incompatible_ids": []}, {"img_id": "w39", "path": "images/Anlagenring/Walk/Anlagenring_20260610_191317880.jpg", "incompatible_ids": []}, {"img_id": "w40", "path": "images/Anlagenring/Walk/Anlagenring_20260610_191424555.jpg", "incompatible_ids": []}, {"img_id": "w41", "path": "images/Anlagenring/Walk/Anlagenring_20260610_192139719.jpg", "incompatible_ids": []}, {"img_id": "w42", "path": "images/Anlagenring/Walk/Anlagenring_20260610_192411849.jpg", "incompatible_ids": ["w43"]}, {"img_id": "w43", "path": "images/Anlagenring/Walk/Anlagenring_20260610_192649201.jpg", "incompatible_ids": ["w42"]}, {"img_id": "w44", "path": "images/Anlagenring/Walk/Anlagenring_20260610_192950472.jpg", "incompatible_ids": ["w45"]}, {"img_id": "w45", "path": "images/Anlagenring/Walk/Anlagenring_20260610_193219468.jpg", "incompatible_ids": ["w44"]}, {"img_id": "w46", "path": "images/Anlagenring/Walk/Anlagenring_20260610_193319133.jpg", "incompatible_ids": []}, {"img_id": "w47", "path": "images/Anlagenring/Walk/Anlagenring_20260610_193526471.jpg", "incompatible_ids": []}, {"img_id": "w48", "path": "images/Anlagenring/Walk/Anlagenring_20260610_193645847.jpg", "incompatible_ids": []}, {"img_id": "w49", "path": "images/Anlagenring/Walk/Anlagenring_20260610_193739746.jpg", "incompatible_ids": []}, {"img_id": "w50", "path": "images/Anlagenring/Walk/Anlagenring_20260610_193815546.jpg", "incompatible_ids": []}, {"img_id": "w51", "path": "images/Anlagenring/Walk/Anlagenring_20260610_194104433.jpg", "incompatible_ids": []}, {"img_id": "w52", "path": "images/Anlagenring/Walk/Anlagenring_20260610_194535579.jpg", "incompatible_ids": []}, {"img_id": "w53", "path": "images/Anlagenring/Walk/Anlagenring_20260610_194634058.jpg", "incompatible_ids": []}, {"img_id": "w54", "path": "images/Anlagenring/Walk/Anlagenring_20260610_194800019.jpg", "incompatible_ids": []}, {"img_id": "w55", "path": "images/Anlagenring/Walk/Anlagenring_20260610_194931268.jpg", "incompatible_ids": []}, {"img_id": "w56", "path": "images/Anlagenring/Walk/Anlagenring_20260610_195007357.jpg", "incompatible_ids": []}, {"img_id": "w57", "path": "images/Anlagenring/Walk/Anlagenring_20260610_195228146.jpg", "incompatible_ids": []}, {"img_id": "w58", "path": "images/Anlagenring/Walk/Anlagenring_20260610_195656507.jpg", "incompatible_ids": []}, {"img_id": "w59", "path": "images/Anlagenring/Walk/Anlagenring_20260610_195751310.jpg", "incompatible_ids": []}, {"img_id": "w60", "path": "images/Anlagenring/Walk/Anlagenring_20260610_200120852.jpg", "incompatible_ids": []}, {"img_id": "w61", "path": "images/Anlagenring/Walk/Anlagenring_20260610_200145610.jpg", "incompatible_ids": []}, {"img_id": "w62", "path": "images/Anlagenring/Walk/Anlagenring_20260610_200300497.jpg", "incompatible_ids": []}, {"img_id": "w63", "path": "images/Anlagenring/Walk/Anlagenring_20260610_200327772.jpg", "incompatible_ids": []}, {"img_id": "w64", "path": "images/Anlagenring/Walk/Anlagenring_20260610_200542156.jpg", "incompatible_ids": []}, {"img_id": "w65", "path": "images/Anlagenring/Walk/Anlagenring_20260610_200707017.jpg", "incompatible_ids": []}, {"img_id": "w66", "path": "images/Anlagenring/Walk/Anlagenring_20260610_200826907.jpg", "incompatible_ids": []}, {"img_id": "w67", "path": "images/Anlagenring/Walk/Anlagenring_20260610_201149423.jpg", "incompatible_ids": ["w68"]}, {"img_id": "w68", "path": "images/Anlagenring/Walk/Anlagenring_20260610_201211935.jpg", "incompatible_ids": ["w67"]}, {"img_id": "w69", "path": "images/Anlagenring/Walk/Anlagenring_20260610_201245414.jpg", "incompatible_ids": []}, {"img_id": "w70", "path": "images/Anlagenring/Walk/Anlagenring_20260610_201405131.jpg", "incompatible_ids": []}, {"img_id": "w71", "path": "images/Anlagenring/Walk/Anlagenring_20260610_201501458.jpg", "incompatible_ids": []}, {"img_id": "w72", "path": "images/Anlagenring/Walk/Anlagenring_20260610_201654552.jpg", "incompatible_ids": ["w73"]}, {"img_id": "w73", "path": "images/Anlagenring/Walk/Anlagenring_20260610_201721056.jpg", "incompatible_ids": ["w72"]}, {"img_id": "w74", "path": "images/Anlagenring/Walk/Anlagenring_20260610_201808871.jpg", "incompatible_ids": []}, {"img_id": "w75", "path": "images/Anlagenring/Walk/Anlagenring_20260610_201933087.jpg", "incompatible_ids": []}, {"img_id": "w76", "path": "images/Anlagenring/Walk/Anlagenring_20260610_202033739.jpg", "incompatible_ids": ["w77"]}, {"img_id": "w77", "path": "images/Anlagenring/Walk/Anlagenring_20260610_202118609.jpg", "incompatible_ids": ["w76"]}, {"img_id": "w78", "path": "images/Anlagenring/Walk/Anlagenring_20260610_202212764.jpg", "incompatible_ids": []}, {"img_id": "w79", "path": "images/Anlagenring/Walk/Anlagenring_20260610_202248742.jpg", "incompatible_ids": []}, {"img_id": "w80", "path": "images/Anlagenring/Walk/Anlagenring_20260610_202328948.jpg", "incompatible_ids": []}, {"img_id": "w81", "path": "images/Anlagenring/Walk/Anlagenring_20260610_202457753.jpg", "incompatible_ids": []}, {"img_id": "w82", "path": "images/Anlagenring/Walk/Anlagenring_20260610_202516461.jpg", "incompatible_ids": []}, {"img_id": "w83", "path": "images/Anlagenring/Walk/Anlagenring_20260610_202711112.jpg", "incompatible_ids": []}, {"img_id": "w84", "path": "images/Anlagenring/Walk/Anlagenring_20260610_202843418.jpg", "incompatible_ids": []}, {"img_id": "g1", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_1.png", "incompatible_ids": ["g5"]}, {"img_id": "g2", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_3.png", "incompatible_ids": []}, {"img_id": "g3", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_6.png", "incompatible_ids": []}, {"img_id": "g4", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_8.png", "incompatible_ids": []}, {"img_id": "g5", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_9.png", "incompatible_ids": ["g1"]}, {"img_id": "g6", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_15.png", "incompatible_ids": []}, {"img_id": "g7", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_17.png", "incompatible_ids": []}], "bike": [{"img_id": "b1", "path": "images/Anlagenring/Bike/Anlagenring_20260610_181516629.jpg", "incompatible_ids": ["b2"]}, {"img_id": "b2", "path": "images/Anlagenring/Bike/Anlagenring_20260610_181614450.jpg", "incompatible_ids": ["b1"]}, {"img_id": "b3", "path": "images/Anlagenring/Bike/Anlagenring_20260610_181727007.jpg", "incompatible_ids": []}, {"img_id": "b4", "path": "images/Anlagenring/Bike/Anlagenring_20260610_181908946.jpg", "incompatible_ids": []}, {"img_id": "b5", "path": "images/Anlagenring/Bike/Anlagenring_20260610_182558647.jpg", "incompatible_ids": ["b6"]}, {"img_id": "b6", "path": "images/Anlagenring/Bike/Anlagenring_20260610_182742074.jpg", "incompatible_ids": ["b5"]}, {"img_id": "b7", "path": "images/Anlagenring/Bike/Anlagenring_20260610_182838468.jpg", "incompatible_ids": []}, {"img_id": "b8", "path": "images/Anlagenring/Bike/Anlagenring_20260610_182940336.jpg", "incompatible_ids": ["b10"]}, {"img_id": "b9", "path": "images/Anlagenring/Bike/Anlagenring_20260610_183030440.jpg", "incompatible_ids": ["12"]}, {"img_id": "b10", "path": "images/Anlagenring/Bike/Anlagenring_20260610_183057209.jpg", "incompatible_ids": ["b8"]}, {"img_id": "b11", "path": "images/Anlagenring/Bike/Anlagenring_20260610_183120063.jpg", "incompatible_ids": []}, {"img_id": "b12", "path": "images/Anlagenring/Bike/Anlagenring_20260610_183314726.jpg", "incompatible_ids": ["b9"]}, {"img_id": "b13", "path": "images/Anlagenring/Bike/Anlagenring_20260610_183409296.jpg", "incompatible_ids": []}, {"img_id": "b14", "path": "images/Anlagenring/Bike/Anlagenring_20260610_183444268.jpg", "incompatible_ids": []}, {"img_id": "b15", "path": "images/Anlagenring/Bike/Anlagenring_20260610_183729202.jpg", "incompatible_ids": []}, {"img_id": "b16", "path": "images/Anlagenring/Bike/Anlagenring_20260610_183805109.jpg", "incompatible_ids": []}, {"img_id": "b17", "path": "images/Anlagenring/Bike/Anlagenring_20260610_183946741.jpg", "incompatible_ids": ["b18"]}, {"img_id": "b18", "path": "images/Anlagenring/Bike/Anlagenring_20260610_184053438.jpg", "incompatible_ids": ["b17"]}, {"img_id": "b19", "path": "images/Anlagenring/Bike/Anlagenring_20260610_184107133.jpg", "incompatible_ids": []}, {"img_id": "b20", "path": "images/Anlagenring/Bike/Anlagenring_20260610_184334497.jpg", "incompatible_ids": []}, {"img_id": "b21", "path": "images/Anlagenring/Bike/Anlagenring_20260610_184508714.jpg", "incompatible_ids": []}, {"img_id": "b22", "path": "images/Anlagenring/Bike/Anlagenring_20260610_184636935.jpg", "incompatible_ids": []}, {"img_id": "b23", "path": "images/Anlagenring/Bike/Anlagenring_20260610_185005695.jpg", "incompatible_ids": []}, {"img_id": "b24", "path": "images/Anlagenring/Bike/Anlagenring_20260610_185112353.jpg", "incompatible_ids": []}, {"img_id": "b25", "path": "images/Anlagenring/Bike/Anlagenring_20260610_185212092.jpg", "incompatible_ids": []}, {"img_id": "b26", "path": "images/Anlagenring/Bike/Anlagenring_20260610_185328296.jpg", "incompatible_ids": []}, {"img_id": "b27", "path": "images/Anlagenring/Bike/Anlagenring_20260610_185540125.jpg", "incompatible_ids": []}, {"img_id": "b28", "path": "images/Anlagenring/Bike/Anlagenring_20260610_185611028.jpg", "incompatible_ids": []}, {"img_id": "b29", "path": "images/Anlagenring/Bike/Anlagenring_20260610_185718181.jpg", "incompatible_ids": []}, {"img_id": "b30", "path": "images/Anlagenring/Bike/Anlagenring_20260610_185916511.jpg", "incompatible_ids": []}, {"img_id": "b31", "path": "images/Anlagenring/Bike/Anlagenring_20260610_185941602.jpg", "incompatible_ids": []}, {"img_id": "b32", "path": "images/Anlagenring/Bike/Anlagenring_20260610_190107324.jpg", "incompatible_ids": []}, {"img_id": "b33", "path": "images/Anlagenring/Bike/Anlagenring_20260610_190131458.jpg", "incompatible_ids": []}, {"img_id": "b34", "path": "images/Anlagenring/Bike/Anlagenring_20260610_190313835.jpg", "incompatible_ids": []}, {"img_id": "b35", "path": "images/Anlagenring/Bike/Anlagenring_20260610_190435340.jpg", "incompatible_ids": []}, {"img_id": "b36", "path": "images/Anlagenring/Bike/Anlagenring_20260610_190534850.jpg", "incompatible_ids": ["b37"]}, {"img_id": "b37", "path": "images/Anlagenring/Bike/Anlagenring_20260610_190620501.jpg", "incompatible_ids": ["b36"]}, {"img_id": "b38", "path": "images/Anlagenring/Bike/Anlagenring_20260610_190726317.jpg", "incompatible_ids": []}, {"img_id": "b39", "path": "images/Anlagenring/Bike/Anlagenring_20260610_190819053.jpg", "incompatible_ids": ["b40"]}, {"img_id": "b40", "path": "images/Anlagenring/Bike/Anlagenring_20260610_190900914.jpg", "incompatible_ids": ["b39"]}, {"img_id": "b41", "path": "images/Anlagenring/Bike/Anlagenring_20260610_191009709.jpg", "incompatible_ids": []}, {"img_id": "b42", "path": "images/Anlagenring/Bike/Anlagenring_20260610_191200939.jpg", "incompatible_ids": []}, {"img_id": "b43", "path": "images/Anlagenring/Bike/Anlagenring_20260610_191424555.jpg", "incompatible_ids": []}, {"img_id": "b44", "path": "images/Anlagenring/Bike/Anlagenring_20260610_192411849.jpg", "incompatible_ids": []}, {"img_id": "b45", "path": "images/Anlagenring/Bike/Anlagenring_20260610_192950472.jpg", "incompatible_ids": ["b46"]}, {"img_id": "b46", "path": "images/Anlagenring/Bike/Anlagenring_20260610_193219468.jpg", "incompatible_ids": ["b45"]}, {"img_id": "b47", "path": "images/Anlagenring/Bike/Anlagenring_20260610_193645847.jpg", "incompatible_ids": []}, {"img_id": "b48", "path": "images/Anlagenring/Bike/Anlagenring_20260610_193739746.jpg", "incompatible_ids": []}, {"img_id": "b49", "path": "images/Anlagenring/Bike/Anlagenring_20260610_193815546.jpg", "incompatible_ids": []}, {"img_id": "b50", "path": "images/Anlagenring/Bike/Anlagenring_20260610_194104433.jpg", "incompatible_ids": []}, {"img_id": "b51", "path": "images/Anlagenring/Bike/Anlagenring_20260610_194506648.jpg", "incompatible_ids": []}, {"img_id": "b52", "path": "images/Anlagenring/Bike/Anlagenring_20260610_194535579.jpg", "incompatible_ids": []}, {"img_id": "b53", "path": "images/Anlagenring/Bike/Anlagenring_20260610_194612454.jpg", "incompatible_ids": []}, {"img_id": "b54", "path": "images/Anlagenring/Bike/Anlagenring_20260610_194800019.jpg", "incompatible_ids": []}, {"img_id": "b55", "path": "images/Anlagenring/Bike/Anlagenring_20260610_194931268.jpg", "incompatible_ids": []}, {"img_id": "b56", "path": "images/Anlagenring/Bike/Anlagenring_20260610_195007357.jpg", "incompatible_ids": []}, {"img_id": "b57", "path": "images/Anlagenring/Bike/Anlagenring_20260610_195228146.jpg", "incompatible_ids": []}, {"img_id": "b58", "path": "images/Anlagenring/Bike/Anlagenring_20260610_195656507.jpg", "incompatible_ids": []}, {"img_id": "b59", "path": "images/Anlagenring/Bike/Anlagenring_20260610_200120852.jpg", "incompatible_ids": []}, {"img_id": "b60", "path": "images/Anlagenring/Bike/Anlagenring_20260610_200145610.jpg", "incompatible_ids": []}, {"img_id": "b61", "path": "images/Anlagenring/Bike/Anlagenring_20260610_200327772.jpg", "incompatible_ids": []}, {"img_id": "b62", "path": "images/Anlagenring/Bike/Anlagenring_20260610_200542156.jpg", "incompatible_ids": []}, {"img_id": "b63", "path": "images/Anlagenring/Bike/Anlagenring_20260610_200707017.jpg", "incompatible_ids": ["b64"]}, {"img_id": "b64", "path": "images/Anlagenring/Bike/Anlagenring_20260610_200826907.jpg", "incompatible_ids": ["b63"]}, {"img_id": "b65", "path": "images/Anlagenring/Bike/Anlagenring_20260610_201126970.jpg", "incompatible_ids": []}, {"img_id": "b66", "path": "images/Anlagenring/Bike/Anlagenring_20260610_201149423.jpg", "incompatible_ids": []}, {"img_id": "b67", "path": "images/Anlagenring/Bike/Anlagenring_20260610_201245414.jpg", "incompatible_ids": []}, {"img_id": "b68", "path": "images/Anlagenring/Bike/Anlagenring_20260610_201405131.jpg", "incompatible_ids": []}, {"img_id": "b69", "path": "images/Anlagenring/Bike/Anlagenring_20260610_201501458.jpg", "incompatible_ids": []}, {"img_id": "b70", "path": "images/Anlagenring/Bike/Anlagenring_20260610_201808871.jpg", "incompatible_ids": []}, {"img_id": "b71", "path": "images/Anlagenring/Bike/Anlagenring_20260610_201901884.jpg", "incompatible_ids": []}, {"img_id": "b72", "path": "images/Anlagenring/Bike/Anlagenring_20260610_201933087.jpg", "incompatible_ids": []}, {"img_id": "b73", "path": "images/Anlagenring/Bike/Anlagenring_20260610_202033739.jpg", "incompatible_ids": ["b74"]}, {"img_id": "b74", "path": "images/Anlagenring/Bike/Anlagenring_20260610_202118609.jpg", "incompatible_ids": ["b73"]}, {"img_id": "b75", "path": "images/Anlagenring/Bike/Anlagenring_20260610_202248742.jpg", "incompatible_ids": []}, {"img_id": "b76", "path": "images/Anlagenring/Bike/Anlagenring_20260610_202328948.jpg", "incompatible_ids": []}, {"img_id": "b77", "path": "images/Anlagenring/Bike/Anlagenring_20260610_202457753.jpg", "incompatible_ids": []}, {"img_id": "b78", "path": "images/Anlagenring/Bike/Anlagenring_20260610_202516461.jpg", "incompatible_ids": []}, {"img_id": "b79", "path": "images/Anlagenring/Bike/Anlagenring_20260610_202711112.jpg", "incompatible_ids": []}, {"img_id": "b80", "path": "images/Anlagenring/Bike/Anlagenring_20260610_202843418.jpg", "incompatible_ids": []}, {"img_id": "g8", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_4.png", "incompatible_ids": []}, {"img_id": "g9", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_5.png", "incompatible_ids": []}, {"img_id": "g10", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_7.png", "incompatible_ids": []}, {"img_id": "g11", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_16.png", "incompatible_ids": []}, {"img_id": "g12", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_1.png", "incompatible_ids": ["g16"]}, {"img_id": "g13", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_3.png", "incompatible_ids": []}, {"img_id": "g14", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_6.png", "incompatible_ids": []}, {"img_id": "g15", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_8.png", "incompatible_ids": []}, {"img_id": "g16", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_9.png", "incompatible_ids": ["g12"]}, {"img_id": "g17", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_15.png", "incompatible_ids": []}, {"img_id": "g18", "path": "images/Anlagenring/GruppeSafety/Bild_Sicherheit_17.png", "incompatible_ids": []}], "stay": [{"img_id": "s1", "path": "images/Anlagenring/Stay/Anlagenring_20260610_181614450.jpg", "incompatible_ids": []}, {"img_id": "s2", "path": "images/Anlagenring/Stay/Anlagenring_20260610_181753467.jpg", "incompatible_ids": []}, {"img_id": "s3", "path": "images/Anlagenring/Stay/Anlagenring_20260610_182313815.jpg", "incompatible_ids": []}, {"img_id": "s4", "path": "images/Anlagenring/Stay/Anlagenring_20260610_182435443.jpg", "incompatible_ids": []}, {"img_id": "s5", "path": "images/Anlagenring/Stay/Anlagenring_20260610_182449731.jpg", "incompatible_ids": []}, {"img_id": "s6", "path": "images/Anlagenring/Stay/Anlagenring_20260610_182558647.jpg", "incompatible_ids": ["s7"]}, {"img_id": "s7", "path": "images/Anlagenring/Stay/Anlagenring_20260610_183409296.jpg", "incompatible_ids": ["s6"]}, {"img_id": "s8", "path": "images/Anlagenring/Stay/Anlagenring_20260610_183444268.jpg", "incompatible_ids": []}, {"img_id": "s9", "path": "images/Anlagenring/Stay/Anlagenring_20260610_183607948.jpg", "incompatible_ids": []}, {"img_id": "s10", "path": "images/Anlagenring/Stay/Anlagenring_20260610_183901480.jpg", "incompatible_ids": []}, {"img_id": "s11", "path": "images/Anlagenring/Stay/Anlagenring_20260610_184137795.jpg", "incompatible_ids": []}, {"img_id": "s12", "path": "images/Anlagenring/Stay/Anlagenring_20260610_184246340.jpg", "incompatible_ids": []}, {"img_id": "s13", "path": "images/Anlagenring/Stay/Anlagenring_20260610_184324834.jpg", "incompatible_ids": []}, {"img_id": "s14", "path": "images/Anlagenring/Stay/Anlagenring_20260610_184407746.jpg", "incompatible_ids": []}, {"img_id": "s15", "path": "images/Anlagenring/Stay/Anlagenring_20260610_184424079.jpg", "incompatible_ids": ["s16", "s17"]}, {"img_id": "s16", "path": "images/Anlagenring/Stay/Anlagenring_20260610_184435917.jpg", "incompatible_ids": ["s15"]}, {"img_id": "s17", "path": "images/Anlagenring/Stay/Anlagenring_20260610_184451237.jpg", "incompatible_ids": ["s15"]}, {"img_id": "s18", "path": "images/Anlagenring/Stay/Anlagenring_20260610_184803495.jpg", "incompatible_ids": ["s19"]}, {"img_id": "s19", "path": "images/Anlagenring/Stay/Anlagenring_20260610_184900185.jpg", "incompatible_ids": ["s18"]}, {"img_id": "s20", "path": "images/Anlagenring/Stay/Anlagenring_20260610_185228587.jpg", "incompatible_ids": []}, {"img_id": "s21", "path": "images/Anlagenring/Stay/Anlagenring_20260610_185328296.jpg", "incompatible_ids": ["s22"]}, {"img_id": "s22", "path": "images/Anlagenring/Stay/Anlagenring_20260610_185355813.jpg", "incompatible_ids": ["s21"]}, {"img_id": "s23", "path": "images/Anlagenring/Stay/Anlagenring_20260610_185941602.jpg", "incompatible_ids": ["s25"]}, {"img_id": "s24", "path": "images/Anlagenring/Stay/Anlagenring_20260610_190107324.jpg", "incompatible_ids": []}, {"img_id": "s25", "path": "images/Anlagenring/Stay/Anlagenring_20260610_190131458.jpg", "incompatible_ids": ["s23"]}, {"img_id": "s26", "path": "images/Anlagenring/Stay/Anlagenring_20260610_190235234.jpg", "incompatible_ids": []}, {"img_id": "s27", "path": "images/Anlagenring/Stay/Anlagenring_20260610_191317880.jpg", "incompatible_ids": []}, {"img_id": "s28", "path": "images/Anlagenring/Stay/Anlagenring_20260610_191335351.jpg", "incompatible_ids": []}, {"img_id": "s29", "path": "images/Anlagenring/Stay/Anlagenring_20260610_191407538.jpg", "incompatible_ids": []}, {"img_id": "s30", "path": "images/Anlagenring/Stay/Anlagenring_20260610_191603523.jpg", "incompatible_ids": []}, {"img_id": "s31", "path": "images/Anlagenring/Stay/Anlagenring_20260610_192139719.jpg", "incompatible_ids": []}, {"img_id": "s32", "path": "images/Anlagenring/Stay/Anlagenring_20260610_192411849.jpg", "incompatible_ids": ["s33"]}, {"img_id": "s33", "path": "images/Anlagenring/Stay/Anlagenring_20260610_192649201.jpg", "incompatible_ids": ["s32"]}, {"img_id": "s34", "path": "images/Anlagenring/Stay/Anlagenring_20260610_192812598.jpg", "incompatible_ids": []}, {"img_id": "s35", "path": "images/Anlagenring/Stay/Anlagenring_20260610_192920236.jpg", "incompatible_ids": []}, {"img_id": "s36", "path": "images/Anlagenring/Stay/Anlagenring_20260610_193104327.jpg", "incompatible_ids": []}, {"img_id": "s37", "path": "images/Anlagenring/Stay/Anlagenring_20260610_193219468.jpg", "incompatible_ids": []}, {"img_id": "s38", "path": "images/Anlagenring/Stay/Anlagenring_20260610_193319133.jpg", "incompatible_ids": []}, {"img_id": "s39", "path": "images/Anlagenring/Stay/Anlagenring_20260610_193357892.jpg", "incompatible_ids": []}, {"img_id": "s40", "path": "images/Anlagenring/Stay/Anlagenring_20260610_193526471.jpg", "incompatible_ids": []}, {"img_id": "s41", "path": "images/Anlagenring/Stay/Anlagenring_20260610_193645847.jpg", "incompatible_ids": []}, {"img_id": "s42", "path": "images/Anlagenring/Stay/Anlagenring_20260610_193815546.jpg", "incompatible_ids": []}, {"img_id": "s43", "path": "images/Anlagenring/Stay/Anlagenring_20260610_194104433.jpg", "incompatible_ids": []}, {"img_id": "s44", "path": "images/Anlagenring/Stay/Anlagenring_20260610_194206458.jpg", "incompatible_ids": []}, {"img_id": "s45", "path": "images/Anlagenring/Stay/Anlagenring_20260610_194634058.jpg", "incompatible_ids": []}, {"img_id": "s46", "path": "images/Anlagenring/Stay/Anlagenring_20260610_194931268.jpg", "incompatible_ids": []}, {"img_id": "s47", "path": "images/Anlagenring/Stay/Anlagenring_20260610_195751310.jpg", "incompatible_ids": []}, {"img_id": "s48", "path": "images/Anlagenring/Stay/Anlagenring_20260610_195947076.jpg", "incompatible_ids": []}, {"img_id": "s49", "path": "images/Anlagenring/Stay/Anlagenring_20260610_200120852.jpg", "incompatible_ids": []}, {"img_id": "s50", "path": "images/Anlagenring/Stay/Anlagenring_20260610_200928017.jpg", "incompatible_ids": []}, {"img_id": "s51", "path": "images/Anlagenring/Stay/Anlagenring_20260610_201245414.jpg", "incompatible_ids": []}, {"img_id": "s52", "path": "images/Anlagenring/Stay/Anlagenring_20260610_201405131.jpg", "incompatible_ids": []}, {"img_id": "s53", "path": "images/Anlagenring/Stay/Anlagenring_20260610_201721056.jpg", "incompatible_ids": []}, {"img_id": "s54", "path": "images/Anlagenring/Stay/Anlagenring_20260610_201808871.jpg", "incompatible_ids": []}, {"img_id": "s55", "path": "images/Anlagenring/Stay/Anlagenring_20260610_201933087.jpg", "incompatible_ids": []}, {"img_id": "s56", "path": "images/Anlagenring/Stay/Anlagenring_20260610_202843418.jpg", "incompatible_ids": []}]}, "groups": [{"img_types": ["start"], "questions": [{"question_id": "start", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "walk-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "stay-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "bike-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "walk-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "stay-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "bike-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "walk-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "stay-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "bike-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "walk-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["walk"], "questions": [{"question_id": "walk-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "stay-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["stay"], "questions": [{"question_id": "stay-preference", "type": "AB", "autocontinue": true}]}, {"img_types": [], "questions": [{"question_id": "bike-init", "type": "choice", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}, {"img_types": ["bike"], "questions": [{"question_id": "bike-preference", "type": "AB", "autocontinue": true}]}], "realSurveyUrl": "https://cs-futurecities.media.mit.edu/"}</script>
+<script>
+const DATA = JSON.parse(document.getElementById('survey-data').textContent);
+
+const SHELL_TEXT = {
+  english: {
+    demo_label: "SURVEY MOCKUP.",
+    demo_text: "This is a frontend mockup. No answers are saved.",
+    demo_cta: "The real survey is hosted at",
+    back_home: "\u2190 Home",
+    loading: "Loading images\u2026",
+    thanks_title: "Thank you for trying the mockup!",
+    thanks_text: "This was a survey mockup. Your responses were not saved anywhere.",
+    thanks_cta: "Take the real survey",
+    continue: "Continue",
+  },
+  german: {
+    demo_label: "UMFRAGE-MOCKUP.",
+    demo_text: "Dies ist ein reines Frontend-Mockup. Es werden keine Antworten gespeichert.",
+    demo_cta: "Die echte Umfrage finden Sie unter",
+    back_home: "\u2190 Startseite",
+    loading: "Bilder werden geladen\u2026",
+    thanks_title: "Danke, dass Sie das Mockup ausprobiert haben!",
+    thanks_text: "Dies war ein Umfrage-Mockup. Ihre Antworten wurden nirgendwo gespeichert.",
+    thanks_cta: "Zur echten Umfrage",
+    continue: "Weiter",
+  },
+};
+
+let currentLanguage = DATA.defaultLanguage;
+let currentIndex = 0;
+let activePair = null;
+const pairHistoryByKey = {}; // key -> { images:Set, pairs:[[a,b]] }
+
+function t(key) {
+  const dict = SHELL_TEXT[currentLanguage] || SHELL_TEXT.english;
+  return dict[key] !== undefined ? dict[key] : (SHELL_TEXT.english[key] || key);
+}
+
+function applyShellText() {
+  document.querySelectorAll('[data-i18n-shell]').forEach(el => {
+    el.textContent = t(el.getAttribute('data-i18n-shell'));
+  });
+}
+
+function setupLanguageSwitcher() {
+  const btn = document.getElementById('langBtn');
+  const dropdown = document.getElementById('langDropdown');
+  const current = DATA.languages.find(l => l.language === currentLanguage);
+  btn.textContent = current ? current.symbol : currentLanguage.toUpperCase().slice(0, 2);
+
+  dropdown.innerHTML = '';
+  DATA.languages.forEach(lang => {
+    const item = document.createElement('button');
+    item.className = 'lang-item' + (lang.language === currentLanguage ? ' active' : '');
+    item.textContent = lang.symbol;
+    item.onclick = () => {
+      currentLanguage = lang.language;
+      dropdown.classList.remove('open');
+      applyShellText();
+      setupLanguageSwitcher();
+      renderCurrentGroup();
+    };
+    dropdown.appendChild(item);
+  });
+
+  btn.onclick = () => dropdown.classList.toggle('open');
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-switcher')) dropdown.classList.remove('open');
+  });
+}
+
+function questionText(qid) {
+  const trans = (DATA.translations[currentLanguage] || {})[qid];
+  return trans || { question: qid, options: [], user_options: [] };
+}
+
+// Resolve one img_type for a group (mirrors backend/server.py random.choice)
+function resolveImgType(group) {
+  if (!group.img_types || group.img_types.length === 0) return '';
+  return group.img_types[Math.floor(Math.random() * group.img_types.length)];
+}
+
+function incompatibleSet(pool, anchorId) {
+  const anchor = pool.find(p => p.img_id === anchorId);
+  return new Set(anchor ? anchor.incompatible_ids : []);
+}
+
+// Lightweight client-side mirror of backend/pairing.py: prefers unseen images,
+// avoids incompatible pairs and pairs already shown this session, else relaxes.
+function pickPair(imgType, questionId) {
+  const pool = DATA.imagesByType[imgType] || [];
+  if (pool.length < 2) return null;
+
+  const key = imgType + '|' + questionId;
+  const history = pairHistoryByKey[key] || { images: new Set(), pairs: [] };
+  pairHistoryByKey[key] = history;
+
+  let candidatesA = pool.filter(p => !history.images.has(p.img_id));
+  if (candidatesA.length === 0) candidatesA = pool;
+  const a = candidatesA[Math.floor(Math.random() * candidatesA.length)];
+
+  const incompat = incompatibleSet(pool, a.img_id);
+  const isRepeatPair = (bId) => history.pairs.some(([x, y]) =>
+    (x === a.img_id && y === bId) || (x === bId && y === a.img_id));
+
+  let candidatesB = pool.filter(p =>
+    p.img_id !== a.img_id && !incompat.has(p.img_id) && !isRepeatPair(p.img_id));
+  let unseenB = candidatesB.filter(p => !history.images.has(p.img_id));
+  if (unseenB.length > 0) candidatesB = unseenB;
+  if (candidatesB.length === 0) {
+    candidatesB = pool.filter(p => p.img_id !== a.img_id);
+  }
+  const b = candidatesB[Math.floor(Math.random() * candidatesB.length)];
+
+  history.images.add(a.img_id);
+  history.images.add(b.img_id);
+  history.pairs.push([a.img_id, b.img_id]);
+
+  const swap = Math.random() < 0.5;
+  const left = swap ? b : a;
+  const right = swap ? a : b;
+  return { A: left.path, B: right.path, img_id_A: left.img_id, img_id_B: right.img_id };
+}
+
+function isDone() { return currentIndex >= DATA.groups.length; }
+
+function goNext() {
+  currentIndex += 1;
+  activePair = null;
+  renderCurrentGroup();
+}
+
+function renderCurrentGroup() {
+  const main = document.getElementById('appMain');
+  main.innerHTML = '';
+
+  if (isDone()) {
+    main.appendChild(renderDone());
+    return;
+  }
+
+  const progress = document.createElement('div');
+  progress.className = 'progress';
+  progress.textContent = `${currentIndex + 1} / ${DATA.groups.length}`;
+  main.appendChild(progress);
+
+  const card = document.createElement('div');
+  card.className = 'survey-card';
+  main.appendChild(card);
+
+  const group = DATA.groups[currentIndex];
+  const firstQ = group.questions[0];
+  const isAB = firstQ && String(firstQ.type).toUpperCase() === 'AB';
+
+  if (isAB) {
+    renderABGroup(card, group);
+  } else {
+    renderSimpleGroup(card, group);
+  }
+}
+
+function renderDone() {
+  const wrap = document.createElement('div');
+  wrap.className = 'done-card';
+  wrap.innerHTML = `
+    <div class="done-icon">&#10003;</div>
+    <h2>${t('thanks_title')}</h2>
+    <p>${t('thanks_text')}</p>
+    <a class="real-link" href="${DATA.realSurveyUrl}" target="_blank" rel="noopener">${t('thanks_cta')} &rarr;</a>
+  `;
+  return wrap;
+}
+
+function renderABGroup(card, group) {
+  const imgType = resolveImgType(group);
+  const firstQ = group.questions[0];
+  const pair = pickPair(imgType, firstQ.question_id);
+
+  if (!pair) {
+    card.innerHTML = `<div class="ab-loading">${t('loading')}</div>`;
+    setTimeout(goNext, 400);
+    return;
+  }
+
+  const qText = questionText(firstQ.question_id);
+  let selected = null;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'ab-group';
+  wrap.innerHTML = `
+    <h2 class="ab-title">${qText.question}</h2>
+    <div class="ab-grid">
+      <div class="ab-image-wrapper">
+        <button class="ab-image-card" data-choice="A"><img src="${pair.A}" alt="Option A" /></button>
+      </div>
+      <div class="ab-center">
+        <button class="ab-arrow-btn" data-choice="A" title="Choose left">&larr;</button>
+        <button class="ab-equal-btn" data-choice="=" title="Equal">=</button>
+        <button class="ab-arrow-btn" data-choice="B" title="Choose right">&rarr;</button>
+      </div>
+      <div class="ab-image-wrapper">
+        <button class="ab-image-card" data-choice="B"><img src="${pair.B}" alt="Option B" /></button>
+      </div>
+    </div>
+  `;
+  card.appendChild(wrap);
+
+  const buttons = wrap.querySelectorAll('[data-choice]');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (selected !== null) return;
+      selected = btn.getAttribute('data-choice');
+
+      const cardA = wrap.querySelector('.ab-image-card[data-choice="A"]');
+      const cardB = wrap.querySelector('.ab-image-card[data-choice="B"]');
+      const arrowA = wrap.querySelector('.ab-arrow-btn[data-choice="A"]');
+      const arrowB = wrap.querySelector('.ab-arrow-btn[data-choice="B"]');
+      const eqBtn = wrap.querySelector('.ab-equal-btn');
+
+      if (selected === 'A') { cardA.classList.add('selected'); cardB.classList.add('dimmed'); arrowA.classList.add('chosen'); }
+      else if (selected === 'B') { cardB.classList.add('selected'); cardA.classList.add('dimmed'); arrowB.classList.add('chosen'); }
+      else { eqBtn.classList.add('chosen'); }
+
+      buttons.forEach(b => b.disabled = true);
+      setTimeout(goNext, 350);
+    });
+  });
+}
+
+function renderSimpleGroup(card, group) {
+  const answers = {};
+  const hasManualContinue = group.questions.some(q => q.autocontinue === false);
+
+  const container = document.createElement('div');
+  container.className = 'simple-questions';
+  card.appendChild(container);
+
+  function allAnswered() {
+    return group.questions.every(q => answers[q.question_id] !== undefined && answers[q.question_id] !== '');
+  }
+
+  function maybeAutoAdvance() {
+    if (!hasManualContinue && allAnswered()) goNext();
+    else updateContinueState();
+  }
+
+  function updateContinueState() {
+    const btn = container.querySelector('.continue-btn');
+    if (btn) btn.disabled = !allAnswered();
+  }
+
+  group.questions.forEach(q => {
+    const qText = questionText(q.question_id);
+    const block = document.createElement('div');
+    block.className = 'question-block';
+
+    const title = document.createElement('h2');
+    title.className = 'question-title';
+    title.textContent = qText.question;
+    block.appendChild(title);
+
+    if (q.type === 'int') {
+      const input = document.createElement('input');
+      input.className = 'question-input';
+      input.type = 'text';
+      input.inputMode = 'numeric';
+      input.placeholder = 'Enter a number';
+      input.addEventListener('input', () => {
+        input.value = input.value.replace(/\D/g, '');
+        answers[q.question_id] = input.value;
+        maybeAutoAdvance();
+      });
+      block.appendChild(input);
+    } else {
+      const displayOptions = qText.user_options.length > 0 ? qText.user_options : qText.options;
+      const optsWrap = document.createElement('div');
+      optsWrap.className = 'question-options';
+      displayOptions.forEach((label, i) => {
+        const value = qText.options[i] !== undefined ? qText.options[i] : label;
+        const optBtn = document.createElement('button');
+        optBtn.className = 'option-btn';
+        optBtn.textContent = label;
+        optBtn.addEventListener('click', () => {
+          optsWrap.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+          optBtn.classList.add('selected');
+          answers[q.question_id] = value;
+          maybeAutoAdvance();
+        });
+        optsWrap.appendChild(optBtn);
+      });
+      block.appendChild(optsWrap);
+    }
+
+    container.appendChild(block);
+  });
+
+  if (hasManualContinue) {
+    const footer = document.createElement('div');
+    footer.className = 'simple-footer';
+    const btn = document.createElement('button');
+    btn.className = 'continue-btn';
+    btn.textContent = t('continue');
+    btn.disabled = true;
+    btn.addEventListener('click', () => { if (allAnswered()) goNext(); });
+    footer.appendChild(btn);
+    container.appendChild(footer);
+  }
+}
+
+applyShellText();
+setupLanguageSwitcher();
+renderCurrentGroup();
+</script>
+
+</body>
+</html>

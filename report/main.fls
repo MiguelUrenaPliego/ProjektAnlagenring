@@ -538,6 +538,14 @@ INPUT ./logos/FUAS_logo_trim.png
 INPUT ./logos/FUAS_logo_trim.png
 INPUT ./logos/FUAS_logo_trim.png
 INPUT ./logos/FUAS_logo_trim.png
+INPUT ./logos/UIREKA_logo_trim.png
+INPUT ./logos/UIREKA_logo_trim.png
+INPUT ./logos/UIREKA_logo_trim.png
+INPUT ./logos/UIREKA_logo_trim.png
+INPUT ./logos/FUAS_logo_trim.png
+INPUT ./logos/FUAS_logo_trim.png
+INPUT ./logos/FUAS_logo_trim.png
+INPUT ./logos/FUAS_logo_trim.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd

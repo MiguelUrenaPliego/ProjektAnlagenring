@@ -9,6 +9,12 @@ Each road line is densified (extra points interpolated along it) so the
 distance-to-nearest-crosswalk gradient is visible at high resolution, instead
 of only at the original, sparser vertices. Markers are placed at every
 vertex of the two crosswalk linestrings.
+
+An H3 hexagon grid over aoi.gpkg additionally shows, per hexagon, how
+"isolated" that part of the street network is: the average distance to the
+nearest crosswalk of every road sub-segment and crosswalk point falling in
+the hexagon, weighted by how much length (in meters) each observation
+represents.
 """
 
 import json
@@ -18,12 +24,14 @@ from pathlib import Path
 import branca.colormap as cm
 import folium
 import geopandas as gpd
+import h3
 from pyproj import Transformer
 from shapely.geometry import MultiPoint, Point
 
 HERE = Path(__file__).resolve().parent
 MAPS_ROOT = HERE.parent
 sys.path.insert(0, str(MAPS_ROOT / "shared"))
+from hexgrid import add_aoi_background, filter_hex_grid_by_intersection, literal_hex_grid  # noqa: E402
 from map_i18n import toggle_html  # noqa: E402
 
 I18N = json.loads((MAPS_ROOT / "shared" / "i18n_content.json").read_text(encoding="utf-8"))["intersections"]
@@ -31,6 +39,7 @@ I18N = json.loads((MAPS_ROOT / "shared" / "i18n_content.json").read_text(encodin
 DEFAULT_LANG = "de"  # server-baked language for the colormap caption/tooltips below
 
 GPKG_PATH = HERE / "crosswalks.gpkg"
+AOI_PATH = HERE / "aoi.gpkg"
 OUTPUT_PATH = HERE / "intersections_map.html"
 DENSIFY_STEP_M = 1.0  # distance in meters between interpolated points along each road
 
@@ -63,6 +72,10 @@ to_wgs84 = Transformer.from_crs(gdf_m.crs, gdf.crs, always_xy=True)
 
 all_distances = []
 road_segments = {}
+# Per-observation records used for the isolation hex grid below: each
+# road sub-segment and each crosswalk point contributes one observation
+# of (location, distance-to-crosswalk value, weight in meters).
+weighted_observations = []
 for _, road_m in roads_m.iterrows():
     name = road_m["Name"]
     line_m = road_m["geometry"].segmentize(DENSIFY_STEP_M)
@@ -74,6 +87,20 @@ for _, road_m in roads_m.iterrows():
     all_distances.extend(distances)
     road_segments[name] = (coords, distances)
 
+    for i in range(len(coords) - 1):
+        seg_len_m = Point(coords_m[i]).distance(Point(coords_m[i + 1]))
+        seg_dist = (distances[i] + distances[i + 1]) / 2
+        mid_lon = (coords[i][0] + coords[i + 1][0]) / 2
+        mid_lat = (coords[i][1] + coords[i + 1][1]) / 2
+        weighted_observations.append((mid_lat, mid_lon, seg_dist, seg_len_m))
+
+# Crosswalk points are themselves the crossing (distance 0), weighted with
+# a nominal length so they count on the same scale as the ~1 m road
+# sub-segments instead of being swamped or dominating the average.
+for _, crosswalk in crosswalks.iterrows():
+    for lon, lat in crosswalk["geometry"].coords:
+        weighted_observations.append((lat, lon, 0.0, DENSIFY_STEP_M))
+
 colormap = cm.LinearColormap(
     colors=["#2c7bb6", "#ffffbf", "#d7191c"],
     vmin=0,
@@ -81,8 +108,62 @@ colormap = cm.LinearColormap(
     caption=I18N[DEFAULT_LANG]["colormap_caption"],
 )
 
+# ------------------------------------------------------------------
+# Isolation hex grid: weighted-mean distance-to-crosswalk per H3 cell.
+# ------------------------------------------------------------------
+aoi = gpd.read_file(AOI_PATH)
+hex_gdf = literal_hex_grid(aoi)
+# Only keep hexagons that actually cover part of the road network — an
+# AOI-wide grid would otherwise include empty hexagons far from any street.
+hex_gdf = filter_hex_grid_by_intersection(hex_gdf, roads.to_crs(4326))
+resolution = h3.get_resolution(hex_gdf["h3_cell"].iloc[0])
+obs_cells = [h3.latlng_to_cell(lat, lon, resolution) for lat, lon, _, _ in weighted_observations]
+
+weighted_sum = {}
+weight_sum = {}
+for cell, (_, _, value, weight) in zip(obs_cells, weighted_observations):
+    weighted_sum[cell] = weighted_sum.get(cell, 0.0) + value * weight
+    weight_sum[cell] = weight_sum.get(cell, 0.0) + weight
+
+hex_gdf["weight_m"] = hex_gdf["h3_cell"].map(weight_sum).fillna(0.0)
+hex_gdf["isolation"] = hex_gdf["h3_cell"].map(
+    lambda c: weighted_sum[c] / weight_sum[c] if c in weight_sum and weight_sum[c] > 0 else None
+)
+
 center = [gdf.geometry.union_all().centroid.y, gdf.geometry.union_all().centroid.x]
 fmap = folium.Map(location=center, zoom_start=17, tiles="cartodbpositron")
+
+# AOI background + isolation hex grid first, so the road lines and
+# crosswalk markers added below render on top of them.
+fmap = add_aoi_background(fmap, aoi, name="AOI")
+
+NO_DATA_COLOR = "#cccccc"
+
+
+def _hex_style(feature):
+    value = feature["properties"]["isolation"]
+    color = colormap(min(value, 100)) if value is not None else NO_DATA_COLOR
+    return {"fillColor": color, "color": "#333333", "weight": 1, "fillOpacity": 0.45}
+
+
+hex_gdf["isolation_label"] = hex_gdf["isolation"].apply(
+    lambda v: f"{v:.1f}" if v is not None else "–"
+)
+hex_gdf["weight_label"] = hex_gdf["weight_m"].apply(lambda v: f"{v:.0f}")
+
+folium.GeoJson(
+    hex_gdf[["h3_cell", "isolation", "isolation_label", "weight_label", "geometry"]],
+    name="Isoliertheit (Hexagon)",
+    style_function=_hex_style,
+    tooltip=folium.GeoJsonTooltip(
+        fields=["isolation_label", "weight_label"],
+        aliases=[
+            I18N[DEFAULT_LANG]["hex_tooltip_isolation_label"] + ":",
+            I18N[DEFAULT_LANG]["hex_tooltip_weight_label"] + ":",
+        ],
+        localize=True,
+    ),
+).add_to(fmap)
 
 for name, (coords, distances) in road_segments.items():
     for i in range(len(coords) - 1):
@@ -128,6 +209,15 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 """
 fmap.get_root().html.add_child(folium.Element(legend_position_js))
+
+hex_caption_html = f"""
+<div id="hexLegendCaption" data-i18n="hex_legend_caption" style="
+    position:fixed;bottom:110px;right:40px;z-index:9999;max-width:230px;
+    background:rgba(255,255,255,0.92);color:#222;padding:6px 10px;
+    border-radius:6px;font:12px 'Segoe UI',system-ui,sans-serif;
+    box-shadow:2px 2px 6px rgba(0,0,0,0.25);">{I18N[DEFAULT_LANG]["hex_legend_caption"]}</div>
+"""
+fmap.get_root().html.add_child(folium.Element(hex_caption_html))
 
 title_html = """
 <div id="mapTitle" data-i18n="title" style="

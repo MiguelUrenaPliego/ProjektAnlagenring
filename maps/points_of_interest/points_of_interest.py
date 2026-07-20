@@ -4,6 +4,7 @@ from pathlib import Path
 
 import folium
 import geopandas as gpd
+import h3
 import pandas as pd
 from folium.plugins import MeasureControl
 
@@ -16,6 +17,12 @@ sys.path.insert(0, str(MAPS_ROOT / "shared"))
 
 import osm  # noqa: E402
 import plot_helpers  # noqa: E402
+from hexgrid import (  # noqa: E402
+    DEFAULT_RESOLUTION,
+    add_aoi_background,
+    filter_hex_grid_by_intersection,
+    literal_hex_grid,
+)
 from map_i18n import toggle_html  # noqa: E402
 
 I18N = json.loads((MAPS_ROOT / "shared" / "i18n_content.json").read_text(encoding="utf-8"))["poi"]
@@ -37,6 +44,11 @@ OSM_CATEGORIES = {
     ("amenity", "exhibition_centre"): ("Kultur-/Bildungseinrichtung", "🎭"),
     ("tourism", "museum"): ("Kultur-/Bildungseinrichtung", "🎭"),
     ("tourism", "gallery"): ("Kultur-/Bildungseinrichtung", "🎭"),
+    ("leisure", "park"): ("Wiese", "🌳"),
+    ("leisure", "playground"): ("Spielplatz", "🛝"),
+    ("leisure", "pitch"): ("Sportbereich", "⚽"),
+    ("leisure", "sports_centre"): ("Sportbereich", "⚽"),
+    ("leisure", "fitness_station"): ("Sportbereich", "⚽"),
 }
 
 OSM_OVERPASS_QUERY = """[out:xml][timeout:120];
@@ -82,15 +94,185 @@ OSM_OVERPASS_QUERY = """[out:xml][timeout:120];
         node["tourism"="gallery"]({{bbox}});
         way["tourism"="gallery"]({{bbox}});
         relation["tourism"="gallery"]({{bbox}});
+
+        way["leisure"="park"]({{bbox}});
+        relation["leisure"="park"]({{bbox}});
+
+        node["leisure"="playground"]({{bbox}});
+        way["leisure"="playground"]({{bbox}});
+        relation["leisure"="playground"]({{bbox}});
+
+        node["leisure"="pitch"]({{bbox}});
+        way["leisure"="pitch"]({{bbox}});
+        relation["leisure"="pitch"]({{bbox}});
+
+        node["leisure"="sports_centre"]({{bbox}});
+        way["leisure"="sports_centre"]({{bbox}});
+        relation["leisure"="sports_centre"]({{bbox}});
+
+        node["leisure"="fitness_station"]({{bbox}});
     );
     (._;>;);
     out body;
 """
 
 
+# ------------------------------------------------------------------
+# Diversity of daily usage patterns (Jane Jacobs: a park stays safe and
+# alive only if it draws different kinds of users at different times of
+# day/week, not a single group at a single hour). Each POI type is
+# classified into one of four groups by the daypart/weekday it primarily
+# attracts. A hexagon where several of these groups coexist has visitors
+# spread across the whole day rather than a single peak-hour crowd.
+# ------------------------------------------------------------------
+USER_GROUPS = [
+    "Sport: früh & abends",
+    "Familien: nachmittags & Wochenende",
+    "Ruhe & Erholung: ganztags",
+    "Gastronomie & Kultur: abends & Wochenende",
+]
+
+
+def classify_user_group(kategorie: str, typ: str) -> str:
+    """Map a POI's Kategorie/Typ to the daypart/weekday group it mainly attracts."""
+    typ = typ or ""
+    if "Sportbereich" in typ:
+        return USER_GROUPS[0]  # joggers/sport before work and after work
+    if "Spielplatz" in typ:
+        return USER_GROUPS[1]  # children after school, families on weekends
+    if "Springbrunnen" in typ:
+        return USER_GROUPS[2]  # passive recreation, used throughout the day
+    if typ == "Wiese":
+        return USER_GROUPS[2]  # meadow/lawn, passive recreation throughout the day
+    if kategorie == "OSM":
+        return USER_GROUPS[3]  # cafés/restaurants/culture, evenings and weekends
+    return USER_GROUPS[2]
+
+
+DIVERSITY_COLORS = {
+    0: "#e8e8e8",
+    1: "#c7e9c0",
+    2: "#74c476",
+    3: "#238b45",
+    4: "#00441b",
+}
+
+
+def build_diversity_hexgrid(
+    pois: gpd.GeoDataFrame,
+    aoi: gpd.GeoDataFrame,
+    resolution: int = DEFAULT_RESOLUTION,
+) -> gpd.GeoDataFrame:
+    """Aggregate POIs into an H3 hexagon grid covering the AOI.
+
+    Hexagons are drawn as their literal, uncut H3 shape (every cell that
+    touches the AOI is kept whole, not clipped to the park boundary), so
+    the grid reads as an actual hexagon tiling rather than an irregular
+    patchwork.
+
+    Each cell is colored by how many distinct daypart/weekday user groups
+    (see USER_GROUPS) are present, i.e. how evenly activity in that part
+    of the park is spread across the day and week rather than
+    concentrated in a single use.
+    """
+    hex_gdf = literal_hex_grid(aoi, resolution=resolution)
+
+    poi_cells = pois.assign(
+        h3_cell=[
+            h3.latlng_to_cell(lat, lon, resolution) for lat, lon in zip(pois.lat, pois.lon)
+        ],
+        user_group=[
+            classify_user_group(k, t) for k, t in zip(pois.Kategorie, pois.Typ)
+        ],
+    )
+
+    groups_per_cell = poi_cells.groupby("h3_cell")["user_group"].agg(lambda s: sorted(set(s)))
+    counts_per_cell = poi_cells.groupby("h3_cell").size()
+
+    hex_gdf["groups"] = hex_gdf["h3_cell"].map(groups_per_cell)
+    hex_gdf["groups"] = hex_gdf["groups"].apply(lambda g: g if isinstance(g, list) else [])
+    hex_gdf["diversity"] = hex_gdf["groups"].apply(len)
+    hex_gdf["poi_count"] = hex_gdf["h3_cell"].map(counts_per_cell).fillna(0).astype(int)
+    hex_gdf["groups_label"] = hex_gdf["groups"].apply(lambda g: ", ".join(g) if g else "keine")
+
+    return hex_gdf
+
+
+def add_diversity_hexgrid(m: folium.Map, hex_gdf: gpd.GeoDataFrame) -> folium.Map:
+    """Draw the diversity hex grid and its legend on the map."""
+    folium.GeoJson(
+        hex_gdf[["h3_cell", "diversity", "poi_count", "groups_label", "geometry"]],
+        name="Aktivitäten-Diversität",
+        show=True,
+        style_function=lambda f: {
+            "fillColor": DIVERSITY_COLORS.get(f["properties"]["diversity"], DIVERSITY_COLORS[0]),
+            "color": DIVERSITY_COLORS.get(f["properties"]["diversity"], DIVERSITY_COLORS[0]),
+            "weight": 0,
+            "fillOpacity": 0.55,
+        },
+        tooltip=folium.GeoJsonTooltip(
+            fields=["diversity", "poi_count", "groups_label"],
+            aliases=["Nutzergruppen-Diversität (0–4):", "Anzahl POIs:", "Vertretene Gruppen:"],
+            localize=True,
+        ),
+    ).add_to(m)
+
+    legend_html = """
+    <div style="position:fixed;bottom:40px;left:40px;z-index:9999;
+    background:white;padding:10px 12px;border-radius:6px;
+    box-shadow:2px 2px 6px rgba(0,0,0,0.3);
+    font:13px 'Segoe UI',system-ui,sans-serif;">
+    <b>Diversitäts-Score</b>
+    """
+    for i in range(5):
+        legend_html += (
+            f'<div><i style="background:{DIVERSITY_COLORS[i]};width:14px;height:14px;'
+            f'display:inline-block;margin-right:6px;border:1px solid #999;"></i>'
+            f"{i}</div>"
+        )
+    legend_html += "</div>"
+
+    m.get_root().html.add_child(folium.Element(legend_html))
+    return m
+
+
+def add_poi_legend_by_group(m: folium.Map, pois: gpd.GeoDataFrame, legend_title: str) -> folium.Map:
+    """Draw the POI legend grouped by daypart/weekday user group instead of a flat Typ list."""
+    typ_info = pois.dropna(subset=["Typ"]).drop_duplicates(subset=["Typ"])[["Kategorie", "Typ", "emoji"]]
+
+    entries_by_group = {group: [] for group in USER_GROUPS}
+    for _, row in typ_info.iterrows():
+        group = classify_user_group(row["Kategorie"], row["Typ"])
+        entries_by_group[group].append((row["Typ"], row["emoji"]))
+
+    legend_html = f"""
+    <div style="position:fixed;bottom:40px;right:40px;z-index:9999;
+    background:white;padding:10px 12px;border-radius:6px;
+    box-shadow:2px 2px 6px rgba(0,0,0,0.3);
+    font:13px 'Segoe UI',system-ui,sans-serif;max-width:270px;">
+    <b>{legend_title}</b>
+    """
+    for group in USER_GROUPS:
+        entries = entries_by_group.get(group, [])
+        if not entries:
+            continue
+        legend_html += (
+            f"<div style='margin-top:8px;font-weight:600;font-size:12px;color:#333;'>{group}</div>"
+        )
+        for typ, emoji in entries:
+            legend_html += f"<div style='padding-left:4px'>{emoji} {typ}</div>"
+    legend_html += "</div>"
+
+    m.get_root().html.add_child(folium.Element(legend_html))
+    return m
+
+
 def download_osm_pois(bounds: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
-    """Download cafes, restaurants and cultural/educational venues (museums, theatres, opera, libraries, etc.) from OSM for the AOI."""
-    print("Downloading OSM POIs (cafes, restaurants, cultural/educational venues)...")
+    """Download cafes, restaurants, cultural/educational venues (museums, theatres, opera, libraries, etc.), park/meadow polygons, playgrounds and sports areas (pitches, sports centres, fitness stations) from OSM for the AOI."""
+    print(
+        "Downloading OSM POIs (cafes, restaurants, cultural/educational venues, "
+        "parks/meadows, playgrounds, sports areas)..."
+    )
     gdf = osm.overpass_api_query(OSM_OVERPASS_QUERY, bounds)
 
     empty = gpd.GeoDataFrame(
@@ -169,15 +351,34 @@ def main():
         opacity=0.5,
     ).add_to(m)
 
+    # Light green park background first, then the hex grid, so the POI
+    # markers added by general_map render on top of both.
+    m = add_aoi_background(m, aoi, name="Park (AOI)")
+
+    hex_gdf = build_diversity_hexgrid(pois, aoi)
+
+    # Only show hexagons that lie within the AOI shrunk by 100m, so cells
+    # at the park's edge (which mostly cover surrounding streets) are hidden.
+    utm_crs = aoi.estimate_utm_crs()
+    aoi_shrunk = aoi.to_crs(utm_crs).geometry.buffer(-100).to_crs(4326)
+    hex_gdf = filter_hex_grid_by_intersection(hex_gdf, aoi_shrunk)
+
+    m = add_diversity_hexgrid(m, hex_gdf)
+
     m = plot_helpers.general_map(
         m=m,
+        aoi=aoi,
         pois=pois,
         poi_column="Typ",
         poi_icon_column="emoji",
         legend_title=I18N[DEFAULT_LANG]["legend_title"],
+        show_poi_legend=False,
+        poi_group_name="POIs",
     )
+    m = add_poi_legend_by_group(m, pois, I18N[DEFAULT_LANG]["legend_title"])
 
     m.add_child(MeasureControl())
+    folium.LayerControl(collapsed=False).add_to(m)
 
     title_html = """
     <div id="mapTitle" data-i18n="title" style="

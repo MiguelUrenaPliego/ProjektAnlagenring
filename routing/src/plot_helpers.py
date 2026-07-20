@@ -40,6 +40,8 @@ def general_map(
     zoom_start: int = 11,
     scalebar=False,
     legend_title: str = "POI Legend",
+    show_poi_legend: bool = True,
+    poi_group_name: Optional[str] = None,
 ) -> folium.Map:
 
     # ==========================================================
@@ -347,6 +349,10 @@ def general_map(
     # ==========================================================
     legend_map = {}
 
+    poi_target = m
+    if poi_group_name is not None and pois:
+        poi_target = folium.FeatureGroup(name=poi_group_name, show=True)
+
     for p in pois:
 
         polys, lines, points = split_geoms(p)
@@ -403,7 +409,7 @@ def general_map(
                 icon=folium.DivIcon(html=html, icon_size=(34, 34), icon_anchor=(17, 34)),
                 tooltip=tooltip_html(row),
                 popup=folium.Popup(tooltip_html(row), max_width=300),
-            ).add_to(m)
+            ).add_to(poi_target)
 
             if icon_value:
                 legend_map[str(label_value)] = icon_value
@@ -461,10 +467,13 @@ def general_map(
             if icon_value:
                 legend_map[str(label_value)] = icon_value
 
+    if poi_target is not m:
+        poi_target.add_to(m)
+
     # ==========================================================
     # LEGEND (label + icon)
     # ==========================================================
-    if legend_map:
+    if legend_map and show_poi_legend:
 
         legend_html = f"""
         <div style="position:fixed;bottom:40px;right:40px;
