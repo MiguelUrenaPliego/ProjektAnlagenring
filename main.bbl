@@ -98,6 +98,9 @@
       \field{title}{An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale}
       \field{year}{2021}
       \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2010.11929
+      \endverb
     \endentry
     \entry{herbrich2007}{inproceedings}{}
       \name{author}{3}{}{%
@@ -158,6 +161,12 @@
       \field{dateera}{ce}
       \field{pages}{569\bibrangedash 576}
       \range{pages}{8}
+      \verb{urlraw}
+      \verb https://proceedings.neurips.cc/paper/2006/hash/f44ee263952e65b3610b8ba51229d1f9-Abstract.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.neurips.cc/paper/2006/hash/f44ee263952e65b3610b8ba51229d1f9-Abstract.html
+      \endverb
     \endentry
     \entry{hou2024}{article}{}
       \name{author}{9}{}{%
@@ -256,6 +265,7 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{isbn}{978-0-679-74195-4}
       \field{title}{The Death and Life of Great American Cities}
       \field{year}{1961}
       \field{dateera}{ce}
@@ -304,6 +314,9 @@
       \field{dateera}{ce}
       \field{pages}{793\bibrangedash 799}
       \range{pages}{7}
+      \verb{doi}
+      \verb 10.1109/CVPRW.2014.121
+      \endverb
     \endentry
     \entry{salesses2013}{article}{}
       \name{author}{3}{}{%
@@ -375,6 +388,12 @@
       \field{type}{Computer Sciences Technical Report}
       \field{year}{2009}
       \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://minds.wisconsin.edu/handle/1793/60660
+      \endverb
+      \verb{url}
+      \verb https://minds.wisconsin.edu/handle/1793/60660
+      \endverb
     \endentry
     \entry{zhang2018}{article}{}
       \name{author}{7}{}{%
