@@ -30,9 +30,25 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{caption}
+\captionsetup{labelfont=bf,labelsep=colon,font=small,justification=centering}
 
 \usepackage{eso-pic}
 \usepackage{transparent}
+
+%=================================================
+% COLORS (Hochschul-Farbschema)
+%=================================================
+\definecolor{unidark}{HTML}{17365D}
+\definecolor{unimid}{HTML}{365F91}
+\definecolor{uniaccent}{HTML}{4F81BD}
+
+%=================================================
+% HEADING STYLE
+%=================================================
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\Large\bfseries\color{unimid}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{unimid}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{unimid}}{\thesubsubsection}{1em}{}
 
 %=================================================
 % LAYOUT
@@ -55,31 +71,31 @@
 % HEADER / FOOTER
 %=================================================
 \usepackage{fancyhdr}
-\setlength{\headheight}{15pt}
+\setlength{\headheight}{41pt}
 
 \pagestyle{fancy}
 \fancyhf{}
 
-\fancyhead[L]{\small Betrieb von Schienenverkehrsanlagen -- Hausübung SoSe 2026}
-\fancyhead[R]{\small Matrikelnummer: 1675317}
+\fancyhead[L]{\includegraphics[height=0.9cm]{logos/UIREKA_logo_trim.png}}
+\fancyhead[R]{\includegraphics[height=0.9cm]{logos/FUAS_logo_trim.png}}
 
+\fancyfoot[L]{\small\color{unimid}\Kurztitel}
 \fancyfoot[C]{}
 \fancyfoot[R]{\thepage}
 
 \renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{unimid}\leaders\hrule height \headrulewidth\hfill}}
 
 %=================================================
 % HYPERLINKS
 %=================================================
 \usepackage{hyperref}
 
-\definecolor{thmgreen}{RGB}{0,130,60}
-
 \hypersetup{
     colorlinks=true,
-    linkcolor=thmgreen,
-    urlcolor=thmgreen,
-    citecolor=thmgreen
+    linkcolor=unimid,
+    urlcolor=unimid,
+    citecolor=unimid
 }
 
 %=================================================
@@ -99,8 +115,9 @@
 %=================================================
 % CITATIONS
 %=================================================
-\usepackage[backend=biber,style=verbose,citestyle=verbose-ibid]{biblatex}
+\usepackage[backend=biber,style=authoryear,citestyle=authoryear,sorting=nyt,maxcitenames=2,uniquename=false,uniquelist=false,dashed=false]{biblatex}
 \addbibresource{references.bib}
+\DefineBibliographyStrings{ngerman}{andothers={et al\adddot}}
 
 
 %=================================================
@@ -117,11 +134,12 @@
 %=================================================
 % TITLE VARIABLES
 %=================================================
-\newcommand{\Titel}{Vorlesung „Betrieb von Schienenverkehrsanlagen“}
-\newcommand{\Untertitel}{Hausübung im Sommersemester 2026}
-\newcommand{\Autor}{abc}
+\newcommand{\Titel}{OFF THE WALL}
+\newcommand{\Untertitel}{Der Anlagenring als durchgehender Grün- und Stadtraum}
+\newcommand{\Autor}{Marc Graß, Jotyka Karmakar, Büsra Kaynar, Miguel Ureña-Pliego}
 \newcommand{\Studiengang}{Master Infrastruktur – Wasser und Verkehr}
 \newcommand{\Semester}{Sommersemester 2026}
+\newcommand{\Kurztitel}{Grünraum Anlagenring}
 
 \newcommand{\smalltable}{\fontsize{8.5pt}{10.5pt}\selectfont}
 
@@ -137,8 +155,13 @@
 
 \clearpage
 
-\fancyhead[L]{Der AB-Testing-Mechanismus}
-\fancyhead[R]{Paarvergleiche, Active Sampling, TrueSkill \& StreetScore}
+\renewcommand{\listfigurename}{Abbildungsverzeichnis}
+\listoffigures
+
+\renewcommand{\listtablename}{Tabellenverzeichnis}
+\listoftables
+
+\clearpage
 
 \section{Wahrnehmungsumfrage}
 
@@ -146,14 +169,14 @@
 
 Zu erfassen, wie Menschen die Straßen wahrnehmen, auf denen sie gehen, Rad fahren oder sich aufhalten, ist mit klassischen Befragungen schwer zu leisten, da verbale oder numerische Bewertungen von \enquote{Sicherheit} oder \enquote{Schönheit} stark subjektiv und zwischen Befragten kaum vergleichbar sind \autocite{salesses2013}. Eine etablierte Alternative, die durch das Place-Pulse-Projekt des MIT Media Lab bekannt wurde, besteht darin, den Teilnehmenden eine deutlich einfachere Frage zu stellen: Welches von zwei Straßenraumfotos wirkt sicherer, besser begehbar oder einladender? Paarvergleiche dieser Art sind kognitiv leichter zu beantworten, robuster gegenüber individuellen Bewertungsskalen und lassen sich zu einem kontinuierlichen, intervallskalierten Wahrnehmungswert für jedes Bild im Datensatz aggregieren \autocite{salesses2013,naik2014}. Dieser Ansatz wurde inzwischen auf große, mehrere Städte umfassende Straßenraum-Bilddatensätze übertragen, die mit kontextuellen und semantischen Metadaten angereichert sind, um genau solche Analysen der urbanen Wahrnehmung in großem Maßstab zu unterstützen \autocite{hou2024}, und er bildet die Grundlage datengetriebener Pipelines, die menschliche Ortswahrnehmung direkt aus Straßenraumbildern lernen und vorhersagen \autocite{zhang2018}.
 
-Unser Projekt überträgt dasselbe Paradigma auf eine konkrete planerische Fragestellung: Wie nehmen Anwohnende und Besuchende unterschiedliche Straßenraum-Gestaltungsvarianten am Anlagenring in Frankfurt am Main und dessen Umgebung wahr, insbesondere im Hinblick auf Zufußgehen, Radfahren und Aufenthalten im Straßenraum? Wir haben dazu eine webbasierte AB-Testing-Umfrageplattform (\enquote{ABsurveys}) entwickelt, die Teilnehmenden wiederholt zwei Fotografien oder Visualisierungen von Straßenabschnitten zeigt und sie bittet, diejenige auszuwählen, die sie für eine bestimmte Aktivität als angenehmer empfinden. Im Hintergrund der Oberfläche wirken drei Komponenten zusammen, um die Umfrage effizient und ihre Ergebnisse statistisch belastbar zu machen. Erstens eine auf \textbf{TrueSkill} basierende Bewertungs-Engine, die jede binäre Entscheidung in einen aktualisierten, unsicherheitsbehafteten Wahrnehmungswert für jedes Bild umrechnet. Zweitens ein \textbf{Active-Sampling}-Algorithmus zur Paarauswahl, der entscheidet, welche zwei Bilder als Nächstes gezeigt werden, damit die Aufmerksamkeit der Teilnehmenden dort eingesetzt wird, wo sie den größten Informationsgewinn liefert. Drittens ein \textbf{StreetScore}-artiges Deep-Learning-Modell, das die menschlichen Vergleiche auf die deutlich größere Menge an Bildern verallgemeinert, die nie direkt bewertet wurden. Dieser Bericht erläutert, wie diese drei Komponenten funktionieren, und fasst ihren Einsatz an unserem Reallabor-Tag am Anlagenring zusammen.
+Unser Projekt überträgt dasselbe Paradigma auf eine konkrete planerische Fragestellung: Wie nehmen Anwohnende und Besuchende unterschiedliche Straßenraum-Gestaltungsvarianten am Anlagenring in Frankfurt am Main und dessen Umgebung wahr, insbesondere im Hinblick auf Zufußgehen, Radfahren und Aufenthalten im Straßenraum? Wir haben dazu eine webbasierte AB-Testing-Umfrageplattform (\enquote{ABsurveys}) entwickelt, die Teilnehmenden wiederholt zwei Fotografien oder Visualisierungen von Straßenabschnitten zeigt und sie bittet, diejenige auszuwählen, die sie für eine bestimmte Aktivität als angenehmer empfinden. Im Hintergrund der Oberfläche wirken drei Komponenten zusammen, um die Umfrage effizient und ihre Ergebnisse statistisch belastbar zu machen. Erstens eine auf TrueSkill basierende Bewertungs-Engine, die jede binäre Entscheidung in einen aktualisierten, unsicherheitsbehafteten Wahrnehmungswert für jedes Bild umrechnet. Zweitens ein Active-Sampling-Algorithmus zur Paarauswahl, der entscheidet, welche zwei Bilder als Nächstes gezeigt werden, damit die Aufmerksamkeit der Teilnehmenden dort eingesetzt wird, wo sie den größten Informationsgewinn liefert. Drittens ein StreetScore-artiges Deep-Learning-Modell, das die menschlichen Vergleiche auf die deutlich größere Menge an Bildern verallgemeinert, die nie direkt bewertet wurden. Dieser Bericht erläutert, wie diese drei Komponenten funktionieren, und fasst ihren Einsatz an unserem Reallabor-Tag am Anlagenring zusammen.
 
 Konzeptionelles Vorbild für unsere Plattform ist \enquote{Place Pulse} des MIT Media Lab, das denselben paarweisen Vergleichsansatz erstmals in großem Maßstab für die Wahrnehmung von Straßenräumen eingesetzt hat und unter \url{https://cs-futurecities.media.mit.edu/} weiterhin einsehbar ist \autocite{salesses2013,naik2014}. Abbildung~\ref{fig:survey-web} zeigt die Weboberfläche unserer eigenen, daran angelehnten Umfrageplattform \enquote{ABsurveys}, wie sie sowohl am Vor-Ort-Computer als auch über den ausgehängten QR-Code auf dem eigenen Smartphone genutzt werden konnte.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{figures/survey_web.jpg}
-	\caption{Screenshot der Weboberfläche der ABsurveys-Umfrageplattform.}
+	\caption[Weboberfläche der ABsurveys-Umfrageplattform]{Screenshot der Weboberfläche der ABsurveys-Umfrageplattform (Quelle: eigene Darstellung).}
 	\label{fig:survey-web}
 \end{figure}
 
@@ -163,15 +186,15 @@ Statt zu fragen \enquote{Wie sicher ist diese Straße auf einer Skala von 1--10?
 
 \subsection{Von Entscheidungen zu Werten: TrueSkill}
 
-Eine einzelne paarweise Entscheidung sagt für sich genommen nur aus, dass ein Bild einem anderen vorgezogen wurde; sie ergibt noch keinen numerischen Wert. Um einen wachsenden Strom solcher Vergleiche in stabile, vergleichbare Werte zu überführen, nutzt die Plattform \textbf{TrueSkill}, ein von Microsoft Research entwickeltes bayessches Bewertungssystem zur Einstufung von Spielenden in Online-Mehrspielerspielen anhand einzelner Partieergebnisse \autocite{herbrich2007}. Jedes Bild wird als Gaußverteilung über seine wahrgenommene Qualität für eine Aktivität dargestellt:
+Eine einzelne paarweise Entscheidung sagt für sich genommen nur aus, dass ein Bild einem anderen vorgezogen wurde; sie ergibt noch keinen numerischen Wert. Um einen wachsenden Strom solcher Vergleiche in stabile, vergleichbare Werte zu überführen, nutzt die Plattform TrueSkill, ein von Microsoft Research entwickeltes bayessches Bewertungssystem zur Einstufung von Spielenden in Online-Mehrspielerspielen anhand einzelner Partieergebnisse \autocite{herbrich2007}. Jedes Bild wird als Gaußverteilung über seine wahrgenommene Qualität für eine Aktivität dargestellt:
 
 \[
 \text{Bild}_i \sim \mathcal{N}(\mu_i, \sigma_i^2)
 \]
 
 \begin{itemize}
-	\item \textbf{$\mu$} ist die aktuell beste Schätzung des Wahrnehmungswerts.
-	\item \textbf{$\sigma$} (\enquote{Uncertainty}) gibt an, wie sicher diese Schätzung ist. Der Wert ist groß bei wenigen und klein bei vielen Vergleichen.
+	\item $\mu$ ist die aktuell beste Schätzung des Wahrnehmungswerts.
+	\item $\sigma$ (\enquote{Uncertainty}) gibt an, wie sicher diese Schätzung ist. Der Wert ist groß bei wenigen und klein bei vielen Vergleichen.
 \end{itemize}
 
 Nach jedem AB-Vergleich läuft folgender Zyklus ab:
@@ -188,7 +211,7 @@ Anders als eine statische Rangliste, die erst am Ende der Erhebung berechnet wir
 \subsection{Entscheiden, was als Nächstes gezeigt wird: Active Sampling}
 \label{sec:active-sampling}
 
-Bei mehreren hundert Bildern über drei Aktivitäten hinweg ist es weder praktikabel, jedem Teilnehmenden jedes mögliche Bildpaar zu zeigen, noch effizient, Paare rein zufällig auszuwählen. Die Plattform nutzt daher \textbf{Active Sampling} im Sinne des poolbasierten aktiven Lernens: Aus einem Kandidatenpool wird das Element mit dem größten erwarteten Informationsgewinn ausgewählt, statt passiv zufällig zu stichproben \autocite{settles2009}. Die Paarauswahl folgt drei Kriterien, kombiniert in einem Informationsgewinn-Score:
+Bei mehreren hundert Bildern über drei Aktivitäten hinweg ist es weder praktikabel, jedem Teilnehmenden jedes mögliche Bildpaar zu zeigen, noch effizient, Paare rein zufällig auszuwählen. Die Plattform nutzt daher Active Sampling im Sinne des poolbasierten aktiven Lernens: Aus einem Kandidatenpool wird das Element mit dem größten erwarteten Informationsgewinn ausgewählt, statt passiv zufällig zu stichproben \autocite{settles2009}. Die Paarauswahl folgt drei Kriterien, kombiniert in einem Informationsgewinn-Score:
 
 \begin{table}[H]
 	\centering
@@ -201,16 +224,16 @@ Bei mehreren hundert Bildern über drei Aktivitäten hinweg ist es weder praktik
 		Novität (wenig gesehen) & 0.2 & Selten gezeigte Bilder werden bevorzugt \\
 		\bottomrule
 	\end{tabularx}
-	\caption{Kriterien des Informationsgewinn-Scores beim Active Sampling.}
+	\caption[Kriterien des Informationsgewinn-Scores]{Kriterien des Informationsgewinn-Scores beim Active Sampling (Quelle: eigene Darstellung).}
 \end{table}
 
 Das Ankerbild wird mit einer zu $\sigma$ proportionalen Wahrscheinlichkeit gezogen. Sein Vergleichspartner wird aus den Top-Kandidaten nach obigem Score gezogen \autocite{settles2009}. Ein Parameter mischt diese unsicherheitsgetriebene Auswahl mit rein zufälliger Ziehung, sodass sich der Grad der \enquote{Aktivität} je Einsatz justieren lässt. Zusätzliche harte Regeln (keine wiederholten Paare/Bilder pro Person, keine inkompatiblen Paare, Cold-Start-Exploration ungesehener Bilder zuerst) stellen sicher, dass die Abfolge sowohl statistisch effizient als auch für Nutzende angenehm bleibt.
 
 \subsection{Verallgemeinerung über die abgefragten Bilder hinaus: StreetScore \& Fine-Tuning}
 
-Selbst mit Active Sampling bleibt die Zahl direkt verglichener Bilder klein gegenüber der Zahl an Straßenabschnitten, die am Ende bewertet werden sollen. Das Vorbild dafür ist \textbf{StreetScore}: \textcite{naik2014} trainierten anhand mehrerer Millionen crowdgesourcter Paarvergleiche auf über einer Million Straßenansichten weltweit (gesammelt über Place Pulse) ein Modell, das die wahrgenommene Sicherheit von Straßenbildern vorhersagt, die nie von einer teilnehmenden Person bewertet wurden. Wir übernehmen diese Grundidee, ersetzen die ursprüngliche Merkmals-/SVR-Architektur jedoch durch einen moderneren Vision Transformer (ViT-B/16) \autocite{dosovitskiy2021}, wie er in einer aktuellen, auf dem Place-Pulse-Datensatz pretrainierten Streetscore-Neuimplementierung für menschliche Ortswahrnehmung eingesetzt wird \autocite{hou2024}.
+Selbst mit Active Sampling bleibt die Zahl direkt verglichener Bilder klein gegenüber der Zahl an Straßenabschnitten, die am Ende bewertet werden sollen. Das Vorbild dafür ist StreetScore: \textcite{naik2014} trainierten anhand mehrerer Millionen crowdgesourcter Paarvergleiche auf über einer Million Straßenansichten weltweit (gesammelt über Place Pulse) ein Modell, das die wahrgenommene Sicherheit von Straßenbildern vorhersagt, die nie von einer teilnehmenden Person bewertet wurden. Wir übernehmen diese Grundidee, ersetzen die ursprüngliche Merkmals-/SVR-Architektur jedoch durch einen moderneren Vision Transformer (ViT-B/16) \autocite{dosovitskiy2021}, wie er in einer aktuellen, auf dem Place-Pulse-Datensatz pretrainierten Streetscore-Neuimplementierung für menschliche Ortswahrnehmung eingesetzt wird \autocite{hou2024}.
 
-Dieses pretrainierte Modell lieferte auf unseren Bildern jedoch keine verlässlichen Vorhersagen. Der wahrscheinliche Grund: Es wurde auf weltweit über Google Street View gesammelten Bildern trainiert, die überwiegend befahrene Straßen mit Fahrzeugen zeigen, während unsere Aufnahmen Park- und Fußwegbereiche am Anlagenring abbilden, in denen Straßen und Autos meist gar nicht sichtbar sind. Es handelt sich damit um eine deutliche Domänenverschiebung. Wir haben deshalb eine eigene \textbf{Fine-Tuning-Schleife} implementiert, die das Modell auf unsere lokal erhobenen Paarvergleiche nachtrainiert, sodass es lernt, wie unsere befragten Bürgerinnen und Bürger zu urteilen:
+Dieses pretrainierte Modell lieferte auf unseren Bildern jedoch keine verlässlichen Vorhersagen. Der wahrscheinliche Grund: Es wurde auf weltweit über Google Street View gesammelten Bildern trainiert, die überwiegend befahrene Straßen mit Fahrzeugen zeigen, während unsere Aufnahmen Park- und Fußwegbereiche am Anlagenring abbilden, in denen Straßen und Autos meist gar nicht sichtbar sind. Es handelt sich damit um eine deutliche Domänenverschiebung. Wir haben deshalb eine eigene Fine-Tuning-Schleife implementiert, die das Modell auf unsere lokal erhobenen Paarvergleiche nachtrainiert, sodass es lernt, wie unsere befragten Bürgerinnen und Bürger zu urteilen:
 
 \begin{enumerate}
 	\item Export der TrueSkill-Paarvergleiche aus der Feldstudie als Trainingsdaten.
@@ -227,20 +250,47 @@ Der oben beschriebene dreiteilige Mechanismus wurde für eine konkrete Fallstudi
 
 \subsection{Ergebnisse}
 
-Abbildung~\ref{fig:streetscore-map} zeigt alle 138 fotografierten Standorte entlang des Anlagenrings, eingefärbt nach dem aus den Paarvergleichen der Feldstudie resultierenden TrueSkill-Wahrnehmungswert. Dieselbe Karte steht zusätzlich in einer interaktiven Fassung zur Verfügung, in der sich für jeden Standort das zugehörige Bild sowie der Umfragewert direkt einsehen lassen: \url{https://miguelurenapliego.github.io/ProjektAnlagenring/ABsurveys/index.html?lang=de}.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{figures/streetscore_map.jpg}
-	\caption{Karte aller im Rahmen der Feldstudie erhobenen Standorte am Anlagenring mit den zugehörigen Fotografien und den daraus resultierenden Umfrage-Wahrnehmungswerten (TrueSkill $\mu$). Die interaktive Version der Karte ist unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/ABsurveys/index.html?lang=de} verfügbar.}
+	\caption[Wahrnehmungskarte des Anlagenrings]{Karte aller im Rahmen der Feldstudie erhobenen Standorte am Anlagenring mit den zugehörigen Fotografien und den daraus resultierenden Umfrage-Wahrnehmungswerten (TrueSkill $\mu$). Die interaktive Version der Karte ist unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/ABsurveys/index.html?lang=de} verfügbar (Quelle: eigene Darstellung).}
 	\label{fig:streetscore-map}
 \end{figure}
+
+Abbildung~\ref{fig:streetscore-map} zeigt alle 138 fotografierten Standorte entlang des Anlagenrings, eingefärbt nach dem aus den Paarvergleichen der Feldstudie resultierenden TrueSkill-Wahrnehmungswert. Dieselbe Karte steht zusätzlich in einer interaktiven Fassung zur Verfügung, in der sich für jeden Standort das zugehörige Bild sowie der Umfragewert direkt einsehen lassen: \url{https://miguelurenapliego.github.io/ProjektAnlagenring/ABsurveys/index.html?lang=de}.
 
 Für die in diesem Bericht vorgestellten Auswertungen verwenden wir ausschließlich die aus den echten Nutzerentscheidungen abgeleiteten TrueSkill-Werte, da nur sie unmittelbar auf beobachtetem menschlichem Urteilen beruhen. Das in Abschnitt~\ref{sec:active-sampling} vorangegangene beschriebene StreetScore-Modell wird an dieser Stelle bewusst nicht zur Bewertung weiterer, ungesehener Bilder herangezogen, sondern dient in diesem Projektstadium vorrangig als Machbarkeitsnachweis: Es zeigt, dass sich ein solches Modell grundsätzlich auf unsere lokal erhobenen Daten trainieren lässt, und eröffnet damit die Perspektive, es künftig auf eine deutlich größere Zahl an Straßenraumbildern anzuwenden, für die keine direkten Nutzerurteile vorliegen, ohne dass dafür erneut eine vollständige Befragung durchgeführt werden müsste.
 
 Die folgenden Mosaike stellen für jede der drei Aktivitäten die jeweils am besten und am schlechtesten bewerteten Bilder aus dem Umfrage-Pool gegenüber.
 
-\begin{figure}[H]
+\begin{figure}[tbp]
+	\centering
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{figures/good_street.jpg}
+
+		\vspace{0.5em}
+		\includegraphics[width=\textwidth]{figures/good_park.jpg}
+
+		\vspace{0.5em}
+		\includegraphics[width=\textwidth]{figures/good_park_2.jpg}
+		\caption{Gut bewertet}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{figures/bad_road.jpg}
+
+		\vspace{0.5em}
+		\includegraphics[width=\textwidth]{figures/bad_road_2.jpg}
+
+		\vspace{0.5em}
+		\includegraphics[width=\textwidth]{figures/bad_park.jpg}
+		\caption{Schlecht bewertet}
+	\end{subfigure}
+	\caption[Gut/schlecht bewertete Bilder -- Zufußgehen]{Gegenüberstellung der am besten und am schlechtesten bewerteten Straßenraumbilder für die Aktivität Zufußgehen (Quelle: eigene Darstellung).}
+	\label{fig:mosaic-walk}
+\end{figure}
+
+\begin{figure}[tbp]
 	\centering
 	\begin{subfigure}[b]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{figures/good_bike.jpg}
@@ -251,54 +301,29 @@ Die folgenden Mosaike stellen für jede der drei Aktivitäten die jeweils am bes
 		\includegraphics[width=\textwidth]{figures/bad_bike.jpg}
 		\caption{Schlecht bewertet}
 	\end{subfigure}
-	\caption{Gegenüberstellung der am besten und am schlechtesten bewerteten Straßenraumbilder für die Aktivität Radfahren.}
+	\caption[Gut/schlecht bewertete Bilder -- Radfahren]{Gegenüberstellung der am besten und am schlechtesten bewerteten Straßenraumbilder für die Aktivität Radfahren (Quelle: eigene Darstellung).}
 	\label{fig:mosaic-bike}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[tbp]
 	\centering
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{figures/good_street.jpg}
-		\caption{Gut bewertet}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{figures/bad_road.jpg}
-
-		\vspace{0.5em}
-		\includegraphics[width=\textwidth]{figures/bad_road_2.jpg}
-		\caption{Schlecht bewertet}
-	\end{subfigure}
-	\caption{Gegenüberstellung der am besten und am schlechtesten bewerteten Straßenraumbilder für die Aktivität Zufußgehen.}
-	\label{fig:mosaic-walk}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{figures/good_park.jpg}
-
-		\vspace{0.5em}
-		\includegraphics[width=\textwidth]{figures/good_park_2.jpg}
-
-		\vspace{0.5em}
 		\includegraphics[width=\textwidth]{figures/good_stay.jpg}
 		\caption{Gut bewertet}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{figures/bad_park.jpg}
-
-		\vspace{0.5em}
 		\includegraphics[width=\textwidth]{figures/bad_stay.jpg}
 		\caption{Schlecht bewertet}
 	\end{subfigure}
-	\caption{Gegenüberstellung der am besten und am schlechtesten bewerteten Straßenraumbilder für die Aktivität Aufenthalten.}
+	\caption[Gut/schlecht bewertete Bilder -- Aufenthalten]{Gegenüberstellung der am besten und am schlechtesten bewerteten Straßenraumbilder für die Aktivität Aufenthalten (Quelle: eigene Darstellung).}
 	\label{fig:mosaic-stay}
 \end{figure}
 
 Räumlich zeigt sich in Abbildung~\ref{fig:streetscore-map} ein deutliches Muster: Besonders gut bewertete Orte konzentrieren sich auf den Bethmannpark sowie auf die Cafés und Straßen südlich des Eschenheimer Tors. Demgegenüber wurden einige der großen, verkehrsreichen Kreuzungen am Friedberger Tor, am Eschenheimer Tor sowie rund um die Alte Oper deutlich schlechter bewertet; auch der Fußweg entlang des U5-Tunnels schnitt schlecht ab. Diese räumliche Verteilung legt nahe, dass sehr hochwertig wahrgenommene Teilbereiche des Anlagenrings derzeit von Abschnitten mit schlechter Wahrnehmung umgeben sind. Der Ring wird dadurch nicht als durchgehend zusammenhängender Grün- und Aufenthaltsraum erlebt, sondern in einzelne, voneinander getrennte \enquote{Inseln} guter Aufenthaltsqualität zerlegt, zwischen denen insbesondere die großen Kreuzungen als wahrgenommene Barrieren wirken.
 
+\FloatBarrier
+\clearpage
 \printbibliography
 
 \end{document}
