@@ -230,6 +230,36 @@
       \verb 10.1016/j.isprsjprs.2024.06.023
       \endverb
     \endentry
+    \entry{jacobs1961}{book}{}
+      \name{author}{1}{}{%
+        {{hash=a01104208f884a04bf7571a20e5b8332}{%
+           family={Jacobs},
+           familyi={J\bibinitperiod},
+           given={Jane},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {Random House}%
+      }
+      \strng{namehash}{a01104208f884a04bf7571a20e5b8332}
+      \strng{fullhash}{a01104208f884a04bf7571a20e5b8332}
+      \strng{bibnamehash}{a01104208f884a04bf7571a20e5b8332}
+      \strng{authorbibnamehash}{a01104208f884a04bf7571a20e5b8332}
+      \strng{authornamehash}{a01104208f884a04bf7571a20e5b8332}
+      \strng{authorfullhash}{a01104208f884a04bf7571a20e5b8332}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Death and Life of Great American Cities}
+      \field{year}{1961}
+      \field{dateera}{ce}
+    \endentry
     \entry{naik2014}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=19ed5a04b675f741338b9cf26c7e32aa}{%
