@@ -34,6 +34,7 @@
 
 \usepackage{eso-pic}
 \usepackage{transparent}
+\usepackage{placeins}
 
 %=================================================
 % COLORS (Hochschul-Farbschema)
@@ -177,18 +178,19 @@ Im Folgenden wird für jedes dieser drei Kriterien dargestellt, wie es sich am A
 
 \subsection{Physischer Aspekt}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.85\textwidth]{figures/intersections_map.jpg}
+	\includegraphics[width=0.6\textwidth]{figures/intersections_map.jpg}
 	\caption[Karte der Querungsabstände am Anlagenring]{Karte der Straßenabschnitte entlang des Anlagenrings, eingefärbt nach dem Abstand zur nächstgelegenen Querungsmöglichkeit (Quelle: eigene Darstellung; Hintergrundkarte: OpenStreetMap). Die interaktive Version der Karte ist unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/maps/intersections/intersections_map.html?lang=de} verfügbar.}
 	\label{fig:intersections-map}
 \end{figure}
 
+
 Abbildung~\ref{fig:intersections-map} zeigt, dass die Abstände zwischen aufeinanderfolgenden Querungsmöglichkeiten entlang der parallel zum Park verlaufenden Straßen an vielen Stellen deutlich über 100\,m liegen. Für Parknutzende bedeutet das, dass sie an diesen Stellen im Schnitt 100\,m bis zur nächsten Querung sowie nochmals 100\,m zurück zurücklegen müssen, um den Park überhaupt verlassen zu können, insgesamt also einen Umweg von rund 5\,Minuten zu Fuß. Besonders betroffen sind der Abschnitt südlich des Bethmannparks sowie der Bereich rund um den Eschenheimer Tor.
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.85\textwidth]{figures/transversal_roads_map.jpg}
+	\includegraphics[width=0.6\textwidth]{figures/transversal_roads_map.jpg}
 	\caption[Karte der querenden Straßen am Anlagenring]{Karte der Hauptstraßen, die quer durch den Anlagenring verlaufen und ihn dadurch in Abschnitte zerschneiden (Quelle: eigene Darstellung; Hintergrundkarte: OpenStreetMap). Die interaktive Version der Karte ist unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/maps/transversal_roads/transversal_roads.html?lang=de} verfügbar.}
 	\label{fig:transversal-roads-map}
 \end{figure}
@@ -197,7 +199,7 @@ Abbildung~\ref{fig:transversal-roads-map} zeigt die Straßen, die quer durch den
 
 \subsection{Nutzungsvielfalt}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{figures/points_of_interest_map.jpg}
 	\caption[Karte der Nutzungsvielfalt am Anlagenring]{Karte der Anzahl unterschiedlicher Nutzungsarten je Bereich des Anlagenrings (links) sowie der zugrundeliegenden einzelnen Angebote (rechts) (Quelle: eigene Darstellung; Hintergrundkarte: Google, OpenStreetMap). Die interaktive Version der Karte ist unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/maps/points_of_interest/points_of_interest.html?lang=de} verfügbar.}
@@ -206,7 +208,9 @@ Abbildung~\ref{fig:transversal-roads-map} zeigt die Straßen, die quer durch den
 
 Für Abbildung~\ref{fig:poi-map} haben wir die am Anlagenring vorhandenen Angebote (aus OSM sowie ergänzend manuell erhoben) in vier Kategorien unterschiedlicher Nutzendengruppen und Tageszeiten eingeteilt und für einzelne Bereiche des Parks jeweils gezählt, wie viele dieser Kategorien dort vertreten sind. Gut aufgestellt bezüglich Nutzungsvielfalt sind demnach die Bereiche um das Nebbiensche Gartenhaus, die Eschenheimer Anlage, die Alte Oper sowie die Homeier Anlage. Eine geringe Nutzungsvielfalt zeigt sich dagegen rund um den Friedberger Tor und die Taunusanlage.
 
-Als POIs herangezogen wurden zum einen über die Overpass-API aus OpenStreetMap heruntergeladene Angebote (Cafés, Restaurants, Kultur-/Bildungseinrichtungen wie Theater, Bibliotheken, Museen und Galerien, Parks/Wiesen, Spielplätze sowie Sportbereiche), zum anderen ergänzend manuell im Feld erhobene Angebote, die in OSM nicht oder nicht ausreichend differenziert erfasst sind (Springbrunnen sowie Spielplätze mit zusätzlichem Fußball- bzw.\ Basketballfeld). Diese Angebote wurden den folgenden vier Kategorien zugeordnet:
+Als POIs herangezogen wurden zum einen über die Overpass-API aus OpenStreetMap heruntergeladene Angebote (Cafés, Restaurants, Kultur-/Bildungseinrichtungen wie Theater, Bibliotheken, Museen und Galerien, Parks/Wiesen, Spielplätze sowie Sportbereiche), zum anderen ergänzend manuell im Feld erhobene Angebote, die in OSM nicht oder nicht ausreichend differenziert erfasst sind (Springbrunnen sowie Spielplätze mit zusätzlichem Fußball- bzw.\ Basketballfeld).
+\FloatBarrier
+Diese Angebote wurden den folgenden vier Kategorien zugeordnet:
 
 \begin{itemize}
 	\item \textbf{Sport: früh \& abends} -- Sportbereiche (z.\,B. Sportplätze, Sportzentren, Fitnessstationen).
@@ -220,7 +224,6 @@ Als POIs herangezogen wurden zum einen über die Overpass-API aus OpenStreetMap 
 Der Wahrnehmungsaspekt der Durchgängigkeit wird in Abschnitt~\ref{sec:wahrnehmungsumfrage} anhand der Ergebnisse der Wahrnehmungsumfrage im Detail untersucht.
 
 \clearpage
-
 \section{Wahrnehmungsumfrage}
 \label{sec:wahrnehmungsumfrage}
 
@@ -232,7 +235,7 @@ Unser Projekt überträgt dasselbe Paradigma auf eine konkrete planerische Frage
 
 Konzeptionelles Vorbild für unsere Plattform ist \enquote{Place Pulse} des MIT Media Lab, das denselben paarweisen Vergleichsansatz erstmals in großem Maßstab für die Wahrnehmung von Straßenräumen eingesetzt hat \autocite{salesses2013,naik2014}. Abbildung~\ref{fig:survey-web} zeigt die Weboberfläche unserer eigenen, daran angelehnten Umfrageplattform \enquote{ABsurveys}, wie sie sowohl am Vor-Ort-Computer als auch über den ausgehängten QR-Code auf dem eigenen Smartphone genutzt werden konnte.
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{figures/survey_web.jpg}
 	\caption[Weboberfläche der ABsurveys-Umfrageplattform]{Screenshot der Weboberfläche der ABsurveys-Umfrageplattform, über die die Umfrage durchgeführt wurde (Quelle: eigene Darstellung). Die Umfrage ist weiterhin online unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/ABsurveys/web.html} einsehbar.}
@@ -272,7 +275,7 @@ Anders als eine statische Rangliste, die erst am Ende der Erhebung berechnet wir
 
 Bei mehreren hundert Bildern über drei Aktivitäten hinweg ist es weder praktikabel, jedem Teilnehmenden jedes mögliche Bildpaar zu zeigen, noch effizient, Paare rein zufällig auszuwählen. Die Plattform nutzt daher Active Sampling im Sinne des poolbasierten aktiven Lernens: Aus einem Kandidatenpool wird das Element mit dem größten erwarteten Informationsgewinn ausgewählt, statt passiv zufällig zu stichproben \autocite{settles2009}. Die Paarauswahl folgt drei Kriterien, kombiniert in einem Informationsgewinn-Score:
 
-\begin{table}[H]
+\begin{table}[h]
 	\centering
 	\begin{tabularx}{\textwidth}{@{}llX@{}}
 		\toprule
@@ -309,7 +312,7 @@ Der oben beschriebene dreiteilige Mechanismus wurde für eine konkrete Fallstudi
 
 \subsection{Ergebnisse}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.85\textwidth]{figures/streetscore_map.jpg}
 	\caption[Wahrnehmungskarte des Anlagenrings]{Karte aller im Rahmen der Feldstudie erhobenen Standorte am Anlagenring mit den zugehörigen Fotografien und den daraus resultierenden Umfrage-Wahrnehmungswerten (TrueSkill $\mu$) (Quelle: eigene Darstellung; Hintergrundkarte: Google). Die interaktive Version der Karte ist unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/ABsurveys/map.html} verfügbar.}
@@ -363,6 +366,7 @@ Räumlich zeigt sich in Abbildung~\ref{fig:streetscore-map} ein deutliches Muste
 
 \FloatBarrier
 
+\clearpage
 \section{Verkehrsberuhigung im Stadtzentrum}
 
 Dass eine weitgehende Reduzierung des Autoverkehrs in historischen Stadtzentren nicht nur theoretisch denkbar, sondern in der Praxis erfolgreich umsetzbar ist, zeigen mehrere europäische Städte, die diesen Weg bereits vor Jahren eingeschlagen haben. Im Folgenden stellen wir zwei international bekannte Beispiele vor, Madrid und Valencia. Madrid hat eine der strengsten und größten Umweltzonen Europas. Valencia hat eine ähnliche Größe wie die Frankfurter Innenstadt und viele Ideen aus Barcelonas Stadtplanung übernommen, darunter einige gute Ansätze zur Fußgängerzonen-Gestaltung, die als Vorbild für unseren eigenen Vorschlag für Frankfurt dienen. Beide Beispiele sollen zeigen, dass in anderen Gesellschaften mit entsprechendem politischem Willen tiefgreifende verkehrliche Veränderungen möglich sind, ein Aspekt, an dem es in Deutschland derzeit vielerorts fehlt. Anschließend erläutern wir die von uns entwickelte Routing-Engine und stellen eigene Untersuchungen zu möglichen Straßensperrungen im Frankfurter Zentrum vor.
@@ -371,7 +375,7 @@ Dass eine weitgehende Reduzierung des Autoverkehrs in historischen Stadtzentren 
 
 Seit 2018 gilt im Zentrum Madrids mit \enquote{Madrid Central} eine der strengsten und flächenmäßig größten Umweltzonen Europas: Auf rund 4,7\,km\textsuperscript{2} ist die Zufahrt auf Anwohnende, ÖPNV und Fahrzeuge mit bester Umweltplakette beschränkt \autocite{ayuntamientomadridcentral2018} (Abbildung~\ref{fig:madrid}). Politisch bemerkenswert: Die konservative Nachfolgeregierung, die 2019 unter anderem mit der Abschaffung der Zone angetreten war, behielt sie im Kern bei und weitete den Ansatz sogar auf die gesamte Stadt aus \autocite{ayuntamientomadridzbe2026}. \textcite{moralcarcedo2024} zeigt zudem, dass die Zone den Verkehr über einen \enquote{Randeffekt} nicht nur innerhalb, sondern auch außerhalb ihrer Grenzen reduzierte.
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/Madrid.jpg}
 	\caption[Umweltzonen in Madrid]{Umweltzonen im Zentrum Madrids, darunter die sehr strikte Zone \enquote{Madrid Central}/\enquote{Distrito Centro} sowie die großflächigere, weniger strikte gesamtstädtische Zone \enquote{Madrid 360} (links); rechts in blau die deutlich früher, bereits ab 2004 eingerichteten reinen Anwohnerzonen (\enquote{Áreas de Prioridad Residencial}) im historischen Zentrum (Quelle: Ayuntamiento de Madrid).}
@@ -382,14 +386,14 @@ Seit 2018 gilt im Zentrum Madrids mit \enquote{Madrid Central} eine der strengst
 
 Valencia ist mit rund 826.000 Einwohnenden und einer historischen Altstadt ähnlicher Größenordnung wie Frankfurt (775.000 Einwohnende) gut vergleichbar. Beide Städte wurden in den Kriegen des 20.\,Jahrhunderts beschädigt: Valencia im Spanischen Bürgerkrieg (1937--1939), Frankfurt im Zweiten Weltkrieg, insbesondere durch die beiden Luftangriffe vom 18. und 22.\,März 1944, die die größte Fachwerk-Altstadt Deutschlands nahezu vollständig zerstörten. Beim Wiederaufbau ging Valencia jedoch näher am historischen Vorbild vor, während die Frankfurter Innenstadt konsequent autogerecht wiederaufgebaut wurde. Städtebaulich hat Valencia zudem viele Ideen aus Barcelona übernommen und auf eine deutlich kleinere Stadt übertragen. Statt einer Madrid-artigen Zufahrtsbeschränkung für ein großes Gebiet setzte Valencia auf eine schrittweise Fußgängerzonen-Strategie: Einzelne Straßen und Plätze der Altstadt, unter anderem die Plaza del Ayuntamiento (Abbildung~\ref{fig:valencia-strasse}), wurden in Fußgängerzonen umgewandelt \autocite{ajuntamentdevalenciaAreaPrioridadResidencial2026,ajuntamentdevalenciaEstudioReordenacionCirculacion2025}. Verbleibender Kfz-Verkehr wird dabei zum umgebenden Ring geleitet, statt quer durchs Zentrum zu fahren. Das zeigt sich auch an einer beispielhaften Wegeverbindung in der Altstadt: Zu Fuß dauert sie 11\,Minuten auf direktem Weg durch das Zentrum, mit dem Auto 17\,Minuten über den Umweg entlang des Rings (Abbildung~\ref{fig:valencia-route}).
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/valencia_before_after.jpg}
+	\includegraphics[width=0.8\textwidth]{figures/valencia_before_after.jpg}
 	\caption[Plaza del Ayuntamiento vor und nach der Umgestaltung]{Plaza del Ayuntamiento in Valencia vor (links) und nach (rechts) der Umgestaltung zur Fußgängerzone (Quelle: \textcite{ajuntamentdevalenciaEstudioReordenacionCirculacion2025}).}
 	\label{fig:valencia-strasse}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/Valencia.jpg}
 	\caption[Vergleich einer Wegeverbindung zu Fuß und mit dem Auto in Valencia]{Dieselbe Wegeverbindung in der Altstadt Valencias zu Fuß (links, 11\,Minuten, 800\,m direkt durchs Zentrum) und mit dem Auto (rechts, 17\,Minuten, 3,1\,km über den umgebenden Ring) (Quelle: Google Maps).}
@@ -408,7 +412,7 @@ Mit der Routing-Engine wurde eine interaktive Karte erstellt, um die Auswirkunge
 
 Die Bewertung erfolgt über ein stark vereinfachtes Ursprungs-Ziel-Modell nach dem Grundgedanken klassischer Vier-Stufen-Modelle \autocite{ortuzarwillumsen2011}, angewendet auf die offizielle Metropolregion FrankfurtRheinMain: Verkehrserzeugung durch Wohnbevölkerung \autocite{worldpop2020}, Verkehrsanziehung durch Arbeitsplätze \autocite{bundesagenturfurarbeit2025}, verteilt auf ein je nach Entfernung zum Anlagenring unterschiedlich feines Raster an Polygonen, deren Geometrie von der amtlichen Verwaltungsgliederung übernommen wird \autocite{hvbg2026}: innerhalb der Gemeinde Frankfurt am Main auf Gemarkungsebene, in einem Umkreis von 10\,km um die Gemeinde Frankfurt auf Gemeindeebene, im übrigen Hessen auf Landkreisebene und für die weiteren an der Metropolregion beteiligten Bundesländer jeweils als ein einziges Polygon je Bundesland. Alle Routen zwischen den Polygonen werden mit Herkunftsbevölkerung und Zielarbeitsplätzen gewichtet; die \enquote{Verkehrszunahme} einer Straßenkante ist die Zunahme der so gewichteten Routen, die über sie führen. Das Modell ist eine stark vereinfachte, qualitative Annäherung, kein quantitatives Verkehrsmodell mit realen Zähldaten. Der Code ist unter \url{https://github.com/MiguelUrenaPliego/ProjektAnlagenring} öffentlich verfügbar.
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.32\textwidth}
 		\includegraphics[width=\linewidth]{figures/zentum_verkehr.jpg}
@@ -423,7 +427,7 @@ Die Bewertung erfolgt über ein stark vereinfachtes Ursprungs-Ziel-Modell nach d
 	\label{fig:szenario-zentrum}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.32\textwidth}
 		\includegraphics[width=\linewidth]{figures/anlagenring_verkehr.jpg}
@@ -438,7 +442,7 @@ Die Bewertung erfolgt über ein stark vereinfachtes Ursprungs-Ziel-Modell nach d
 	\label{fig:szenario-anlagenring}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.32\textwidth}
 		\includegraphics[width=\linewidth]{figures/bahnhof_verkehr.jpg}
@@ -461,9 +465,9 @@ In allen drei Szenarien liegen die am stärksten betroffenen Gemarkungen unmitte
 
 Auf Basis dieser drei Szenarien wird ein gezielterer, vierter Ansatz vorgeschlagen (Abbildung~\ref{fig:closures}): Statt große Gebiete komplett zu sperren, genügt bereits die punktuelle Unterbindung des Durchgangsverkehrs an wenigen Knotenpunkten, nämlich an der Konrad-Adenauer-Straße/Konstablerwache sowie parallel zum Anlagenring am Friedberger Tor, am Eschenheimer Tor und an der Taunusanlage. Diese Stellen sind bereits in Abbildung~\ref{fig:transversal-roads-map} als zentrale Barrieren identifiziert und dienen zugleich besonders dem Durchgangsverkehr, nicht nur dem Zielverkehr ins Zentrum.
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.85\textwidth]{figures/closures.jpg}
+	\includegraphics[width=0.75\textwidth]{figures/closures.jpg}
 	\caption[Vorgeschlagene Sperrungen im Frankfurter Zentrum]{Von uns vorgeschlagene, punktuelle Unterbindung des Durchgangsverkehrs an der Konrad-Adenauer-Straße/Konstablerwache sowie am Friedberger Tor, Eschenheimer Tor und an der Taunusanlage (Quelle: eigene Darstellung; Hintergrundkarte: Google Maps).}
 	\label{fig:closures}
 \end{figure}
