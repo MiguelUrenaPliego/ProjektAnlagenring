@@ -716,6 +716,68 @@
       \verb 10.1109/CVPRW.2014.121
       \endverb
     \endentry
+    \entry{notter2025}{report}{}
+      \name{author}{6}{}{%
+        {{hash=22028e46ced24ef443a5fc6334de40f6}{%
+           family={Notter},
+           familyi={N\bibinitperiod},
+           given={Benedikt},
+           giveni={B\bibinitperiod}}}%
+        {{hash=183be28ab6d2ad7d456db201604c4143}{%
+           family={Cox},
+           familyi={C\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=65a66e910ea099e005655d8cf861dc5f}{%
+           family={{Vuorenmaa Berdica}},
+           familyi={V\bibinitperiod},
+           given={Katarina},
+           giveni={K\bibinitperiod}}}%
+        {{hash=4ddaaf1c930721254c00b3e488c7219e}{%
+           family={Sahlgren},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=d2d654c12bbe28977fac8982202325cd}{%
+           family={Kräck},
+           familyi={K\bibinitperiod},
+           given={Judith},
+           giveni={J\bibinitperiod}}}%
+        {{hash=b31c2278e006685eced952af0c095a5c}{%
+           family={Heidt},
+           familyi={H\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Umweltbundesamt}%
+      }
+      \strng{namehash}{e680dc98e5b74bdbdf28dda72675437b}
+      \strng{fullhash}{8abe32a8fcc634f2f4755b6d57c020d0}
+      \strng{bibnamehash}{e680dc98e5b74bdbdf28dda72675437b}
+      \strng{authorbibnamehash}{e680dc98e5b74bdbdf28dda72675437b}
+      \strng{authornamehash}{e680dc98e5b74bdbdf28dda72675437b}
+      \strng{authorfullhash}{8abe32a8fcc634f2f4755b6d57c020d0}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{TEXTE 108/2025}
+      \field{title}{{HBEFA} Traffic Situations -- Application Guidelines}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://openumwelt.de/entities/publication/f24f8954-c82c-412a-929c-3c1b50202877
+      \endverb
+      \verb{url}
+      \verb https://openumwelt.de/entities/publication/f24f8954-c82c-412a-929c-3c1b50202877
+      \endverb
+    \endentry
     \entry{openstreetmap}{online}{}
       \name{author}{1}{}{%
         {{hash=602f2591276bacf4409eba4a627cff11}{%

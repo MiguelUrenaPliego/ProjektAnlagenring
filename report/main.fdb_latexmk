@@ -1,14 +1,14 @@
 # Fdb version 4
-["biber main"] 1784633961.26348 "main.bcf" "main.bbl" "main" 1784636475.72011 0
-  "main.bcf" 1784636475.59321 110757 9996f0889e1505e4a92397d13840715a "pdflatex"
-  "references.bib" 1784632339.05778 9558 fa0b1a01e7d67252263fed9788b0158a ""
+["biber main"] 1784660004.7062 "main.bcf" "main.bbl" "main" 1784660433.00473 0
+  "main.bcf" 1784660432.89431 111197 4163657566e5c8361ef968a3ba052fc2 "pdflatex"
+  "references.bib" 1784657668.56752 11218 ca48bfc8c06787500f1315e940524db4 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1784636473.9778 "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" "main.pdf" "main" 1784636475.72041 0
+["pdflatex"] 1784660431.32969 "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" "main.pdf" "main" 1784660433.00506 0
   "/etc/texmf/web2c/texmf.cnf" 1743875734.39256 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" 1784636473.74824 45477 6e27c0b1c1e94d8e4a35d5df0eacb98e ""
+  "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" 1784660431.13532 41708 9f3a214dd0e38d5d05740f26bcd69cc2 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -307,7 +307,7 @@
   "figures/good_street.jpg" 1784542648.18793 322304 496491b76e6948fba7915299073f73c0 ""
   "figures/intersections_map.jpg" 1784564361.26119 554297 ffe7420886ac6d2793b3b0ef785cdd90 ""
   "figures/points_of_interest_map.jpg" 1784564361.55919 1597147 0d6f67c54042cab43bd219f38c1d9bb6 ""
-  "figures/streetscore_map.jpg" 1784476506.26942 1373459 6ccf64d99041044e413d281edd5777c6 ""
+  "figures/streetscore_map.jpg" 1784642814.81044 735726 f820b86e51d9d25adf5637744199927e ""
   "figures/survey_web.jpg" 1784475942.85963 334821 8cac8cf92b346f4ee2f2d3dd1651fe86 ""
   "figures/transversal_roads_map.jpg" 1784567724.14538 607153 84267f8558c849d55ea6a4d45b8ec30d ""
   "figures/valencia_before_after.jpg" 1784633043.59881 463531 dec9ea12808bf7dcd2213ec15a1c1eb7 ""
@@ -317,14 +317,14 @@
   "front_page/front_page.tex" 1784541124.1663 1918 f6d07cfe4c733b00e2363e7f70afee6b ""
   "logos/FUAS_logo_trim.png" 1784541110.20337 31378 99e5855e0156bd91dee0e4f47a7f3747 ""
   "logos/UIREKA_logo_trim.png" 1784541110.14937 5192 bfe5e993a0167b5ec2232239f199f449 ""
-  "main.aux" 1784636475.58621 13409 e3b27861ae0e57e2bc8c9c231f6a3cd0 "pdflatex"
-  "main.bbl" 1784633962.01563 44628 61dcc8f9a8ebc8b8960c0c5f8e6a0241 "biber main"
-  "main.lof" 1784636475.59421 1426 e365c9fe488f63d840395121fbd4bf2f "pdflatex"
-  "main.lot" 1784636475.59421 258 aa0cfc84e6741b7487ceb91a1d549def "pdflatex"
-  "main.out" 1784636475.59121 3979 a6a879733d577210bd2d63cc6259c283 "pdflatex"
-  "main.run.xml" 1784636475.59421 2341 b52e31227361d5b9cd7ab762cbd59231 "pdflatex"
-  "main.tex" 1784636473.74824 45477 6e27c0b1c1e94d8e4a35d5df0eacb98e ""
-  "main.toc" 1784636475.59421 1772 b3d9e386e6e5eaf926ac439b9b5dc957 "pdflatex"
+  "main.aux" 1784660432.88931 15697 90a669bcc9f99348872c14620aeb8479 "pdflatex"
+  "main.bbl" 1784660005.41297 52630 4f383c17d39c98af5d8f9edb01ddc427 "biber main"
+  "main.lof" 1784660432.89531 1131 82eb034c05924bdec7127e9255e64f39 "pdflatex"
+  "main.lot" 1784660432.89531 368 5f58c83186c50ddd2153657df13461e8 "pdflatex"
+  "main.out" 1784660432.89331 5649 40668542bbde9920d455d4d7485b9915 "pdflatex"
+  "main.run.xml" 1784660432.89531 2341 b52e31227361d5b9cd7ab762cbd59231 "pdflatex"
+  "main.tex" 1784660431.13532 41708 9f3a214dd0e38d5d05740f26bcd69cc2 ""
+  "main.toc" 1784660432.89531 2789 2858983f9950ff9260138ffbb322a0de "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
