@@ -14,6 +14,7 @@
 \contentsline {section}{\numberline {3}Verkehrsberuhigung im Stadtzentrum}{15}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Beispiel Madrid}{15}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Beispiel Valencia}{16}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Routing-Engine}{16}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.3}Routing-Engine}{17}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Eigene Untersuchung: Straßensperrungen im Frankfurter Zentrum}{17}{subsection.3.4}%
 \contentsline {subsection}{\numberline {3.5}Vorgeschlagene Verkehrsberuhigung}{19}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Verfügbarkeit von Code und Projektwebsite}{20}{section.4}%
