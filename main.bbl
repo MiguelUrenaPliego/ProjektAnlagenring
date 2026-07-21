@@ -182,6 +182,37 @@
       \verb 10.1016/j.compenvurbsys.2017.05.004
       \endverb
     \endentry
+    \entry{demshuk2021}{book}{}
+      \name{author}{1}{}{%
+        {{hash=7378a1c367de18b34275500a4dadcf40}{%
+           family={Demshuk},
+           familyi={D\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Pittsburgh}%
+      }
+      \list{publisher}{1}{%
+        {University of Pittsburgh Press}%
+      }
+      \strng{namehash}{7378a1c367de18b34275500a4dadcf40}
+      \strng{fullhash}{7378a1c367de18b34275500a4dadcf40}
+      \strng{bibnamehash}{7378a1c367de18b34275500a4dadcf40}
+      \strng{authorbibnamehash}{7378a1c367de18b34275500a4dadcf40}
+      \strng{authornamehash}{7378a1c367de18b34275500a4dadcf40}
+      \strng{authorfullhash}{7378a1c367de18b34275500a4dadcf40}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-0-8229-4697-7}
+      \field{title}{Three Cities after Hitler: Redemptive Reconstruction across Cold War Borders}
+      \field{year}{2021}
+      \field{dateera}{ce}
+    \endentry
     \entry{dosovitskiy2021}{inproceedings}{}
       \name{author}{12}{}{%
         {{hash=72308762399d6ab62bbd9391c64c7bfd}{%
@@ -434,6 +465,41 @@
       \verb 10.1016/j.isprsjprs.2024.06.023
       \endverb
     \endentry
+    \entry{infasmid2025}{report}{}
+      \name{author}{1}{}{%
+        {{hash=c63ed63411c91487b12cdb591deca717}{%
+           family={{infas}},
+           familyi={i\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Hessisches Ministerium für Wirtschaft, Energie, Verkehr, Wohnen und ländlichen Raum}%
+      }
+      \strng{namehash}{c63ed63411c91487b12cdb591deca717}
+      \strng{fullhash}{c63ed63411c91487b12cdb591deca717}
+      \strng{bibnamehash}{c63ed63411c91487b12cdb591deca717}
+      \strng{authorbibnamehash}{c63ed63411c91487b12cdb591deca717}
+      \strng{authornamehash}{c63ed63411c91487b12cdb591deca717}
+      \strng{authorfullhash}{c63ed63411c91487b12cdb591deca717}
+      \field{sortinit}{i}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Mobilität in Deutschland ({MiD}) 2023 -- Regionalbericht Hessen}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://wirtschaft.hessen.de/sites/wirtschaft.hessen.de/files/2026-07/infas_regionalbericht_hessen_mid2023.pdf
+      \endverb
+      \verb{url}
+      \verb https://wirtschaft.hessen.de/sites/wirtschaft.hessen.de/files/2026-07/infas_regionalbericht_hessen_mid2023.pdf
+      \endverb
+    \endentry
     \entry{jacobs1961}{book}{}
       \name{author}{1}{}{%
         {{hash=a01104208f884a04bf7571a20e5b8332}{%
@@ -502,6 +568,43 @@
       \verb 10.1016/S0041-1647(69)80022-5
       \endverb
     \endentry
+    \entry{marohn2018}{online}{}
+      \name{author}{1}{}{%
+        {{hash=3c5417050230f363d3581f0f476e279d}{%
+           family={Marohn},
+           familyi={M\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Strong Towns}%
+      }
+      \strng{namehash}{3c5417050230f363d3581f0f476e279d}
+      \strng{fullhash}{3c5417050230f363d3581f0f476e279d}
+      \strng{bibnamehash}{3c5417050230f363d3581f0f476e279d}
+      \strng{authorbibnamehash}{3c5417050230f363d3581f0f476e279d}
+      \strng{authornamehash}{3c5417050230f363d3581f0f476e279d}
+      \strng{authorfullhash}{3c5417050230f363d3581f0f476e279d}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{What's a {STROAD} and Why Does It Matter?}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.strongtowns.org/journal/2018-3-1-whats-a-stroad-and-why-does-it-matter
+      \endverb
+      \verb{url}
+      \verb https://www.strongtowns.org/journal/2018-3-1-whats-a-stroad-and-why-does-it-matter
+      \endverb
+    \endentry
     \entry{may1990}{book}{}
       \name{author}{1}{}{%
         {{hash=5b38987b2e60a886f985971d21913410}{%
@@ -509,6 +612,9 @@
            familyi={M\bibinitperiod},
            given={Adolf\bibnamedelima D.},
            giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Englewood Cliffs}%
       }
       \list{publisher}{1}{%
         {Prentice Hall}%
@@ -525,6 +631,7 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{isbn}{0-13-926072-2}
       \field{title}{Traffic Flow Fundamentals}
       \field{year}{1990}
       \field{dateera}{ce}
@@ -678,38 +785,6 @@
       \field{year}{2011}
       \field{dateera}{ce}
     \endentry
-    \entry{regionfrankfurtsump2026}{online}{}
-      \name{author}{1}{}{%
-        {{hash=45797cc08a57d57d2d089b2e45da5bd5}{%
-           family={{Regionalverband FrankfurtRheinMain}},
-           familyi={R\bibinitperiod}}}%
-      }
-      \strng{namehash}{45797cc08a57d57d2d089b2e45da5bd5}
-      \strng{fullhash}{45797cc08a57d57d2d089b2e45da5bd5}
-      \strng{bibnamehash}{45797cc08a57d57d2d089b2e45da5bd5}
-      \strng{authorbibnamehash}{45797cc08a57d57d2d089b2e45da5bd5}
-      \strng{authornamehash}{45797cc08a57d57d2d089b2e45da5bd5}
-      \strng{authorfullhash}{45797cc08a57d57d2d089b2e45da5bd5}
-      \field{sortinit}{R}
-      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Sustainable Urban Mobility Plan ({SUMP}) for the Region -- Umsetzung}
-      \field{urlday}{21}
-      \field{urlmonth}{7}
-      \field{urlyear}{2026}
-      \field{year}{2026}
-      \field{dateera}{ce}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://www.region-frankfurt.de/Unsere-Themen-Leistungen/Mobilit%C3%A4t-in-der-Region/Mobilit%C3%A4tsstrategie-/Umsetzung/Sustainable-Urban-Mobility-Plan-SUMP-for-the-Region.php
-      \endverb
-      \verb{url}
-      \verb https://www.region-frankfurt.de/Unsere-Themen-Leistungen/Mobilit%C3%A4t-in-der-Region/Mobilit%C3%A4tsstrategie-/Umsetzung/Sustainable-Urban-Mobility-Plan-SUMP-for-the-Region.php
-      \endverb
-    \endentry
     \entry{salesses2013}{article}{}
       \name{author}{3}{}{%
         {{hash=ec9fd2ad2a5f5f64bb0b12b71e86ddbc}{%
@@ -820,7 +895,7 @@
       \verb https://frankfurt.de/-/media/3990aa065856425b85f5be74f9bd3fb9.ashx
       \endverb
     \endentry
-    \entry{stadtfrankfurtmasterplan2025}{online}{}
+    \entry{stadtfrankfurtsrv2025}{online}{}
       \name{author}{1}{}{%
         {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
            family={{Stadt Frankfurt am Main}},
@@ -835,11 +910,12 @@
       \field{extraname}{2}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{1}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Masterplan Mobilität Frankfurt -- {FAQ}}
+      \field{title}{Fußverkehr laut Auswertung auf Rekordhoch}
       \field{urlday}{21}
       \field{urlmonth}{7}
       \field{urlyear}{2026}
@@ -847,10 +923,81 @@
       \field{dateera}{ce}
       \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://frankfurt.de/themen/verkehr/verkehrsplanung/masterplan-mobilitaet/faq-masterplan
+      \verb https://frankfurt.de/de-de/aktuelle-meldung/meldungen/fussverkehr-laut-auswertung-auf-rekordhoch/
       \endverb
       \verb{url}
-      \verb https://frankfurt.de/themen/verkehr/verkehrsplanung/masterplan-mobilitaet/faq-masterplan
+      \verb https://frankfurt.de/de-de/aktuelle-meldung/meldungen/fussverkehr-laut-auswertung-auf-rekordhoch/
+      \endverb
+    \endentry
+    \entry{stadtfrankfurtmasterplan2025}{report}{}
+      \name{author}{1}{}{%
+        {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
+           family={{Stadt Frankfurt am Main}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Stadt Frankfurt am Main, Dezernat Mobilität}%
+      }
+      \strng{namehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{fullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{bibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorbibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authornamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorfullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \field{extraname}{3}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Masterplan Mobilität -- Bericht}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://frankfurt.de/-/media/frankfurtde/frankfurt-themen/verkehr/verkehrsplanung/pdf/masterplan-mobilitaet/bericht_masterplan.pdf
+      \endverb
+      \verb{url}
+      \verb https://frankfurt.de/-/media/frankfurtde/frankfurt-themen/verkehr/verkehrsplanung/pdf/masterplan-mobilitaet/bericht_masterplan.pdf
+      \endverb
+    \endentry
+    \entry{stadtfrankfurtzieleverfahren2025}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
+           family={{Stadt Frankfurt am Main}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{fullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{bibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorbibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authornamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorfullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \field{extraname}{4}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Masterplan Mobilität -- Ziele und Verfahren}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://frankfurt.de/themen/verkehr/verkehrsplanung/masterplan-mobilitaet/ziele-und-verfahren
+      \endverb
+      \verb{url}
+      \verb https://frankfurt.de/themen/verkehr/verkehrsplanung/masterplan-mobilitaet/ziele-und-verfahren
       \endverb
     \endentry
     \entry{bundesagenturfurarbeit2025}{dataset}{}
