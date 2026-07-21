@@ -19,6 +19,169 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{ajuntamentdevalenciaEstudioReordenacionCirculacion2025}{online}{}
+      \name{author}{1}{}{%
+        {{hash=2858bfc1e7c6f1e9772572f3dbf53704}{%
+           family={{Ajuntament de València}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \strng{fullhash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \strng{bibnamehash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \strng{authorbibnamehash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \strng{authornamehash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \strng{authorfullhash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \field{extraname}{1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Estudio de reordenación de la circulación}
+      \field{urlday}{5}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.valencia.es/es/-/conversio-zona-vianants-ajuntament
+      \endverb
+      \verb{url}
+      \verb https://www.valencia.es/es/-/conversio-zona-vianants-ajuntament
+      \endverb
+    \endentry
+    \entry{ajuntamentdevalenciaAreaPrioridadResidencial2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=2858bfc1e7c6f1e9772572f3dbf53704}{%
+           family={{Ajuntament de València}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \strng{fullhash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \strng{bibnamehash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \strng{authorbibnamehash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \strng{authornamehash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \strng{authorfullhash}{2858bfc1e7c6f1e9772572f3dbf53704}
+      \field{extraname}{2}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Área de Prioridad Residencial Ciutat Vella}
+      \field{urlday}{5}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.valencia.es/cas/movilidad/inicio/-/content/area-de-prioridad-residencial-de-ciutat-vella
+      \endverb
+      \verb{url}
+      \verb https://www.valencia.es/cas/movilidad/inicio/-/content/area-de-prioridad-residencial-de-ciutat-vella
+      \endverb
+    \endentry
+    \entry{ayuntamientomadridcentral2018}{online}{}
+      \name{author}{1}{}{%
+        {{hash=f523235bd02db3a7ae110e4a63eda63b}{%
+           family={{Ayuntamiento de Madrid}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{fullhash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{bibnamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authorbibnamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authornamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authorfullhash}{f523235bd02db3a7ae110e4a63eda63b}
+      \field{extraname}{1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Madrid Central entra en vigor}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.madrid.es/portales/munimadrid/es/Inicio/Actualidad/Noticias/Madrid-Central-entra-en-vigor/
+      \endverb
+      \verb{url}
+      \verb https://www.madrid.es/portales/munimadrid/es/Inicio/Actualidad/Noticias/Madrid-Central-entra-en-vigor/
+      \endverb
+    \endentry
+    \entry{ayuntamientomadridzbe2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=f523235bd02db3a7ae110e4a63eda63b}{%
+           family={{Ayuntamiento de Madrid}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{fullhash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{bibnamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authorbibnamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authornamehash}{f523235bd02db3a7ae110e4a63eda63b}
+      \strng{authorfullhash}{f523235bd02db3a7ae110e4a63eda63b}
+      \field{extraname}{2}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Zona de Bajas Emisiones ({ZBE}) Madrid 360}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.madrid.es/portales/munimadrid/es/Inicio/Movilidad-y-transportes/Zonas-de-Bajas-Emisiones/Madrid-Zona-de-Bajas-Emisiones/
+      \endverb
+      \verb{url}
+      \verb https://www.madrid.es/portales/munimadrid/es/Inicio/Movilidad-y-transportes/Zonas-de-Bajas-Emisiones/Madrid-Zona-de-Bajas-Emisiones/
+      \endverb
+    \endentry
+    \entry{boeing2017}{article}{}
+      \name{author}{1}{}{%
+        {{hash=6a97e7860ba89ae913db592b29249440}{%
+           family={Boeing},
+           familyi={B\bibinitperiod},
+           given={Geoff},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{6a97e7860ba89ae913db592b29249440}
+      \strng{fullhash}{6a97e7860ba89ae913db592b29249440}
+      \strng{bibnamehash}{6a97e7860ba89ae913db592b29249440}
+      \strng{authorbibnamehash}{6a97e7860ba89ae913db592b29249440}
+      \strng{authornamehash}{6a97e7860ba89ae913db592b29249440}
+      \strng{authorfullhash}{6a97e7860ba89ae913db592b29249440}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Computers, Environment and Urban Systems}
+      \field{title}{{OSMnx}: New Methods for Acquiring, Constructing, Analyzing, and Visualizing Complex Street Networks}
+      \field{volume}{65}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{pages}{126\bibrangedash 139}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1016/j.compenvurbsys.2017.05.004
+      \endverb
+    \endentry
     \entry{dosovitskiy2021}{inproceedings}{}
       \name{author}{12}{}{%
         {{hash=72308762399d6ab62bbd9391c64c7bfd}{%
@@ -168,6 +331,38 @@
       \verb https://proceedings.neurips.cc/paper/2006/hash/f44ee263952e65b3610b8ba51229d1f9-Abstract.html
       \endverb
     \endentry
+    \entry{hvbg2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=f04f78b175410a0d19fab44b766dcefb}{%
+           family={{Hessisches Landesamt für Bodenmanagement und Geoinformation}},
+           familyi={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{f04f78b175410a0d19fab44b766dcefb}
+      \strng{fullhash}{f04f78b175410a0d19fab44b766dcefb}
+      \strng{bibnamehash}{f04f78b175410a0d19fab44b766dcefb}
+      \strng{authorbibnamehash}{f04f78b175410a0d19fab44b766dcefb}
+      \strng{authornamehash}{f04f78b175410a0d19fab44b766dcefb}
+      \strng{authorfullhash}{f04f78b175410a0d19fab44b766dcefb}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Amtliches Liegenschaftskatasterinformationssystem ({ALKIS})}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://opendata.hessen.de/dataset/alkis-amtliches-liegenschaftskatasterinformationssystem
+      \endverb
+      \verb{url}
+      \verb https://opendata.hessen.de/dataset/alkis-amtliches-liegenschaftskatasterinformationssystem
+      \endverb
+    \endentry
     \entry{hou2024}{article}{}
       \name{author}{9}{}{%
         {{hash=733db7f0370ff8e56483fb428264be96}{%
@@ -270,6 +465,102 @@
       \field{year}{1961}
       \field{dateera}{ce}
     \endentry
+    \entry{kirby1969}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b2a1cdf2b2c63243ecf16ca98bb58081}{%
+           family={Kirby},
+           familyi={K\bibinitperiod},
+           given={R.\bibnamedelimi F.},
+           giveni={R\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=13bbb3fcfdeb976344c706cb9ebefb1f}{%
+           family={Potts},
+           familyi={P\bibinitperiod},
+           given={R.\bibnamedelimi B.},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{0e6de80604ab99cf0d537d222f46101f}
+      \strng{fullhash}{0e6de80604ab99cf0d537d222f46101f}
+      \strng{bibnamehash}{0e6de80604ab99cf0d537d222f46101f}
+      \strng{authorbibnamehash}{0e6de80604ab99cf0d537d222f46101f}
+      \strng{authornamehash}{0e6de80604ab99cf0d537d222f46101f}
+      \strng{authorfullhash}{0e6de80604ab99cf0d537d222f46101f}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research}
+      \field{number}{3}
+      \field{title}{The Minimum Route Problem for Networks with Turn Penalties and Prohibitions}
+      \field{volume}{3}
+      \field{year}{1969}
+      \field{dateera}{ce}
+      \field{pages}{397\bibrangedash 408}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/S0041-1647(69)80022-5
+      \endverb
+    \endentry
+    \entry{may1990}{book}{}
+      \name{author}{1}{}{%
+        {{hash=5b38987b2e60a886f985971d21913410}{%
+           family={May},
+           familyi={M\bibinitperiod},
+           given={Adolf\bibnamedelima D.},
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{5b38987b2e60a886f985971d21913410}
+      \strng{fullhash}{5b38987b2e60a886f985971d21913410}
+      \strng{bibnamehash}{5b38987b2e60a886f985971d21913410}
+      \strng{authorbibnamehash}{5b38987b2e60a886f985971d21913410}
+      \strng{authornamehash}{5b38987b2e60a886f985971d21913410}
+      \strng{authorfullhash}{5b38987b2e60a886f985971d21913410}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Traffic Flow Fundamentals}
+      \field{year}{1990}
+      \field{dateera}{ce}
+    \endentry
+    \entry{moralcarcedo2024}{article}{}
+      \name{author}{1}{}{%
+        {{hash=c630a99455bb73b6ee455d7da9b092f6}{%
+           family={Moral-Carcedo},
+           familyi={M\bibinithyphendelim C\bibinitperiod},
+           given={Julián},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{c630a99455bb73b6ee455d7da9b092f6}
+      \strng{fullhash}{c630a99455bb73b6ee455d7da9b092f6}
+      \strng{bibnamehash}{c630a99455bb73b6ee455d7da9b092f6}
+      \strng{authorbibnamehash}{c630a99455bb73b6ee455d7da9b092f6}
+      \strng{authornamehash}{c630a99455bb73b6ee455d7da9b092f6}
+      \strng{authorfullhash}{c630a99455bb73b6ee455d7da9b092f6}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation}
+      \field{number}{1}
+      \field{title}{Dissuasive Effect of Low Emission Zones on Traffic: The Case of Madrid Central}
+      \field{volume}{51}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{pages}{25\bibrangedash 49}
+      \range{pages}{25}
+      \verb{doi}
+      \verb 10.1007/s11116-022-10318-4
+      \endverb
+    \endentry
     \entry{naik2014}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=19ed5a04b675f741338b9cf26c7e32aa}{%
@@ -316,6 +607,107 @@
       \range{pages}{7}
       \verb{doi}
       \verb 10.1109/CVPRW.2014.121
+      \endverb
+    \endentry
+    \entry{openstreetmap}{online}{}
+      \name{author}{1}{}{%
+        {{hash=602f2591276bacf4409eba4a627cff11}{%
+           family={{OpenStreetMap contributors}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{602f2591276bacf4409eba4a627cff11}
+      \strng{fullhash}{602f2591276bacf4409eba4a627cff11}
+      \strng{bibnamehash}{602f2591276bacf4409eba4a627cff11}
+      \strng{authorbibnamehash}{602f2591276bacf4409eba4a627cff11}
+      \strng{authornamehash}{602f2591276bacf4409eba4a627cff11}
+      \strng{authorfullhash}{602f2591276bacf4409eba4a627cff11}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{OpenStreetMap}}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.openstreetmap.org
+      \endverb
+      \verb{url}
+      \verb https://www.openstreetmap.org
+      \endverb
+    \endentry
+    \entry{ortuzarwillumsen2011}{book}{}
+      \name{author}{2}{}{%
+        {{hash=f38ddf9d5d399e56d7f74e635d4482a2}{%
+           family={Ortúzar},
+           familyi={O\bibinitperiod},
+           given={Juan\bibnamedelimb de\bibnamedelima Dios},
+           giveni={J\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=df76e52e1ed54b671f6b8fbb75d9a39c}{%
+           family={Willumsen},
+           familyi={W\bibinitperiod},
+           given={Luis\bibnamedelima G.},
+           giveni={L\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Chichester}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons}%
+      }
+      \strng{namehash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \strng{fullhash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \strng{bibnamehash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \strng{authorbibnamehash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \strng{authornamehash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \strng{authorfullhash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4}
+      \field{isbn}{978-0-470-76039-0}
+      \field{title}{Modelling Transport}
+      \field{year}{2011}
+      \field{dateera}{ce}
+    \endentry
+    \entry{regionfrankfurtsump2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=45797cc08a57d57d2d089b2e45da5bd5}{%
+           family={{Regionalverband FrankfurtRheinMain}},
+           familyi={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{45797cc08a57d57d2d089b2e45da5bd5}
+      \strng{fullhash}{45797cc08a57d57d2d089b2e45da5bd5}
+      \strng{bibnamehash}{45797cc08a57d57d2d089b2e45da5bd5}
+      \strng{authorbibnamehash}{45797cc08a57d57d2d089b2e45da5bd5}
+      \strng{authornamehash}{45797cc08a57d57d2d089b2e45da5bd5}
+      \strng{authorfullhash}{45797cc08a57d57d2d089b2e45da5bd5}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Sustainable Urban Mobility Plan ({SUMP}) for the Region -- Umsetzung}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.region-frankfurt.de/Unsere-Themen-Leistungen/Mobilit%C3%A4t-in-der-Region/Mobilit%C3%A4tsstrategie-/Umsetzung/Sustainable-Urban-Mobility-Plan-SUMP-for-the-Region.php
+      \endverb
+      \verb{url}
+      \verb https://www.region-frankfurt.de/Unsere-Themen-Leistungen/Mobilit%C3%A4t-in-der-Region/Mobilit%C3%A4tsstrategie-/Umsetzung/Sustainable-Urban-Mobility-Plan-SUMP-for-the-Region.php
       \endverb
     \endentry
     \entry{salesses2013}{article}{}
@@ -393,6 +785,275 @@
       \endverb
       \verb{url}
       \verb https://minds.wisconsin.edu/handle/1793/60660
+      \endverb
+    \endentry
+    \entry{stadtfrankfurtmodalsplit2020}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
+           family={{Stadt Frankfurt am Main}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{fullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{bibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorbibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authornamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorfullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Neue empirische Befunde zum Verkehr in der wachsenden Stadt}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://frankfurt.de/-/media/3990aa065856425b85f5be74f9bd3fb9.ashx
+      \endverb
+      \verb{url}
+      \verb https://frankfurt.de/-/media/3990aa065856425b85f5be74f9bd3fb9.ashx
+      \endverb
+    \endentry
+    \entry{stadtfrankfurtmasterplan2025}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
+           family={{Stadt Frankfurt am Main}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{fullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{bibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorbibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authornamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorfullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Masterplan Mobilität Frankfurt -- {FAQ}}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://frankfurt.de/themen/verkehr/verkehrsplanung/masterplan-mobilitaet/faq-masterplan
+      \endverb
+      \verb{url}
+      \verb https://frankfurt.de/themen/verkehr/verkehrsplanung/masterplan-mobilitaet/faq-masterplan
+      \endverb
+    \endentry
+    \entry{bundesagenturfurarbeit2025}{dataset}{}
+      \name{author}{1}{}{%
+        {{hash=6b295ef5bd2e31621e568430aa706f82}{%
+           family={{Statistik der Bundesagentur für Arbeit}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{6b295ef5bd2e31621e568430aa706f82}
+      \strng{fullhash}{6b295ef5bd2e31621e568430aa706f82}
+      \strng{bibnamehash}{6b295ef5bd2e31621e568430aa706f82}
+      \strng{authorbibnamehash}{6b295ef5bd2e31621e568430aa706f82}
+      \strng{authornamehash}{6b295ef5bd2e31621e568430aa706f82}
+      \strng{authorfullhash}{6b295ef5bd2e31621e568430aa706f82}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Sozialversicherungspflichtig Beschäftigte am Arbeitsort nach Gemeinden (Gemeindedaten)}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://statistik.arbeitsagentur.de/DE/Navigation/Footer/Top-Produkte/Gemeindedaten-sozialversicherungspflichtig-Beschaeftigter-Nav.html
+      \endverb
+      \verb{url}
+      \verb https://statistik.arbeitsagentur.de/DE/Navigation/Footer/Top-Produkte/Gemeindedaten-sozialversicherungspflichtig-Beschaeftigter-Nav.html
+      \endverb
+    \endentry
+    \entry{stvo2013}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=421170275ec9a765e073c23b26032a01}{%
+           family={{StVO}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{421170275ec9a765e073c23b26032a01}
+      \strng{fullhash}{421170275ec9a765e073c23b26032a01}
+      \strng{bibnamehash}{421170275ec9a765e073c23b26032a01}
+      \strng{authorbibnamehash}{421170275ec9a765e073c23b26032a01}
+      \strng{authornamehash}{421170275ec9a765e073c23b26032a01}
+      \strng{authorfullhash}{421170275ec9a765e073c23b26032a01}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Bundesministerium der Justiz (Hrsg.)}
+      \field{title}{Straßenverkehrs-{Ordnung}, § 3 (zulässige Höchstgeschwindigkeit)}
+      \field{urlday}{16}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.gesetze-im-internet.de/stvo_2013/
+      \endverb
+      \verb{url}
+      \verb https://www.gesetze-im-internet.de/stvo_2013/
+      \endverb
+    \endentry
+    \entry{telefonicaESTUDIPILOTBIGDATA2023}{report}{}
+      \name{author}{1}{}{%
+        {{hash=f304bc563271c97c869acee8747a0f5c}{%
+           family={{Telefonica}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Ajuntament de València}%
+      }
+      \list{location}{1}{%
+        {Valencia}%
+      }
+      \strng{namehash}{f304bc563271c97c869acee8747a0f5c}
+      \strng{fullhash}{f304bc563271c97c869acee8747a0f5c}
+      \strng{bibnamehash}{f304bc563271c97c869acee8747a0f5c}
+      \strng{authorbibnamehash}{f304bc563271c97c869acee8747a0f5c}
+      \strng{authornamehash}{f304bc563271c97c869acee8747a0f5c}
+      \strng{authorfullhash}{f304bc563271c97c869acee8747a0f5c}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Estudi Pilot Bigdata per a l'Anàlisi de l'Evolució de la Despesa en Zones Convertides en Zona de Vianants: Impacte de la Conversió en Zona de Vianants en els Patrons de Consum}
+      \field{urlday}{5}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://smartcity.valencia.es/wp-content/uploads/estudi-pilot-big-data-impacte-economic-noves-places-vianants-ciutat-vella-2019-2022.pdf
+      \endverb
+      \verb{url}
+      \verb https://smartcity.valencia.es/wp-content/uploads/estudi-pilot-big-data-impacte-economic-noves-places-vianants-ciutat-vella-2019-2022.pdf
+      \endverb
+      \keyw{valencia}
+    \endentry
+    \entry{trb2022}{report}{}
+      \name{author}{1}{}{%
+        {{hash=8b754be99a1e96e2615eea8ac97dc12d}{%
+           family={{Transportation Research Board}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {National Academies Press}%
+      }
+      \strng{namehash}{8b754be99a1e96e2615eea8ac97dc12d}
+      \strng{fullhash}{8b754be99a1e96e2615eea8ac97dc12d}
+      \strng{bibnamehash}{8b754be99a1e96e2615eea8ac97dc12d}
+      \strng{authorbibnamehash}{8b754be99a1e96e2615eea8ac97dc12d}
+      \strng{authornamehash}{8b754be99a1e96e2615eea8ac97dc12d}
+      \strng{authorfullhash}{8b754be99a1e96e2615eea8ac97dc12d}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{7}
+      \field{title}{Highway Capacity Manual}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.17226/26432
+      \endverb
+    \endentry
+    \entry{winter2002}{article}{}
+      \name{author}{1}{}{%
+        {{hash=c627d46a9268054e9f7ee7906282aa1e}{%
+           family={Winter},
+           familyi={W\bibinitperiod},
+           given={Stephan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{c627d46a9268054e9f7ee7906282aa1e}
+      \strng{fullhash}{c627d46a9268054e9f7ee7906282aa1e}
+      \strng{bibnamehash}{c627d46a9268054e9f7ee7906282aa1e}
+      \strng{authorbibnamehash}{c627d46a9268054e9f7ee7906282aa1e}
+      \strng{authornamehash}{c627d46a9268054e9f7ee7906282aa1e}
+      \strng{authorfullhash}{c627d46a9268054e9f7ee7906282aa1e}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GeoInformatica}
+      \field{number}{4}
+      \field{title}{Modeling Costs of Turns in Route Planning}
+      \field{volume}{6}
+      \field{year}{2002}
+      \field{dateera}{ce}
+      \field{pages}{345\bibrangedash 361}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1023/A:1020853410145
+      \endverb
+    \endentry
+    \entry{worldpop2020}{dataset}{}
+      \name{author}{1}{}{%
+        {{hash=2cafe390d83f4553302de90ffbc77947}{%
+           family={{WorldPop}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Southampton}%
+      }
+      \strng{namehash}{2cafe390d83f4553302de90ffbc77947}
+      \strng{fullhash}{2cafe390d83f4553302de90ffbc77947}
+      \strng{bibnamehash}{2cafe390d83f4553302de90ffbc77947}
+      \strng{authorbibnamehash}{2cafe390d83f4553302de90ffbc77947}
+      \strng{authornamehash}{2cafe390d83f4553302de90ffbc77947}
+      \strng{authorfullhash}{2cafe390d83f4553302de90ffbc77947}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Spatial Distribution of Population Density in 2020, Germany}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.5258/SOTON/WP00675
+      \endverb
+      \verb{urlraw}
+      \verb https://hub.worldpop.org/geodata/summary?id=41389
+      \endverb
+      \verb{url}
+      \verb https://hub.worldpop.org/geodata/summary?id=41389
       \endverb
     \endentry
     \entry{zhang2018}{article}{}
