@@ -66,7 +66,9 @@ def build_scenario_edges(
     min_cruising_time: float = 5,
     min_cruising_speed: float = 10,
     max_stop_and_go_speed: float = 50,
-    node_penalty: float = 5,
+    node_penalty: float = 4,
+    signalized_node_penalty: float = 15,
+    signalized_nodes: Optional[set] = None,
     vehicle_type: str = "gasoline_pc",
     road_score: Optional[dict] = None,
     score_travel_time_reduction: float = 0.0,
@@ -112,6 +114,9 @@ def build_scenario_edges(
     if nogo_union is not None:
         edges["closed"] = edges.geometry.intersects(nogo_union)
 
+    if "v" not in edges.columns and "v" in edges.index.names:
+        edges["v"] = edges.index.get_level_values("v")
+
     edges["travel_time_car"], edges["avg_speed_car"] = graph_utils.travel_time(
         edges=edges,
         acceleration=acceleration,
@@ -119,6 +124,8 @@ def build_scenario_edges(
         min_cruising_time=min_cruising_time,
         max_stop_and_go_speed=max_stop_and_go_speed,
         node_penalty=node_penalty,
+        signalized_node_penalty=signalized_node_penalty,
+        signalized_nodes=signalized_nodes,
         maxspeed_col="maxspeed_car",
         return_speed=True,
     )

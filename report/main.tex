@@ -163,7 +163,7 @@
 
 \clearpage
 
-\section{Durchgängigkeit definieren}
+\section{Was bedeutet Durchgängigkeit?}
 
 Der Begriff Durchgängigkeit beschreibt, ob ein öffentlicher Freiraum von Menschen als ein zusammenhängendes, kontinuierlich erlebbares Ganzes wahrgenommen wird und nicht als eine Abfolge isolierter Teilstücke. Jane Jacobs argumentierte, dass die Qualität eines Parks nicht allein von der Gestaltung einzelner Abschnitte abhängt, sondern maßgeblich davon, ob durchgehende, sichere und belebte Wegeverbindungen ihn mit seiner Umgebung verknüpfen, und dass ein Park nur dann dauerhaft belebt und sicher ist, wenn er über den Tag hinweg unterschiedliche Nutzendengruppen mit unterschiedlichen Aktivitäten anzieht \autocite{jacobs1961}. Wir fassen Durchgängigkeit für den Anlagenring in drei Kriterien:
 
@@ -362,6 +362,125 @@ Die folgenden Mosaike stellen für jede der drei Aktivitäten die jeweils am bes
 Räumlich zeigt sich in Abbildung~\ref{fig:streetscore-map} ein deutliches Muster: Besonders gut bewertete Orte konzentrieren sich auf den Bethmannpark sowie auf die Cafés und Straßen südlich des Eschenheimer Tors. Demgegenüber wurden einige der großen, verkehrsreichen Kreuzungen am Friedberger Tor, am Eschenheimer Tor sowie rund um die Alte Oper deutlich schlechter bewertet. Auch der Fußweg entlang des U5-Tunnels schnitt schlecht ab. Diese räumliche Verteilung legt nahe, dass sehr hochwertig wahrgenommene Teilbereiche des Anlagenrings derzeit von Abschnitten mit schlechter Wahrnehmung umgeben sind. Der Ring wird dadurch nicht als durchgehend zusammenhängender Grün- und Aufenthaltsraum erlebt, sondern in einzelne, voneinander getrennte \enquote{Inseln} guter Aufenthaltsqualität zerlegt, zwischen denen insbesondere die großen Kreuzungen als wahrgenommene Barrieren wirken.
 
 \FloatBarrier
+
+\section{Verkehrsberuhigung im Stadtzentrum}
+
+Dass eine weitgehende Reduzierung des Autoverkehrs in historischen Stadtzentren nicht nur theoretisch denkbar, sondern in der Praxis erfolgreich umsetzbar ist, zeigen mehrere europäische Städte, die diesen Weg bereits vor Jahren eingeschlagen haben. Im Folgenden stellen wir zwei international bekannte Beispiele vor, Madrid und Valencia. Madrid hat eine der strengsten und größten Umweltzonen Europas. Valencia hat eine ähnliche Größe wie die Frankfurter Innenstadt und viele Ideen aus Barcelonas Stadtplanung übernommen, darunter einige gute Ansätze zur Fußgängerzonen-Gestaltung, die als Vorbild für unseren eigenen Vorschlag für Frankfurt dienen. Beide Beispiele sollen zeigen, dass in anderen Gesellschaften mit entsprechendem politischem Willen tiefgreifende verkehrliche Veränderungen möglich sind, ein Aspekt, an dem es in Deutschland derzeit vielerorts fehlt. Anschließend erläutern wir die von uns entwickelte Routing-Engine und stellen eigene Untersuchungen zu möglichen Straßensperrungen im Frankfurter Zentrum vor.
+
+\subsection{Beispiel Madrid}
+
+Seit 2018 gilt im Zentrum Madrids mit \enquote{Madrid Central} eine der strengsten und flächenmäßig größten Umweltzonen Europas: Auf rund 4,7\,km\textsuperscript{2} ist die Zufahrt auf Anwohnende, ÖPNV und Fahrzeuge mit bester Umweltplakette beschränkt \autocite{ayuntamientomadridcentral2018} (Abbildung~\ref{fig:madrid}). Politisch bemerkenswert: Die konservative Nachfolgeregierung, die 2019 unter anderem mit der Abschaffung der Zone angetreten war, behielt sie im Kern bei und weitete den Ansatz sogar auf die gesamte Stadt aus \autocite{ayuntamientomadridzbe2026}. \textcite{moralcarcedo2024} zeigt zudem, dass die Zone den Verkehr über einen \enquote{Randeffekt} nicht nur innerhalb, sondern auch außerhalb ihrer Grenzen reduzierte.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/Madrid.jpg}
+	\caption[Umweltzonen in Madrid]{Umweltzonen im Zentrum Madrids, darunter die sehr strikte Zone \enquote{Madrid Central}/\enquote{Distrito Centro} sowie die großflächigere, weniger strikte gesamtstädtische Zone \enquote{Madrid 360} (links); rechts in blau die deutlich früher, bereits ab 2004 eingerichteten reinen Anwohnerzonen (\enquote{Áreas de Prioridad Residencial}) im historischen Zentrum (Quelle: Ayuntamiento de Madrid).}
+	\label{fig:madrid}
+\end{figure}
+
+\subsection{Beispiel Valencia}
+
+Valencia ist mit rund 826.000 Einwohnenden und einer historischen Altstadt ähnlicher Größenordnung wie Frankfurt (775.000 Einwohnende) gut vergleichbar. Beide Städte wurden in den Kriegen des 20.\,Jahrhunderts beschädigt: Valencia im Spanischen Bürgerkrieg (1937--1939), Frankfurt im Zweiten Weltkrieg, insbesondere durch die beiden Luftangriffe vom 18. und 22.\,März 1944, die die größte Fachwerk-Altstadt Deutschlands nahezu vollständig zerstörten. Beim Wiederaufbau ging Valencia jedoch näher am historischen Vorbild vor, während die Frankfurter Innenstadt konsequent autogerecht wiederaufgebaut wurde. Städtebaulich hat Valencia zudem viele Ideen aus Barcelona übernommen und auf eine deutlich kleinere Stadt übertragen. Statt einer Madrid-artigen Zufahrtsbeschränkung für ein großes Gebiet setzte Valencia auf eine schrittweise Fußgängerzonen-Strategie: Einzelne Straßen und Plätze der Altstadt, unter anderem die Plaza del Ayuntamiento (Abbildung~\ref{fig:valencia-strasse}), wurden in Fußgängerzonen umgewandelt \autocite{ajuntamentdevalenciaAreaPrioridadResidencial2026,ajuntamentdevalenciaEstudioReordenacionCirculacion2025}. Verbleibender Kfz-Verkehr wird dabei zum umgebenden Ring geleitet, statt quer durchs Zentrum zu fahren. Das zeigt sich auch an einer beispielhaften Wegeverbindung in der Altstadt: Zu Fuß dauert sie 11\,Minuten auf direktem Weg durch das Zentrum, mit dem Auto 17\,Minuten über den Umweg entlang des Rings (Abbildung~\ref{fig:valencia-route}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/valencia_before_after.jpg}
+	\caption[Plaza del Ayuntamiento vor und nach der Umgestaltung]{Plaza del Ayuntamiento in Valencia vor (links) und nach (rechts) der Umgestaltung zur Fußgängerzone (Quelle: \textcite{ajuntamentdevalenciaEstudioReordenacionCirculacion2025}).}
+	\label{fig:valencia-strasse}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/Valencia.jpg}
+	\caption[Vergleich einer Wegeverbindung zu Fuß und mit dem Auto in Valencia]{Dieselbe Wegeverbindung in der Altstadt Valencias zu Fuß (links, 11\,Minuten, 800\,m direkt durchs Zentrum) und mit dem Auto (rechts, 17\,Minuten, 3,1\,km über den umgebenden Ring) (Quelle: Google Maps).}
+	\label{fig:valencia-route}
+\end{figure}
+
+Eine Big-Data-Studie der Stadt Valencia mit Telefónica zeigt, dass diese Umgestaltung mit einem deutlichen Anstieg der lokalen Konsumausgaben einherging (z.\,B. +67\,\% Transaktionen in Ciutat Vella, +154\,\% rund um die Plaza de la Reina zwischen 2019 und 2022) \autocite{telefonicaESTUDIPILOTBIGDATA2023}. Der sanftere Ansatz -- kurze Autofahrten durchs Zentrum werden gegenüber dem Fußweg unattraktiv gemacht, statt Autos komplett zu verbieten -- dürfte auf weniger politischen Widerstand stoßen und lässt sich gut auf den Anlagenring übertragen.
+
+\subsection{Routing-Engine}
+
+Die Routing-Engine (OSMnx/NetworkX, \cite{boeing2017}) berechnet den zeitkürzesten Weg für Pkw auf dem OpenStreetMap-Straßennetz \parencite{openstreetmap}. Die Fahrzeit je Kante folgt einem kinematischen Geschwindigkeitsprofil \parencite{may1990}, dessen Höchstgeschwindigkeit aus \texttt{maxspeed} bzw. sonst der StVO-Regelgeschwindigkeit \parencite{stvo2013} stammt. Jede Kreuzung erhält zusätzlich einen Zeitzuschlag (Node Penalty, \cite{kirby1969,winter2002}): 15\,s signalisiert (\texttt{highway=traffic\_signals}), sonst 4\,s, jeweils im HCM-Bereich für LOS~A/B \parencite{trb2022}. Die Routen wurden stichprobenartig mit Google Maps geprüft.
+
+\subsection{Eigene Untersuchung: Straßensperrungen im Frankfurter Zentrum}
+
+Mit der Routing-Engine wurde eine interaktive Karte erstellt, um die Auswirkungen dreier unterschiedlich weitreichender Straßensperrungen im Frankfurter Zentrum zu untersuchen: \textbf{Zentrum} (alle Straßen innerhalb des Anlagenrings gesperrt, außer den beiden parallel dazu verlaufenden Straßenzügen), \textbf{Anlagenring} (zusätzlich auch diese parallelen Straßen gesperrt) sowie \textbf{Bahnhof} (zusätzlich auch die Straßen bis zum Hauptbahnhof und durchs Bahnhofsviertel gesperrt).
+
+Die Bewertung erfolgt über ein stark vereinfachtes Ursprungs-Ziel-Modell nach dem Grundgedanken klassischer Vier-Stufen-Modelle \autocite{ortuzarwillumsen2011}, angewendet auf die offizielle Metropolregion FrankfurtRheinMain: Verkehrserzeugung durch Wohnbevölkerung \autocite{worldpop2020}, Verkehrsanziehung durch Arbeitsplätze \autocite{bundesagenturfurarbeit2025}, verteilt auf ein je nach Entfernung zum Anlagenring unterschiedlich feines Raster an Polygonen, deren Geometrie von der amtlichen Verwaltungsgliederung übernommen wird \autocite{hvbg2026}: innerhalb der Gemeinde Frankfurt am Main auf Gemarkungsebene, in einem Umkreis von 10\,km um die Gemeinde Frankfurt auf Gemeindeebene, im übrigen Hessen auf Landkreisebene und für die weiteren an der Metropolregion beteiligten Bundesländer jeweils als ein einziges Polygon je Bundesland. Alle Routen zwischen den Polygonen werden mit Herkunftsbevölkerung und Zielarbeitsplätzen gewichtet; die \enquote{Verkehrszunahme} einer Straßenkante ist die Zunahme der so gewichteten Routen, die über sie führen. Das Modell ist eine stark vereinfachte, qualitative Annäherung, kein quantitatives Verkehrsmodell mit realen Zähldaten. Der Code ist unter \url{https://github.com/MiguelUrenaPliego/ProjektAnlagenring} öffentlich verfügbar.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=\linewidth]{figures/zentum_verkehr.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=\linewidth]{figures/zentrum_5min.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=\linewidth]{figures/zentrum_route.jpg}
+	\end{subfigure}
+	\caption[Szenario Zentrum]{Szenario \enquote{Zentrum}: Verkehrszunahme (links), Anteil der Bevölkerung mit Routenverlängerung über 5\,Minuten (Mitte) und Veränderung einer Beispielroute (rechts) (Quelle: eigene Darstellung). Die interaktive Version der Karte ist unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/routing/carfree_zones_map.html?lang=de} verfügbar.}
+	\label{fig:szenario-zentrum}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=\linewidth]{figures/anlagenring_verkehr.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=\linewidth]{figures/anlagenring_5min.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=\linewidth]{figures/anlagenring_route.jpg}
+	\end{subfigure}
+	\caption[Szenario Anlagenring]{Szenario \enquote{Anlagenring}: Verkehrszunahme (links), Anteil der Bevölkerung mit Routenverlängerung über 5\,Minuten (Mitte) und Veränderung einer Beispielroute (rechts) (Quelle: eigene Darstellung). Die interaktive Version der Karte ist unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/routing/carfree_zones_map.html?lang=de} verfügbar.}
+	\label{fig:szenario-anlagenring}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=\linewidth]{figures/bahnhof_verkehr.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=\linewidth]{figures/bahnhof_5min.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=\linewidth]{figures/bahnhof_route.jpg}
+	\end{subfigure}
+	\caption[Szenario Bahnhof]{Szenario \enquote{Bahnhof}: Verkehrszunahme (links), Anteil der Bevölkerung mit Routenverlängerung über 5\,Minuten (Mitte) und Veränderung einer Beispielroute (rechts) (Quelle: eigene Darstellung). Die interaktive Version der Karte ist unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/routing/carfree_zones_map.html?lang=de} verfügbar.}
+	\label{fig:szenario-bahnhof}
+\end{figure}
+
+Im Szenario \textbf{Zentrum} (Abbildung~\ref{fig:szenario-zentrum}) nimmt der Verkehr quer zum Anlagenring ab, etwa am Friedberger Tor und am Eschenheimer Tor, dafür aber auf den parallel verlaufenden Straßen zu. Nur eines der beiden Durchgängigkeitsprobleme wird damit gelöst. Das Szenario \textbf{Anlagenring} (Abbildung~\ref{fig:szenario-anlagenring}) reduziert den Verkehr auf allen Straßen rund um den Park und erfüllt beide Kriterien; die Verkehrszunahme verlagert sich auf Straßen wie die Hohenstraße, südlich des Mains und rund um den Hauptbahnhof. Das Szenario \textbf{Bahnhof} (Abbildung~\ref{fig:szenario-bahnhof}) verstärkt diesen Effekt und verbessert zusätzlich die fußläufige Verbindung zum Hauptbahnhof, erzeugt dafür aber sehr große Verkehrszunahmen im Bahnhofstunnel, auf der Hohenstraße und rund um den Ostbahnhof.
+
+In allen drei Szenarien liegen die am stärksten betroffenen Gemarkungen unmittelbar um den Anlagenring, und auch die Routen mit der größten Zeitverlängerung verlaufen fast ausschließlich innerhalb des Frankfurter Stadtgebiets. Gerade diese Gebiete sind überdurchschnittlich gut an den ÖPNV angebunden, sodass sich Pendelfahrten dort besonders leicht auf Bus, Bahn oder Rad verlagern lassen. Der tatsächliche Effekt auf die Pendelmobilität dürfte damit deutlich kleiner ausfallen, als die reinen Verkehrszunahmen zunächst vermuten lassen.
+
+\subsection{Vorgeschlagene Verkehrsberuhigung}
+
+Auf Basis dieser drei Szenarien wird ein gezielterer, vierter Ansatz vorgeschlagen (Abbildung~\ref{fig:closures}): Statt große Gebiete komplett zu sperren, genügt bereits die punktuelle Unterbindung des Durchgangsverkehrs an wenigen Knotenpunkten, nämlich an der Konrad-Adenauer-Straße/Konstablerwache sowie parallel zum Anlagenring am Friedberger Tor, am Eschenheimer Tor und an der Taunusanlage. Diese Stellen sind bereits in Abbildung~\ref{fig:transversal-roads-map} als zentrale Barrieren identifiziert und dienen zugleich besonders dem Durchgangsverkehr, nicht nur dem Zielverkehr ins Zentrum.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figures/closures.jpg}
+	\caption[Vorgeschlagene Sperrungen im Frankfurter Zentrum]{Von uns vorgeschlagene, punktuelle Unterbindung des Durchgangsverkehrs an der Konrad-Adenauer-Straße/Konstablerwache sowie am Friedberger Tor, Eschenheimer Tor und an der Taunusanlage (Quelle: eigene Darstellung; Hintergrundkarte: Google Maps).}
+	\label{fig:closures}
+\end{figure}
+
+Ein häufiger Einwand ist, dass die Tiefgaragen der Hochhäuser und Einkaufszentren im Zentrum selbst erhebliche Verkehrsmengen erzeugen. Das trifft zu, erklärt aber nur einen Teil des Verkehrsaufkommens: Die Routing-Karten zeigen zugleich viel Durchgangsverkehr, begünstigt durch gezielt dafür ausgelegte Mainbrücken und bis zu vier Fahrspuren je Richtung auf Teilen des Anlagenrings. Die Straßen entlang des Anlagenrings sind zudem mit 50\,km/h auf Kfz-Geschwindigkeit und -Vorrang ausgelegt statt auf die Erschließung der angrenzenden Grundstücke. Für den Garagenzugang selbst wäre das nicht nötig, da Zufahrtsstraßen zu Zielen in unmittelbarer Nähe keine hohen Geschwindigkeiten erfordern. Während sich das Garagenproblem kaum kurzfristig lösen lässt, lässt sich der Durchgangsverkehr gezielt und mit geringen Folgen für den übrigen Stadtverkehr einschränken, da Innenstädte grundsätzlich keinen Durchgangsverkehr benötigen.
+
+Frankfurts \enquote{Masterplan Mobilität} strebt zudem an, den Anteil des Umweltverbunds am Modal Split von 67\,\% (2018) auf 80\,\% im Jahr 2035 zu steigern \autocite{stadtfrankfurtmasterplan2025,regionfrankfurtsump2026}; der MIV-Anteil war bereits zuvor von 32,4\,\% (2003) auf 25,9\,\% (2018) gesunken \autocite{stadtfrankfurtmodalsplit2020}. Viele Straßen, insbesondere parallel zum Anlagenring, wurden an diese Entwicklung bislang kaum angepasst und sind daher vermutlich überdimensioniert. Konkret werden folgende Maßnahmen vorgeschlagen:
+
+\begin{itemize}
+	\item Rückbau der Fahrspuren auf 1 bis 2 je Richtung.
+	\item Reduzierung der zulässigen Höchstgeschwindigkeit in der Innenstadt und rund um den Anlagenring auf 30\,km/h.
+	\item Gezielte, strategische Fußgängerzonen nach dem Vorbild Valencias.
+	\item Unterbindung des Durchgangsverkehrs an den vier genannten Knotenpunkten (Konrad-Adenauer-Straße/Konstablerwache, Friedberger Tor, Eschenheimer Tor, Taunusanlage).
+\end{itemize}
+
+Eine detailliertere Verkehrssimulation mit realen Zähldaten müsste die Wirkung dieser Maßnahmen jedoch bestätigen. Dies lag außerhalb des Umfangs und der Möglichkeiten dieses Projekts.
+
 \clearpage
 \printbibliography
 

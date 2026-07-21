@@ -21,7 +21,8 @@ import graph as graph_utils
 # CONFIG
 # ============================================================
 
-node_penalty = 3            # seconds added per edge (intersection delay)
+node_penalty = 4             # seconds added at an unsignalized intersection
+signalized_node_penalty = 15 # seconds added at a signalized (traffic light) intersection
 acceleration = 1.5          # m/s²
 min_cruising_time = 5       # seconds
 min_cruising_speed = 10     # km/h
@@ -180,12 +181,18 @@ edges["maxspeed_car"] = graph_utils.infer_maxspeed(
     edges, maxspeeds, enforce=False, maxspeed_col="maxspeed"
 )
 
+# Nodes tagged highway=traffic_signals in OSM get the signalized node
+# penalty instead of the plain intersection delay (see graph.travel_time).
+signalized_nodes = graph_utils.signalized_node_ids(nodes)
+
 scenario_kwargs = dict(
     acceleration=acceleration,
     min_cruising_time=min_cruising_time,
     min_cruising_speed=min_cruising_speed,
     max_stop_and_go_speed=max_stop_and_go_speed,
     node_penalty=node_penalty,
+    signalized_node_penalty=signalized_node_penalty,
+    signalized_nodes=signalized_nodes,
     road_score=score,
     score_travel_time_reduction=SCORE_TRAVEL_TIME_REDUCTION,
 )

@@ -569,6 +569,20 @@ def travel_time_row(
     return t_acc + t_cruise + t_dec
 
 
+def signalized_node_ids(nodes: gpd.GeoDataFrame, highway_col: str = "highway") -> set:
+    """OSM node ids tagged ``highway=traffic_signals`` (signalized
+    intersections), used to pick the node delay penalty in `travel_time`."""
+    if highway_col not in nodes.columns:
+        return set()
+
+    def _is_signalized(h):
+        if isinstance(h, list):
+            return "traffic_signals" in h
+        return h == "traffic_signals"
+
+    return set(nodes.index[nodes[highway_col].map(_is_signalized)])
+
+
 def travel_time(
     edges: gpd.GeoDataFrame,
     acceleration: float = 1,
@@ -576,6 +590,9 @@ def travel_time(
     min_cruising_time: float = 5,
     max_stop_and_go_speed: float = 50,
     node_penalty: float = 5,
+    signalized_node_penalty: Optional[float] = None,
+    signalized_nodes: Optional[set] = None,
+    node_col: str = "v",
     maxspeed_col: str = "maxspeed",
     length_col: str = "length",
     return_speed: bool = False,
@@ -605,7 +622,24 @@ def travel_time(
             Speed threshold above which stop-and-go effects are ignored.
 
         node_penalty:
-            Fixed time penalty per edge (seconds), e.g. intersection delay.
+            Fixed time penalty per edge (seconds), applied at the edge's
+            end node (``node_col``) when it is not signalized (or when
+            ``signalized_nodes`` is not given, in which case every node
+            uses this value).
+
+        signalized_node_penalty:
+            Fixed time penalty per edge (seconds) applied instead of
+            ``node_penalty`` when the edge's end node is in
+            ``signalized_nodes`` (an OSM ``highway=traffic_signals``
+            node). Ignored if ``signalized_nodes`` is not given.
+
+        signalized_nodes:
+            Set of node ids (matching ``edges[node_col]``) that are
+            signalized intersections — see ``signalized_node_ids``.
+
+        node_col:
+            Name of the column identifying each edge's end node, used to
+            look up ``signalized_nodes``.
 
         maxspeed_col:
             Name of column containing maximum speed (km/h).
@@ -632,6 +666,19 @@ def travel_time(
     edges[length_col] = edges[length_col].astype(float)
 
     # ============================================================
+    # PER-EDGE NODE PENALTY (SIGNALIZED VS. UNSIGNALIZED)
+    # ============================================================
+
+    if signalized_nodes is not None and node_col in edges.columns:
+        penalties = np.where(
+            edges[node_col].isin(signalized_nodes),
+            signalized_node_penalty,
+            node_penalty,
+        )
+    else:
+        penalties = np.full(len(edges), node_penalty, dtype=float)
+
+    # ============================================================
     # TRAVEL TIME COMPUTATION (VECTORIZED APPLY)
     # ============================================================
 
@@ -643,10 +690,9 @@ def travel_time(
             min_cruising_speed,
             min_cruising_time,
             max_stop_and_go_speed,
-        )
-        + node_penalty,
+        ),
         axis=1,
-    )
+    ) + penalties
 
     # ============================================================
     # OPTIONAL SPEED COMPUTATION
