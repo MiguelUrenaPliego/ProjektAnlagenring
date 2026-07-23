@@ -182,6 +182,41 @@
       \verb 10.1016/j.compenvurbsys.2017.05.004
       \endverb
     \endentry
+    \entry{bbsrziz2025}{report}{}
+      \name{author}{2}{}{%
+        {{hash=adc59b317b580fbe4a6b39098890cadb}{%
+           family={{Bundesinstitut für Bau-, Stadt- und Raumforschung}},
+           familyi={B\bibinitperiod}}}%
+        {{hash=2156241bd0e52ac484ec90543f9416bf}{%
+           family={{Bundesprogramm Zukunftsfähige Innenstädte und Zentren}},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{31cd3c43477803f83dfbe7d1b67847ef}
+      \strng{fullhash}{31cd3c43477803f83dfbe7d1b67847ef}
+      \strng{bibnamehash}{31cd3c43477803f83dfbe7d1b67847ef}
+      \strng{authorbibnamehash}{31cd3c43477803f83dfbe7d1b67847ef}
+      \strng{authornamehash}{31cd3c43477803f83dfbe7d1b67847ef}
+      \strng{authorfullhash}{31cd3c43477803f83dfbe7d1b67847ef}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Erfahrungsbericht Reallabore im Rahmen des Bundesprogramms Zukunftsfähige Innenstädte und Zentren}
+      \field{urlday}{20}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.innenstadtprogramm.bund.de/SharedDocs/downloads/Webs/ZIZ/DE/Erfahrungsbericht_Reallabore.pdf?__blob=publicationFile&v=3
+      \endverb
+      \verb{url}
+      \verb https://www.innenstadtprogramm.bund.de/SharedDocs/downloads/Webs/ZIZ/DE/Erfahrungsbericht_Reallabore.pdf?__blob=publicationFile&v=3
+      \endverb
+    \endentry
     \entry{demshuk2021}{book}{}
       \name{author}{1}{}{%
         {{hash=7378a1c367de18b34275500a4dadcf40}{%
@@ -212,6 +247,36 @@
       \field{title}{Three Cities after Hitler: Redemptive Reconstruction across Cold War Borders}
       \field{year}{2021}
       \field{dateera}{ce}
+    \endentry
+    \entry{PopupRadwege}{online}{}
+      \name{author}{1}{}{%
+        {{hash=85efe715986d9b9462235ba2c0a2a4ff}{%
+           family={{Deutsche Umwelthilfe e.V.}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Deutsche Umwelthilfe e.V.}%
+      }
+      \strng{namehash}{85efe715986d9b9462235ba2c0a2a4ff}
+      \strng{fullhash}{85efe715986d9b9462235ba2c0a2a4ff}
+      \strng{bibnamehash}{85efe715986d9b9462235ba2c0a2a4ff}
+      \strng{authorbibnamehash}{85efe715986d9b9462235ba2c0a2a4ff}
+      \strng{authornamehash}{85efe715986d9b9462235ba2c0a2a4ff}
+      \strng{authorfullhash}{85efe715986d9b9462235ba2c0a2a4ff}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Pop-up-Radwege schnell umsetzen für mehr Sicherheit, Klimaschutz und lebenswerte Städte. Jetzt Mobilitätswende aktiv gestalten!}
+      \field{langid}{ngerman}
+      \field{title}{Pop-up-Radwege}
+      \verb{urlraw}
+      \verb https://www.duh.de/informieren/verkehr/pop-up-radwege/
+      \endverb
+      \verb{url}
+      \verb https://www.duh.de/informieren/verkehr/pop-up-radwege/
+      \endverb
     \endentry
     \entry{dosovitskiy2021}{inproceedings}{}
       \name{author}{12}{}{%
@@ -294,6 +359,60 @@
       \field{dateera}{ce}
       \verb{doi}
       \verb 10.48550/arXiv.2010.11929
+      \endverb
+    \endentry
+    \entry{eigeneerhebung2026}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=9a5ba533854c7fd3ad3f9437e361496e}{%
+           family={{Eigene Erhebung}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{9a5ba533854c7fd3ad3f9437e361496e}
+      \strng{fullhash}{9a5ba533854c7fd3ad3f9437e361496e}
+      \strng{bibnamehash}{9a5ba533854c7fd3ad3f9437e361496e}
+      \strng{authorbibnamehash}{9a5ba533854c7fd3ad3f9437e361496e}
+      \strng{authornamehash}{9a5ba533854c7fd3ad3f9437e361496e}
+      \strng{authorfullhash}{9a5ba533854c7fd3ad3f9437e361496e}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Eigene Erhebung: Reallabor am Eschenheimer Tor}
+      \field{year}{2026}
+      \field{dateera}{ce}
+    \endentry
+    \entry{fgsveklima2022}{online}{}
+      \name{author}{1}{}{%
+        {{hash=7b323f47467948589ba09d9126b6c94e}{%
+           family={{Forschungsgesellschaft für Straßen- und Verkehrswesen}},
+           familyi={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{7b323f47467948589ba09d9126b6c94e}
+      \strng{fullhash}{7b323f47467948589ba09d9126b6c94e}
+      \strng{bibnamehash}{7b323f47467948589ba09d9126b6c94e}
+      \strng{authorbibnamehash}{7b323f47467948589ba09d9126b6c94e}
+      \strng{authornamehash}{7b323f47467948589ba09d9126b6c94e}
+      \strng{authorfullhash}{7b323f47467948589ba09d9126b6c94e}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{E Klima 2022: Empfehlungen zur Anwendung und Weiterentwicklung von {FGSV}-Veröffentlichungen im Bereich Verkehr zur Erreichung von Klimaschutzzielen}
+      \field{urlday}{20}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.fgsv-verlag.de/e-klima-2022
+      \endverb
+      \verb{url}
+      \verb https://www.fgsv-verlag.de/e-klima-2022
       \endverb
     \endentry
     \entry{herbrich2007}{inproceedings}{}
@@ -566,6 +685,41 @@
       \range{pages}{12}
       \verb{doi}
       \verb 10.1016/S0041-1647(69)80022-5
+      \endverb
+    \endentry
+    \entry{magistratfrankfurtfahrradtrasse2023}{report}{}
+      \name{author}{1}{}{%
+        {{hash=b674f6fefec1ff5e6468f9fce466da52}{%
+           family={{Magistrat der Stadt Frankfurt am Main}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Frankfurt am Main}%
+      }
+      \strng{namehash}{b674f6fefec1ff5e6468f9fce466da52}
+      \strng{fullhash}{b674f6fefec1ff5e6468f9fce466da52}
+      \strng{bibnamehash}{b674f6fefec1ff5e6468f9fce466da52}
+      \strng{authorbibnamehash}{b674f6fefec1ff5e6468f9fce466da52}
+      \strng{authornamehash}{b674f6fefec1ff5e6468f9fce466da52}
+      \strng{authorfullhash}{b674f6fefec1ff5e6468f9fce466da52}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Machbarkeitsstudie für eine innerstädtische Fahrradtrasse im Bereich City-/Anlagenring}
+      \field{urlday}{18}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.radfahren-ffm.de/media/machbarkeitsstudie_fahrradtrasse_city-anlagenring.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.radfahren-ffm.de/media/machbarkeitsstudie_fahrradtrasse_city-anlagenring.pdf
       \endverb
     \endentry
     \entry{marohn2018}{online}{}
@@ -1062,6 +1216,242 @@
       \verb https://frankfurt.de/themen/verkehr/verkehrsplanung/masterplan-mobilitaet/ziele-und-verfahren
       \endverb
     \endentry
+    \entry{stadtfrankfurtklimaanpassung2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
+           family={{Stadt Frankfurt am Main}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{fullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{bibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorbibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authornamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorfullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \field{extraname}{5}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Die Klimaanpassungsstrategie von Frankfurt am Main}
+      \field{urlday}{22}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://frankfurt.de/themen/klima-und-energie/klimaanpassung/klimaanpassungsstrategie
+      \endverb
+      \verb{url}
+      \verb https://frankfurt.de/themen/klima-und-energie/klimaanpassung/klimaanpassungsstrategie
+      \endverb
+    \endentry
+    \entry{stadtfrankfurteschenheimeranlage2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
+           family={{Stadt Frankfurt am Main}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{fullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{bibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorbibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authornamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorfullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \field{extraname}{6}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Eschenheimer Anlage}
+      \field{urlday}{21}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://frankfurt.de/themen/umwelt-und-gruen/orte/parks-von-a-bis-z/eschenheimer-anlage
+      \endverb
+      \verb{url}
+      \verb https://frankfurt.de/themen/umwelt-und-gruen/orte/parks-von-a-bis-z/eschenheimer-anlage
+      \endverb
+    \endentry
+    \entry{stadtfrankfurtfriedbergeranlage2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
+           family={{Stadt Frankfurt am Main}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{fullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{bibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorbibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authornamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorfullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \field{extraname}{7}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Friedberger Anlage}
+      \field{urlday}{20}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://frankfurt.de/themen/umwelt-und-gruen/orte/parks-von-a-bis-z/friedberger-anlage
+      \endverb
+      \verb{url}
+      \verb https://frankfurt.de/themen/umwelt-und-gruen/orte/parks-von-a-bis-z/friedberger-anlage
+      \endverb
+    \endentry
+    \entry{stadtfrankfurtfussverkehr2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
+           family={{Stadt Frankfurt am Main}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{fullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{bibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorbibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authornamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorfullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \field{extraname}{8}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Fußverkehrsstrategie Frankfurt am Main}
+      \field{urlday}{18}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://frankfurt.de/themen/verkehr/fussgaenger/fussverkehr
+      \endverb
+      \verb{url}
+      \verb https://frankfurt.de/themen/verkehr/fussgaenger/fussverkehr
+      \endverb
+    \endentry
+    \entry{stadtfrankfurtobermainanlage2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
+           family={{Stadt Frankfurt am Main}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{fullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{bibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorbibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authornamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorfullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \field{extraname}{9}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Obermainanlage}
+      \field{urlday}{20}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://frankfurt.de/themen/umwelt-und-gruen/orte/parks-von-a-bis-z/obermainanlage
+      \endverb
+      \verb{url}
+      \verb https://frankfurt.de/themen/umwelt-und-gruen/orte/parks-von-a-bis-z/obermainanlage
+      \endverb
+    \endentry
+    \entry{stadtfrankfurtwallanlagen2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b9ef38eb4dd924de26033e4644a72cd2}{%
+           family={{Stadt Frankfurt am Main}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{fullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{bibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorbibnamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authornamehash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \strng{authorfullhash}{b9ef38eb4dd924de26033e4644a72cd2}
+      \field{extraname}{10}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{6}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Wallanlagen}
+      \field{urlday}{17}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://frankfurt.de/themen/umwelt-und-gruen/orte/parks-nach-typ/wallanlagen
+      \endverb
+      \verb{url}
+      \verb https://frankfurt.de/themen/umwelt-und-gruen/orte/parks-nach-typ/wallanlagen
+      \endverb
+    \endentry
+    \entry{kunstimoeffentlichenraumhessendenkmal2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=f380d6ba1327dea0f2d306424f23a79d}{%
+           family={{Stadt Frankfurt am Main / Kunst im öffentlichen Raum Frankfurt}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{f380d6ba1327dea0f2d306424f23a79d}
+      \strng{fullhash}{f380d6ba1327dea0f2d306424f23a79d}
+      \strng{bibnamehash}{f380d6ba1327dea0f2d306424f23a79d}
+      \strng{authorbibnamehash}{f380d6ba1327dea0f2d306424f23a79d}
+      \strng{authornamehash}{f380d6ba1327dea0f2d306424f23a79d}
+      \strng{authorfullhash}{f380d6ba1327dea0f2d306424f23a79d}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Hessendenkmal}
+      \field{urlday}{22}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.kunst-im-oeffentlichen-raum-frankfurt.de/de/page151.html?id=173
+      \endverb
+      \verb{url}
+      \verb https://www.kunst-im-oeffentlichen-raum-frankfurt.de/de/page151.html?id=173
+      \endverb
+    \endentry
     \entry{bundesagenturfurarbeit2025}{dataset}{}
       \name{author}{1}{}{%
         {{hash=6b295ef5bd2e31621e568430aa706f82}{%
@@ -1094,6 +1484,42 @@
       \verb https://statistik.arbeitsagentur.de/DE/Navigation/Footer/Top-Produkte/Gemeindedaten-sozialversicherungspflichtig-Beschaeftigter-Nav.html
       \endverb
     \endentry
+    \entry{zotero-item-63}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=5f365b2cdad67790829df639aeacded8}{%
+           family={Struben},
+           familyi={S\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{5f365b2cdad67790829df639aeacded8}
+      \strng{fullhash}{5f365b2cdad67790829df639aeacded8}
+      \strng{bibnamehash}{5f365b2cdad67790829df639aeacded8}
+      \strng{authorbibnamehash}{5f365b2cdad67790829df639aeacded8}
+      \strng{authornamehash}{5f365b2cdad67790829df639aeacded8}
+      \strng{authorfullhash}{5f365b2cdad67790829df639aeacded8}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{29}
+      \field{month}{1}
+      \field{title}{Konfliktfreie {{Ampelschaltungen}} an {{Kreuzungen}} Und {{Einmündungen}}}
+      \field{urlday}{8}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.fuss-ev.de/wp-content/uploads/2024/12/Konfliktfreie-Ampelschaltungen-08-02-2021-neues-Titelblatt.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.fuss-ev.de/wp-content/uploads/2024/12/Konfliktfreie-Ampelschaltungen-08-02-2021-neues-Titelblatt.pdf
+      \endverb
+    \endentry
     \entry{stvo2013}{misc}{}
       \name{author}{1}{}{%
         {{hash=421170275ec9a765e073c23b26032a01}{%
@@ -1106,6 +1532,7 @@
       \strng{authorbibnamehash}{421170275ec9a765e073c23b26032a01}
       \strng{authornamehash}{421170275ec9a765e073c23b26032a01}
       \strng{authorfullhash}{421170275ec9a765e073c23b26032a01}
+      \field{extraname}{1}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{extradatescope}{labelyear}
@@ -1126,6 +1553,32 @@
       \verb{url}
       \verb https://www.gesetze-im-internet.de/stvo_2013/
       \endverb
+    \endentry
+    \entry{VerkehrszeichenUndVerkehrseinrichtungen}{legislation}{}
+      \name{author}{1}{}{%
+        {{hash=421170275ec9a765e073c23b26032a01}{%
+           family={{StVO}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{421170275ec9a765e073c23b26032a01}
+      \strng{fullhash}{421170275ec9a765e073c23b26032a01}
+      \strng{bibnamehash}{421170275ec9a765e073c23b26032a01}
+      \strng{authorbibnamehash}{421170275ec9a765e073c23b26032a01}
+      \strng{authornamehash}{421170275ec9a765e073c23b26032a01}
+      \strng{authorfullhash}{421170275ec9a765e073c23b26032a01}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{30}
+      \field{journaltitle}{Straßenverkehrs-Ordnung}
+      \field{month}{1}
+      \field{title}{Straßenverkehrs-{{Ordnung}}, §45 ({{Verkehrszeichen}} Und {{Verkehrseinrichtungen}})}
+      \field{year}{2026}
+      \field{dateera}{ce}
     \endentry
     \entry{telefonicaESTUDIPILOTBIGDATA2023}{report}{}
       \name{author}{1}{}{%
@@ -1193,6 +1646,41 @@
       \field{dateera}{ce}
       \verb{doi}
       \verb 10.17226/26432
+      \endverb
+    \endentry
+    \entry{umweltbundesamt2022}{online}{}
+      \name{author}{1}{}{%
+        {{hash=eb35b544edd5583deae1b04b57cf5a08}{%
+           family={{Umweltbundesamt}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Dessau-Roßlau}%
+      }
+      \strng{namehash}{eb35b544edd5583deae1b04b57cf5a08}
+      \strng{fullhash}{eb35b544edd5583deae1b04b57cf5a08}
+      \strng{bibnamehash}{eb35b544edd5583deae1b04b57cf5a08}
+      \strng{authorbibnamehash}{eb35b544edd5583deae1b04b57cf5a08}
+      \strng{authornamehash}{eb35b544edd5583deae1b04b57cf5a08}
+      \strng{authorfullhash}{eb35b544edd5583deae1b04b57cf5a08}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Hitze in der Innenstadt: mehr Bäume und Schatten nötig}
+      \field{urlday}{22}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.umweltbundesamt.de/presse/pressemitteilungen/hitze-in-der-innenstadt-mehr-baeume-schatten-noetig
+      \endverb
+      \verb{url}
+      \verb https://www.umweltbundesamt.de/presse/pressemitteilungen/hitze-in-der-innenstadt-mehr-baeume-schatten-noetig
       \endverb
     \endentry
     \entry{winter2002}{article}{}
