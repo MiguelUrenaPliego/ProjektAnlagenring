@@ -119,6 +119,7 @@
 \usepackage[backend=biber,style=authoryear,citestyle=authoryear,sorting=nyt,maxcitenames=2,uniquename=false,uniquelist=false,dashed=false]{biblatex}
 \addbibresource{references.bib}
 \DefineBibliographyStrings{ngerman}{andothers={et al\adddot}}
+\usepackage{xurl}
 
 
 %=================================================
@@ -243,7 +244,7 @@ Der Wahrnehmungsaspekt der Durchgängigkeit wird in Abschnitt~\ref{sec:wahrnehmu
 \clearpage
 
 \section{Erkenntnisse aus dem Reallabor}
-Das Reallabor am Eschenheimer Tor wurde am 14. Juni 2026 als temporärer Experimentier- und Beobachtungsraum durchgeführt. Ziel war es, die Potenziale eines heute stark verkehrlich geprägten Stadtraums sichtbar zu machen und zu untersuchen, wie der öffentliche Raum genutzt wird, wenn alternative Aufenthalts-, Spiel- und Bewegungsangebote geschaffen werden. Der Aufbau erfolgte zwischen 9 und 10 Uhr, ab etwa 11 Uhr kamen die ersten Besucher:innen, wobei die stärkste Nutzung am Nachmittag beobachtet wurde. Insgesamt nahmen mehr als 50 Personen die Angebote wahr oder informierten sich vor Ort. Das Reallabor diente damit nicht als endgültige Umgestaltung, sondern als methodischer Zwischenschritt, um Nutzungsverhalten, räumliche Qualitäten und mögliche Konflikte zu erkennen. Reallabore werden in der Stadtentwicklung eingesetzt, um Innenstädte als Testräume zu nutzen und neue Strategien in einem kooperativen Rahmen praktisch zu erproben (BBSR/ZIZ, 2025). 
+Das Reallabor am Eschenheimer Tor wurde am 14. Juni 2026 als temporärer Experimentier- und Beobachtungsraum durchgeführt. Ziel war es, die Potenziale eines heute stark verkehrlich geprägten Stadtraums sichtbar zu machen und zu untersuchen, wie der öffentliche Raum genutzt wird, wenn alternative Aufenthalts-, Spiel- und Bewegungsangebote geschaffen werden. Der Aufbau erfolgte zwischen 9 und 10 Uhr, ab etwa 11 Uhr kamen die ersten Besucher:innen, wobei die stärkste Nutzung am Nachmittag beobachtet wurde. Insgesamt nahmen mehr als 50 Personen die Angebote wahr oder informierten sich vor Ort. Das Reallabor diente damit nicht als endgültige Umgestaltung, sondern als methodischer Zwischenschritt, um Nutzungsverhalten, räumliche Qualitäten und mögliche Konflikte zu erkennen. Reallabore werden in der Stadtentwicklung eingesetzt, um Innenstädte als Testräume zu nutzen und neue Strategien in einem kooperativen Rahmen praktisch zu erproben \autocite{bbsrziz2025}.
 
 Für die Aktivierung des Raumes wurden unterschiedliche temporäre Angebote eingesetzt. Dazu gehörten unter anderem ein Cornhole-Set mit Maissäckchen, ein mobiles Badmintonnetz mit Schlägern und Bällen, rote und gelbe Pylone, kleinere Hütchen, rechteckige und runde Kunstrasenflächen, ein Fußball, ein Rugbyball, Wurfringe, ein großes „Mensch ärgere dich nicht“-Spiel, Dosenwerfen, Wikinger-Schach, Hula-Hoops sowie weitere Spiel- und Bewegungsmaterialien. Ergänzend wurden Informationsplakate und eine Umfrage eingesetzt. Dadurch entstand ein niedrigschwelliger Aktionsraum, der sowohl aktive Nutzung als auch Beobachtung, Information und Beteiligung ermöglichte.
 
@@ -255,53 +256,69 @@ Die Beobachtungen zeigen außerdem, dass bereits einfache temporäre Maßnahmen 
 
 Ohne der detaillierten Umfrageauswertung vorzugreifen, wurden aus den Rückmeldungen und Bildbewertungen drei Themen als besonders relevant erkennbar: Begrünung, Querungssituationen und Aufenthaltsqualität. Diese drei Themen wurden deshalb als wichtige Orientierung für die weitere Konzeptentwicklung aufgenommen. Sie zeigen, dass Nutzer:innen den Anlagenring nicht nur als Verkehrsraum wahrnehmen, sondern auch Qualitäten wie Grün, Sicherheit und Verweilmöglichkeiten bewerten.
 
-Abbildung 1: Positiv bewerteter Grünraum als Orientierung für die zukünftige 
-(HIER MUSST DU DAS BILD EINFÜGEN)
-Quelle: Eigene Aufnahme / eigene Umfrage, 2026.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.31\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/park_1.jpeg}
+		\caption{Begrünung}
+		\label{fig:reallabor-park1}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.31\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/park_2.jpeg}
+		\caption{Querungssituation}
+		\label{fig:reallabor-park2}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.31\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/park_3.jpeg}
+		\caption{Aufenthaltsqualität}
+		\label{fig:reallabor-park3}
+	\end{subfigure}
+	\caption[Positiv bewertete Orte als Orientierung für das Konzept]{Positiv bewertete Orte als Orientierung für das Gestaltungskonzept: begrünter Wegeraum (a), sichere Querungssituation (b) und Aufenthaltsqualität (c) (Quelle: eigene Aufnahme / eigene Umfrage, 2026).}
+	\label{fig:reallabor-park}
+\end{figure}
 
-Die erste Abbildung zeigt einen begrünten Wegeraum mit dichter Vegetation, Bäumen, Sträuchern und begleitenden Pflanzflächen. Diese Art von Begrünung wurde im Rahmen der Umfrage positiv bewertet, da sie eine ruhige, angenehme und naturnahe Atmosphäre schafft.
-Für das Gestaltungskonzept am Eschenheimer Tor lässt sich daraus ableiten, dass Begrünung nicht nur punktuell eingesetzt werden sollte. Vielmehr sollte sie Wege begleiten, Schatten spenden und den Anlagenring als zusammenhängenden Grünraum erlebbar machen. Neue Baumstandorte, Strauchpflanzungen und entsiegelte Flächen können dazu beitragen, den heute stark versiegelten Verkehrsknoten klimaangepasster und attraktiver zu gestalten.
+Abbildung~\ref{fig:reallabor-park1} zeigt einen begrünten Wegeraum mit dichter Vegetation, Bäumen, Sträuchern und begleitenden Pflanzflächen. Diese Art von Begrünung wurde im Rahmen der Umfrage positiv bewertet, da sie eine ruhige, angenehme und naturnahe Atmosphäre schafft. Für das Gestaltungskonzept am Eschenheimer Tor lässt sich daraus ableiten, dass Begrünung nicht nur punktuell eingesetzt werden sollte. Vielmehr sollte sie Wege begleiten, Schatten spenden und den Anlagenring als zusammenhängenden Grünraum erlebbar machen. Neue Baumstandorte, Strauchpflanzungen und entsiegelte Flächen können dazu beitragen, den heute stark versiegelten Verkehrsknoten klimaangepasster und attraktiver zu gestalten.
 
-Abbildung 2: Positiv bewertete Querungssituation
-(HIER BITTE BILD EINFÜGEN)  
-Quelle: Eigene Aufnahme / eigene Umfrage, 2026.
+Abbildung~\ref{fig:reallabor-park2} verdeutlicht die Bedeutung klarer und sicherer Querungen. Für den Anlagenring sind Kreuzungen besonders wichtig, weil sie darüber entscheiden, ob die einzelnen Abschnitte der Wallanlagen als zusammenhängender Raum erlebt werden können. Wenn Querungen unübersichtlich, lang oder mit langen Wartezeiten verbunden sind, verstärkt sich die Barrierewirkung des Verkehrs. Deshalb wurde auch eine Verbesserung der Ampelphasen als wichtiger Ansatz aufgenommen.
 
-Die zweite Abbildung verdeutlicht die Bedeutung klarer und sicherer Querungen. Für den Anlagenring sind Kreuzungen besonders wichtig, weil sie darüber entscheiden, ob die einzelnen Abschnitte der Wallanlagen als zusammenhängender Raum erlebt, werden können. Wenn Querungen unübersichtlich, lang oder mit langen Wartezeiten verbunden sind, verstärkt sich die Barrierewirkung des Verkehrs. Deshalb wurde auch eine Verbesserung der Ampelphasen als wichtiger Ansatz aufgenommen.
-
-Abbildung 3: Aufenthaltsqualität als Orientierung für das Konzept
-(HIER BILD EINFÜGEN)
-Quelle: Eigene Aufnahme / eigene Umfrage, 2026.
-
-Die dritte Abbildung steht für die Bedeutung von Aufenthalt im öffentlichen Raum. Sitzmöglichkeiten, Grün und eine angenehme räumliche Fassung schaffen Bedingungen, unter denen Menschen nicht nur durch den Raum hindurchgehen, sondern dort verweilen. Für das Eschenheimer Tor lässt sich daraus ableiten, dass Aufenthaltsbereiche nicht isoliert geplant werden sollten. Sie sollten mit Schatten, Begrünung, guter Erreichbarkeit und sicheren Wegen verbunden sein.
+Abbildung~\ref{fig:reallabor-park3} steht für die Bedeutung von Aufenthalt im öffentlichen Raum. Sitzmöglichkeiten, Grün und eine angenehme räumliche Fassung schaffen Bedingungen, unter denen Menschen nicht nur durch den Raum hindurchgehen, sondern dort verweilen. Für das Eschenheimer Tor lässt sich daraus ableiten, dass Aufenthaltsbereiche nicht isoliert geplant werden sollten. Sie sollten mit Schatten, Begrünung, guter Erreichbarkeit und sicheren Wegen verbunden sein.
 
 Zusammenfassend ergeben sich aus dem Reallabor vier zentrale Erkenntnisse. Erstens kann öffentlicher Raum durch temporäre Angebote anders wahrgenommen und genutzt werden. Zweitens funktionieren niedrigschwellige Spiel- und Bewegungsangebote für unterschiedliche Altersgruppen. Drittens sind Begrünung, sichere Querungen und Aufenthaltsmöglichkeiten zentrale Qualitätsmerkmale. Viertens zeigen temporäre Interventionen, welche langfristigen Maßnahmen sinnvoll sein können und wo bei einer dauerhaften Umgestaltung mögliche Konflikte entstehen.
 
+\FloatBarrier
 \section{Gestaltungsziele für das Eschenheimer Tor}
 
-Aus den Erkenntnissen des Reallabors wird für das Eschenheimer Tor das Ziel abgeleitet, den heutigen Verkehrsknoten langfristig zu einem grünen Stadttor des Anlagenrings weiterzuentwickeln. Damit ist ein Ort gemeint, der nicht nur Verkehr organisiert, sondern den Übergang zwischen Innenstadt, angrenzenden Quartieren und Wallanlagen sichtbar und nutzbar macht. Die Wallanlagen bilden bereits heute einen ringförmigen Grünraum um die eng bebaute Innenstadt und werden von der Stadt Frankfurt als unverzichtbares Naherholungsgebiet sowie als sozialer Begegnungsraum beschrieben (Stadt Frankfurt am Main, 2026a). 
+Aus den Erkenntnissen des Reallabors wird für das Eschenheimer Tor das Ziel abgeleitet, den heutigen Verkehrsknoten langfristig zu einem grünen Stadttor des Anlagenrings weiterzuentwickeln. Damit ist ein Ort gemeint, der nicht nur Verkehr organisiert, sondern den Übergang zwischen Innenstadt, angrenzenden Quartieren und Wallanlagen sichtbar und nutzbar macht. Die Wallanlagen bilden bereits heute einen ringförmigen Grünraum um die eng bebaute Innenstadt und werden von der Stadt Frankfurt als unverzichtbares Naherholungsgebiet sowie als sozialer Begegnungsraum beschrieben \autocite{stadtfrankfurtwallanlagen2026}.
 
-Ein erstes Gestaltungsziel ist die Stärkung des Anlagenrings als zusammenhängender Grün- und Stadtraum. Heute wird dieser Zusammenhang am Eschenheimer Tor durch breite Fahrbahnen, große Asphaltflächen und komplexe Querungen unterbrochen. Ziel ist es daher, die angrenzenden Grünflächen räumlich und gestalterisch besser miteinander zu verbinden. Begrünung soll dabei nicht nur dekorativ eingesetzt werden, sondern als verbindendes Element des gesamten Rings wirken.
+Ein erstes Gestaltungsziel ist die \textbf{Stärkung des Anlagenrings als zusammenhängender Grün- und Stadtraum}. Heute wird dieser Zusammenhang am Eschenheimer Tor durch breite Fahrbahnen, große Asphaltflächen und komplexe Querungen unterbrochen. Ziel ist es daher, die angrenzenden Grünflächen räumlich und gestalterisch besser miteinander zu verbinden. Begrünung soll dabei nicht nur dekorativ eingesetzt werden, sondern als verbindendes Element des gesamten Rings wirken.
 
-Ein zweites Ziel ist die Verbesserung der Querungen. Das Reallabor und die Rückmeldungen vor Ort zeigen, dass sichere, direkte und verständliche Übergänge eine zentrale Rolle spielen. Dazu gehören übersichtliche Fußgänger:innenüberwege, barrierearme Bordabsenkungen, taktile Leitelemente sowie optimierte Ampelphasen. Besonders wichtig ist, die Wartezeiten für Fußgänger:innen zu reduzieren und die Querung des Knotens intuitiver zu gestalten. Dies entspricht auch der Frankfurter Fußverkehrsstrategie, die durchgängige Fußwegeverbindungen und eine stärkere Priorisierung des Fußverkehrs bei Verkehrsmaßnahmen anstrebt (Stadt Frankfurt am Main, 2026b). 
+Ein zweites Ziel ist die \textbf{Verbesserung der Querungen}. Das Reallabor und die Rückmeldungen vor Ort zeigen, dass sichere, direkte und verständliche Übergänge eine zentrale Rolle spielen. Dazu gehören übersichtliche Fußgänger:innenüberwege, barrierearme Bordabsenkungen, taktile Leitelemente sowie optimierte Ampelphasen. Besonders wichtig ist, die Wartezeiten für Fußgänger:innen zu reduzieren und die Querung des Knotens intuitiver zu gestalten. Dies entspricht auch der Frankfurter Fußverkehrsstrategie, die durchgängige Fußwegeverbindungen und eine stärkere Priorisierung des Fußverkehrs bei Verkehrsmaßnahmen anstrebt \autocite{stadtfrankfurtfussverkehr2026}.
 
-Ein drittes Ziel ist die Förderung aktiver Mobilität. Breitere Gehwege und sichere Radwege sollen dazu beitragen, dass sich Menschen komfortabler und konfliktärmer entlang des Anlagenrings bewegen können. Der Masterplan Mobilität der Stadt Frankfurt stellt die Bedürfnisse der Menschen und alle Verkehrsarten in den Mittelpunkt und berücksichtigt dabei ökologische, ökonomische und soziale Aspekte der Mobilität (Stadt Frankfurt am Main, 2025).
+Ein drittes Ziel ist die \textbf{Förderung aktiver Mobilität}. Breitere Gehwege und sichere Radwege sollen dazu beitragen, dass sich Menschen komfortabler und konfliktärmer entlang des Anlagenrings bewegen können. Der Masterplan Mobilität der Stadt Frankfurt stellt die Bedürfnisse der Menschen und alle Verkehrsarten in den Mittelpunkt und berücksichtigt dabei ökologische, ökonomische und soziale Aspekte der Mobilität \autocite{stadtfrankfurtmasterplan2025}.
 
-Ein viertes Ziel ist die Erhöhung der Aufenthaltsqualität. Das Eschenheimer Tor soll nicht nur Durchgangsraum sein, sondern auch Orte zum Sitzen, Treffen, Beobachten und Verweilen anbieten. Das Reallabor hat gezeigt, dass entsprechende Angebote angenommen werden. Deshalb sollen Sitzmöglichkeiten, schattige Aufenthaltsbereiche, Trinkbrunnen, kleinere Bewegungsflächen und flexible Nutzungsbereiche in das Konzept integriert werden.
+Ein viertes Ziel ist die \textbf{Erhöhung der Aufenthaltsqualität}. Das Eschenheimer Tor soll nicht nur Durchgangsraum sein, sondern auch Orte zum Sitzen, Treffen, Beobachten und Verweilen anbieten. Das Reallabor hat gezeigt, dass entsprechende Angebote angenommen werden. Deshalb sollen Sitzmöglichkeiten, schattige Aufenthaltsbereiche, Trinkbrunnen, kleinere Bewegungsflächen und flexible Nutzungsbereiche in das Konzept integriert werden.
 
-Ein fünftes Ziel ist die klimaangepasste Gestaltung. Zusätzliche Bäume, Pflanzflächen, Entsiegelung und wassersensible Elemente können Hitze reduzieren, Regenwasser besser vor Ort aufnehmen und die Aufenthaltsqualität verbessern. Die Frankfurter Klimaanpassungsstrategie betont die Bedeutung von Grün, Straßenbäumen, Entsiegelung und Regenwasserbewirtschaftung für eine klimaangepasste Stadtentwicklung (Stadt Frankfurt am Main, 2026c). Auch das Umweltbundesamt hebt hervor, dass Bäume und Verschattung in Innenstädten wesentlich zur Minderung von Hitzebelastung beitragen können (Umweltbundesamt, 2022). 
+Ein fünftes Ziel ist die \textbf{klimaangepasste Gestaltung}. Zusätzliche Bäume, Pflanzflächen, Entsiegelung und wassersensible Elemente können Hitze reduzieren, Regenwasser besser vor Ort aufnehmen und die Aufenthaltsqualität verbessern. Die Frankfurter Klimaanpassungsstrategie betont die Bedeutung von Grün, Straßenbäumen, Entsiegelung und Regenwasserbewirtschaftung für eine klimaangepasste Stadtentwicklung \autocite{stadtfrankfurtklimaanpassung2026}. Auch das Umweltbundesamt hebt hervor, dass Bäume und Verschattung in Innenstädten wesentlich zur Minderung von Hitzebelastung beitragen können \autocite{umweltbundesamt2022}.
 
-Schließlich soll die Identität des Ortes gestärkt werden. Das Eschenheimer Tor besitzt durch seine Lage am Anlagenring und den Eschenheimer Turm eine hohe stadträumliche Bedeutung. Die angrenzende Eschenheimer Anlage weist mit Tiefgarten, Pergola, Brunnen, Bänken und Staudenbeeten bereits Qualitäten des Aufenthalts und Verweilens auf (Stadt Frankfurt am Main, 2026d). Diese vorhandenen Qualitäten sollen stärker mit dem Verkehrsknoten verbunden werden.
+Schließlich soll die \textbf{Identität des Ortes} gestärkt werden. Das Eschenheimer Tor besitzt durch seine Lage am Anlagenring und den Eschenheimer Turm eine hohe stadträumliche Bedeutung. Die angrenzende Eschenheimer Anlage weist mit Tiefgarten, Pergola, Brunnen, Bänken und Staudenbeeten bereits Qualitäten des Aufenthalts und Verweilens auf \autocite{stadtfrankfurteschenheimeranlage2026}. Diese vorhandenen Qualitäten sollen stärker mit dem Verkehrsknoten verbunden werden.
 
 Die Gestaltungsziele lassen sich zusammenfassen als:
 
-•	Entwicklung des Eschenheimer Tors zu einem grünen Stadttor.
-•	Stärkere Verbindung der Wallanlagen über den Knotenpunkt hinweg.
-•	Sichere, direkte und barrierearme Querungen.
-•	Optimierte Ampelphasen mit geringeren Wartezeiten.
-•	Breitere Geh- und Radwege.
-•	Mehr Begrünung, Schatten und Entsiegelung.
-•	Neue Aufenthaltsbereiche und Treffpunkte.
-•	Stärkung der historischen und stadträumlichen Identität.
+\begin{itemize}
+	\item Entwicklung des Eschenheimer Tors zu einem grünen Stadttor.
+	\item Stärkere Verbindung der Wallanlagen über den Knotenpunkt hinweg.
+	\item Sichere, direkte und barrierearme Querungen.
+	\item Optimierte Ampelphasen mit geringeren Wartezeiten.
+	\item Breitere Geh- und Radwege.
+	\item Mehr Begrünung, Schatten und Entsiegelung.
+	\item Neue Aufenthaltsbereiche und Treffpunkte.
+	\item Stärkung der historischen und stadträumlichen Identität.
+\end{itemize}
 
 
 \section{Wahrnehmungsumfrage}
@@ -543,17 +560,47 @@ In allen drei Szenarien liegen die am stärksten betroffenen Gebiete unmittelbar
 
 Die SWOT-Analyse fasst die zentralen Ergebnisse der Bestandsanalyse, der Wahrnehmungsumfrage, des Reallabors und der Verkehrsuntersuchung zusammen. Dabei werden die vorhandenen Stärken und Schwächen des Anlagenrings sowie die daraus entstehenden Chancen und Risiken für seine zukünftige Entwicklung gegenübergestellt.
 
-(HIER TABELLE HINZUFÜGEN)
+\begin{table}[h]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{XX}
+		\toprule
+		\textbf{Stärken} & \textbf{Schwächen}\\
+		\midrule
+		Historische Wallanlagen als räumliche Grundlage & Unterbrechung des Grünraums durch stark befahrene Straßen\\[0.4em]
+		Zentrale Lage und gute Erreichbarkeit & Hoher Versiegelungsgrad und starke Dominanz des Kfz-Verkehrs\\[0.4em]
+		Bestehende Grün- und Aufenthaltsbereiche, beispielsweise im Bethmannpark und in der Eschenheimer Anlage & Lange und teilweise unübersichtliche Querungen\\[0.4em]
+		Hohe Nutzer:innenfrequenz und vielfältige angrenzende Nutzungen & Lange Ampelwartezeiten und komplexe Wegeführungen\\[0.4em]
+		Positive Annahme der Spiel-, Sport- und Aufenthaltsangebote im Reallabor & Teilweise fehlende Trennung von Fuß- und Radverkehr\\[0.4em]
+		Wahrnehmungsumfrage und eigene Erhebungen als empirische Grundlage & Geringe Nutzungsvielfalt an einzelnen Abschnitten\\
+		\bottomrule
+	\end{tabularx}
+	\vspace{1em}
+	\begin{tabularx}{\textwidth}{XX}
+		\toprule
+		\textbf{Chancen} & \textbf{Risiken}\\
+		\midrule
+		Entwicklung des Anlagenrings zu einem zusammenhängenden Grün- und Stadtraum & Verlagerung des Verkehrs auf parallel verlaufende Straßen\\[0.4em]
+		Umverteilung von Verkehrsflächen zugunsten von Grün, Aufenthalt und aktiver Mobilität & Konflikte mit Erreichbarkeit, Lieferverkehr, ÖPNV und Parkhauszufahrten\\[0.4em]
+		Verbesserung der Ampelschaltungen und Querungen & Widerstände gegen die Reduzierung von Fahrspuren oder Parkplätzen\\[0.4em]
+		Einrichtung von Pop-up-Radwegen und anschließende Verstetigung & Technische, finanzielle und rechtliche Umsetzungsgrenzen\\[0.4em]
+		Schaffung zusätzlicher Baumstandorte und Aufenthaltsbereiche & Hoher Pflege- und Unterhaltungsaufwand\\[0.4em]
+		Übertragbarkeit auf Allerheiligentor und Hessendenkmal & Gefahr einer punktuellen Aufwertung ohne ringweiten Zusammenhang\\
+		\bottomrule
+	\end{tabularx}
+	\caption[SWOT-Analyse des Anlagenrings]{SWOT-Analyse des Anlagenrings: Stärken und Schwächen (oben) sowie Chancen und Risiken (unten) (Quelle: eigene Darstellung).}
+	\label{tab:swot}
+\end{table}
 
-Stärken
+\paragraph{Stärken}
 
 Eine wesentliche Stärke des Anlagenrings ist die vorhandene historische und räumliche Grundlage. Die Wallanlagen bilden einen Grünzug um die Frankfurter Innenstadt und besitzen dadurch ein großes Potenzial für die Entwicklung eines zusammenhängenden Grün- und Stadtraums. Zusätzlich befinden sich entlang des Rings bereits hochwertige Grün- und Aufenthaltsbereiche, beispielsweise im Bethmannpark und in der Eschenheimer Anlage.
 
 Die zentrale Lage führt zu einer hohen Frequenz unterschiedlicher Nutzer:innengruppen. Neben Fußgänger:innen und Radfahrenden nutzen auch Anwohnende, Beschäftigte, Tourist:innen sowie Besucher:innen von Gastronomie-, Kultur- und Bildungseinrichtungen den Anlagenring. Dadurch bestehen gute Voraussetzungen, den Raum stärker als Ort für Begegnung, Aufenthalt und nachhaltige Mobilität zu entwickeln.
 
-Auch die Ergebnisse des Reallabors bilden eine wichtige Grundlage. Am 14. Juni 2026 nahmen mehr als 50 Personen die Angebote wahr oder informierten sich vor Ort. Besonders Badminton, Cornhole beziehungsweise Sandsackwerfen und Bobbycarfahren wurden häufig genutzt. Dies zeigt, dass temporäre und niedrigschwellige Angebote unterschiedliche Altersgruppen ansprechen können (Eigene Erhebung, 2026).
+Auch die Ergebnisse des Reallabors bilden eine wichtige Grundlage. Am 14. Juni 2026 nahmen mehr als 50 Personen die Angebote wahr oder informierten sich vor Ort. Besonders Badminton, Cornhole beziehungsweise Sandsackwerfen und Bobbycarfahren wurden häufig genutzt. Dies zeigt, dass temporäre und niedrigschwellige Angebote unterschiedliche Altersgruppen ansprechen können \autocite{eigeneerhebung2026}.
 
-Schwächen
+\paragraph{Schwächen}
 
 Die zentrale Schwäche des Anlagenrings besteht in seiner Unterbrechung durch Verkehrsflächen. Besonders am Friedberger Tor und am Eschenheimer Tor zerschneiden breite Fahrbahnen und große Kreuzungsbereiche die Wallanlagen. Dadurch wird der Grünraum nicht als zusammenhängende Einheit wahrgenommen, sondern als Abfolge einzelner Teilbereiche.
 
@@ -561,7 +608,7 @@ Zusätzlich erschweren lange Querungsabstände, mehrere Ampelphasen und unübers
 
 Die Bestandsanalyse zeigt zudem, dass die Nutzungsvielfalt nicht überall gleich ausgeprägt ist. Während beispielsweise der Bethmannpark und die Eschenheimer Anlage über vielfältige Angebote verfügen, weisen andere Bereiche, insbesondere am Friedberger Tor und an der Taunusanlage, eine geringere Nutzungsvielfalt auf. Auch die Wahrnehmungsumfrage bestätigt Unterschiede zwischen gut bewerteten Grün- und Aufenthaltsbereichen sowie schlechten bewerteten Verkehrsknotenpunkten.
 
-Chancen
+\paragraph{Chancen}
 
 Die größte Chance liegt in der Entwicklung des Anlagenrings zu einem zusammenhängenden Grün- und Stadtraum. Dafür können bestehende Grünflächen miteinander verbunden und problematische Knotenpunkte schrittweise umgestaltet werden. Eine teilweise Umverteilung der Verkehrsflächen würde Raum für breitere Gehwege, sichere Radwege, zusätzliche Bäume, Pflanzflächen und Aufenthaltsbereiche schaffen.
 
@@ -569,7 +616,7 @@ Kurzfristig könnten optimierte Ampelschaltungen, Pop-up-Radwege und temporäre 
 
 Das Eschenheimer Tor kann dabei als Pilotraum dienen. Die dort entwickelten Maßnahmen lassen sich grundsätzlich auf das Allerheiligentor, das Hessendenkmal und weitere Knotenpunkte übertragen. Gemeinsame Elemente wie Begrünung, sichere Querungen, Sitzmöglichkeiten und ein einheitliches Orientierungssystem könnten den Anlagenring als Gesamtraum stärken.
 
-Risiken
+\paragraph{Risiken}
 
 Ein wesentliches Risiko besteht in der Verlagerung des Verkehrs auf parallel verlaufende Straßen. Die Verkehrsuntersuchung zeigt, dass eine Reduzierung des Verkehrs am Anlagenring zu höheren Belastungen an anderen Straßen führen kann. Deshalb müssen mögliche Auswirkungen auf angrenzende Quartiere, den ÖPNV, den Lieferverkehr, Rettungswege und Parkhauszufahrten berücksichtigt werden.
 
@@ -577,7 +624,7 @@ Weitere Risiken liegen in möglichen politischen und gesellschaftlichen Widerst�
 
 Schließlich besteht die Gefahr, dass nur einzelne Knotenpunkte aufgewertet werden. Einzelne Bäume, Sitzmöglichkeiten oder Markierungen reichen nicht aus, wenn die übergeordneten Barrieren bestehen bleiben. Die Maßnahmen müssen daher räumlich aufeinander abgestimmt und als Teil eines ringweiten Konzepts umgesetzt werden.
 
-Bewertung der Analyse
+\paragraph{Bewertung}
 
 Insgesamt verbindet die Analyse mehrere Untersuchungsperspektiven: räumliche Bestandsaufnahme, Nutzungsanalyse, Wahrnehmungsumfrage, Reallabor und Verkehrsuntersuchung. Besonders aussagekräftig ist, dass verschiedene Methoden zu ähnlichen Ergebnissen kommen. Die räumliche Analyse identifiziert große Kreuzungen und lange Querungsabstände als Barrieren. Die Wahrnehmungsumfrage bewertet diese Bereiche ebenfalls schlechter, während das Reallabor zeigt, dass zusätzliche Angebote die Aufenthaltsqualität verbessern können.
 
@@ -638,76 +685,6 @@ Dass die alternative Nutzung der Verkehrsknotenpunkte von der Bevölkerung grund
 
 \subsection{Langfristig}
 
-\subsubsection{Langfristiges Gestaltungskonzept für das Eschenheimer Tor}
-
-Das langfristige Gestaltungskonzept verfolgt das Ziel, das Eschenheimer Tor schrittweise von einem stark verkehrsdominierten Knotenpunkt zu einem grüneren, sichereren und stärker nutzbaren Stadtraum zu entwickeln. Der Verkehr soll dabei nicht vollständig verdrängt, sondern räumlich neu geordnet werden. Im Mittelpunkt stehen eine bessere Verbindung der Wallanlagen, mehr Begrünung, sichere Querungen, breite Geh- und Radwege sowie neue Aufenthaltsbereiche.
-Der zentrale Entwurfsgedanke lautet: vom Verkehrsknoten zum grünen Stadttor. Der heutige Zustand ist geprägt durch Verkehr, viel Asphalt, wenig Grün und eine deutliche Barrierewirkung. Die Zukunftsvision setzt dem ein anderes Bild entgegen: ein grünes Stadttor mit sicheren Querungen, breiteren Wegen, zusätzlicher Vegetation, Aufenthaltsbereichen und Treffpunkten für Menschen.
-
-Abbildung 4: Konzeptvisualisierung „Vom Verkehrsknoten zum grünen Stadttor“
-(BILD EINFÜGEN)
-Quelle: Eigene Darstellung, KI-unterstützte Konzeptvisualisierung, 2026.
-
-Die Abbildung verdeutlicht die räumliche Leitidee des Konzepts. Die linke Seite zeigt den heutigen Zustand als stark versiegelten und verkehrsdominierten Knotenpunkt. Breite Fahrbahnflächen, schwierige Querungen und geringe Aufenthaltsqualität prägen den Raum. Die rechte Seite stellt eine mögliche Zukunft dar, in der Grünflächen, Bäume, breitere Geh- und Radwege sowie Aufenthaltsbereiche stärker in den Vordergrund treten. Die Visualisierung ist nicht als exakter baulicher Entwurf zu verstehen, sondern als konzeptionelle Darstellung der angestrebten Transformation.
-
-Ein erster Baustein ist die Vernetzung der Grünflächen. Neue Baumreihen, Pflanzflächen und entsiegelte Bereiche sollen dazu beitragen, den Anlagenring über den Knotenpunkt hinweg besser erlebbar zu machen. Dabei geht es nicht nur um einzelne Grüninseln, sondern um einen räumlichen Zusammenhang zwischen den angrenzenden Abschnitten der Wallanlagen. Der Grünring soll am Eschenheimer Tor nicht unterbrochen wirken, sondern sichtbar weitergeführt werden.
-
-Ein dritter Baustein betrifft die Querungen und Ampelphasen. Fußgänger:innen und Radfahrende sollen den Knoten künftig sicherer, direkter und mit kürzeren Wartezeiten überqueren können. Dazu gehören übersichtliche Überwege, längere oder besser abgestimmte Grünphasen, gut sichtbare Markierungen und barrierearme Übergänge. Gerade am Eschenheimer Tor ist dies zentral, weil die Querungssituation darüber entscheidet, ob der Anlagenring als zusammenhängender Raum erlebt wird.
-
-Ein vierter Baustein ist die Stärkung des Fuß- und Radverkehrs. Breitere Gehwege schaffen mehr Bewegungsfreiheit und reduzieren Konflikte zwischen wartenden, gehenden und querenden Personen. Sichere Radwege sollen den Anlagenring als attraktive Verbindung für den Radverkehr stärken. Die Machbarkeitsstudie für eine innerstädtische Fahrradtrasse im Bereich City- und Anlagenring zeigt, dass eine bessere Radverkehrsführung im Bereich des Anlagenrings planerisch untersucht wurde und Teil der Diskussion um eine Neuordnung des Straßenraums ist (Magistrat der Stadt Frankfurt am Main, 2023). Ergänzend weist die FGSV darauf hin, dass die Regelmaße für Radverkehrsanlagen im Kontext der Klimaziele als Mindestwerte zu verstehen sind und Radverkehrsanlagen möglichst breiter geplant werden sollten (FGSV, 2022). 
-
-Ein fünfter Baustein ist die Aufenthaltsqualität. Die Ergebnisse des Reallabors zeigen, dass Menschen den Raum nutzen, wenn sie konkrete Angebote vorfinden. Deshalb sollten Sitzmöglichkeiten, verschattete Aufenthaltsbereiche, Trinkbrunnen und flexible Flächen geschaffen werden. Diese Bereiche können im Alltag als Treffpunkte dienen und zugleich Raum für temporäre Aktionen, kleine Kulturformate, Informationsstände oder Beteiligungsformate bieten.
-
-Ein weiterer Bestandteil kann eine dauerhafte oder regelmäßig wiederkehrende Fahrradstation sein. Da die mobile Fahrradstation während des Reallabors thematisch gut zum Ort passte, könnte ein solcher Servicepunkt langfristig den Radverkehr unterstützen. Er würde praktische Hilfe bieten und zugleich die Bedeutung nachhaltiger Mobilität am Anlagenring sichtbar machen.
-
-Auch die Orientierung soll verbessert werden. Einheitliche Wegweiser, Bodenmarkierungen und Informationsstelen können den Verlauf des Anlagenrings deutlicher machen. Nutzer:innen sollen einfacher erkennen können, welche Abschnitte der Wallanlagen angrenzen und welche Ziele entlang des Rings erreichbar sind. Dadurch wird das Eschenheimer Tor nicht nur als Einzelort aufgewertet, sondern stärker in den Gesamtraum eingebunden.
-
-Die Umsetzung sollte schrittweise erfolgen:
-
-(TABELLE HINZUFÜGEN)
-
-Insgesamt soll das Eschenheimer Tor langfristig zu einem Ort werden, der Mobilität, Grün, Aufenthalt und Stadtgeschichte miteinander verbindet. Der Raum bleibt erreichbar, wird aber nicht mehr ausschließlich vom Verkehr bestimmt. Damit kann das Eschenheimer Tor zu einem Pilotraum für die Transformation des gesamten Anlagenrings werden.
-
-    \subsubsection{Übertragbarkeit auf weitere Knotenpunkte: Allerheiligentor und Hessendenkmal}
-
-Die am Eschenheimer Tor entwickelten Prinzipien lassen sich auf weitere Knotenpunkte des Anlagenrings übertragen. Dabei geht es nicht darum, überall dieselbe Gestaltung umzusetzen. Vielmehr sollen gemeinsame Leitprinzipien angewendet und an die jeweiligen räumlichen Bedingungen angepasst werden. Das übergeordnete Ziel lautet: Knotenpunkte sollen nicht länger als Barrieren, sondern als verbindende grüne Stadträume funktionieren.
-
-5.1 Allerheiligentor
-
-Das Allerheiligentor wurde als weiterer Vertiefungspunkt gewählt, weil auch dort geringe Aufenthaltsqualität, viel Verkehr und eine eingeschränkte Wahrnehmbarkeit des Grünzusammenhangs zusammentreffen. Die Obermainanlage liegt zwischen dem Allerheiligentor und der Schönen Aussicht und bildet den östlichen Abschluss der Wallanlagen in Richtung Main (Stadt Frankfurt am Main, 2026e).Gleichzeitig beschreibt die Stadt Frankfurt, dass die Friedberger Anlage jenseits des Allerheiligentors in die Obermainanlage übergeht, wodurch der Ort eine wichtige Übergangsfunktion innerhalb des Anlagenrings besitzt (Stadt Frankfurt am Main, 2026f).
-
-Für das Allerheiligentor steht daher die Verbesserung der Verbindung zwischen Friedberger Anlage und Obermainanlage im Vordergrund. Sichere und direkte Querungen sollten den Übergang zwischen den Grünräumen erleichtern. Zusätzliche Baumstandorte, Pflanzflächen und Sitzmöglichkeiten könnten dazu beitragen, den Ort stärker als Teil des Anlagenrings wahrnehmbar zu machen.
-
-Kurzfristig wären auch hier temporäre Interventionen sinnvoll. Pop-up-Grün, farbliche Markierungen oder mobile Sitzmöglichkeiten könnten zeigen, wie eine andere Raumverteilung wirkt. Dadurch ließen sich Erfahrungen aus dem Reallabor am Eschenheimer Tor übertragen und prüfen, welche Maßnahmen an diesem Standort funktionieren.
-
-5.2 Hessendenkmal
-Das Hessendenkmal wurde ebenfalls ausgewählt, weil der Bereich durch Verkehr geprägt ist und nur eingeschränkte Aufenthaltsqualität besitzt. Gleichzeitig hat der Ort eine historische Bedeutung. Das Hessendenkmal befindet sich an der Friedberger Landstraße, Ecke Mercatorstraße, und wurde 1793 entworfen beziehungsweise errichtet; es erinnert an die 1792 am Friedberger Tor gefallenen hessischen und preußischen Soldaten (Stadt Frankfurt am Main / Kunst im öffentlichen Raum, 2026). 
-
-Für diesen Bereich steht vor allem die Verbindung von Orientierung, historischer Identität und Grünraumvernetzung im Mittelpunkt. Das Denkmal könnte stärker als Orientierungspunkt im Anlagenring eingebunden werden. Gleichzeitig sollten die angrenzenden Wegebeziehungen für Fußgänger:innen und Radfahrende verbessert werden. Breitere Gehwege, sichere Querungen, zusätzliche Begrünung und ein einheitliches Leitsystem könnten dazu beitragen, die Barrierewirkung des Verkehrs zu reduzieren.
-
-Auch am Hessendenkmal wäre eine schrittweise Vorgehensweise sinnvoll. Zunächst könnten temporäre Sitzmöglichkeiten, Markierungen und Pflanzelemente getestet werden. Langfristig sollte der Bereich jedoch nicht nur punktuell verschönert werden, sondern als Teil eines zusammenhängenden Grünrings verstanden werden.
-
-5.3 Ringweites Gestaltungsprinzip
-
-Aus der Übertragung auf Allerheiligentor und Hessendenkmal ergibt sich ein ringweites Gestaltungsprinzip. Die einzelnen Knotenpunkte sollen unterschiedliche lokale Charaktere behalten, aber durch gemeinsame Elemente miteinander verbunden werden.Dazu gehören:
-
-•	mehr Bäume und klimaresiliente Vegetation,
-•	Entsiegelung und wassersensible Gestaltung,
-•	sichere und barrierefreie Querungen,
-•	optimierte Ampelphasen,
-•	breitere Geh- und Radwege,
-•	Sitzmöglichkeiten und Aufenthaltsbereiche,
-•	einheitliche Beschilderung und Orientierung,
-•	flexible Flächen für temporäre Nutzungen,
-•	Einbindung historischer und stadträumlicher Besonderheiten.
-
-Die Übertragbarkeit liegt somit nicht in einer identischen Gestaltung, sondern in einem gemeinsamen räumlichen Narrativ. Der Anlagenring soll als zusammenhängender Grün- und Stadtraum erlebbar werden. Die Knotenpunkte bilden dabei keine Unterbrechungen mehr, sondern werden zu Eingängen, Übergängen und Aufenthaltsorten innerhalb des Rings.
-
-Das Reallabor am Eschenheimer Tor kann dafür als Ausgangspunkt dienen. Es hat gezeigt, dass temporäre Interventionen neue Nutzungen sichtbar machen, Rückmeldungen ermöglichen und Diskussionen über Raumverteilung anstoßen können. Für die langfristige Entwicklung des Anlagenrings ist deshalb eine schrittweise Transformation sinnvoll: zunächst testen, dann auswerten und schließlich dauerhaft umgestalten.
-
-
-
-
-
 \FloatBarrier
 \subsubsection{Verkehrsberuhigung}
 
@@ -734,6 +711,94 @@ Konkret werden folgende Maßnahmen vorgeschlagen:
 \end{itemize}
 
 Eine detailliertere Verkehrssimulation mit realen Zähldaten müsste die Wirkung dieser Maßnahmen jedoch bestätigen. Dies lag außerhalb des Umfangs und der Möglichkeiten dieses Projekts.
+
+\FloatBarrier
+\subsubsection{Langfristiges Gestaltungskonzept für das Eschenheimer Tor}
+
+Das langfristige Gestaltungskonzept verfolgt das Ziel, das Eschenheimer Tor schrittweise von einem stark verkehrsdominierten Knotenpunkt zu einem grüneren, sichereren und stärker nutzbaren Stadtraum zu entwickeln. Der Verkehr soll dabei nicht vollständig verdrängt, sondern räumlich neu geordnet werden. Im Mittelpunkt stehen eine bessere Verbindung der Wallanlagen, mehr Begrünung, sichere Querungen, breite Geh- und Radwege sowie neue Aufenthaltsbereiche.
+Der zentrale Entwurfsgedanke lautet: vom Verkehrsknoten zum grünen Stadttor. Der heutige Zustand ist geprägt durch Verkehr, viel Asphalt, wenig Grün und eine deutliche Barrierewirkung. Die Zukunftsvision setzt dem ein anderes Bild entgegen: ein grünes Stadttor mit sicheren Querungen, breiteren Wegen, zusätzlicher Vegetation, Aufenthaltsbereichen und Treffpunkten für Menschen.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figures/langfristig_eschenheimer.jpeg}
+	\caption[Konzeptvisualisierung „Vom Verkehrsknoten zum grünen Stadttor“]{Konzeptvisualisierung „Vom Verkehrsknoten zum grünen Stadttor“ für das Eschenheimer Tor (Quelle: eigene Darstellung, KI-unterstützte Konzeptvisualisierung, 2026).}
+	\label{fig:langfristig-eschenheimer}
+\end{figure}
+
+Abbildung~\ref{fig:langfristig-eschenheimer} verdeutlicht die räumliche Leitidee des Konzepts. Die linke Seite zeigt den heutigen Zustand als stark versiegelten und verkehrsdominierten Knotenpunkt. Breite Fahrbahnflächen, schwierige Querungen und geringe Aufenthaltsqualität prägen den Raum. Die rechte Seite stellt eine mögliche Zukunft dar, in der Grünflächen, Bäume, breitere Geh- und Radwege sowie Aufenthaltsbereiche stärker in den Vordergrund treten. Die Visualisierung ist nicht als exakter baulicher Entwurf zu verstehen, sondern als konzeptionelle Darstellung der angestrebten Transformation.
+
+Ein erster Baustein ist die Vernetzung der Grünflächen. Neue Baumreihen, Pflanzflächen und entsiegelte Bereiche sollen dazu beitragen, den Anlagenring über den Knotenpunkt hinweg besser erlebbar zu machen. Dabei geht es nicht nur um einzelne Grüninseln, sondern um einen räumlichen Zusammenhang zwischen den angrenzenden Abschnitten der Wallanlagen. Der Grünring soll am Eschenheimer Tor nicht unterbrochen wirken, sondern sichtbar weitergeführt werden.
+
+Ein dritter Baustein betrifft die Querungen und Ampelphasen. Fußgänger:innen und Radfahrende sollen den Knoten künftig sicherer, direkter und mit kürzeren Wartezeiten überqueren können. Dazu gehören übersichtliche Überwege, längere oder besser abgestimmte Grünphasen, gut sichtbare Markierungen und barrierearme Übergänge. Gerade am Eschenheimer Tor ist dies zentral, weil die Querungssituation darüber entscheidet, ob der Anlagenring als zusammenhängender Raum erlebt wird.
+
+Ein vierter Baustein ist die Stärkung des Fuß- und Radverkehrs. Breitere Gehwege schaffen mehr Bewegungsfreiheit und reduzieren Konflikte zwischen wartenden, gehenden und querenden Personen. Sichere Radwege sollen den Anlagenring als attraktive Verbindung für den Radverkehr stärken. Die Machbarkeitsstudie für eine innerstädtische Fahrradtrasse im Bereich City- und Anlagenring zeigt, dass eine bessere Radverkehrsführung im Bereich des Anlagenrings planerisch untersucht wurde und Teil der Diskussion um eine Neuordnung des Straßenraums ist \autocite{magistratfrankfurtfahrradtrasse2023}. Ergänzend weist die FGSV darauf hin, dass die Regelmaße für Radverkehrsanlagen im Kontext der Klimaziele als Mindestwerte zu verstehen sind und Radverkehrsanlagen möglichst breiter geplant werden sollten \autocite{fgsveklima2022}.
+
+Ein fünfter Baustein ist die Aufenthaltsqualität. Die Ergebnisse des Reallabors zeigen, dass Menschen den Raum nutzen, wenn sie konkrete Angebote vorfinden. Deshalb sollten Sitzmöglichkeiten, verschattete Aufenthaltsbereiche, Trinkbrunnen und flexible Flächen geschaffen werden. Diese Bereiche können im Alltag als Treffpunkte dienen und zugleich Raum für temporäre Aktionen, kleine Kulturformate, Informationsstände oder Beteiligungsformate bieten.
+
+Ein weiterer Bestandteil kann eine dauerhafte oder regelmäßig wiederkehrende Fahrradstation sein. Da die mobile Fahrradstation während des Reallabors thematisch gut zum Ort passte, könnte ein solcher Servicepunkt langfristig den Radverkehr unterstützen. Er würde praktische Hilfe bieten und zugleich die Bedeutung nachhaltiger Mobilität am Anlagenring sichtbar machen.
+
+Auch die Orientierung soll verbessert werden. Einheitliche Wegweiser, Bodenmarkierungen und Informationsstelen können den Verlauf des Anlagenrings deutlicher machen. Nutzer:innen sollen einfacher erkennen können, welche Abschnitte der Wallanlagen angrenzen und welche Ziele entlang des Rings erreichbar sind. Dadurch wird das Eschenheimer Tor nicht nur als Einzelort aufgewertet, sondern stärker in den Gesamtraum eingebunden.
+
+\begin{table}[h]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{l X X}
+		\toprule
+		\textbf{Zeithorizont} & \textbf{Mögliche Maßnahmen} & \textbf{Ziel}\\
+		\midrule
+		Kurzfristig & Pop-up-Grün, temporäre Sitzmöbel, farbliche Markierungen, Spiel- und Bewegungsangebote, mobile Fahrradstation, Beteiligung & Potenziale testen und sichtbar machen\\
+		\midrule
+		Mittelfristig & Dauerhafte Sitzbereiche, zusätzliche Baumstandorte, bessere Querungen, optimierte Ampelphasen, Trinkbrunnen, erste Entsiegelungen & Sicherheit, Aufenthalt und Stadtklima verbessern\\
+		\midrule
+		Langfristig & Neuverteilung von Verkehrsflächen, durchgängige Grünverbindung, breite Geh- und Radwege, wassersensible Infrastruktur, einheitliches Leitsystem & Transformation zum grünen Stadttor\\
+		\bottomrule
+	\end{tabularx}
+	\caption[Zeithorizonte der Umsetzung am Eschenheimer Tor]{Schrittweise Umsetzung des Gestaltungskonzepts am Eschenheimer Tor (Quelle: eigene Darstellung).}
+	\label{tab:zeithorizont}
+\end{table}
+
+Die Umsetzung sollte schrittweise erfolgen (Tabelle~\ref{tab:zeithorizont}):
+
+Insgesamt soll das Eschenheimer Tor langfristig zu einem Ort werden, der Mobilität, Grün, Aufenthalt und Stadtgeschichte miteinander verbindet. Der Raum bleibt erreichbar, wird aber nicht mehr ausschließlich vom Verkehr bestimmt. Damit kann das Eschenheimer Tor zu einem Pilotraum für die Transformation des gesamten Anlagenrings werden.
+
+\subsubsection{Übertragbarkeit auf weitere Knotenpunkte: Allerheiligentor und Hessendenkmal}
+
+Die am Eschenheimer Tor entwickelten Prinzipien lassen sich auf weitere Knotenpunkte des Anlagenrings übertragen. Dabei geht es nicht darum, überall dieselbe Gestaltung umzusetzen. Vielmehr sollen gemeinsame Leitprinzipien angewendet und an die jeweiligen räumlichen Bedingungen angepasst werden. Das übergeordnete Ziel lautet: Knotenpunkte sollen nicht länger als Barrieren, sondern als verbindende grüne Stadträume funktionieren.
+
+\paragraph{Allerheiligentor}
+
+Das Allerheiligentor wurde als weiterer Vertiefungspunkt gewählt, weil auch dort geringe Aufenthaltsqualität, viel Verkehr und eine eingeschränkte Wahrnehmbarkeit des Grünzusammenhangs zusammentreffen. Die Obermainanlage liegt zwischen dem Allerheiligentor und der Schönen Aussicht und bildet den östlichen Abschluss der Wallanlagen in Richtung Main \autocite{stadtfrankfurtobermainanlage2026}. Gleichzeitig beschreibt die Stadt Frankfurt, dass die Friedberger Anlage jenseits des Allerheiligentors in die Obermainanlage übergeht, wodurch der Ort eine wichtige Übergangsfunktion innerhalb des Anlagenrings besitzt \autocite{stadtfrankfurtfriedbergeranlage2026}.
+
+Für das Allerheiligentor steht daher die Verbesserung der Verbindung zwischen Friedberger Anlage und Obermainanlage im Vordergrund. Sichere und direkte Querungen sollten den Übergang zwischen den Grünräumen erleichtern. Zusätzliche Baumstandorte, Pflanzflächen und Sitzmöglichkeiten könnten dazu beitragen, den Ort stärker als Teil des Anlagenrings wahrnehmbar zu machen.
+
+Kurzfristig wären auch hier temporäre Interventionen sinnvoll. Pop-up-Grün, farbliche Markierungen oder mobile Sitzmöglichkeiten könnten zeigen, wie eine andere Raumverteilung wirkt. Dadurch ließen sich Erfahrungen aus dem Reallabor am Eschenheimer Tor übertragen und prüfen, welche Maßnahmen an diesem Standort funktionieren.
+
+\paragraph{Hessendenkmal}
+Das Hessendenkmal wurde ebenfalls ausgewählt, weil der Bereich durch Verkehr geprägt ist und nur eingeschränkte Aufenthaltsqualität besitzt. Gleichzeitig hat der Ort eine historische Bedeutung. Das Hessendenkmal befindet sich an der Friedberger Landstraße, Ecke Mercatorstraße, und wurde 1793 entworfen beziehungsweise errichtet; es erinnert an die 1792 am Friedberger Tor gefallenen hessischen und preußischen Soldaten \autocite{kunstimoeffentlichenraumhessendenkmal2026}.
+
+Für diesen Bereich steht vor allem die Verbindung von Orientierung, historischer Identität und Grünraumvernetzung im Mittelpunkt. Das Denkmal könnte stärker als Orientierungspunkt im Anlagenring eingebunden werden. Gleichzeitig sollten die angrenzenden Wegebeziehungen für Fußgänger:innen und Radfahrende verbessert werden. Breitere Gehwege, sichere Querungen, zusätzliche Begrünung und ein einheitliches Leitsystem könnten dazu beitragen, die Barrierewirkung des Verkehrs zu reduzieren.
+
+Auch am Hessendenkmal wäre eine schrittweise Vorgehensweise sinnvoll. Zunächst könnten temporäre Sitzmöglichkeiten, Markierungen und Pflanzelemente getestet werden. Langfristig sollte der Bereich jedoch nicht nur punktuell verschönert werden, sondern als Teil eines zusammenhängenden Grünrings verstanden werden.
+
+\paragraph{Ringweites Gestaltungsprinzip}
+
+Aus der Übertragung auf Allerheiligentor und Hessendenkmal ergibt sich ein ringweites Gestaltungsprinzip. Die einzelnen Knotenpunkte sollen unterschiedliche lokale Charaktere behalten, aber durch gemeinsame Elemente miteinander verbunden werden. Dazu gehören:
+
+\begin{itemize}
+	\item mehr Bäume und klimaresiliente Vegetation,
+	\item Entsiegelung und wassersensible Gestaltung,
+	\item sichere und barrierefreie Querungen,
+	\item optimierte Ampelphasen,
+	\item breitere Geh- und Radwege,
+	\item Sitzmöglichkeiten und Aufenthaltsbereiche,
+	\item einheitliche Beschilderung und Orientierung,
+	\item flexible Flächen für temporäre Nutzungen,
+	\item Einbindung historischer und stadträumlicher Besonderheiten.
+\end{itemize}
+
+Die Übertragbarkeit liegt somit nicht in einer identischen Gestaltung, sondern in einem gemeinsamen räumlichen Narrativ. Der Anlagenring soll als zusammenhängender Grün- und Stadtraum erlebbar werden. Die Knotenpunkte bilden dabei keine Unterbrechungen mehr, sondern werden zu Eingängen, Übergängen und Aufenthaltsorten innerhalb des Rings.
+
+Das Reallabor am Eschenheimer Tor kann dafür als Ausgangspunkt dienen. Es hat gezeigt, dass temporäre Interventionen neue Nutzungen sichtbar machen, Rückmeldungen ermöglichen und Diskussionen über Raumverteilung anstoßen können. Für die langfristige Entwicklung des Anlagenrings ist deshalb eine schrittweise Transformation sinnvoll: zunächst testen, dann auswerten und schließlich dauerhaft umgestalten.
 
 \FloatBarrier
 \section{Fazit}

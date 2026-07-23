@@ -1,14 +1,13 @@
 # Fdb version 4
-["biber main"] 1784660004.7062 "main.bcf" "main.bbl" "main" 1784660433.00473 0
-  "main.bcf" 1784660432.89431 111197 4163657566e5c8361ef968a3ba052fc2 "pdflatex"
-  "references.bib" 1784657668.56752 11218 ca48bfc8c06787500f1315e940524db4 ""
+["biber main"] 1784821263.64513 "main.bcf" "main.bbl" "main" 1784821360.19639 0
+  "main.bcf" 1784821360.05756 112686 64576716e279ae61c0b0fbf7b65e86ef "pdflatex"
+  "references.bib" 1784820199.01118 16007 eaf2c2e56bbad8d8456fb5580a891f28 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1784660431.32969 "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" "main.pdf" "main" 1784660433.00506 0
+["pdflatex"] 1784821357.63635 "main.tex" "main.pdf" "main" 1784821360.19669 0
   "/etc/texmf/web2c/texmf.cnf" 1743875734.39256 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" 1784660431.13532 41708 9f3a214dd0e38d5d05740f26bcd69cc2 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -278,6 +277,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/transparent/transparent.sty" 1667073146 1918 c8d1ecb3722721d6f624992cbc042b70 ""
   "/usr/share/texlive/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty" 1700082560 55487 80a65caedd3722f4c20a14a69e785d8f ""
+  "/usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty" 1641763214 4675 e4b8c405820368c2dfb03526e16d725a ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1636152094 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb" 1743875752.25235 169670 48d12e69c9a3b23c81f6d703ccbd4554 ""
@@ -306,6 +306,10 @@
   "figures/good_stay.jpg" 1784542648.13593 316054 afbc9b16437ac9c7c074e931c3f03a02 ""
   "figures/good_street.jpg" 1784542648.18793 322304 496491b76e6948fba7915299073f73c0 ""
   "figures/intersections_map.jpg" 1784564361.26119 554297 ffe7420886ac6d2793b3b0ef785cdd90 ""
+  "figures/langfristig_eschenheimer.jpeg" 1784819477.46324 237854 5bc15dae7397988277d882495ef971a1 ""
+  "figures/park_1.jpeg" 1784819414.73833 21373 a01673c60fb1cbf3f2a74ea53f9e5463 ""
+  "figures/park_2.jpeg" 1784819425.78031 49556 7ba0f254b0666943a512b35437d3aff6 ""
+  "figures/park_3.jpeg" 1784819466.11026 61335 06de422f7b442055839e6215f83ee1b0 ""
   "figures/points_of_interest_map.jpg" 1784564361.55919 1597147 0d6f67c54042cab43bd219f38c1d9bb6 ""
   "figures/streetscore_map.jpg" 1784642814.81044 735726 f820b86e51d9d25adf5637744199927e ""
   "figures/survey_web.jpg" 1784475942.85963 334821 8cac8cf92b346f4ee2f2d3dd1651fe86 ""
@@ -317,14 +321,14 @@
   "front_page/front_page.tex" 1784541124.1663 1918 f6d07cfe4c733b00e2363e7f70afee6b ""
   "logos/FUAS_logo_trim.png" 1784541110.20337 31378 99e5855e0156bd91dee0e4f47a7f3747 ""
   "logos/UIREKA_logo_trim.png" 1784541110.14937 5192 bfe5e993a0167b5ec2232239f199f449 ""
-  "main.aux" 1784660432.88931 15697 90a669bcc9f99348872c14620aeb8479 "pdflatex"
-  "main.bbl" 1784660005.41297 52630 4f383c17d39c98af5d8f9edb01ddc427 "biber main"
-  "main.lof" 1784660432.89531 1131 82eb034c05924bdec7127e9255e64f39 "pdflatex"
-  "main.lot" 1784660432.89531 368 5f58c83186c50ddd2153657df13461e8 "pdflatex"
-  "main.out" 1784660432.89331 5649 40668542bbde9920d455d4d7485b9915 "pdflatex"
-  "main.run.xml" 1784660432.89531 2341 b52e31227361d5b9cd7ab762cbd59231 "pdflatex"
-  "main.tex" 1784660431.13532 41708 9f3a214dd0e38d5d05740f26bcd69cc2 ""
-  "main.toc" 1784660432.89531 2789 2858983f9950ff9260138ffbb322a0de "pdflatex"
+  "main.aux" 1784821360.04756 22785 e681de29eda9078060b966bea98b11ab "pdflatex"
+  "main.bbl" 1784821264.44849 72849 e7edc747cc2168048bb793c0817692f7 "biber main"
+  "main.lof" 1784821360.05856 1417 8c6bb6e9f74bf286c21f87738213d254 "pdflatex"
+  "main.lot" 1784821360.05856 601 054356749f3da030fd83256b337d7465 "pdflatex"
+  "main.out" 1784821360.05656 7262 2e43fa4ebddbe11ed674deff87c8aaa2 "pdflatex"
+  "main.run.xml" 1784821360.05856 2341 b52e31227361d5b9cd7ab762cbd59231 "pdflatex"
+  "main.tex" 1784821341.68492 83546 a68fa1eaf74a2dd3c408fbccecc25b21 ""
+  "main.toc" 1784821360.05856 3960 8a32cc95c884fc1185b78476e5d3d2bf "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
