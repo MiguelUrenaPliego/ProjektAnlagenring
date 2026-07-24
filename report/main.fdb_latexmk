@@ -1,14 +1,14 @@
 # Fdb version 4
-["biber main"] 1784881271.46716 "main.bcf" "main.bbl" "main" 1784887709.94476 0
-  "main.bcf" 1784887709.82514 113204 1ebd65a7bdda5cb87ac9cef87c819679 "pdflatex"
+["biber main"] 1784881271.46716 "main.bcf" "main.bbl" "main" 1784888330.18098 0
+  "main.bcf" 1784888330.06472 113204 1ebd65a7bdda5cb87ac9cef87c819679 "pdflatex"
   "references.bib" 1784820199.01118 16007 eaf2c2e56bbad8d8456fb5580a891f28 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1784887707.83445 "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" "main.pdf" "main" 1784887709.94505 0
+["pdflatex"] 1784888328.13604 "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" "main.pdf" "main" 1784888330.18127 0
   "/etc/texmf/web2c/texmf.cnf" 1743875734.39256 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" 1784887703.36717 92152 04380906db28c3bcd5ead53dabe6081e ""
+  "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" 1784888325.76075 93213 12c46184adc8be3f27d64187016bd800 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -313,9 +313,13 @@
   "figures/park_2.jpeg" 1784819425.78031 49556 7ba0f254b0666943a512b35437d3aff6 ""
   "figures/park_3.jpeg" 1784819466.11026 61335 06de422f7b442055839e6215f83ee1b0 ""
   "figures/points_of_interest_map.jpg" 1784564361.55919 1597147 0d6f67c54042cab43bd219f38c1d9bb6 ""
+  "figures/reallabor_1.jpeg" 1784887775.20985 247227 4830af374243c4cc7cfaacb3c0a71e5b ""
+  "figures/reallabor_2.jpeg" 1784887782.70081 303566 c9e59397c0e9f46faf5b6cc4be5d1f3c ""
+  "figures/reallabor_3.jpeg" 1784888128.89695 213885 e54013958d2889a188f2e9674d5cef09 ""
   "figures/streetscore_map.jpg" 1784642814.81044 735726 f820b86e51d9d25adf5637744199927e ""
   "figures/survey_web.jpg" 1784475942.85963 334821 8cac8cf92b346f4ee2f2d3dd1651fe86 ""
   "figures/transversal_roads_map.jpg" 1784567724.14538 607153 84267f8558c849d55ea6a4d45b8ec30d ""
+  "figures/umfrage.jpeg" 1784887880.96133 422744 9d373218b897ffd5b1bb4a43f4f5a043 ""
   "figures/valencia_before_after.jpg" 1784633043.59881 463531 dec9ea12808bf7dcd2213ec15a1c1eb7 ""
   "figures/zentrum_5min.jpg" 1784633043.77781 404394 37e9b6b6e66ff2ed3ecc1d202665f9fe ""
   "figures/zentrum_route.jpg" 1784633043.83481 367650 ae372e2301154db54a54f5e0ed7102b3 ""
@@ -323,14 +327,14 @@
   "front_page/front_page.tex" 1784541124.1663 1918 f6d07cfe4c733b00e2363e7f70afee6b ""
   "logos/FUAS_logo_trim.png" 1784541110.20337 31378 99e5855e0156bd91dee0e4f47a7f3747 ""
   "logos/UIREKA_logo_trim.png" 1784541110.14937 5192 bfe5e993a0167b5ec2232239f199f449 ""
-  "main.aux" 1784887709.81714 23869 29ad986b46055b71c5339cc2bd94b10c "pdflatex"
+  "main.aux" 1784888330.05672 25100 8dda0919f31334ec5e4916395558ed9e "pdflatex"
   "main.bbl" 1784881272.35433 72849 e7edc747cc2168048bb793c0817692f7 "biber main"
-  "main.lof" 1784887709.82614 1547 e1c3c54f4fa61993155c10d293723d00 "pdflatex"
-  "main.lot" 1784887709.82614 601 48cc7b0c345056c1775910f6baf6d748 "pdflatex"
-  "main.out" 1784887709.82414 7323 2de74777832a2bafda526bbdd6835a0d "pdflatex"
-  "main.run.xml" 1784887709.82614 2341 b52e31227361d5b9cd7ab762cbd59231 "pdflatex"
-  "main.tex" 1784887703.36717 92152 04380906db28c3bcd5ead53dabe6081e ""
-  "main.toc" 1784887709.82614 4023 6fac2ee7038acf8c556d75d3a1f2d842 "pdflatex"
+  "main.lof" 1784888330.06572 1797 28401656c9261b66c0db973fb081962b "pdflatex"
+  "main.lot" 1784888330.06572 601 758a849478aa7e697f9588e0a0ac7b79 "pdflatex"
+  "main.out" 1784888330.06372 7323 2de74777832a2bafda526bbdd6835a0d "pdflatex"
+  "main.run.xml" 1784888330.06572 2341 b52e31227361d5b9cd7ab762cbd59231 "pdflatex"
+  "main.tex" 1784888325.76075 93213 12c46184adc8be3f27d64187016bd800 ""
+  "main.toc" 1784888330.06572 4023 0e0f1de816420a05149167db742f3317 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
