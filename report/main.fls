@@ -510,7 +510,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm
 INPUT ./main.toc
 INPUT ./main.toc
 INPUT main.toc
-OUTPUT main.toc
 INPUT ./logos/UIREKA_logo_trim.png
 INPUT ./logos/UIREKA_logo_trim.png
 INPUT ./logos/UIREKA_logo_trim.png
@@ -524,6 +523,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+OUTPUT main.toc
 INPUT ./logos/UIREKA_logo_trim.png
 INPUT ./logos/UIREKA_logo_trim.png
 INPUT ./logos/UIREKA_logo_trim.png
@@ -599,6 +599,11 @@ INPUT ./figures/transversal_roads_map.jpg
 INPUT ./figures/transversal_roads_map.jpg
 INPUT ./figures/transversal_roads_map.jpg
 INPUT ./figures/transversal_roads_map.jpg
+INPUT ./figures/cycle_map.jpg
+INPUT ./figures/cycle_map.jpg
+INPUT ./figures/cycle_map.jpg
+INPUT ./figures/cycle_map.jpg
+INPUT ./figures/cycle_map.jpg
 INPUT ./logos/UIREKA_logo_trim.png
 INPUT ./logos/UIREKA_logo_trim.png
 INPUT ./logos/UIREKA_logo_trim.png
@@ -618,11 +623,6 @@ INPUT ./logos/FUAS_logo_trim.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc
-INPUT ./figures/points_of_interest_map.jpg
-INPUT ./figures/points_of_interest_map.jpg
-INPUT ./figures/points_of_interest_map.jpg
-INPUT ./figures/points_of_interest_map.jpg
-INPUT ./figures/points_of_interest_map.jpg
 INPUT ./logos/UIREKA_logo_trim.png
 INPUT ./logos/UIREKA_logo_trim.png
 INPUT ./logos/UIREKA_logo_trim.png
@@ -631,6 +631,11 @@ INPUT ./logos/FUAS_logo_trim.png
 INPUT ./logos/FUAS_logo_trim.png
 INPUT ./logos/FUAS_logo_trim.png
 INPUT ./logos/FUAS_logo_trim.png
+INPUT ./figures/points_of_interest_map.jpg
+INPUT ./figures/points_of_interest_map.jpg
+INPUT ./figures/points_of_interest_map.jpg
+INPUT ./figures/points_of_interest_map.jpg
+INPUT ./figures/points_of_interest_map.jpg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd

@@ -4,7 +4,7 @@
 \contentsline {section}{\numberline {2}Bestandsanalyse}{6}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Der Anlagenring}{6}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Physischer Aspekt}{6}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Nutzungsvielfalt}{8}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.3}Nutzungsvielfalt}{9}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Wahrnehmungsaspekt}{9}{subsection.2.4}%
 \contentsline {section}{\numberline {3}Erkenntnisse aus dem Reallabor}{10}{section.3}%
 \contentsline {section}{\numberline {4}Gestaltungsziele für das Eschenheimer Tor}{12}{section.4}%
@@ -23,11 +23,11 @@
 \contentsline {subsection}{\numberline {6.4}Eigene Untersuchung: Straßensperrungen im Frankfurter Zentrum}{21}{subsection.6.4}%
 \contentsline {section}{\numberline {7}Bewertung}{22}{section.7}%
 \contentsline {subsection}{\numberline {7.1}SWOT-Analyse}{22}{subsection.7.1}%
-\contentsline {paragraph}{Stärken}{23}{paragraph*.12}%
-\contentsline {paragraph}{Schwächen}{24}{paragraph*.13}%
-\contentsline {paragraph}{Chancen}{24}{paragraph*.14}%
-\contentsline {paragraph}{Risiken}{24}{paragraph*.15}%
-\contentsline {paragraph}{Bewertung}{25}{paragraph*.16}%
+\contentsline {paragraph}{Stärken}{23}{paragraph*.13}%
+\contentsline {paragraph}{Schwächen}{24}{paragraph*.14}%
+\contentsline {paragraph}{Chancen}{24}{paragraph*.15}%
+\contentsline {paragraph}{Risiken}{24}{paragraph*.16}%
+\contentsline {paragraph}{Bewertung}{25}{paragraph*.17}%
 \contentsline {section}{\numberline {8}Maßnahmen}{25}{section.8}%
 \contentsline {subsection}{\numberline {8.1}Kurzfristig}{25}{subsection.8.1}%
 \contentsline {subsubsection}{\numberline {8.1.1}Lichtsignalanlagenschaltung}{25}{subsubsection.8.1.1}%
@@ -39,8 +39,9 @@
 \contentsline {subsubsection}{\numberline {8.3.1}Verkehrsberuhigung}{27}{subsubsection.8.3.1}%
 \contentsline {subsubsection}{\numberline {8.3.2}Langfristiges Gestaltungskonzept für das Eschenheimer Tor}{29}{subsubsection.8.3.2}%
 \contentsline {subsubsection}{\numberline {8.3.3}Übertragbarkeit auf weitere Knotenpunkte: Allerheiligentor und Hessendenkmal}{31}{subsubsection.8.3.3}%
-\contentsline {paragraph}{Allerheiligentor}{31}{paragraph*.20}%
-\contentsline {paragraph}{Hessendenkmal}{32}{paragraph*.21}%
-\contentsline {paragraph}{Ringweites Gestaltungsprinzip}{32}{paragraph*.22}%
+\contentsline {paragraph}{Allerheiligentor}{31}{paragraph*.21}%
+\contentsline {paragraph}{Hessendenkmal}{32}{paragraph*.22}%
+\contentsline {paragraph}{Ringweites Gestaltungsprinzip}{32}{paragraph*.23}%
 \contentsline {section}{\numberline {9}Diskussion}{33}{section.9}%
 \contentsline {section}{\numberline {10}Fazit}{34}{section.10}%
+\contentsline {section}{\numberline {11}Code und Projektwebsite}{35}{section.11}%

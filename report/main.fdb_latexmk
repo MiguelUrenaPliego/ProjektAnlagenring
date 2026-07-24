@@ -1,14 +1,14 @@
 # Fdb version 4
-["biber main"] 1784881271.46716 "main.bcf" "main.bbl" "main" 1784881991.20562 0
-  "main.bcf" 1784881991.08843 113204 1ebd65a7bdda5cb87ac9cef87c819679 "pdflatex"
+["biber main"] 1784881271.46716 "main.bcf" "main.bbl" "main" 1784887709.94476 0
+  "main.bcf" 1784887709.82514 113204 1ebd65a7bdda5cb87ac9cef87c819679 "pdflatex"
   "references.bib" 1784820199.01118 16007 eaf2c2e56bbad8d8456fb5580a891f28 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1784881989.02962 "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" "main.pdf" "main" 1784881991.20599 0
+["pdflatex"] 1784887707.83445 "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" "main.pdf" "main" 1784887709.94505 0
   "/etc/texmf/web2c/texmf.cnf" 1743875734.39256 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" 1784881988.81434 91645 73919f2f3f6eb13d013d8e23477b73f6 ""
+  "/home/miguel/Documents/UNI/Master/2/ProjektVerkehr/report/main.tex" 1784887703.36717 92152 04380906db28c3bcd5ead53dabe6081e ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -300,7 +300,8 @@
   "figures/bahnhof_route.jpg" 1784633043.22781 582442 d5fa815b587558ded28d7d782ea00a5a ""
   "figures/bahnhof_verkehr.jpg" 1784633043.33881 715890 61570ede61a8027ae8767446426da573 ""
   "figures/closures.jpg" 1784633043.46981 1132786 d0d62a7584b6027da5058889dbf08182 ""
-  "figures/front_page.jpg" 1784475070.12733 21154 7ba9548fae86704e9ada7ac6ec3464fa ""
+  "figures/cycle_map.jpg" 1784887597.09359 297036 3924db60206a711b1229ffa09cd4c22c ""
+  "figures/front_page.jpg" 1784887044.25385 267175 afb1a59cc13da4223e79e785f1520e9a ""
   "figures/good_bike.jpg" 1784542647.98494 305590 34ab278c44080053e3cc30863bf2c00d ""
   "figures/good_park.jpg" 1784542648.03593 320969 5adbc831275bda91dc28ab94061017e5 ""
   "figures/good_park_2.jpg" 1784542648.08593 320085 9ddfec93d345f5d236841f6dae8b0fc9 ""
@@ -322,14 +323,14 @@
   "front_page/front_page.tex" 1784541124.1663 1918 f6d07cfe4c733b00e2363e7f70afee6b ""
   "logos/FUAS_logo_trim.png" 1784541110.20337 31378 99e5855e0156bd91dee0e4f47a7f3747 ""
   "logos/UIREKA_logo_trim.png" 1784541110.14937 5192 bfe5e993a0167b5ec2232239f199f449 ""
-  "main.aux" 1784881991.07943 23466 1aa0d77477db3e5468388ce2535657a5 "pdflatex"
+  "main.aux" 1784887709.81714 23869 29ad986b46055b71c5339cc2bd94b10c "pdflatex"
   "main.bbl" 1784881272.35433 72849 e7edc747cc2168048bb793c0817692f7 "biber main"
-  "main.lof" 1784881991.08943 1417 8c6bb6e9f74bf286c21f87738213d254 "pdflatex"
-  "main.lot" 1784881991.08943 601 054356749f3da030fd83256b337d7465 "pdflatex"
-  "main.out" 1784881991.08743 7157 4095cd58ca87ccc1d3864067af6f49de "pdflatex"
-  "main.run.xml" 1784881991.08943 2341 b52e31227361d5b9cd7ab762cbd59231 "pdflatex"
-  "main.tex" 1784881988.81434 91645 73919f2f3f6eb13d013d8e23477b73f6 ""
-  "main.toc" 1784881991.08943 3941 2fececd9f20b1f424bf09275eed1ea04 "pdflatex"
+  "main.lof" 1784887709.82614 1547 e1c3c54f4fa61993155c10d293723d00 "pdflatex"
+  "main.lot" 1784887709.82614 601 48cc7b0c345056c1775910f6baf6d748 "pdflatex"
+  "main.out" 1784887709.82414 7323 2de74777832a2bafda526bbdd6835a0d "pdflatex"
+  "main.run.xml" 1784887709.82614 2341 b52e31227361d5b9cd7ab762cbd59231 "pdflatex"
+  "main.tex" 1784887703.36717 92152 04380906db28c3bcd5ead53dabe6081e ""
+  "main.toc" 1784887709.82614 4023 6fac2ee7038acf8c556d75d3a1f2d842 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
