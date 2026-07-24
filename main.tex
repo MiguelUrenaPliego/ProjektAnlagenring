@@ -198,23 +198,30 @@ Auch die Oberflächenbeschaffenheit der Wege wurde betrachtet. Innerhalb der Wal
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.6\textwidth]{figures/intersections_map.jpg}
-	\caption[Karte der Querungsabstände am Anlagenring]{Karte der Straßenabschnitte entlang des Anlagenrings, eingefärbt nach dem Abstand zur nächstgelegenen Querungsmöglichkeit (Quelle: eigene Darstellung; Hintergrundkarte: OpenStreetMap). Interaktive Version: \url{https://miguelurenapliego.github.io/ProjektAnlagenring/maps/intersections/intersections_map.html?lang=de}.}
-	\label{fig:intersections-map}
-\end{figure}
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=0.6\textwidth]{figures/transversal_roads_map.jpg}
-	\caption[Karte der querenden Straßen am Anlagenring]{Karte der Hauptstraßen, die quer durch den Anlagenring verlaufen und ihn dadurch in Abschnitte zerschneiden (Quelle: eigene Darstellung; Hintergrundkarte: OpenStreetMap). Interaktive Version: \url{https://miguelurenapliego.github.io/ProjektAnlagenring/maps/transversal_roads/transversal_roads.html?lang=de}.}
-	\label{fig:transversal-roads-map}
-\end{figure}
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.6\textwidth]{figures/cycle_map.jpg}
-    \caption[Fahrradroute mit Wartezeiten an Lichtsignalanlagen]{Darstellung der untersuchten Fahrradroute mit den gemessenen Wartezeiten an Lichtsignalanlagen (LSA) (Quelle: eigene Darstellung; Hintergrundkarte: OpenStreetMap). Eine interaktive Version der Karte ist verfügbar unter \url{https://miguelurenapliego.github.io/ProjektAnlagenring/maps/cycle/cycle_map.html?lang=de}.}
-    \label{fig:fahrrad-map}
+	
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[height=3.5cm,keepaspectratio]{figures/intersections_map.jpg}
+		\caption{Abstände zum nächstgelegenen Zugang}
+		\label{fig:intersections-map}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[height=3.5cm,keepaspectratio]{figures/transversal_roads_map.jpg}
+		\caption{Querende Straßen am Anlagenring}
+		\label{fig:transversal-roads-map}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includegraphics[height=3.5cm,keepaspectratio]{figures/cycle_map.jpg}
+		\caption{Fahrradroute mit Wartezeiten an Lichtsignalanlagen}
+		\label{fig:fahrrad-map}
+	\end{subfigure}
+	
+	\caption[Physische Unterbrechungen am Anlagenring]{Darstellung verschiedener physischer Unterbrechungen und Zugangshindernisse am Anlagenring: (a) Abstände zum nächstgelegenen Zugang, (b) querende Hauptstraßen als räumliche Unterbrechungen und (c) Wartezeiten an Lichtsignalanlagen (LSA) entlang einer untersuchten Fahrradroute. Quelle: eigene Darstellung; Hintergrundkarten: OpenStreetMap. Interaktive Versionen der Karten: (a) \url{https://miguelurenapliego.github.io/ProjektAnlagenring/maps/intersections/intersections_map.html?lang=de}, (b) \url{https://miguelurenapliego.github.io/ProjektAnlagenring/maps/transversal_roads/transversal_roads.html?lang=de}, (c) \url{https://miguelurenapliego.github.io/ProjektAnlagenring/maps/cycle/cycle_map.html?lang=de}.}
+	\label{fig:anlagenring-unterbrechungen}
 \end{figure}
 
 Abbildung~\ref{fig:intersections-map} zeigt, dass die Abstände zwischen aufeinanderfolgenden Querungsmöglichkeiten entlang der parallel zum Park verlaufenden Straßen an vielen Stellen deutlich über 100\,m liegen. Für Parknutzende bedeutet das, dass sie an diesen Stellen im Schnitt 100\,m bis zur nächsten Querung sowie nochmals 100\,m zurück zurücklegen müssen, um den Park überhaupt verlassen zu können, insgesamt also einen Umweg von rund 5\,Minuten zu Fuß. Besonders betroffen sind der Abschnitt südlich des Bethmannparks sowie der Bereich rund um den Eschenheimer Tor.

@@ -4,44 +4,44 @@
 \contentsline {section}{\numberline {2}Bestandsanalyse}{6}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Der Anlagenring}{6}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Physischer Aspekt}{6}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Nutzungsvielfalt}{9}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Wahrnehmungsaspekt}{9}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Erkenntnisse aus dem Reallabor}{10}{section.3}%
-\contentsline {section}{\numberline {4}Gestaltungsziele für das Eschenheimer Tor}{12}{section.4}%
-\contentsline {section}{\numberline {5}Wahrnehmungsumfrage}{13}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Hintergrund und Motivation}{13}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Paarvergleich als Messinstrument}{14}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Von Entscheidungen zu Werten: TrueSkill}{14}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Entscheiden, was als Nächstes gezeigt wird: Active Sampling}{15}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Verallgemeinerung über die abgefragten Bilder hinaus: StreetScore \& Fine-Tuning}{15}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Anwendung im Feld: Der Reallabor-Tag am Anlagenring}{16}{subsection.5.6}%
-\contentsline {subsection}{\numberline {5.7}Ergebnisse}{17}{subsection.5.7}%
-\contentsline {section}{\numberline {6}Verkehrsberuhigung im Stadtzentrum}{20}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Beispiel Madrid}{20}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Beispiel Valencia}{20}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Routing-Engine}{21}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Eigene Untersuchung: Straßensperrungen im Frankfurter Zentrum}{22}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Bewertung}{23}{section.7}%
-\contentsline {subsection}{\numberline {7.1}SWOT-Analyse}{23}{subsection.7.1}%
-\contentsline {paragraph}{Stärken}{24}{paragraph*.15}%
-\contentsline {paragraph}{Schwächen}{25}{paragraph*.16}%
-\contentsline {paragraph}{Chancen}{25}{paragraph*.17}%
-\contentsline {paragraph}{Risiken}{25}{paragraph*.18}%
-\contentsline {paragraph}{Bewertung}{26}{paragraph*.19}%
-\contentsline {section}{\numberline {8}Maßnahmen}{26}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Kurzfristig}{26}{subsection.8.1}%
-\contentsline {subsubsection}{\numberline {8.1.1}Lichtsignalanlagenschaltung}{26}{subsubsection.8.1.1}%
-\contentsline {subsubsection}{\numberline {8.1.2}Pop-Up-Radwege}{27}{subsubsection.8.1.2}%
-\contentsline {subsection}{\numberline {8.2}Mittelfristig}{28}{subsection.8.2}%
-\contentsline {subsubsection}{\numberline {8.2.1}Feste Fahrradinfrastruktur}{28}{subsubsection.8.2.1}%
-\contentsline {subsubsection}{\numberline {8.2.2}Zusammenwachsen des Grünraums}{28}{subsubsection.8.2.2}%
-\contentsline {subsection}{\numberline {8.3}Langfristig}{28}{subsection.8.3}%
-\contentsline {subsubsection}{\numberline {8.3.1}Verkehrsberuhigung}{28}{subsubsection.8.3.1}%
-\contentsline {subsubsection}{\numberline {8.3.2}Langfristiges Gestaltungskonzept für das Eschenheimer Tor}{30}{subsubsection.8.3.2}%
-\contentsline {subsubsection}{\numberline {8.3.3}Übertragbarkeit auf weitere Knotenpunkte: Allerheiligentor und Hessendenkmal}{32}{subsubsection.8.3.3}%
-\contentsline {paragraph}{Allerheiligentor}{32}{paragraph*.23}%
-\contentsline {paragraph}{Hessendenkmal}{33}{paragraph*.24}%
-\contentsline {paragraph}{Ringweites Gestaltungsprinzip}{33}{paragraph*.25}%
-\contentsline {section}{\numberline {9}Diskussion}{34}{section.9}%
-\contentsline {section}{\numberline {10}Fazit}{35}{section.10}%
-\contentsline {section}{\numberline {11}Code und Projektwebsite}{36}{section.11}%
+\contentsline {subsection}{\numberline {2.3}Nutzungsvielfalt}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Wahrnehmungsaspekt}{8}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Erkenntnisse aus dem Reallabor}{9}{section.3}%
+\contentsline {section}{\numberline {4}Gestaltungsziele für das Eschenheimer Tor}{11}{section.4}%
+\contentsline {section}{\numberline {5}Wahrnehmungsumfrage}{12}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Hintergrund und Motivation}{12}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Paarvergleich als Messinstrument}{13}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Von Entscheidungen zu Werten: TrueSkill}{13}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Entscheiden, was als Nächstes gezeigt wird: Active Sampling}{14}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Verallgemeinerung über die abgefragten Bilder hinaus: StreetScore \& Fine-Tuning}{14}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Anwendung im Feld: Der Reallabor-Tag am Anlagenring}{15}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Ergebnisse}{16}{subsection.5.7}%
+\contentsline {section}{\numberline {6}Verkehrsberuhigung im Stadtzentrum}{19}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Beispiel Madrid}{19}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Beispiel Valencia}{19}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Routing-Engine}{20}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Eigene Untersuchung: Straßensperrungen im Frankfurter Zentrum}{21}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Bewertung}{22}{section.7}%
+\contentsline {subsection}{\numberline {7.1}SWOT-Analyse}{22}{subsection.7.1}%
+\contentsline {paragraph}{Stärken}{23}{paragraph*.13}%
+\contentsline {paragraph}{Schwächen}{24}{paragraph*.14}%
+\contentsline {paragraph}{Chancen}{24}{paragraph*.15}%
+\contentsline {paragraph}{Risiken}{24}{paragraph*.16}%
+\contentsline {paragraph}{Bewertung}{25}{paragraph*.17}%
+\contentsline {section}{\numberline {8}Maßnahmen}{25}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Kurzfristig}{25}{subsection.8.1}%
+\contentsline {subsubsection}{\numberline {8.1.1}Lichtsignalanlagenschaltung}{25}{subsubsection.8.1.1}%
+\contentsline {subsubsection}{\numberline {8.1.2}Pop-Up-Radwege}{26}{subsubsection.8.1.2}%
+\contentsline {subsection}{\numberline {8.2}Mittelfristig}{27}{subsection.8.2}%
+\contentsline {subsubsection}{\numberline {8.2.1}Feste Fahrradinfrastruktur}{27}{subsubsection.8.2.1}%
+\contentsline {subsubsection}{\numberline {8.2.2}Zusammenwachsen des Grünraums}{27}{subsubsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.3}Langfristig}{27}{subsection.8.3}%
+\contentsline {subsubsection}{\numberline {8.3.1}Verkehrsberuhigung}{27}{subsubsection.8.3.1}%
+\contentsline {subsubsection}{\numberline {8.3.2}Langfristiges Gestaltungskonzept für das Eschenheimer Tor}{29}{subsubsection.8.3.2}%
+\contentsline {subsubsection}{\numberline {8.3.3}Übertragbarkeit auf weitere Knotenpunkte: Allerheiligentor und Hessendenkmal}{31}{subsubsection.8.3.3}%
+\contentsline {paragraph}{Allerheiligentor}{31}{paragraph*.21}%
+\contentsline {paragraph}{Hessendenkmal}{32}{paragraph*.22}%
+\contentsline {paragraph}{Ringweites Gestaltungsprinzip}{32}{paragraph*.23}%
+\contentsline {section}{\numberline {9}Diskussion}{33}{section.9}%
+\contentsline {section}{\numberline {10}Fazit}{34}{section.10}%
+\contentsline {section}{\numberline {11}Code und Projektwebsite}{35}{section.11}%
