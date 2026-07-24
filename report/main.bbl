@@ -361,28 +361,6 @@
       \verb 10.48550/arXiv.2010.11929
       \endverb
     \endentry
-    \entry{eigeneerhebung2026}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=9a5ba533854c7fd3ad3f9437e361496e}{%
-           family={{Eigene Erhebung}},
-           familyi={E\bibinitperiod}}}%
-      }
-      \strng{namehash}{9a5ba533854c7fd3ad3f9437e361496e}
-      \strng{fullhash}{9a5ba533854c7fd3ad3f9437e361496e}
-      \strng{bibnamehash}{9a5ba533854c7fd3ad3f9437e361496e}
-      \strng{authorbibnamehash}{9a5ba533854c7fd3ad3f9437e361496e}
-      \strng{authornamehash}{9a5ba533854c7fd3ad3f9437e361496e}
-      \strng{authorfullhash}{9a5ba533854c7fd3ad3f9437e361496e}
-      \field{sortinit}{E}
-      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Eigene Erhebung: Reallabor am Eschenheimer Tor}
-      \field{year}{2026}
-      \field{dateera}{ce}
-    \endentry
     \entry{fgsveklima2022}{online}{}
       \name{author}{1}{}{%
         {{hash=7b323f47467948589ba09d9126b6c94e}{%

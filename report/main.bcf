@@ -2410,30 +2410,29 @@
     <bcf:citekey order="40" intorder="1">bundesagenturfurarbeit2025</bcf:citekey>
     <bcf:citekey order="41" intorder="1">hvbg2026</bcf:citekey>
     <bcf:citekey order="42" intorder="1">stadtfrankfurtzieleverfahren2025</bcf:citekey>
-    <bcf:citekey order="43" intorder="1">eigeneerhebung2026</bcf:citekey>
+    <bcf:citekey order="43" intorder="1">zotero-item-63</bcf:citekey>
     <bcf:citekey order="44" intorder="1">zotero-item-63</bcf:citekey>
-    <bcf:citekey order="45" intorder="1">zotero-item-63</bcf:citekey>
-    <bcf:citekey order="46" intorder="1">PopupRadwege</bcf:citekey>
+    <bcf:citekey order="45" intorder="1">PopupRadwege</bcf:citekey>
+    <bcf:citekey order="46" intorder="1">VerkehrszeichenUndVerkehrseinrichtungen</bcf:citekey>
     <bcf:citekey order="47" intorder="1">VerkehrszeichenUndVerkehrseinrichtungen</bcf:citekey>
-    <bcf:citekey order="48" intorder="1">VerkehrszeichenUndVerkehrseinrichtungen</bcf:citekey>
-    <bcf:citekey order="49" intorder="1">marohn2018</bcf:citekey>
-    <bcf:citekey order="50" intorder="1">stadtfrankfurtmasterplan2025</bcf:citekey>
-    <bcf:citekey order="51" intorder="1">stadtfrankfurtmodalsplit2020</bcf:citekey>
-    <bcf:citekey order="52" intorder="1">stadtfrankfurtsrv2025</bcf:citekey>
-    <bcf:citekey order="53" intorder="1">infasmid2025</bcf:citekey>
-    <bcf:citekey order="54" intorder="1">stadtfrankfurtzieleverfahren2025</bcf:citekey>
-    <bcf:citekey order="55" intorder="1">magistratfrankfurtfahrradtrasse2023</bcf:citekey>
-    <bcf:citekey order="56" intorder="1">fgsveklima2022</bcf:citekey>
-    <bcf:citekey order="57" intorder="1">stadtfrankfurtobermainanlage2026</bcf:citekey>
-    <bcf:citekey order="58" intorder="1">stadtfrankfurtfriedbergeranlage2026</bcf:citekey>
-    <bcf:citekey order="59" intorder="1">kunstimoeffentlichenraumhessendenkmal2026</bcf:citekey>
-    <bcf:citekey order="60" intorder="1">jacobs1961</bcf:citekey>
-    <bcf:citekey order="61" intorder="1">bbsrziz2025</bcf:citekey>
-    <bcf:citekey order="62" intorder="1">stadtfrankfurtmasterplan2025</bcf:citekey>
-    <bcf:citekey order="62" intorder="2">umweltbundesamt2022</bcf:citekey>
-    <bcf:citekey order="63" intorder="1">bbsrziz2025</bcf:citekey>
-    <bcf:citekey order="64" intorder="1">stadtfrankfurtmasterplan2025</bcf:citekey>
-    <bcf:citekey order="64" intorder="2">umweltbundesamt2022</bcf:citekey>
+    <bcf:citekey order="48" intorder="1">marohn2018</bcf:citekey>
+    <bcf:citekey order="49" intorder="1">stadtfrankfurtmasterplan2025</bcf:citekey>
+    <bcf:citekey order="50" intorder="1">stadtfrankfurtmodalsplit2020</bcf:citekey>
+    <bcf:citekey order="51" intorder="1">stadtfrankfurtsrv2025</bcf:citekey>
+    <bcf:citekey order="52" intorder="1">infasmid2025</bcf:citekey>
+    <bcf:citekey order="53" intorder="1">stadtfrankfurtzieleverfahren2025</bcf:citekey>
+    <bcf:citekey order="54" intorder="1">magistratfrankfurtfahrradtrasse2023</bcf:citekey>
+    <bcf:citekey order="55" intorder="1">fgsveklima2022</bcf:citekey>
+    <bcf:citekey order="56" intorder="1">stadtfrankfurtobermainanlage2026</bcf:citekey>
+    <bcf:citekey order="57" intorder="1">stadtfrankfurtfriedbergeranlage2026</bcf:citekey>
+    <bcf:citekey order="58" intorder="1">kunstimoeffentlichenraumhessendenkmal2026</bcf:citekey>
+    <bcf:citekey order="59" intorder="1">jacobs1961</bcf:citekey>
+    <bcf:citekey order="60" intorder="1">bbsrziz2025</bcf:citekey>
+    <bcf:citekey order="61" intorder="1">stadtfrankfurtmasterplan2025</bcf:citekey>
+    <bcf:citekey order="61" intorder="2">umweltbundesamt2022</bcf:citekey>
+    <bcf:citekey order="62" intorder="1">bbsrziz2025</bcf:citekey>
+    <bcf:citekey order="63" intorder="1">stadtfrankfurtmasterplan2025</bcf:citekey>
+    <bcf:citekey order="63" intorder="2">umweltbundesamt2022</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
