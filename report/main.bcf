@@ -2427,6 +2427,13 @@
     <bcf:citekey order="57" intorder="1">stadtfrankfurtobermainanlage2026</bcf:citekey>
     <bcf:citekey order="58" intorder="1">stadtfrankfurtfriedbergeranlage2026</bcf:citekey>
     <bcf:citekey order="59" intorder="1">kunstimoeffentlichenraumhessendenkmal2026</bcf:citekey>
+    <bcf:citekey order="60" intorder="1">jacobs1961</bcf:citekey>
+    <bcf:citekey order="61" intorder="1">bbsrziz2025</bcf:citekey>
+    <bcf:citekey order="62" intorder="1">stadtfrankfurtmasterplan2025</bcf:citekey>
+    <bcf:citekey order="62" intorder="2">umweltbundesamt2022</bcf:citekey>
+    <bcf:citekey order="63" intorder="1">bbsrziz2025</bcf:citekey>
+    <bcf:citekey order="64" intorder="1">stadtfrankfurtmasterplan2025</bcf:citekey>
+    <bcf:citekey order="64" intorder="2">umweltbundesamt2022</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

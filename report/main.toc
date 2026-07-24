@@ -30,7 +30,7 @@
 \contentsline {paragraph}{Bewertung}{25}{paragraph*.16}%
 \contentsline {section}{\numberline {8}Maßnahmen}{25}{section.8}%
 \contentsline {subsection}{\numberline {8.1}Kurzfristig}{25}{subsection.8.1}%
-\contentsline {subsubsection}{\numberline {8.1.1}Ampelschaltung}{25}{subsubsection.8.1.1}%
+\contentsline {subsubsection}{\numberline {8.1.1}Lichtsignalanlagenschaltung}{25}{subsubsection.8.1.1}%
 \contentsline {subsubsection}{\numberline {8.1.2}Pop-Up-Radwege}{26}{subsubsection.8.1.2}%
 \contentsline {subsection}{\numberline {8.2}Mittelfristig}{27}{subsection.8.2}%
 \contentsline {subsubsection}{\numberline {8.2.1}Feste Fahrradinfrastruktur}{27}{subsubsection.8.2.1}%
@@ -42,5 +42,5 @@
 \contentsline {paragraph}{Allerheiligentor}{31}{paragraph*.20}%
 \contentsline {paragraph}{Hessendenkmal}{32}{paragraph*.21}%
 \contentsline {paragraph}{Ringweites Gestaltungsprinzip}{32}{paragraph*.22}%
-\contentsline {section}{\numberline {9}Fazit}{33}{section.9}%
-\contentsline {section}{\numberline {10}Verfügbarkeit von Code und Projektwebsite}{33}{section.10}%
+\contentsline {section}{\numberline {9}Diskussion}{33}{section.9}%
+\contentsline {section}{\numberline {10}Fazit}{34}{section.10}%
