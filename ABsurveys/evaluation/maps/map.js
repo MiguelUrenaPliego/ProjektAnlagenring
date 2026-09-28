@@ -53,7 +53,7 @@ function resolveInitialLanguage() {
     } catch (e) {
         // localStorage/URLSearchParams may be unavailable in some contexts
     }
-    return 'de';
+    return 'en';
 }
 
 let currentLang = resolveInitialLanguage();
@@ -257,6 +257,11 @@ function initLeafletOverlays() {
 
     markersGroup = L.featureGroup().add_to ? L.featureGroup().add_to(mapObject) : L.featureGroup().addTo(mapObject);
     renderMarkers();
+
+    // Open the first marker's popup on initial load so the popup is visible right away
+    if (firstMarkerElement) {
+        firstMarkerElement.openPopup();
+    }
 }
 
 // Get value for current state
@@ -427,9 +432,12 @@ function generatePopupHtml(point, targetMetric) {
 }
 
 // Render markers based on active choices
+let firstMarkerElement = null;
+
 function renderMarkers() {
     if (!markersGroup) return;
     markersGroup.clearLayers();
+    firstMarkerElement = null;
 
     // Recalculate dynamic colormap bounds
     calculateDiffBounds();
@@ -496,6 +504,10 @@ function renderMarkers() {
         });
 
         markerElement.addTo(markersGroup);
+
+        if (firstMarkerElement === null) {
+            firstMarkerElement = markerElement;
+        }
     });
 }
 

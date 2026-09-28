@@ -3,7 +3,7 @@ import SurveyCard from './components/SurveyCard.jsx';
 import Header from './components/Header.jsx';
 import './App.css';
 
-const API = '/api';
+const API = '/ABSurveys/FrankfurtAnlagenring/api';
 
 // Track pairing history per "scenario|img_type|question_id" key, so that
 // Rule 6 (no repeat pairs) and Rule 7 (no repeat images, where possible)

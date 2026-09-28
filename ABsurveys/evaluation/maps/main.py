@@ -276,6 +276,16 @@ def load_and_compile_perceptions() -> tuple[list[dict], int, int, bool, bool]:
                 img_df.at[idx, "y"] = lat
             img_id_tags[str(img_df.at[idx, "img_id"])] = override["tag"]
 
+    # --- Exclude "Gruppe2" images entirely from the rendered map ---
+    gruppe2_ids = {img_id for img_id, tag in img_id_tags.items() if tag == "Gruppe2"}
+    if gruppe2_ids:
+        img_df = img_df[~img_df["img_id"].astype(str).isin(gruppe2_ids)].reset_index(drop=True)
+        if not trueskill_df.empty and "img_id" in trueskill_df.columns:
+            trueskill_df = trueskill_df[~trueskill_df["img_id"].astype(str).isin(gruppe2_ids)].reset_index(drop=True)
+        if not streetscore_df.empty and "img_id" in streetscore_df.columns:
+            streetscore_df = streetscore_df[~streetscore_df["img_id"].astype(str).isin(gruppe2_ids)].reset_index(drop=True)
+        img_id_tags = {k: v for k, v in img_id_tags.items() if k not in gruppe2_ids}
+
     # Normalize source-of-truth metadata columns to lowercase & stripped for case-insensitive joins/filters
     if "img_type" in img_df.columns:
         img_df["img_type"] = img_df["img_type"].astype(str).str.strip().str.lower()

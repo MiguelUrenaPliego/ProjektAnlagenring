@@ -11,7 +11,7 @@ contains paths relative to that CSV's parent directory.
     images_path = "/home/miguel/.../images/images.csv"
     parent      = "/home/miguel/.../images/"
     row path    = "Anlagenring/1.jpg"
-    served at   = "/images/0/Anlagenring/1.jpg"
+    served at   = "/ABSurveys/FrankfurtAnlagenring/images/0/Anlagenring/1.jpg"
 
 MongoDB
 -------
@@ -37,6 +37,7 @@ import pandas as pd
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 from . import trueskill_utils
 from . import pairing
@@ -47,6 +48,8 @@ from . import db as _db
 # Config
 # ---------------------------------------------------------------------
 
+PREFIX = "/ABSurveys/FrankfurtAnlagenring"
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 with open(os.path.join(ROOT, "config.json"), "r") as f:
@@ -54,6 +57,8 @@ with open(os.path.join(ROOT, "config.json"), "r") as f:
 
 USER_DATA_PATH = os.path.join(ROOT, CONFIG["user_data_path"])
 os.makedirs(USER_DATA_PATH, exist_ok=True)
+
+FRONTEND_DIST = os.path.join(ROOT, "frontend", "dist")
 
 
 # =====================================================================
@@ -100,7 +105,7 @@ def _load_images_df(images_path_value: str | list) -> pd.DataFrame:
 
         def _url(p: str, i: int = idx) -> str:
             rel = str(p).strip().lstrip("/\\").replace("\\", "/")
-            return f"/images/{i}/{rel}"
+            return f"{PREFIX}/images/{i}/{rel}"
 
         df["_abs_path"]       = df["path"].apply(_abs)
         df["_serve_path"]     = df["path"].apply(_url)
@@ -210,12 +215,18 @@ app.add_middleware(
 # API ENDPOINTS
 # =====================================================================
 
-@app.get("/api/languages")
+@app.get(f"{PREFIX}")
+@app.get(f"{PREFIX}/")
+def spa_root():
+    return FileResponse(os.path.join(FRONTEND_DIST, "index.html"))
+
+
+@app.get(f"{PREFIX}/api/languages")
 def get_languages() -> list[dict]:
     return languages_df.to_dict(orient="records")
 
 
-@app.get("/api/survey")
+@app.get(f"{PREFIX}/api/survey")
 def get_survey(language: str = "english") -> list[dict]:
     matches = languages_df[languages_df["language"] == language]
     if matches.empty:
@@ -275,12 +286,12 @@ def get_survey(language: str = "english") -> list[dict]:
     return survey
 
 
-@app.post("/api/new-user")
+@app.post(f"{PREFIX}/api/new-user")
 def new_user() -> dict:
     return {"user_id": random.randint(1, 10_000_000)}
 
 
-@app.post("/api/next-pair")
+@app.post(f"{PREFIX}/api/next-pair")
 async def next_pair(request: Request) -> dict:
     data = await request.json()
 
@@ -312,7 +323,7 @@ async def next_pair(request: Request) -> dict:
     return {"pair": pair, "info_gain": info_gain, "violation_info": violation}
 
 
-@app.post("/api/save-answer")
+@app.post(f"{PREFIX}/api/save-answer")
 async def save_answer(request: Request) -> dict:
     data = await request.json()
 
@@ -352,7 +363,7 @@ async def save_answer(request: Request) -> dict:
     return {"success": True}
 
 
-@app.get("/api/images-debug")
+@app.get(f"{PREFIX}/api/images-debug")
 def images_debug() -> list[dict]:
     if images_df.empty:
         return [{"error": "images_df is empty"}]
@@ -369,16 +380,12 @@ def images_debug() -> list[dict]:
 
 for _idx, _csv_path in enumerate(_to_path_list(CONFIG["images_path"])):
     _parent = os.path.dirname(os.path.abspath(_csv_path))
-    _route  = f"/images/{_idx}"
+    _route  = f"{PREFIX}/images/{_idx}"
     app.mount(_route, StaticFiles(directory=_parent), name=f"images_{_idx}")
     print(f"[server] Mounted {_parent!r}  →  {_route}")
 
-FRONTEND_DIST = os.path.join(ROOT, "frontend", "dist")
+app.mount(f"{PREFIX}/assets", StaticFiles(directory=os.path.join(FRONTEND_DIST, "assets")), name="assets")
 
-app.mount("/assets", StaticFiles(directory=os.path.join(FRONTEND_DIST, "assets")), name="assets")
-
-from fastapi.responses import FileResponse
-
-@app.get("/{full_path:path}")
+@app.get(f"{PREFIX}/{{full_path:path}}")
 def spa_fallback(full_path: str):
     return FileResponse(os.path.join(FRONTEND_DIST, "index.html"))
